@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c75164185a808478f987b17656bc1c, type: 3}
+  m_Name: Kick
+  m_EditorClassIdentifier: 
+  abilityName: Kill
+  cooldownTime: 45
+  animator: {fileID: 0}
+  kickSphereRadius: 2
+  kickSphereMaxDistance: 2
+  kickForce: 200
+  timeToReEnableMovement: 1
+  cooldownDelay: 1

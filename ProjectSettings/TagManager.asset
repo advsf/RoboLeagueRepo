@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - NetBallDetectors
+  - Ball
+  - Goalkeeper
+  - ThrowInOobDetector
+  - BlueGoalkeeperBoxLimiter
+  - RedGoalkeeperBoxLimiter
+  - TutorialBot
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - BluePlayer
+  - Ground
+  - Ball
+  - Legs
+  - BlueGoalnetBoundary
+  - RedPlayer
+  - RedGoalnetBoundary
+  - Goalkeeper
+  - PositionRestrictionBoundary
+  - Stadium
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Receive Decals
