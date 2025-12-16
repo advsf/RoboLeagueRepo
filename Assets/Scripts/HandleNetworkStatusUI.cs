@@ -13,7 +13,7 @@ public class HandleNetworkStatusUI : NetworkBehaviour
 
         int ping = PlayerInfo.instance.ping.Value;
 
-        highLatencyObj.SetActive(ping > 300);
+        highLatencyObj.SetActive(ping > 250);
         serverDesyncObj.SetActive(ping > 1000);
     }
 }

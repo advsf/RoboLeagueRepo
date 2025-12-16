@@ -103,8 +103,8 @@ public class BallSync : NetworkBehaviour
     public NetworkVariable<int> secondLastKickedClientId = new(-1);
     public NetworkVariable<FixedString32Bytes> lastKickedTeam = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
-    public NetworkVariable<FixedString32Bytes> scorerUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<FixedString32Bytes> assisterUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<FixedString64Bytes> scorerUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<FixedString64Bytes> assisterUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public override void OnNetworkSpawn()
     {

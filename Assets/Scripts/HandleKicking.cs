@@ -26,7 +26,8 @@ public class HandleKicking : NetworkBehaviour
     [SerializeField] private float headingStaminaLoss;
 
     [Header("Bicycle Kick Settings")]
-    [SerializeField] private float bicycleKickingMultipler;
+    [SerializeField] private float bicycleOnAirKickingMultipler;
+    [SerializeField] private float bicycleOnGroundKickingMultipler;
     [SerializeField] private float bicycleKickStaminaLoss;
     [SerializeField] private float bicycleKickDuration;
     [SerializeField] private float bicycleKickSphereRadius;
@@ -303,6 +304,7 @@ public class HandleKicking : NetworkBehaviour
 
     private void ApplyMovementDebuff()
     {
+        // if we've been charging for too long, make the player move slower
         if (Time.time - sliderChargingStartTime >= timeBeforeSlowMovement)
         {
             currentWalkSpeed = Mathf.Lerp(currentWalkSpeed, minWalkSpeed, Time.deltaTime * speedLerpMultiplier);
@@ -666,13 +668,13 @@ public class HandleKicking : NetworkBehaviour
         // reverse since we are bicycle kicking
         Vector3 direction = -ray.direction.normalized;
 
-        float lift = Mathf.Lerp(bicycleKickMinLift, bicycleKickMaxLift, bicycleKickingMultipler);
+        float lift = Mathf.Lerp(bicycleKickMinLift, bicycleKickMaxLift, bicycleOnAirKickingMultipler);
 
-        Vector3 force = bicycleKickingMultipler * shotBarAmount * direction + Vector3.up * lift;
+        Vector3 force = (PlayerMovement.instance.IsOnGround ? bicycleOnGroundKickingMultipler : bicycleOnAirKickingMultipler) * shotBarAmount * direction + Vector3.up * lift;
 
         // creaate top spin
         Vector3 spinAxis = Vector3.Cross(Vector3.up, direction).normalized;
-        Vector3 angularImpulse = spinAxis * bicycleKickTopSpin * bicycleKickingMultipler;
+        Vector3 angularImpulse = spinAxis * bicycleKickTopSpin * bicycleOnAirKickingMultipler;
 
         var bicycleKickPayload = new BallSync.InputPayload
         {
@@ -741,6 +743,9 @@ public class HandleKicking : NetworkBehaviour
         // calculate spin
         Vector3 angularImpulse = Vector3.zero;
         bool hasSpin = Mathf.Abs(mouseX) > minimumMagnusMouseThreshold;
+
+        // limit spin
+        mouseX = Mathf.Min(mouseX, 1200);
 
         if (hasSpin)
         {

@@ -306,25 +306,23 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         // this is animation has a higher layer priority, so only this will play
         playerAnimation.PlayGKCatchAnimation();
 
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, ballCatchRadius, transform.forward, ballCatchMaxDistance);
+        Collider[] hits = Physics.OverlapSphere(transform.position, ballCatchRadius);
 
         bool didFindBall = false;
 
-        foreach (RaycastHit hit in hits)
+        foreach (var hit in hits)
         {
-            Debug.Log(hit.collider.name);
-
-            if (hit.collider.CompareTag("Ball"))
+            if (hit.gameObject.CompareTag("Ball"))
             {
-                touchedBallSync = hit.collider.GetComponentInChildren<BallSync>();
+                touchedBallSync = hit.gameObject.GetComponent<BallSync>();
 
                 // still didn't find ball sync? 
                 // move on
                 if (touchedBallSync == null)
                     continue;
 
-                // if it's our own teammate that last kicked it
-                if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value))
+                // if it's our own teammate that last kicked it and NOT our own
+                if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
                 {
                     abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
                     break; // this isn't needed but it's for performance so why not
@@ -342,7 +340,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                     isHoldingBall = true;
                     didFindBall = true;
 
-                    caughtBall = hit.collider.gameObject;
+                    caughtBall = hit.gameObject;
                     caughtBallRb = caughtBall.GetComponent<Rigidbody>();
 
                     // handle timer

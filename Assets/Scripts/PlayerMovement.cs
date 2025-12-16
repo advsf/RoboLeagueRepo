@@ -386,7 +386,14 @@ public class PlayerMovement : NetworkBehaviour
         HandleAbilities.instance.TriggerCooldown(speedsterAbility);
     }
 
-    public void SetSpeed(float desiredVelocity) => rb.linearVelocity = desiredVelocity * moveDirection.normalized;
+    public void SetSpeed(float desiredVelocity)
+    {
+        Vector3 currentVelocity = rb.linearVelocity;
+
+        Vector3 horizontalDirection = new Vector3(moveDirection.x, 0f, moveDirection.z).normalized;
+
+        rb.linearVelocity = new Vector3(horizontalDirection.x * desiredVelocity, currentVelocity.y, horizontalDirection.z * desiredVelocity);
+    }
 
     public void ChangeStamina(float change)
     {

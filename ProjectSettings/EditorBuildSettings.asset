@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: 5ca56b099a6116b44bcf9f113544a0c1
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
-    guid: cbe8d1b1ff2a67b40972889731ff865a
+    guid: a368f6cbb4aa4de41a363859a4b1647a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: e1817ae8e706cc4499cc6ee9c54db0c3,
       type: 2}

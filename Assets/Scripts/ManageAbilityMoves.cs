@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
 using TMPro;
+using System;
 
 public class ManageAbilityMoves : NetworkBehaviour
 {
@@ -209,6 +210,13 @@ public class ManageAbilityMoves : NetworkBehaviour
             return;
         }
 
+        if (ServerManager.instance.isStartingGame.Value)
+        {
+            HandleAbilityMessageUI("Cannot roulette right now!");
+            StartCoroutine(StartCustomCooldown(0, 2f, roulette));
+            return;
+        }
+
         var ballSynchronizer = BallManager.instance.FindNearestBall(transform.position);
         ballRb = ballSynchronizer.GetRigidbody();
 
@@ -240,7 +248,7 @@ public class ManageAbilityMoves : NetworkBehaviour
 
                     animationController.PlayRouletteAnimation();
 
-                    StartCoroutine(FollowRouletteBallPos(ballSynchronizer, rouletteAnimationDuration, speedBoostAmount, speedBoostDuration, exitBallForce));
+                    FollowRouletteBallPos(rouletteAnimationDuration, speedBoostAmount, speedBoostDuration, exitBallForce);
 
                     // handle audio
                     Invoke(nameof(PlayDribbleSoundEffect), firstSoundTimeStamp);
@@ -279,7 +287,7 @@ public class ManageAbilityMoves : NetworkBehaviour
 
     public void Trap(float trapBallSphereRadius, float trapBallSphereMaxDistance, float highTrapBallYThreshold, float movementDelay, float delay, Trap trap)
     {
-        if (ServerManager.instance.isBallOutOfBounds)
+        if (ServerManager.instance.isBallOutOfBounds || ServerManager.instance.isStartingGame.Value)
         {
             HandleAbilityMessageUI("Cannot trap right now!");
             StartCoroutine(StartCustomCooldown(0, 2f, trap));
@@ -382,40 +390,45 @@ public class ManageAbilityMoves : NetworkBehaviour
         HandleAbilities.instance.TriggerCooldown(abilityUsed, cooldown);
     }
 
-    public IEnumerator FollowRouletteBallPos(BallSync ballSynchronizer, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce)
+    public void FollowRouletteBallPos(float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce)
     {
-        float startTime = Time.time;
         ballRb = BallManager.instance.FindNearestBall(transform.position).GetComponent<Rigidbody>();
         ballRb.isKinematic = true;
 
+        // locally play the animation first
         shouldFollowRouletteBallPos = true;
 
-        // tell other clients to move the ball
-        if (IsHost)
-            MoveBallInRouletteClientRpc();
-        else
-            MoveBallInRouletteServerRpc();
+        HandleRouletteServerRpc(transform.position, Time.time + PlayerInfo.instance.ping.Value / 1000f, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce);
+    }
 
-        float currentTime = Time.time - startTime;
+    [ServerRpc]
+    private void HandleRouletteServerRpc(Vector3 playerPosition, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ServerRpcParams serverRpcParams = default)
+    {
+        StartCoroutine(HandleRoulettePhysics(playerPosition, startTime, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce, serverRpcParams.Receive.SenderClientId));
+    }
+
+    private IEnumerator HandleRoulettePhysics(Vector3 playerPosition, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ulong senderClientId)
+    {
+        ballRb = BallManager.instance.FindNearestBall(playerPosition).GetComponent<Rigidbody>();
+        BallSync ballSync = BallManager.instance.FindNearestBall(playerPosition).GetComponent<BallSync>();
+
+        // tell other clients to move the ball
+        MoveBallInRouletteClientRpc();
 
         // the way we handle the ball moving is handled in update
-        while (currentTime <= animationDuration)
-        {
-            currentTime = Time.time - startTime;
+        float durationToWait = animationDuration - (Time.time - startTime);
 
-            yield return null;
-        }
+        if (durationToWait > 0)
+            yield return new WaitForSeconds(durationToWait);
 
         ballRb.isKinematic = false;
         shouldFollowRouletteBallPos = false;
 
         // sync end of animation
-        if (IsHost)
-            AllowBallToMoveAfterRoulleteClientRpc(transform.position);
-        else
-            AllowBallToMoveAfterRoulleteServerRpc(transform.position);
+        AllowBallToMoveAfterRoulleteClientRpc(playerPosition);
 
-        Vector3 force = ballExitForce * transform.forward;
+        Vector3 force = ballExitForce * 
+            NetworkManager.ConnectedClients[senderClientId].PlayerObject.GetComponent<PlayerInfo>().playingObj.transform.GetChild(0).forward; // this gets the current dir of the player that sent the roulette request
 
         var kickPayload = new BallSync.InputPayload
         {
@@ -424,8 +437,20 @@ public class ManageAbilityMoves : NetworkBehaviour
             AngularImpulse = Vector3.zero,
         };
 
-        ballSynchronizer.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        ballSync.LocalKick(kickPayload, (int)senderClientId);
 
+        GiveRouletteSpeedBoostClientRpc(speedBoostAmount, speedBoostDuration, new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[] { senderClientId }
+            }
+        });
+    }
+
+    [ClientRpc]
+    private void GiveRouletteSpeedBoostClientRpc(float speedBoostAmount, float speedBoostDuration, ClientRpcParams clientRpcParams = default)
+    {
         // give a little speed boost
         PlayerMovement.instance.IncreaseSpeedForDuration(speedBoostAmount, speedBoostDuration);
     }
@@ -489,20 +514,12 @@ public class ManageAbilityMoves : NetworkBehaviour
 
     private void RemoveAbilityMessageUI() => abilityMessageUIObj.SetActive(false);
 
-    [ServerRpc]
-    private void MoveBallInRouletteServerRpc()
-    {
-        MoveBallInRouletteClientRpc();
-    }
 
     [ClientRpc]
     private void MoveBallInRouletteClientRpc()
     {
         shouldFollowRouletteBallPos = true;
     }
-
-    [ServerRpc]
-    private void AllowBallToMoveAfterRoulleteServerRpc(Vector3 playerPosition) => AllowBallToMoveAfterRoulleteClientRpc(playerPosition);
 
     [ClientRpc]
     private void AllowBallToMoveAfterRoulleteClientRpc(Vector3 playerPosition)

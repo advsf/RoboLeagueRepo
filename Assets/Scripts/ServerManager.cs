@@ -871,16 +871,6 @@ public class ServerManager : NetworkBehaviour
     [ClientRpc]
     private void ResetGameClientRpc(string scoredTeam, bool countGoal)
     {
-        // update the goal count if there is a scoredTeam
-        if (IsServer && countGoal)
-        {
-            if (scoredTeam.Equals("Blue"))
-                blueTeamGoalCount.Value++;
-
-            else if (scoredTeam.Equals("Red"))
-                redTeamGoalCount.Value++;
-        }
-
         PlayerInfo.instance.ResetPlayerPosition(!PlayerInfo.instance.currentTeam.Value.Equals(scoredTeam));
     }
 

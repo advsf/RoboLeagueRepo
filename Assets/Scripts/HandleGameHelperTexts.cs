@@ -16,7 +16,7 @@ public class HandleGameHelperTexts : MonoBehaviour
         if (ServerManager.instance.didStartGame.Value && transform.GetChild(0).gameObject.activeInHierarchy)
             EnableTexts(false);
 
-        else if (!transform.GetChild(0).gameObject.activeInHierarchy)
+        else if (!ServerManager.instance.didStartGame.Value && !transform.GetChild(0).gameObject.activeInHierarchy)
             EnableTexts(true);
 
     }

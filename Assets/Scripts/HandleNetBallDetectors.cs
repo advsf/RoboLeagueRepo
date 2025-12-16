@@ -91,6 +91,7 @@ public class HandleNetBallDetectors : NetworkBehaviour
             // when we couldn't find the info of the kicker
             else
             {
+                // teleport the ball back to the penalty spot to prevent own goals
                 ballSync.ResetBallServerRpc(ownGoalballPos.position);
 
                 ServerManager.instance.didATeamScore.Value = false;
@@ -104,6 +105,12 @@ public class HandleNetBallDetectors : NetworkBehaviour
 
             // play sound effect
             PlayGoalSound();
+
+            // immediately increment the score value
+            if (kickerInfo.currentTeam.Value.ToString().Equals("Blue"))
+                ServerManager.instance.blueTeamGoalCount.Value++;
+            else
+                ServerManager.instance.redTeamGoalCount.Value++;
 
             Invoke(nameof(PlayGoalUIAnimation), goalScoreUIDelay);
 
