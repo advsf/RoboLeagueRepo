@@ -35,8 +35,6 @@ public class HandleLobbySound : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        Debug.Log("called!");
-
         musicSource.Play();
 
         float time = Time.time;
@@ -50,8 +48,6 @@ public class HandleLobbySound : MonoBehaviour
 
     public IEnumerator FadeOutMusic(float delay, float fadeDuration)
     {
-        Debug.Log("called!");
-
         yield return new WaitForSeconds(delay);
 
         float time = Time.time;

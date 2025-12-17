@@ -229,7 +229,7 @@ public class HandleKicking : NetworkBehaviour
             ExecuteKick();
     }
 
-    private void HandleSpawningLocalBall()
+    public void HandleSpawningLocalBall()
     {
         Vector3 spawnPosition = new(transform.position.x, transform.position.y + 1.5f, transform.position.z); // add a little bit of a y offset
 
@@ -527,8 +527,11 @@ public class HandleKicking : NetworkBehaviour
         // the reason why we multiply 5000 with the mouse DPI is to ensure that it's the best curve setting that they can get and makes it consistent
         // same goes for the sensitivity
 
-        // during testing those were the mouse specs i was using
-        return Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
+        // during testing those were the mouse specs i was using so we'll just make everyone use my own settings LOL
+
+        float curve = Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
+
+        return Mathf.Min(curve, 1500);
     }
     private void HandleDribbling()
     {
@@ -727,8 +730,7 @@ public class HandleKicking : NetworkBehaviour
         }
     }
 
-    private void CreateAndSendKick(float power, float sliderValue, float mouseX, Vector3 direction,
-                                  float upwardInfluence, float powerBoost)
+    private void CreateAndSendKick(float power, float sliderValue, float mouseX, Vector3 direction, float upwardInfluence, float powerBoost)
     {
         if (ServerManager.instance.isStartingGame.Value)
             return;
@@ -744,14 +746,13 @@ public class HandleKicking : NetworkBehaviour
         Vector3 angularImpulse = Vector3.zero;
         bool hasSpin = Mathf.Abs(mouseX) > minimumMagnusMouseThreshold;
 
-        // limit spin
-        mouseX = Mathf.Min(mouseX, 1200);
-
         if (hasSpin)
         {
             Vector3 localSpinAxis = new Vector3(topSpinMultiplier, mouseX * 0.5f, 0f).normalized;
             Vector3 worldSpinAxis = transform.TransformDirection(localSpinAxis);
             angularImpulse = sideSpinMultiplier * sliderValue * worldSpinAxis;
+
+            Debug.Log(angularImpulse);
         }
 
         var kickPayload = new BallSync.InputPayload

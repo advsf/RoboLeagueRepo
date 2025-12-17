@@ -39,6 +39,7 @@ public class HandleChatbox : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
+            return;
 
         base.OnNetworkSpawn();
 
@@ -253,6 +254,8 @@ public class HandleChatbox : NetworkBehaviour
             return;
 
         HandleTrackingAmountOfTextSent();
+
+        Debug.Log("sending message");
 
         SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), inputField.text);
 

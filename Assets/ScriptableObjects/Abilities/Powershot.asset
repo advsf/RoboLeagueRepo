@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Powershot
   m_EditorClassIdentifier: 
   abilityName: Powershot
-  cooldownTime: 35
+  cooldownTime: 40
   animator: {fileID: 0}
-  powerShotIncreaseMultiplier: 95
+  powerShotIncreaseMultiplier: 105
   durationBeforeAutoCancel: 5
   autoCancelCooldownDuration: 0.25

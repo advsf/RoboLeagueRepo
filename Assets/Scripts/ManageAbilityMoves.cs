@@ -398,16 +398,19 @@ public class ManageAbilityMoves : NetworkBehaviour
         // locally play the animation first
         shouldFollowRouletteBallPos = true;
 
-        HandleRouletteServerRpc(transform.position, Time.time + PlayerInfo.instance.ping.Value / 1000f, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce);
+        // slow down player
+        StartCoroutine(PlayerMovement.instance.LimitSpeedToWalkingSpeed(true, 0));
+        
+        HandleRouletteServerRpc(transform.position, transform.forward, Time.time - PlayerInfo.instance.ping.Value / 1000.0f, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce);
     }
 
     [ServerRpc]
-    private void HandleRouletteServerRpc(Vector3 playerPosition, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ServerRpcParams serverRpcParams = default)
+    private void HandleRouletteServerRpc(Vector3 playerPosition, Vector3 playerForwardDir, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ServerRpcParams serverRpcParams = default)
     {
-        StartCoroutine(HandleRoulettePhysics(playerPosition, startTime, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce, serverRpcParams.Receive.SenderClientId));
+        StartCoroutine(HandleRoulettePhysics(playerPosition, playerForwardDir, startTime, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce, serverRpcParams.Receive.SenderClientId));
     }
 
-    private IEnumerator HandleRoulettePhysics(Vector3 playerPosition, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ulong senderClientId)
+    private IEnumerator HandleRoulettePhysics(Vector3 playerPosition, Vector3 playerForwardDir, float startTime, float animationDuration, float speedBoostAmount, float speedBoostDuration, float ballExitForce, ulong senderClientId)
     {
         ballRb = BallManager.instance.FindNearestBall(playerPosition).GetComponent<Rigidbody>();
         BallSync ballSync = BallManager.instance.FindNearestBall(playerPosition).GetComponent<BallSync>();
@@ -416,10 +419,9 @@ public class ManageAbilityMoves : NetworkBehaviour
         MoveBallInRouletteClientRpc();
 
         // the way we handle the ball moving is handled in update
-        float durationToWait = animationDuration - (Time.time - startTime);
+        float durationToWait = animationDuration - startTime;
 
-        if (durationToWait > 0)
-            yield return new WaitForSeconds(durationToWait);
+        yield return new WaitForSeconds(durationToWait);
 
         ballRb.isKinematic = false;
         shouldFollowRouletteBallPos = false;
@@ -427,8 +429,7 @@ public class ManageAbilityMoves : NetworkBehaviour
         // sync end of animation
         AllowBallToMoveAfterRoulleteClientRpc(playerPosition);
 
-        Vector3 force = ballExitForce * 
-            NetworkManager.ConnectedClients[senderClientId].PlayerObject.GetComponent<PlayerInfo>().playingObj.transform.GetChild(0).forward; // this gets the current dir of the player that sent the roulette request
+        Vector3 force = ballExitForce * playerForwardDir;
 
         var kickPayload = new BallSync.InputPayload
         {
@@ -451,6 +452,9 @@ public class ManageAbilityMoves : NetworkBehaviour
     [ClientRpc]
     private void GiveRouletteSpeedBoostClientRpc(float speedBoostAmount, float speedBoostDuration, ClientRpcParams clientRpcParams = default)
     {
+        // slow down player
+        StartCoroutine(PlayerMovement.instance.LimitSpeedToWalkingSpeed(false, PlayerInfo.instance.ping.Value / 1000.0f + 0.2f));
+
         // give a little speed boost
         PlayerMovement.instance.IncreaseSpeedForDuration(speedBoostAmount, speedBoostDuration);
     }

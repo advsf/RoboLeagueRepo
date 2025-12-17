@@ -70,6 +70,18 @@ namespace Dissonance.Integrations.Unity_NFGO
             StartCoroutine(InitializeDissonance());
         }
 
+        private void Update()
+        {
+            if (!IsOwner)
+                return;
+
+            if (PlayerInfo.instance.playingObj.activeInHierarchy && !IsTracking)
+                StartTracking();
+
+            if (!PlayerInfo.instance.playingObj.activeInHierarchy && IsTracking)
+                StopTracking();
+        }
+
         private IEnumerator InitializeDissonance()
         {
             while (_comms == null)

@@ -54,6 +54,8 @@ public class HandleEmotes : NetworkBehaviour
         {
             emoteUI.SetActive(!emoteUI.activeInHierarchy);
             isEnabled = emoteUI.activeInHierarchy;
+
+            HandleCursorSettings.instance.SetUIOnMode(true);
         }
 
         // if the emote UI isn't open
@@ -67,6 +69,8 @@ public class HandleEmotes : NetworkBehaviour
 
             isEnabled = false;
             emoteUI.SetActive(isEnabled);
+
+            HandleCursorSettings.instance.SetUIOnMode(isEnabled);
         }
 
         // 2 - MY LOVE FOR YOU
@@ -76,6 +80,8 @@ public class HandleEmotes : NetworkBehaviour
 
             isEnabled = false;
             emoteUI.SetActive(isEnabled);
+
+            HandleCursorSettings.instance.SetUIOnMode(isEnabled);
         }
 
         // 3 - Backflip
@@ -85,6 +91,8 @@ public class HandleEmotes : NetworkBehaviour
 
             isEnabled = false;
             emoteUI.SetActive(isEnabled);
+
+            HandleCursorSettings.instance.SetUIOnMode(isEnabled);
         }
 
         // 4 - Take the L
@@ -94,6 +102,8 @@ public class HandleEmotes : NetworkBehaviour
 
             isEnabled = false;
             emoteUI.SetActive(isEnabled);
+
+            HandleCursorSettings.instance.SetUIOnMode(isEnabled);
         }
     }
 }

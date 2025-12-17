@@ -32,30 +32,40 @@ public class HandleHitbox : NetworkBehaviour
             {
                 canSlideKick = false;
 
-                Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-
-                // calculate based on the speed of the ball and player
-                Vector3 force = forwardForceMultiplier * PlayerMovement.instance.GetPlayerMoveDirection();
-
-                // if we are looking up at a certain point
-                // then add upward force as well
-                if (Vector3.Dot(ray.direction, Vector3.up) >= minLookUpSensitivty)
-                    force += upwardForceMultiplier * ray.direction;
-
-                var kickPayload = new BallSync.InputPayload
-                {
-                    Tick = NetworkManager.Singleton.ServerTime.Tick,
-                    Force = force,
-                    AngularImpulse = Vector3.zero,
-                    SlideKick = true
-                };
-
-                ballSynchronizer.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+                CreateAndSendKick();
 
                 Invoke(nameof(AllowSlideKick), PlayerMovement.instance.slideCooldown);
             }
         }
     }
+
+    private void CreateAndSendKick()
+    {
+        if (ServerManager.instance.isStartingGame.Value)
+            return;
+
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+
+        // calculate based on the speed of the ball and player
+        Vector3 force = forwardForceMultiplier * PlayerMovement.instance.GetPlayerMoveDirection();
+
+        // if we are looking up at a certain point
+        // then add upward force as well
+        if (Vector3.Dot(ray.direction, Vector3.up) >= minLookUpSensitivty)
+            force += upwardForceMultiplier * ray.direction;
+
+        var kickPayload = new BallSync.InputPayload
+        {
+            Tick = NetworkManager.Singleton.ServerTime.Tick,
+            Force = force,
+            AngularImpulse = Vector3.zero,
+            SlideKick = true
+        };
+
+        ballSynchronizer.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+    }
+
+    private void AllowSlideKick() => canSlideKick = true;
 
     private void OnTriggerStay(Collider other)
     {
@@ -74,6 +84,4 @@ public class HandleHitbox : NetworkBehaviour
 
         kickScript.SetCanKickOrHead(isKickHitbox, false);
     }
-
-    private void AllowSlideKick() => canSlideKick = true;
 }

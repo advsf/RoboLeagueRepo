@@ -36,6 +36,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
     [SerializeField] private float catchSaveBallVelThreshold; // determines the max vel a ball should be when the goalkeeper touches it for an automatic catch save
     [SerializeField] private float sweeperBallPositionThreshold;
     [SerializeField] private float dropKickPositionThreshold = 2f;
+    [SerializeField] private float interceptTriggerSpeed = 5.0f; 
 
     [Header("Cooldown Settings")]
     [SerializeField] private float saveCooldown;
@@ -68,6 +69,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
     [Header("Drop Kick Settings")]
     [SerializeField] private float minKickPower;
     [SerializeField] private float maxKickPower;
+    [SerializeField] private float dropKickHeightMultiplier = 1.2f;
     [SerializeField] private float maxDistanceForMaxPower;
     [SerializeField] private float minDistanceToPassTo = 20f;
 
@@ -131,20 +133,21 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         sideStepLeft = Animator.StringToHash("isSideStepLeft");
     }
 
+    private void OnEnable()
+    {
+        shouldFollowCatchBallPos = false;
+
+        if (IsHost)
+            ResetState();
+    }
+
     private void OnDisable()
     {
-        if (!IsHost)
+        // The goalkeeper should only have the ball if the state is passing
+        if (currentState != State.passing || !IsHost)
             return;
 
-        // if the goalkeeper had the ball
-        if (shouldFollowCatchBallPos)
-        {
-            shouldFollowCatchBallPos = false;
-
-            // ensure that the ball isn't kinematic
-            ballSync.EnableKinematics(false);
-            ballSync.EnableCollider(true);
-        }
+        DropBall();
     }
 
     private void Update()
@@ -208,7 +211,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
             Vector3 directionToTarget = _calculatedTargetPosition - rb.position;
             directionToTarget.y = 0;
 
-            if (directionToTarget.magnitude < 0.5f)
+            if (directionToTarget.magnitude < 0.2f)
             {
                 rb.linearVelocity = new(0, rb.linearVelocity.y, 0);
             }
@@ -290,7 +293,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
             foreach (ulong id in ServerManager.instance.blueTeamPlayerIds)
             {
-                if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(id)) 
+                if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(id))
                     continue;
 
                 Transform player = NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<PlayerInfo>().playingObj.transform;
@@ -315,7 +318,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
             foreach (ulong id in ServerManager.instance.redTeamPlayerIds)
             {
-                if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(id)) 
+                if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(id))
                     continue;
 
                 Transform player = NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<PlayerInfo>().playingObj.transform;
@@ -341,8 +344,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         if (currentState == State.idle)
             return;
 
-        float verticalScale = 1.2f;
-        Vector3 force = dynamicKickPower * direction + verticalScale * dynamicKickPower * transform.up;
+        Vector3 force = dynamicKickPower * direction + dropKickHeightMultiplier * dynamicKickPower * transform.up;
 
         var kickPayload = new BallSync.InputPayload
         {
@@ -377,25 +379,28 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
     private void HandleMovementAnimations()
     {
-        if (rb.linearVelocity.magnitude > 2f && !isSaving && _calculatedTargetPosition != Vector3.zero)
+        if (rb.linearVelocity.magnitude > 1f && !isSaving && _calculatedTargetPosition != Vector3.zero)
         {
             float moveDirectionZ = (_calculatedTargetPosition.z - transform.position.z) * _directionMultiplier;
-            if (moveDirectionZ <= 0)
+
+            if (Mathf.Abs(moveDirectionZ) > 0.1f)
             {
-                animator.SetBool(sideStepRight, true);
-                animator.SetBool(sideStepLeft, false);
-            }
-            else
-            {
-                animator.SetBool(sideStepRight, false);
-                animator.SetBool(sideStepLeft, true);
+                if (moveDirectionZ <= 0)
+                {
+                    animator.SetBool(sideStepRight, true);
+                    animator.SetBool(sideStepLeft, false);
+                }
+                else
+                {
+                    animator.SetBool(sideStepRight, false);
+                    animator.SetBool(sideStepLeft, true);
+                }
+                return;
             }
         }
-        else if (!isSaving || _calculatedTargetPosition == Vector3.zero)
-        {
-            animator.SetBool(sideStepLeft, false);
-            animator.SetBool(sideStepRight, false);
-        }
+
+        animator.SetBool(sideStepLeft, false);
+        animator.SetBool(sideStepRight, false);
     }
 
     private void HandleIdleState()
@@ -415,8 +420,15 @@ public class HandleGoalkeeperAI : NetworkBehaviour
             return;
         }
 
-        if (PredictBallTrajectory(out predictedLandingPoint))
+        Vector3 intersectionPoint;
+        bool isThreatening = IsBallMovingTowardsKeeper(out intersectionPoint);
+        float targetZ;
+
+        if (ballVelocity > interceptTriggerSpeed && isThreatening)
         {
+            targetZ = intersectionPoint.z;
+            predictedLandingPoint = intersectionPoint; 
+
             if (distanceFromBall < savingPositionThreshold && ballVelocity > diveShotSpeedThreshold)
             {
                 currentState = State.saving;
@@ -425,7 +437,11 @@ public class HandleGoalkeeperAI : NetworkBehaviour
             }
         }
 
-        float targetZ = ballRb.position.z;
+        else
+        {
+            targetZ = ballRb.position.z;
+        }
+
         float clampedZ = Mathf.Clamp(targetZ, idlePoint.position.z - maxMoveDistance, idlePoint.position.z + maxMoveDistance);
 
         if (distanceFromBall < sweeperBallPositionThreshold)
@@ -434,12 +450,12 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
             // define clamping bounds based on team direction
             float minX, maxX;
-            if (_directionMultiplier > 0) 
+            if (_directionMultiplier > 0)
             {
                 minX = idlePoint.position.x;
                 maxX = idlePoint.position.x + maxMoveDistance;
             }
-            else 
+            else
             {
                 minX = idlePoint.position.x - maxMoveDistance;
                 maxX = idlePoint.position.x;
@@ -457,9 +473,56 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         return team == Team.Blue ? ball.position.x > transform.position.x : ball.position.x < transform.position.x;
     }
 
+    private bool IsBallMovingTowardsKeeper(out Vector3 interceptPoint)
+    {
+        interceptPoint = Vector3.zero;
+
+        // Simple check: is velocity roughly towards goal?
+        Vector3 directionToGoal = (goalLine.position - ball.position).normalized;
+        if (Vector3.Dot(ballRb.linearVelocity.normalized, directionToGoal) < 0.1f)
+            return false;
+
+        return PredictIntersectionWithKeeperPlane(out interceptPoint);
+    }
+
+    private bool PredictIntersectionWithKeeperPlane(out Vector3 interceptPoint)
+    {
+        interceptPoint = Vector3.zero;
+
+        Vector3 currentPosition = ball.position;
+        Vector3 currentVelocity = ballRb.linearVelocity;
+        Vector3 spinDirection = ballRb.angularVelocity;
+        float ballMass = ballRb.mass;
+
+        float keeperX = transform.position.x;
+        float initialDistX = currentPosition.x - keeperX;
+
+        for (int i = 0; i < predictionSteps; i++)
+        {
+            Vector3 magnusForce = Vector3.Cross(spinDirection, currentVelocity) * magnusForceMultiplier;
+            Vector3 downForce = Vector3.down * downForceMultiplier;
+            Vector3 acceleration = (magnusForce + downForce + Physics.gravity) / ballMass;
+
+            currentVelocity += acceleration * predictionTimeStep;
+            currentVelocity *= (1f - ballDrag * predictionTimeStep);
+            currentPosition += currentVelocity * predictionTimeStep;
+
+            float currentDistX = currentPosition.x - keeperX;
+
+            // If the sign changes, we crossed the plane
+            if (Mathf.Sign(initialDistX) != Mathf.Sign(currentDistX))
+            {
+                interceptPoint = new Vector3(keeperX, Mathf.Clamp(currentPosition.y, 0f, 2.5f), currentPosition.z);
+                return true;
+            }
+        }
+        return false;
+    }
+
     private bool PredictBallTrajectory(out Vector3 landingPoint)
     {
         landingPoint = Vector3.zero;
+
         if (ballRb.linearVelocity.magnitude < 0.2f)
             return false;
 
@@ -482,6 +545,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
             currentVelocity *= (1f - ballDrag * predictionTimeStep);
             currentPosition += currentVelocity * predictionTimeStep;
             Vector3 currentRelativePosition = currentPosition - goalLine.position;
+
             if (Mathf.Sign(Vector3.Dot(currentRelativePosition, goalLine.forward)) != Mathf.Sign(Vector3.Dot(initialRelativePosition, goalLine.forward)))
             {
                 landingPoint = new Vector3(currentPosition.x, Mathf.Clamp(currentPosition.y, 0f, 2.5f), currentPosition.z);
@@ -500,15 +564,18 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+
         float clampedZ = Mathf.Clamp(predictedLandingPoint.z, idlePoint.position.z - maxMoveDistance, idlePoint.position.z + maxMoveDistance);
-        Vector3 clampedDiveTarget = new(idlePoint.position.x, ballRb.position.y, clampedZ);
+
+        Vector3 clampedDiveTarget = new(idlePoint.position.x, predictedLandingPoint.y, clampedZ);
         currentBallVelMag = ballRb.linearVelocity.magnitude;
 
-        float diveDirectionZ = (ballRb.position.z - transform.position.z) * _directionMultiplier;
+        float diveDirectionZ = (clampedDiveTarget.z - transform.position.z) * _directionMultiplier;
 
         if (currentBallVelMag > diveShotSpeedThreshold)
         {
             float timeToIntercept = (clampedDiveTarget - ball.position).magnitude / ballRb.linearVelocity.magnitude;
+
             if (timeToIntercept <= 0)
             {
                 StartCoroutine(DiveCooldownRoutine());
@@ -528,11 +595,15 @@ public class HandleGoalkeeperAI : NetworkBehaviour
             Vector3 diveTargetDirection = clampedDiveTarget - transform.position;
 
             Vector3 horizontalForce = new Vector3(diveTargetDirection.x, 0, diveTargetDirection.z).normalized * diveForce;
-            Vector3 verticalForce = new Vector3(0, diveTargetDirection.y, 0).normalized * upwardsDiveForce;
+
+            // Adjust vertical force based on predicted height
+            float heightFactor = Mathf.Clamp(predictedLandingPoint.y, 0.5f, 2.0f);
+            Vector3 verticalForce = Vector3.up * (upwardsDiveForce * heightFactor);
 
             Vector3 totalForce = horizontalForce + verticalForce;
             rb.AddForce(totalForce, ForceMode.Impulse);
         }
+
         else
         {
             _calculatedTargetPosition = clampedDiveTarget;
@@ -549,14 +620,19 @@ public class HandleGoalkeeperAI : NetworkBehaviour
     private IEnumerator DiveCooldownRoutine()
     {
         yield return new WaitForSeconds(timeBeforeDownwardForce);
+
         rb.AddForce(Vector3.down * downwardGravityForce, ForceMode.Impulse);
+
         yield return new WaitUntil(() => IsGrounded());
+
         yield return new WaitForSeconds(saveCooldown);
+
         if (currentState == State.passing)
         {
             isSaving = false;
             yield break;
         }
+
         currentState = State.positioning;
         isSaving = false;
         rb.linearVelocity = Vector3.zero;
@@ -579,6 +655,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
     public void DropBall()
     {
         shouldBallBeInCatchPos = false;
+        shouldFollowCatchBallPos = false;
         StopBallAttachmentOnClientsClientRpc();
 
         ballSync.EnableKinematics(false);
@@ -589,6 +666,19 @@ public class HandleGoalkeeperAI : NetworkBehaviour
     private void AllowGoalkeeperToBeDisabledAgain()
     {
         canGoalkeeperBeDisabled = true;
+    }
+
+    private void ResetState()
+    {
+        isSaving = false;
+        isDropKicking = false;
+        shouldBallBeInCatchPos = false;
+
+        currentState = State.idle;
+
+        _calculatedTargetPosition = transform.position;
+
+        rb.linearVelocity = Vector3.zero;
     }
 
     private void OnCollisionEnter(Collision collision)

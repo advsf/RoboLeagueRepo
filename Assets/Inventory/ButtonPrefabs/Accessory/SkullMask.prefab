@@ -163,6 +163,8 @@ MonoBehaviour:
   isHair: 0
   isAccessory: 1
   isEmote: 0
+  isBall: 0
+  isTrail: 0
 --- !u!82 &4757199203819052757
 AudioSource:
   m_ObjectHideFlags: 0
@@ -176,7 +178,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 09c9ad29221da774dbfc0ccca3e01830, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

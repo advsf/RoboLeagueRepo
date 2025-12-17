@@ -17,23 +17,7 @@ public class HandleKickPlayerButton : NetworkBehaviour
 
     public void KickPlayer()
     {
-        ClientRpcParams clientRpcParams = new ClientRpcParams
-        {
-            Send = new ClientRpcSendParams
-            {
-                TargetClientIds = new ulong[] { playerInfo.OwnerClientId }
-            }
-        };
-
-        BanPlayerFromServerClientRpc(clientRpcParams);
-
         StartCoroutine(DisconnectDelay());
-    }
-
-    [ClientRpc]
-    private void BanPlayerFromServerClientRpc(ClientRpcParams clientRpcParams = default)
-    {
-        HandleSettings.instance.BanSession();
     }
 
     private IEnumerator DisconnectDelay()

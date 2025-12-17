@@ -79,9 +79,11 @@ public class PlayerMovement : NetworkBehaviour
     private float desiredSpeed = 0;
     private float currentSpeed = 0f;
 
+    private bool isSprintingDisabled = false;
+
     // mainly for animations
     public bool IsWalking { get => inputDirection2D != Vector2.zero && !isSliding; }
-    public bool IsSprinting { get => PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && IsWalking; }
+    public bool IsSprinting { get => PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking; }
     public bool IsWalkingForward { get => inputDirection2D.y > 0 && !isSliding; }
     public bool IsWalkingBackwards { get => inputDirection2D.y < 0 && !isSliding; }
     public bool IsStrafingLeft { get => inputDirection2D.x < 0 && !isSliding; }
@@ -163,18 +165,20 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsOwner || !canPlayerMove) return;
+        if (!IsOwner || !canPlayerMove) 
+            return;
 
         if (!isGrounded)
             rb.AddForce(Vector3.down * jumpDownForce, ForceMode.Impulse);
 
         HandleCountermovement();
 
-        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) return;
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) 
+            return;
 
         moveDirection = transform.forward * inputDirection2D.y + transform.right * inputDirection2D.x;
 
-        MoveSpeeds activeSpeeds = IsSprinting && canSprint ? sprintSpeeds : walkSpeeds;
+        MoveSpeeds activeSpeeds = IsSprinting ? sprintSpeeds : walkSpeeds;
 
         float forwardComponent = inputDirection2D.y >= 0 ? inputDirection2D.y * activeSpeeds.forwardSpeed : inputDirection2D.y * activeSpeeds.backwardSpeed;
         float sidewaysComponent = inputDirection2D.x * activeSpeeds.sidewaysSpeed;
@@ -393,6 +397,13 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 horizontalDirection = new Vector3(moveDirection.x, 0f, moveDirection.z).normalized;
 
         rb.linearVelocity = new Vector3(horizontalDirection.x * desiredVelocity, currentVelocity.y, horizontalDirection.z * desiredVelocity);
+    }
+
+    public IEnumerator LimitSpeedToWalkingSpeed(bool condition, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        isSprintingDisabled = condition;
     }
 
     public void ChangeStamina(float change)

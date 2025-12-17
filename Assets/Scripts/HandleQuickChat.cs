@@ -40,8 +40,11 @@ public class HandleQuickChat : NetworkBehaviour
         if (!IsOwner)
             return;
 
-       if (PlayerInputReference.instance.controls.Gameplay.QuickChat.WasCompletedThisFrame() && !chatBoxObj.activeInHierarchy && !emoteChatObj.activeInHierarchy)
+        if (PlayerInputReference.instance.controls.Gameplay.QuickChat.WasCompletedThisFrame() && !chatBoxObj.activeInHierarchy && !emoteChatObj.activeInHierarchy)
+        {
             quickChatObj.SetActive(!quickChatObj.activeInHierarchy);
+            HandleCursorSettings.instance.SetUIOnMode(quickChatObj.activeInHierarchy);
+        }
 
         // handle which messages to send
         if (!quickChatObj.activeInHierarchy)
@@ -51,48 +54,56 @@ public class HandleQuickChat : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SendMessageOnChat("GG!", true);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 2 - Well played! (global)
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SendMessageOnChat("Well played!", true);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 3 - Good save! (global)
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SendMessageOnChat("Good save!", true);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 4 - Wow! (global)
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             SendMessageOnChat("Wow!", true);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 5 - Pass! (team)
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             SendMessageOnChat("Pass!", false);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 6 - Cross! (team)
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             SendMessageOnChat("Cross!", false);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 7 - Make a run! (team)
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             SendMessageOnChat("Make a run!", false);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
 
         // 8 - Defend! (team)
         else if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             SendMessageOnChat("Defend!", false);
+            HandleCursorSettings.instance.SetUIOnMode(false);
         }
     }
 

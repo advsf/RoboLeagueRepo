@@ -158,18 +158,11 @@ public class ServerManager : NetworkBehaviour
         // handle practice server related tools
         if (!isTutorialServer && !didStartGame.Value && !HandleCursorSettings.instance.IsUIOn())
         {
-            // get our local ball
-            if (!isPracticeServer)
-                ballRbToUse = BallManager.instance.GetLocalSpawnedBall(NetworkManager.LocalClientId).GetComponent<Rigidbody>();
-
-            if (ballRbToUse == null)
-                return;
-
             if (isPracticeServer)
             {
                 // enable or disable goalkeepers
                 if (Input.GetKeyDown(KeyCode.M)
-                    && !ballRbToUse.isKinematic
+                    && !BallManager.instance.mainBallSync.GetRigidbody().isKinematic
                     && CanGoalkeepersBeDisabled())
                 {
                     blueGoalkeeper.gameObject.SetActive(!blueGoalkeeper.gameObject.activeInHierarchy);
@@ -177,31 +170,17 @@ public class ServerManager : NetworkBehaviour
                 }
             }
 
+            // if the local ball isn't spawned, just spawn it asap
+            if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)) && !HandleKicking.instance.IsLocalBallSpawned())
+                HandleKicking.instance.HandleSpawningLocalBall();
+
             // spawn low ball
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                ballRbToUse.linearVelocity = Vector3.zero;
-                ballRbToUse.angularVelocity = Vector3.zero;
-
-                Transform player = PlayerMovement.instance.transform;
-                ballRbToUse.position = player.position + player.forward * spawnBallInFrontDistance;
-
-                // add force
-                ballRbToUse.AddForce(-player.forward * spawnBallInFrontForce, ForceMode.Impulse);
-            }
+                SpawnLowBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
 
             // spawn high ball
             if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                ballRbToUse.linearVelocity = Vector3.zero;
-                ballRbToUse.angularVelocity = Vector3.zero;
-
-                Transform player = PlayerMovement.instance.transform;
-                ballRbToUse.position = player.position + player.forward * spawnBallInFrontDistance;
-
-                // add force
-                ballRbToUse.AddForce(-player.forward * spawnBallInFrontForceLower + Vector3.up * spawnBallToSideUpwardsForce, ForceMode.Impulse);
-            }
+                SpawnHighBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
         }
 
         // if this is a practice or tutorial server, no need to do anything else
@@ -216,7 +195,7 @@ public class ServerManager : NetworkBehaviour
             return;
 
         // check if we can start the game
-        if ((Input.GetKeyDown(KeyCode.T) && !isPracticeServer && !isTutorialServer && !HandleCursorSettings.instance.IsUIOn() && spawnedPlayerCount.Value >= 2 && !didStartGame.Value)
+        if ((Input.GetKeyDown(KeyCode.T) && !isPracticeServer && !isTutorialServer && !HandleCursorSettings.instance.IsUIOn() && spawnedPlayerCount.Value >= 2 && !didStartGame.Value && !isGameOver.Value)
             || isTesting)
             StartCoroutine(HandleStartingGame());
 
@@ -263,6 +242,9 @@ public class ServerManager : NetworkBehaviour
         {
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
             HandleScoreboardUI.instance.ChangeScoreboardInformationText("Match over");
+
+            if (IsServer)
+                HandleScoreboardUI.instance.EnableStartGameHelperTextUI(false);
         }
 
         // handle scoreboard information text
@@ -359,6 +341,42 @@ public class ServerManager : NetworkBehaviour
         }
     }
 
+    #region Practice Ball Physics
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnLowBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
+    {
+        BallManager.instance.RequestBallSpawnServerRpc(playerPos);
+
+        Rigidbody rb = BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.position = playerPos + playerForwardDir * spawnBallInFrontDistance;
+
+        // add force
+        rb.AddForce(-playerForwardDir * spawnBallInFrontForce, ForceMode.Impulse);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnHighBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
+    {
+        BallManager.instance.RequestBallSpawnServerRpc(playerPos);
+
+        Rigidbody rb = BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.position = playerPos + playerForwardDir * spawnBallInFrontDistance;
+
+        // add force
+        rb.AddForce(-playerForwardDir * spawnBallInFrontForceLower + Vector3.up * spawnBallToSideUpwardsForce, ForceMode.Impulse);
+    }
+
+    #endregion
+
     #region End Game Logic
     private void DetermineWinningTeam()
     {
@@ -387,6 +405,8 @@ public class ServerManager : NetworkBehaviour
 
         ShowEndOfGameChatMessageClientRpc(wonTeam.Value.ToString(), wonTeam.Value.Equals("Tie"));
 
+        mainBallSync.EndOutOfBoundsPlayServerRpc();
+
         // wait 8 seconds before resetting
         yield return new WaitForSeconds(8);
 
@@ -398,6 +418,7 @@ public class ServerManager : NetworkBehaviour
 
         // reset all match state values
         isGameOver.Value = false;
+        isStartingGame.Value = false;
         matchTime.Value = 0;
         redTeamGoalCount.Value = 0;
         blueTeamGoalCount.Value = 0;
@@ -420,8 +441,6 @@ public class ServerManager : NetworkBehaviour
 
         // reset all players to their initial spawn points and reset UI
         ResetGameClientRpc("Blue", false);
-
-        isStartingGame.Value = false;
     }
 
     [ClientRpc]
@@ -538,11 +557,13 @@ public class ServerManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void ResetPlayersDataServerRpc()
+    private void ResetPlayersDataServerRpc(ServerRpcParams serverRpcParams = default)
     {
+        PlayerInfo playerInfo = NetworkManager.ConnectedClients[serverRpcParams.Receive.SenderClientId].PlayerObject.GetComponent<PlayerInfo>();
+
         // for some reason i made these two variables only changable by server and im not looking to change it to owner owned
-        PlayerInfo.instance.goals.Value = 0;
-        PlayerInfo.instance.assists.Value = 0;
+        playerInfo.goals.Value = 0;
+        playerInfo.assists.Value = 0;
     }
 
     #endregion
