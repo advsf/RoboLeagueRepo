@@ -10,11 +10,18 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Netcode.Transports.UTP;
+using System.Collections;
 
 public class HandleLobby : NetworkBehaviour
 {
     public static HandleLobby instance;
     public ISession activeSession;
+
+    [Header("LAN Settings")]
+    [SerializeField] private TMP_InputField ipInputField;
+    [SerializeField] private float lanTransitionDuration;
+    private ushort k_Port = 7777; 
 
     [Header("Scene Names")]
     [SerializeField] private string gameSceneName;
@@ -91,6 +98,7 @@ public class HandleLobby : NetworkBehaviour
         return "Unknown";
     }
 
+    #region Session Handling
     public async void CreateSessionAsHost()
     {
         try
@@ -290,37 +298,18 @@ public class HandleLobby : NetworkBehaviour
             cancelJoin = false;
 
             // leave the session
-            await activeSession.LeaveAsync();
+            if (activeSession != null)
+                await activeSession.LeaveAsync();
+
+            // leave the LAN session
+            else
+                NetworkManager.Singleton.Shutdown();
 
             return true;
         }
 
         else
             return false;
-    }
-
-    public void HandleSessionSelected(ISessionInfo sessionInfo)
-    {
-        selectedSessionInfo = sessionInfo;
-        sessionJoinIdButton.interactable = true;
-    }
-
-    public void HandleSessionDeselected()
-    {
-        Invoke(nameof(DisableSessionButtonInteraction), 0.5f);
-    }
-
-    private void DisableSessionButtonInteraction() => sessionJoinIdButton.interactable = false;
-
-
-    // invoked by a button
-    public void CancelJoining()
-    {
-        cancelJoin = true;
-        HandleLobbyUI.instance.CloseJoiningServerUI();
-
-        activeSession = null;
-        sessionHolder.ActiveSession = null;
     }
 
     public async void CreateAndJoinPracticeServer()
@@ -415,6 +404,122 @@ public class HandleLobby : NetworkBehaviour
         }
     }
 
+    #endregion
+
+    public void HostLanSession()
+    {
+        try
+        {
+            HandleLobbyUI.instance.CloseCreateSessionUI();
+            HandleLobbyUI.instance.OpenJoiningServerUI();
+            HandleLobbyUI.instance.CloseLanSessionUI();
+
+            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
+
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetConnectionData("0.0.0.0", k_Port);
+
+            HandleTransitions.instance.PlayFadeInTransition();
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
+
+            isHost = true;
+            activeSession = null; 
+
+            Invoke(nameof(CreateLan), lanTransitionDuration);
+        }
+
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+
+    private void CreateLan()
+    {
+        if (NetworkManager.Singleton.StartHost())
+            NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
+
+        else
+            CancelJoining();
+    }
+
+    public void JoinLanSession()
+    {
+        try
+        {
+            string ipAddress = "";
+
+            if (ipInputField.text.Length > 0)
+                ipAddress = ipInputField.text.ToString();
+            else
+                return;            
+
+            HandleLobbyUI.instance.CloseSessionListUI();
+            HandleLobbyUI.instance.CloseLanSessionUI();
+            HandleLobbyUI.instance.OpenJoiningServerUI();
+            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
+
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetConnectionData(ipAddress, k_Port);
+
+            HandleTransitions.instance.PlayFadeInTransition();
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
+
+            isHost = false;
+            activeSession = null;
+
+            Invoke(nameof(JoinLan), lanTransitionDuration);
+        }
+
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+
+            CancelLanJoin();
+        }
+    }
+
+    private void JoinLan()
+    {
+        bool started = NetworkManager.Singleton.StartClient();
+
+        // this pretty much ensures that if the user doesn't join a lan session
+        // we just fallback
+        if (started)
+            StartCoroutine(TimeoutConnectionCheck(5f));
+
+        else
+            CancelLanJoin();
+    }
+
+    private IEnumerator TimeoutConnectionCheck(float duration)
+    {
+        float timer = 0;
+        while (timer < duration)
+        {
+            // successfully joined
+            if (NetworkManager.Singleton.IsConnectedClient)
+                yield break; 
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // timed out
+        CancelLanJoin();
+    }
+
+    private void CancelLanJoin()
+    {
+        NetworkManager.Singleton.Shutdown();
+
+        HandleLobbyUI.instance.CloseJoiningServerUI();
+        HandleLobbyUI.instance.OpenLanSessionUI();
+
+        HandleTransitions.instance.PlayFadeOutTransition(); 
+        StartCoroutine(HandleLobbySound.instance.FadeInMusic(1, 1.5f)); 
+    }
+
     private void LoadSceneToGame()
     {
         try
@@ -474,5 +579,29 @@ public class HandleLobby : NetworkBehaviour
             NetworkManager.Singleton.StartClient();
 
         isHost = false;
+    }
+
+    public void HandleSessionSelected(ISessionInfo sessionInfo)
+    {
+        selectedSessionInfo = sessionInfo;
+        sessionJoinIdButton.interactable = true;
+    }
+
+    public void HandleSessionDeselected()
+    {
+        Invoke(nameof(DisableSessionButtonInteraction), 0.5f);
+    }
+
+    private void DisableSessionButtonInteraction() => sessionJoinIdButton.interactable = false;
+
+
+    // invoked by a button
+    public void CancelJoining()
+    {
+        cancelJoin = true;
+        HandleLobbyUI.instance.CloseJoiningServerUI();
+
+        activeSession = null;
+        sessionHolder.ActiveSession = null;
     }
 }

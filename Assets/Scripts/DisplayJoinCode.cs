@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine.EventSystems;
+using System.Net;
+using System.Net.Sockets;
 
 public class DisplayJoinCode : NetworkBehaviour
 {
@@ -13,13 +15,8 @@ public class DisplayJoinCode : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
-
-        if (!IsOwner)
-        {            
+        if (!IsHost)
             Destroy(gameObject);
-            return;
-        }
     }
 
     private void OnEnable()
@@ -29,8 +26,29 @@ public class DisplayJoinCode : NetworkBehaviour
 
     private void DisplayCode()
     {
-        codeText.text = sessionHolder.ActiveSession?.Code ?? "";
-        copyCodeButton.interactable = true;
+        if (sessionHolder.ActiveSession != null)
+        {
+            codeText.text = sessionHolder.ActiveSession?.Code ?? "";
+            copyCodeButton.interactable = true;
+        }
+
+        else
+        {
+            codeText.text = GetLocalIPAddress().ToString();
+            copyCodeButton.interactable = true;
+        }
+    }
+
+    private string GetLocalIPAddress()
+    {
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+                return ip.ToString();
+        }
+
+        return "127.0.0.1"; 
     }
 
     public void CopySessionCodeToClipboard()
@@ -41,7 +59,7 @@ public class DisplayJoinCode : NetworkBehaviour
         string code = codeText.text;
 
         // if there is no code (for some reason)
-        if (sessionHolder.ActiveSession?.Code == null || string.IsNullOrEmpty(code))
+        if (string.IsNullOrEmpty(code))
             return;
 
         // copy the text to the clipboard

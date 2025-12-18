@@ -15,7 +15,9 @@ public class HandleLeaderboardUI : NetworkBehaviour
             return;
 
         leaderboardParent.gameObject.SetActive(false);
-        sessionCodeObj.gameObject.SetActive(false);
+
+        if (IsHost)
+            sessionCodeObj.SetActive(false);
 
         base.OnNetworkSpawn();
     }
@@ -57,7 +59,9 @@ public class HandleLeaderboardUI : NetworkBehaviour
         // handle setting up the arrangment of the leaderboard dynamically
         // meaning that the owner's team will appear above the other team
         leaderboardParent.gameObject.SetActive(true);
-        sessionCodeObj.gameObject.SetActive(true);
+
+        if (IsHost)
+            sessionCodeObj.gameObject.SetActive(true);
 
         // handle blue first, then red
         if (PlayerInfo.instance.currentTeam.Value.Equals("Blue"))
@@ -109,10 +113,13 @@ public class HandleLeaderboardUI : NetworkBehaviour
             if (playerStat.GetComponent<HandlePlayerLeaderboardStats>())
                 Destroy(playerStat.gameObject);
 
-        clickToRevealObj.SetActive(true);
-
         leaderboardParent.gameObject.SetActive(false);
-        sessionCodeObj.gameObject.SetActive(false);
+
+        if (IsHost)
+        {
+            sessionCodeObj.SetActive(false);
+            clickToRevealObj.SetActive(true);
+        }
 
         // disable the cursor and reenable camera
         HandleCursorSettings.instance.EnableCursor(false, true);

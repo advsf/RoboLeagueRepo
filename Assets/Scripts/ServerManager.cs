@@ -91,7 +91,7 @@ public class ServerManager : NetworkBehaviour
     // CHANGE ONLY IN THE EDITOR
     public bool isTesting = false;
 
-    private Rigidbody ballRbToUse;
+    private Rigidbody mainBallRb;
 
     public override void OnNetworkSpawn()
     {
@@ -150,7 +150,7 @@ public class ServerManager : NetworkBehaviour
             startUIObj.SetActive(false);
 
         if (isPracticeServer)
-            ballRbToUse = BallManager.instance.mainBallSync.GetRigidbody();
+            mainBallRb = BallManager.instance.mainBallSync.GetRigidbody();
     }
 
     private void Update()
@@ -171,7 +171,7 @@ public class ServerManager : NetworkBehaviour
             }
 
             // if the local ball isn't spawned, just spawn it asap
-            if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)) && !HandleKicking.instance.IsLocalBallSpawned())
+            if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2)) && !HandleKicking.instance.IsLocalBallSpawned() && !isPracticeServer)
                 HandleKicking.instance.HandleSpawningLocalBall();
 
             // spawn low ball
@@ -346,9 +346,7 @@ public class ServerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnLowBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
-        BallManager.instance.RequestBallSpawnServerRpc(playerPos);
-
-        Rigidbody rb = BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
+        Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -362,9 +360,7 @@ public class ServerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnHighBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
-        BallManager.instance.RequestBallSpawnServerRpc(playerPos);
-
-        Rigidbody rb = BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
+        Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

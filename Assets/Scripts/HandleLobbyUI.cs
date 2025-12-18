@@ -12,6 +12,9 @@ public class HandleLobbyUI : MonoBehaviour
     [SerializeField] private GameObject settingUI;
     [SerializeField] private GameObject inventoryUI;
 
+    [Header("LAN References")]
+    [SerializeField] private GameObject lanSessionUI;
+
     [Header("Create Session UI References")]
     [SerializeField] private GameObject createSessionObj;
     [SerializeField] private GameObject sessionListObj;
@@ -84,6 +87,8 @@ public class HandleLobbyUI : MonoBehaviour
         playerStatsUI.SetActive(true);
 
         inventoryUI.SetActive(false);
+
+        lanSessionUI.SetActive(false);
     }
 
 
@@ -122,6 +127,20 @@ public class HandleLobbyUI : MonoBehaviour
     {
         createSessionObj.SetActive(false);
         sessionListObj.SetActive(false);
+    }
+
+    #endregion
+
+    #region Lan Session
+
+    public void OpenLanSessionUI()
+    {
+        lanSessionUI.SetActive(true);
+    }
+
+    public void CloseLanSessionUI()
+    {
+        lanSessionUI.SetActive(false);
     }
 
     #endregion

@@ -66,7 +66,21 @@ public class HandleConnections : NetworkBehaviour
 
         hasHandledQuit = true;
 
-        await sessionHolder.ActiveSession.LeaveAsync();
+        if (sessionHolder.ActiveSession != null)
+        {
+            try
+            {
+                await sessionHolder.ActiveSession.LeaveAsync();
+            }
+
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+        }
+
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
+            NetworkManager.Singleton.Shutdown();
 
         HandleTransitions.instance.PlayFadeInTransition();
         HandleTransitions.instance.PlayFadeInMusic();
@@ -85,14 +99,17 @@ public class HandleConnections : NetworkBehaviour
 
         hasHandledQuit = true;
 
-        try
+        if (sessionHolder.ActiveSession != null)
         {
-            await sessionHolder.ActiveSession.LeaveAsync();
-        }
+            try
+            {
+                await sessionHolder.ActiveSession.LeaveAsync();
+            }
 
-        catch (Exception e)
-        {
-            Debug.Log(e);
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 }
