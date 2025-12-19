@@ -81,9 +81,19 @@ public class PlayerMovement : NetworkBehaviour
 
     private bool isSprintingDisabled = false;
 
-    // mainly for animations
     public bool IsWalking { get => inputDirection2D != Vector2.zero && !isSliding; }
-    public bool IsSprinting { get => PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking; }
+    public bool IsSprinting { 
+        get
+        {
+            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.8f;
+            bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking;
+
+            if (Application.isMobilePlatform)
+                return isSprintingOnMobile;
+            else
+                return isSprintingOnPC;
+        }
+    }
     public bool IsWalkingForward { get => inputDirection2D.y > 0 && !isSliding; }
     public bool IsWalkingBackwards { get => inputDirection2D.y < 0 && !isSliding; }
     public bool IsStrafingLeft { get => inputDirection2D.x < 0 && !isSliding; }
@@ -93,9 +103,10 @@ public class PlayerMovement : NetworkBehaviour
 
     public bool isStaminaRecharging = false;
 
-    // mainly for boolean checks
+    // mainly for boolean checks (this is really old when i was testing the movement script)
     public bool isWalking { get => IsWalking && !IsSprinting; }
-    public bool isSprinting { get => IsWalking && IsSprinting; }
+
+    public bool isSprinting { get => IsWalking && IsSprinting;  }
 
     public bool isMovementDisabled = false;
 
@@ -178,7 +189,7 @@ public class PlayerMovement : NetworkBehaviour
 
         moveDirection = transform.forward * inputDirection2D.y + transform.right * inputDirection2D.x;
 
-        MoveSpeeds activeSpeeds = IsSprinting ? sprintSpeeds : walkSpeeds;
+        MoveSpeeds activeSpeeds = isSprinting ? sprintSpeeds : walkSpeeds;
 
         float forwardComponent = inputDirection2D.y >= 0 ? inputDirection2D.y * activeSpeeds.forwardSpeed : inputDirection2D.y * activeSpeeds.backwardSpeed;
         float sidewaysComponent = inputDirection2D.x * activeSpeeds.sidewaysSpeed;
@@ -321,7 +332,7 @@ public class PlayerMovement : NetworkBehaviour
             Invoke(nameof(AllowUserToSprintAgain), staminaCooldown);
         }
 
-        if (IsSprinting && canSprint)
+        if (isSprinting && canSprint)
             currentStamina -= staminaDecreaseFactor * Time.deltaTime;
         else if (!isSliding && !kicking.isShooting && !kicking.isDribbling)
             currentStamina += staminaIncreaseFactor * Time.deltaTime;
@@ -433,4 +444,20 @@ public class PlayerMovement : NetworkBehaviour
 
     public void DisableMovement(bool condition) => isMovementDisabled = condition;
     public Vector3 GetPlayerMoveDirection() => moveDirection;
+
+    #region UI Functions (called via button for mobile)
+
+    public void JumpViaUI()
+    {
+        if (canJump && isGrounded)
+            Jump();
+    }
+
+    public void DashViaUI()
+    {
+        if (canDash && isGrounded)
+            Dash();
+    }
+
+    #endregion
 }

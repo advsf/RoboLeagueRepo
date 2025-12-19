@@ -4,6 +4,8 @@ public class HandleCursorSettings : MonoBehaviour
 {
     public static HandleCursorSettings instance;
 
+    [SerializeField] private bool forceCursorOn;
+
     private bool isUIOn;
 
     private void Start()
@@ -20,6 +22,24 @@ public class HandleCursorSettings : MonoBehaviour
         }
 
         EnableCursor(true);
+    }
+
+    private void Update()
+    {
+
+#if UNITY_EDITOR
+        if (forceCursorOn)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+#endif
     }
 
     public void EnableCursor(bool condition, bool canCamMove = true)

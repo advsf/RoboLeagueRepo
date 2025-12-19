@@ -8,6 +8,20 @@ public class HandleKicking : NetworkBehaviour
 {
     public static HandleKicking instance;
 
+    // used for mobile
+    public enum KickMode 
+    { 
+        Shooting, 
+        Dribbling, 
+        BicycleKick 
+    }
+
+    [Header("Mobile Settings")]
+    public KickMode currentMobileKickMode = KickMode.Shooting;
+    [SerializeField] private float mobileMinCurveMagnitude = 0.05f;
+    [SerializeField] private float mobileUpwardInfluenceMultiplier = 2f;
+    [SerializeField] private float mobileCurveMultiplier = 1500f;
+
     [Header("Dribbling Settings")]
     [SerializeField] private float dribblingMultipler;
     [SerializeField] private float dribblingStaminaLoss;
@@ -84,7 +98,17 @@ public class HandleKicking : NetworkBehaviour
     [SerializeField] private PlayerMovement player;
 
     [Header("Current Kicking Information")]
-    public bool IsChargingKick { get => PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0 || PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0; }
+    public bool IsChargingKick {
+        get
+        {
+            // get pc input
+            bool pcInput = PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0 || PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0;
+            bool mobileInput = PlayerInputReference.instance.controls.Gameplay.MobileShooting.IsPressed();
+
+            return mobileInput;
+        }
+    }
+
     public bool isDribbling;
     public bool isShooting;
     public bool didDribble;
@@ -111,6 +135,8 @@ public class HandleKicking : NetworkBehaviour
     private GameObject localSpawnedBall;
 
     private float shotBarAmount;
+
+    private Vector2 joystickVal;
 
     public override void OnNetworkSpawn()
     {
@@ -162,6 +188,9 @@ public class HandleKicking : NetworkBehaviour
         PlayerInputReference.instance.controls.Gameplay.Kick.Enable();
         PlayerInputReference.instance.controls.Gameplay.Dribble.Enable();
         PlayerInputReference.instance.controls.Gameplay.SpawnBall.Enable();
+
+        PlayerInputReference.instance.controls.Gameplay.MobileCurve.Enable();
+        PlayerInputReference.instance.controls.Gameplay.MobileShooting.Enable();
     }
 
     private void OnDisable()
@@ -172,6 +201,9 @@ public class HandleKicking : NetworkBehaviour
         PlayerInputReference.instance.controls.Gameplay.Kick.Disable();
         PlayerInputReference.instance.controls.Gameplay.Dribble.Disable();
         PlayerInputReference.instance.controls.Gameplay.SpawnBall.Disable();
+
+        PlayerInputReference.instance.controls.Gameplay.MobileCurve.Disable();
+        PlayerInputReference.instance.controls.Gameplay.MobileShooting.Disable();
     }
 
     private void InitializeUI()
@@ -195,6 +227,9 @@ public class HandleKicking : NetworkBehaviour
 
         if (nearestBallSync == null)
             nearestBallSync = BallManager.instance.mainBallSync;
+
+        if (PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>().magnitude > mobileMinCurveMagnitude)
+            joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
 
         // spawn the local ball
         if (PlayerInputReference.instance.controls.Gameplay.SpawnBall.WasPressedThisFrame() && !ServerManager.instance.didStartGame.Value)
@@ -253,8 +288,22 @@ public class HandleKicking : NetworkBehaviour
 
     private void UpdateInputState()
     {
-        isDribbling = PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0;
-        isShooting = PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0;
+        // get mobile joystick data
+        bool isUsingMobileStick = PlayerInputReference.instance.controls.Gameplay.MobileShooting.IsPressed();
+
+        // mobile logic
+        if (isUsingMobileStick)
+        {
+            isShooting = currentMobileKickMode == KickMode.Shooting;
+            isDribbling = currentMobileKickMode == KickMode.Dribbling;
+        }
+        
+        // pc logic
+        else
+        {
+            isDribbling = PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0;
+            isShooting = PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0;
+        }
 
         if (!IsChargingKick)
             sliderChargingStartTime = Time.time;
@@ -293,8 +342,20 @@ public class HandleKicking : NetworkBehaviour
         if (isShooting)
             didShoot = true;
 
-        if (isDribbling && isShooting)
+        // pc bicycle kick logic
+        bool pcBicycleKick = isDribbling && isShooting;
+
+        // mobile bicycle kick lgoic
+        bool mobileBicycle = (currentMobileKickMode == KickMode.BicycleKick) && (joystickVal.magnitude > mobileMinCurveMagnitude);
+
+        // if the user is performing a bicycle kick
+        if (pcBicycleKick || mobileBicycle)
+        {
             didBicycleKick = true;
+
+            didShoot = false;
+            didDribble = false;
+        }
 
         ChangeShootingBarColor();
 
@@ -526,13 +587,16 @@ public class HandleKicking : NetworkBehaviour
     {
         // the reason why we multiply 5000 with the mouse DPI is to ensure that it's the best curve setting that they can get and makes it consistent
         // same goes for the sensitivity
-
         // during testing those were the mouse specs i was using so we'll just make everyone use my own settings LOL
 
-        float curve = Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
+        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+            return joystickVal.x * mobileCurveMultiplier;
 
+        // pc curve input
+        float curve = Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
         return Mathf.Min(curve, 1500);
     }
+
     private void HandleDribbling()
     {
         SoundManager.instance?.PlayDribbleSoundEffect();
@@ -546,7 +610,21 @@ public class HandleKicking : NetworkBehaviour
 
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
-        float upwardInfluence = cameraLookY * dribblingHeightMultiplier;
+
+        float upwardInfluence;
+
+        // mobile upward influnce logic
+        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        {
+            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
+            upwardInfluence = ((mobileVerticalInput * dribblingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+        }
+
+        // pc upward influnce logic
+        else
+            upwardInfluence = (cameraLookY * dribblingHeightMultiplier) + shootingYHeightAddition;
+
+
         float powerBoost = PlayerMovement.instance.IsSprinting ? shotMultiplier : 1f;
 
         CreateAndSendKick(
@@ -574,8 +652,19 @@ public class HandleKicking : NetworkBehaviour
 
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
-        float upwardInfluence = cameraLookY * 
-            shootingHeightMultiplier + shootingYHeightAddition;
+
+        float upwardInfluence;
+
+        // mobile upward influnce logic
+        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        {
+            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
+            upwardInfluence = ((mobileVerticalInput * shootingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+        }
+
+        // pc upward influnce logic
+        else
+            upwardInfluence = (cameraLookY * shootingHeightMultiplier) + shootingYHeightAddition;
 
         float powerBoost = CalculateShootingPowerBoost(mouseX);
 
@@ -603,7 +692,19 @@ public class HandleKicking : NetworkBehaviour
 
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
-        float upwardInfluence = cameraLookY * shootingHeightMultiplier;
+
+        float upwardInfluence;
+
+        // mobile upward influnce logic
+        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        {
+            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
+            upwardInfluence = ((mobileVerticalInput * shootingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+        }
+
+        // pc upward influnce logic
+        else
+            upwardInfluence = (cameraLookY * shootingHeightMultiplier) + shootingYHeightAddition;
 
         float powerBoost = CalculatePowerShotBoost(ref upwardInfluence);
 
@@ -732,6 +833,8 @@ public class HandleKicking : NetworkBehaviour
 
     private void CreateAndSendKick(float power, float sliderValue, float mouseX, Vector3 direction, float upwardInfluence, float powerBoost)
     {
+        joystickVal = Vector2.zero;
+
         if (ServerManager.instance.isStartingGame.Value)
             return;
 
@@ -790,7 +893,7 @@ public class HandleKicking : NetworkBehaviour
     private void ChangeShootingBarColor()
     {
         // bicycle kicking
-        if (didDribble && didShoot)
+        if (didBicycleKick)
             barFill.color = new Color(0.9702021f, 1, 0.259434f, 1); // yellow-green
 
         // dribbling
@@ -828,6 +931,25 @@ public class HandleKicking : NetworkBehaviour
     }
 
     public bool IsLocalBallSpawned() => localSpawnedBall != null;
+
+    #region Mobile UI Settings
+
+    public void SetModeToShooting()
+    {
+        currentMobileKickMode = KickMode.Shooting;
+    }
+
+    public void SetModeToDribbling()
+    {
+        currentMobileKickMode = KickMode.Dribbling;
+    }
+
+    public void SetModeToBicycleKick()
+    {
+        currentMobileKickMode = KickMode.BicycleKick;
+    }
+
+    #endregion
 
     #region Utility Methods
 

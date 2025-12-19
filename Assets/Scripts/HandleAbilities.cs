@@ -298,5 +298,10 @@ public class HandleAbilities : NetworkBehaviour
         isRightAbilityTriggered = true;
     }
 
+    // called by mobile UI buttons
+    public void ActiviateLeftAbilityThroughUI() => PerformLeftAbility();
+
+    public void ActiviateRightAbilityThrough() => PerformRightAbility();
+
     public bool IsAbilityActivitated() => isLeftAbilityTriggered || isRightAbilityTriggered; 
 }

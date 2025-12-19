@@ -420,7 +420,7 @@ public class HandleLobby : NetworkBehaviour
             transport.SetConnectionData("0.0.0.0", k_Port);
 
             HandleTransitions.instance.PlayFadeInTransition();
-            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 0.1f));
 
             isHost = true;
             activeSession = null; 
@@ -456,14 +456,14 @@ public class HandleLobby : NetworkBehaviour
 
             HandleLobbyUI.instance.CloseSessionListUI();
             HandleLobbyUI.instance.CloseLanSessionUI();
-            HandleLobbyUI.instance.OpenJoiningServerUI();
+            HandleLobbyUI.instance.OpenJoiningServerUI(); 
             HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
 
             var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
             transport.SetConnectionData(ipAddress, k_Port);
 
             HandleTransitions.instance.PlayFadeInTransition();
-            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 0.1f));
 
             isHost = false;
             activeSession = null;
