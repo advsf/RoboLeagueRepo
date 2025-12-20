@@ -18,6 +18,9 @@ public class CameraLook : NetworkBehaviour
     private float cameraDistance;
     private float cameraYOffset;
 
+    [Header("Mobile Support")]
+    [SerializeField] private TouchPanel touchPanel;
+
     [Header("References")]
     [SerializeField] private Transform player;
 
@@ -79,9 +82,14 @@ public class CameraLook : NetworkBehaviour
         // get user input if camera can be moved
         if (canCamMove)
         {
+            // pc input
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
-            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse");
-            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse");
+
+            // mobile input
+            Vector2 touchDelta = touchPanel.GetTouchDelta;
+
+            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x;
+            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y;
 
             if (isPlayingCamera)
             {

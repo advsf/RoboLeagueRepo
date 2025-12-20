@@ -88,10 +88,14 @@ public class PlayerMovement : NetworkBehaviour
             bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.8f;
             bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking;
 
+            return isSprintingOnMobile;
+
+            /*
             if (Application.isMobilePlatform)
                 return isSprintingOnMobile;
             else
                 return isSprintingOnPC;
+            */
         }
     }
     public bool IsWalkingForward { get => inputDirection2D.y > 0 && !isSliding; }
@@ -459,5 +463,11 @@ public class PlayerMovement : NetworkBehaviour
             Dash();
     }
 
+    public void SlideViaUI()
+    {
+        if (canSlide && isGrounded)
+            StartCoroutine(Slide());
+    }
+    
     #endregion
 }

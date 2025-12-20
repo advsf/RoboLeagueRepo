@@ -313,17 +313,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d831133d-28d0-4773-8015-3d4b53874b30",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Slide",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5430890b-7c3b-43f4-b070-b17fbd0dd6c0",
                     "path": "<Keyboard>/e",
                     "interactions": "",

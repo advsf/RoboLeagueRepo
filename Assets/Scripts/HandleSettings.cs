@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System;
-using Dissonance;
 
 public class HandleSettings : MonoBehaviour
 {
@@ -141,6 +140,19 @@ public class HandleSettings : MonoBehaviour
 
         // pass it to FBPP
         FBPP.Start(config);
+
+        if (Application.isMobilePlatform)
+        {
+            QualitySettings.vSyncCount = 0;
+            
+            // dynamically set fps depending on the fresh rate of the device
+            float nativeRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
+
+            if (nativeRefreshRate > 0)
+                Application.targetFrameRate = (int)nativeRefreshRate;
+            else
+                Application.targetFrameRate = 60;
+        }
     }
 
     private void Start()
@@ -762,6 +774,10 @@ public class HandleSettings : MonoBehaviour
 
     private void ApplyResolution()
     {
+        // do NOT do this for mobile - it will cause issues with the resolution
+        if (Application.isMobilePlatform)
+            return;
+
         Resolution res = resolutions[currentResolutionIndex];
 
         Screen.SetResolution(res.width, res.height, Screen.fullScreenMode, res.refreshRateRatio);

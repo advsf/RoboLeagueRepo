@@ -6109,7 +6109,7 @@ RectTransform:
   m_GameObject: {fileID: 351068047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 31.174, y: 31.174, z: 31.174}
+  m_LocalScale: {x: 49.862812, y: 31.174, z: 31.174}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 922273512}
@@ -18887,7 +18887,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 91160337}
   m_HandleRect: {fileID: 91160336}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -24345,10 +24345,10 @@ RectTransform:
   - {fileID: 1344079015}
   m_Father: {fileID: 89148610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.98, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 12.97998, y: 0}
+  m_SizeDelta: {x: -1792, y: -996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1601716893
 GameObject:
@@ -25066,14 +25066,14 @@ RectTransform:
   m_GameObject: {fileID: 1647883867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.6306956, y: 3.7578144, z: 3.7578144}
+  m_LocalScale: {x: 4.5697813, y: 7.0616846, z: 3.7578144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1430330941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.19483, y: 0.43218994}
+  m_AnchoredPosition: {x: -2.1948395, y: 0.4321823}
   m_SizeDelta: {x: 715.0428, y: 215.25421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647883869
@@ -31936,7 +31936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00020980835, y: 0}
+  m_AnchoredPosition: {x: 0.00018310547, y: 0}
   m_SizeDelta: {x: 1896.976, y: 937.62634}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054355135

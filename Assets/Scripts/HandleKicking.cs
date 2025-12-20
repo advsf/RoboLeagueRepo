@@ -9,11 +9,11 @@ public class HandleKicking : NetworkBehaviour
     public static HandleKicking instance;
 
     // used for mobile
-    public enum KickMode 
-    { 
-        Shooting, 
-        Dribbling, 
-        BicycleKick 
+    public enum KickMode
+    {
+        Shooting,
+        Dribbling,
+        BicycleKick
     }
 
     [Header("Mobile Settings")]
@@ -98,7 +98,8 @@ public class HandleKicking : NetworkBehaviour
     [SerializeField] private PlayerMovement player;
 
     [Header("Current Kicking Information")]
-    public bool IsChargingKick {
+    public bool IsChargingKick
+    {
         get
         {
             // get pc input
@@ -297,7 +298,7 @@ public class HandleKicking : NetworkBehaviour
             isShooting = currentMobileKickMode == KickMode.Shooting;
             isDribbling = currentMobileKickMode == KickMode.Dribbling;
         }
-        
+
         // pc logic
         else
         {
@@ -602,7 +603,17 @@ public class HandleKicking : NetworkBehaviour
         SoundManager.instance?.PlayDribbleSoundEffect();
         PlayerMovement.instance?.ChangeStamina(dribblingStaminaLoss);
 
-        Vector3 direction = GetPlayerDirection();
+        // for dribbling,
+        // if it's on the pc, the ball moves in the direction of the player
+        // if it's on mobile, the ball moves in the direction of the joystick
+
+        Vector3 direction;
+
+        if (!Application.isMobilePlatform)
+            direction = GetPlayerDirection();
+
+        else
+            direction = joystickVal;
 
         // prevent shooting at the ground (causes weird issues)
         if (direction.y < 0)
@@ -642,12 +653,12 @@ public class HandleKicking : NetworkBehaviour
         SoundManager.instance?.PlayShootSoundEffect();
         PlayerMovement.instance?.ChangeStamina(shootingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(new 
+        Ray ray = cam.ScreenPointToRay(new
             Vector3(Screen.width / 2f, Screen.height / 2f));
         Vector3 direction = ray.direction.normalized;
 
         // prevent shooting at the ground (causes weird issues)
-        if (direction.y < 0) 
+        if (direction.y < 0)
             direction.y = 0;
 
         float mouseX = GetSpinCurveInput();
@@ -709,12 +720,12 @@ public class HandleKicking : NetworkBehaviour
         float powerBoost = CalculatePowerShotBoost(ref upwardInfluence);
 
         CreateAndSendKick(
-            powerBoost, 
-            1f, 
+            powerBoost,
+            1f,
             mouseX,
             direction,
             upwardInfluence,
-            1f 
+            1f
         );
     }
 
@@ -730,7 +741,7 @@ public class HandleKicking : NetworkBehaviour
         {
             Tick = NetworkManager.Singleton.ServerTime.Tick,
             Force = headingMultipler * shotBarAmount * direction,
-            AngularImpulse = Vector3.zero, 
+            AngularImpulse = Vector3.zero,
             StopBallFirst = false,
             SlideKick = false
         };
@@ -899,7 +910,7 @@ public class HandleKicking : NetworkBehaviour
         // dribbling
         else if (didDribble)
             barFill.color = new Color(0.06132078f, 0.7101388f, 1, 1); // blue
-        
+
         // shooting
         else
             barFill.color = new Color(1, 0, 0.07710934f, 1); // red
@@ -957,21 +968,21 @@ public class HandleKicking : NetworkBehaviour
     {
         Vector3 direction = Vector3.zero;
 
-        if (player.IsWalkingForward) 
+        if (player.IsWalkingForward)
             direction += Vector3.forward;
 
-        if (player.IsWalkingBackwards) 
+        if (player.IsWalkingBackwards)
             direction += Vector3.back;
 
-        if (player.IsStrafingLeft) 
+        if (player.IsStrafingLeft)
             direction += Vector3.left;
 
-        if (player.IsStrafingRight) 
+        if (player.IsStrafingRight)
             direction += Vector3.right;
 
         // if we're not moving, then just get the forward vector of the camera
         if (direction == Vector3.zero)
-            return cam.transform.forward; 
+            return cam.transform.forward;
 
         direction.Normalize();
         return player.transform.TransformDirection(direction);
@@ -1012,6 +1023,21 @@ public class HandleKicking : NetworkBehaviour
             else
                 HandleAbilities.instance.TriggerCooldown(powerShotAbility, 1);
         }
+    }
+
+    #endregion
+
+    #region UI Functions
+
+    public void SpawnBallViaButton()
+    {
+        // spawn the ball
+        if (localSpawnedBall == null)
+            HandleSpawningLocalBall();
+
+        // reset the ball since the ball is already spawned
+        else if (localSpawnedBall != null)
+            ResetLocalBallPosition(transform.position);
     }
 
     #endregion
