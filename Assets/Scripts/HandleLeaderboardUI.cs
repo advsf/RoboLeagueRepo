@@ -126,4 +126,17 @@ public class HandleLeaderboardUI : NetworkBehaviour
     }
 
     public void RevealLobbyCode() => clickToRevealObj.SetActive(false);
+
+    #region UI Functions
+
+    public void HandleMobileLeaderboardUI()
+    {
+        if (!leaderboardParent.gameObject.activeInHierarchy && !HandleCursorSettings.instance.IsUIOn())
+            SetUpLeaderboard();
+
+        else
+            DisableLeaderboard();
+    }
+
+    #endregion
 }

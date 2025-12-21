@@ -50,6 +50,9 @@ public class HandleCursorSettings : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
+            // for mobile
+            HandleMobileUI.instance.EnableTouchPadObj(false);
+
             isUIOn = true;
         }
 
@@ -58,6 +61,9 @@ public class HandleCursorSettings : MonoBehaviour
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            // for mobile
+            HandleMobileUI.instance.EnableTouchPadObj(true);
 
             isUIOn = false;
         }

@@ -606,14 +606,25 @@ public class HandleKicking : NetworkBehaviour
         // for dribbling,
         // if it's on the pc, the ball moves in the direction of the player
         // if it's on mobile, the ball moves in the direction of the joystick
-
         Vector3 direction;
 
         if (!Application.isMobilePlatform)
             direction = GetPlayerDirection();
 
         else
-            direction = joystickVal;
+        {
+            // make this relative to the cameraa's forward transform
+            Vector3 camForward = cam.transform.forward;
+            camForward.y = 0;
+            camForward.Normalize();
+
+            Vector3 camRight = cam.transform.right;
+            camRight.y = 0;
+            camRight.Normalize();
+
+            direction = (camForward * joystickVal.y + camRight * joystickVal.x).normalized;
+        }
+
 
         // prevent shooting at the ground (causes weird issues)
         if (direction.y < 0)

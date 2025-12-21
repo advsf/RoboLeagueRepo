@@ -32,12 +32,6 @@ public class HandleMobileUI : NetworkBehaviour
         touchPadObj.SetActive(condition);
     }
 
-    private void Update()
-    {
-        // fix this later; we shouldn't have to rely on update
-        EnableTouchPadObj(!ServerManager.instance.IsSpawnSelectionCanvaObjActive());
-    }
-
     #region UI Button Functions
 
     public void GoBackToMenuViaUI()
