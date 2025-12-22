@@ -59,6 +59,9 @@ public class StartUIManager : NetworkBehaviour
 
     private void Update()
     {
+        if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && kickPlayersUIObj.activeInHierarchy)
             kickPlayersUIObj.SetActive(false);
     }

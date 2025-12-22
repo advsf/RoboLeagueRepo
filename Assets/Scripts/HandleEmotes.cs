@@ -106,4 +106,48 @@ public class HandleEmotes : NetworkBehaviour
             HandleCursorSettings.instance.SetUIOnMode(isEnabled);
         }
     }
+
+    #region Mobile UI button functions
+
+    public void PlayEmote1ViaButtion()
+    {
+        playerAnimationController.PlayEmote(1, emote1Duration);
+
+        isEnabled = false;
+        emoteUI.SetActive(isEnabled);
+
+        HandleMobileUI.instance.HandleEmoteUI();
+    }
+
+    public void PlayEmote2ViaButtion()
+    {
+        playerAnimationController.PlayEmote(2, emote2Duration);
+
+        isEnabled = false;
+        emoteUI.SetActive(isEnabled);
+
+        HandleMobileUI.instance.HandleEmoteUI();
+    }
+
+    public void PlayEmote3ViaButtion()
+    {
+        playerAnimationController.PlayEmote(3, emote3Duration); 
+
+        isEnabled = false;
+        emoteUI.SetActive(isEnabled);
+
+        HandleMobileUI.instance.HandleEmoteUI();
+    }
+
+    public void PlayEmote4ViaButtion()
+    {
+        playerAnimationController.PlayEmote(4, emote4Duration);
+
+        isEnabled = false;
+        emoteUI.SetActive(isEnabled);
+
+        HandleMobileUI.instance.HandleEmoteUI();
+    }
+
+    #endregion
 }

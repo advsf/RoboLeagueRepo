@@ -304,12 +304,20 @@ public class PlayerInfo : NetworkBehaviour
                 playingObj.SetActive(true);
                 spectatingObj.SetActive(false);
                 defaultPlayerObj.SetActive(false);
+
+                if (HandleMobileUI.instance != null)
+                    HandleMobileUI.instance.EnableTouchPadObj(true);
+
                 break;
 
             case PlayerMode.Spectating:
                 playingObj.SetActive(false);
                 spectatingObj.SetActive(true);
                 defaultPlayerObj.SetActive(false);
+
+                if (HandleMobileUI.instance != null)
+                    HandleMobileUI.instance.EnableTouchPadObj(true);
+
                 break;
 
             case PlayerMode.Default:

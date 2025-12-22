@@ -85,17 +85,13 @@ public class PlayerMovement : NetworkBehaviour
     public bool IsSprinting { 
         get
         {
-            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.8f;
+            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.825f;
             bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking;
 
-            return isSprintingOnMobile;
-
-            /*
-            if (Application.isMobilePlatform)
-                return isSprintingOnMobile;
-            else
+            if (!Application.isMobilePlatform)
                 return isSprintingOnPC;
-            */
+            else
+                return isSprintingOnMobile;
         }
     }
     public bool IsWalkingForward { get => inputDirection2D.y > 0 && !isSliding; }

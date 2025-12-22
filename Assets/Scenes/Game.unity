@@ -2159,7 +2159,6 @@ GameObject:
   - component: {fileID: 89148607}
   - component: {fileID: 89148614}
   - component: {fileID: 89148612}
-  - component: {fileID: 89148613}
   - component: {fileID: 89148615}
   m_Layer: 5
   m_Name: Canvas
@@ -2276,19 +2275,6 @@ MonoBehaviour:
   redTeamGoalAmount: {fileID: 643350249}
   timer: {fileID: 849713453}
   scoreInformationText: {fileID: 1309681488}
---- !u!114 &89148613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89148606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01027eed487ed6e489a049d21d98d441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnableUIHUD
-  uiHolder: {fileID: 0}
 --- !u!114 &89148614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18887,7 +18873,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 91160337}
   m_HandleRect: {fileID: 91160336}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

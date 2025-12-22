@@ -175,7 +175,8 @@ public class HandleSettings : MonoBehaviour
         // get all the post processing
         GetAllPostProcessing();
 
-        mandatoryMouseDPISettingObj.SetActive(!PlayerPrefs.HasKey("MouseDPI"));
+        if (!Application.isMobilePlatform)
+            mandatoryMouseDPISettingObj.SetActive(!PlayerPrefs.HasKey("MouseDPI"));
 
         // create or initialize data
         if (!FBPP.HasKey("IsDefaultCreated"))

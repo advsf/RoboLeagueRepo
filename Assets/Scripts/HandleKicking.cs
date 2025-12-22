@@ -106,7 +106,11 @@ public class HandleKicking : NetworkBehaviour
             bool pcInput = PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0 || PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0;
             bool mobileInput = PlayerInputReference.instance.controls.Gameplay.MobileShooting.IsPressed();
 
-            return mobileInput;
+            if (!Application.isMobilePlatform)
+                return pcInput;
+            
+            else
+                return mobileInput;
         }
     }
 
@@ -590,8 +594,11 @@ public class HandleKicking : NetworkBehaviour
         // same goes for the sensitivity
         // during testing those were the mouse specs i was using so we'll just make everyone use my own settings LOL
 
-        if (joystickVal.magnitude > mobileMinCurveMagnitude)
-            return joystickVal.x * mobileCurveMultiplier;
+        if (Application.isMobilePlatform)
+            if (joystickVal.magnitude > mobileMinCurveMagnitude)
+                return joystickVal.x * mobileCurveMultiplier;
+            else
+                return 0;
 
         // pc curve input
         float curve = Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
@@ -614,17 +621,20 @@ public class HandleKicking : NetworkBehaviour
         else
         {
             // make this relative to the cameraa's forward transform
-            Vector3 camForward = cam.transform.forward;
-            camForward.y = 0;
-            camForward.Normalize();
+            Vector3 playerForwardDir = transform.forward;
+            playerForwardDir.y = 0;
+            playerForwardDir.Normalize();
+            
+            Vector3 playerRightDir = transform.right;
+            playerRightDir.y = 0;
+            playerRightDir.Normalize();
 
-            Vector3 camRight = cam.transform.right;
-            camRight.y = 0;
-            camRight.Normalize();
+            if (joystickVal.x == 0 || joystickVal.y == 0)
+                direction = transform.forward;
+            else
 
-            direction = (camForward * joystickVal.y + camRight * joystickVal.x).normalized;
+                direction = (playerForwardDir * joystickVal.y + playerRightDir * joystickVal.x).normalized;
         }
-
 
         // prevent shooting at the ground (causes weird issues)
         if (direction.y < 0)
@@ -633,19 +643,18 @@ public class HandleKicking : NetworkBehaviour
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
 
-        float upwardInfluence;
+        float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        if (Application.isMobilePlatform)
         {
             float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = ((mobileVerticalInput * dribblingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+            upwardInfluence = mobileVerticalInput * dribblingHeightMultiplier * mobileUpwardInfluenceMultiplier;
         }
 
         // pc upward influnce logic
         else
-            upwardInfluence = (cameraLookY * dribblingHeightMultiplier) + shootingYHeightAddition;
-
+            upwardInfluence = cameraLookY * dribblingHeightMultiplier;
 
         float powerBoost = PlayerMovement.instance.IsSprinting ? shotMultiplier : 1f;
 
@@ -675,18 +684,18 @@ public class HandleKicking : NetworkBehaviour
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
 
-        float upwardInfluence;
+        float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        if (Application.isMobilePlatform)
         {
             float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = ((mobileVerticalInput * shootingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+            upwardInfluence = mobileVerticalInput * shootingHeightMultiplier * mobileUpwardInfluenceMultiplier + shootingYHeightAddition;
         }
 
         // pc upward influnce logic
         else
-            upwardInfluence = (cameraLookY * shootingHeightMultiplier) + shootingYHeightAddition;
+            upwardInfluence = cameraLookY * shootingHeightMultiplier + shootingYHeightAddition;
 
         float powerBoost = CalculateShootingPowerBoost(mouseX);
 
@@ -715,18 +724,18 @@ public class HandleKicking : NetworkBehaviour
         float mouseX = GetSpinCurveInput();
         float cameraLookY = Mathf.Clamp01(cam.transform.forward.y);
 
-        float upwardInfluence;
+        float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (joystickVal.magnitude > mobileMinCurveMagnitude)
+        if (Application.isMobilePlatform)
         {
             float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = ((mobileVerticalInput * shootingHeightMultiplier) + shootingYHeightAddition) * mobileUpwardInfluenceMultiplier;
+            upwardInfluence = mobileVerticalInput * shootingHeightMultiplier * mobileUpwardInfluenceMultiplier;
         }
 
         // pc upward influnce logic
         else
-            upwardInfluence = (cameraLookY * shootingHeightMultiplier) + shootingYHeightAddition;
+            upwardInfluence = cameraLookY * shootingHeightMultiplier;
 
         float powerBoost = CalculatePowerShotBoost(ref upwardInfluence);
 
@@ -1042,6 +1051,17 @@ public class HandleKicking : NetworkBehaviour
 
     public void SpawnBallViaButton()
     {
+        // don't do anything if it's a tutorial server
+        if (ServerManager.instance.isTutorialServer)
+            return;
+
+        // if it is a practice server, then just set the main ball's position to the player
+        if (ServerManager.instance.isPracticeServer)
+        {
+            BallManager.instance.mainBallSync.Teleport(new(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.identity);
+            return;
+        }
+
         // spawn the ball
         if (localSpawnedBall == null)
             HandleSpawningLocalBall();

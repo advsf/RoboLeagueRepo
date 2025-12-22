@@ -161,13 +161,8 @@ public class ServerManager : NetworkBehaviour
             if (isPracticeServer)
             {
                 // enable or disable goalkeepers
-                if (Input.GetKeyDown(KeyCode.M)
-                    && !BallManager.instance.mainBallSync.GetRigidbody().isKinematic
-                    && CanGoalkeepersBeDisabled())
-                {
-                    blueGoalkeeper.gameObject.SetActive(!blueGoalkeeper.gameObject.activeInHierarchy);
-                    redGoalkeeper.gameObject.SetActive(!redGoalkeeper.gameObject.activeInHierarchy);
-                }
+                if (Input.GetKeyDown(KeyCode.M) && !BallManager.instance.mainBallSync.GetRigidbody().isKinematic && CanGoalkeepersBeDisabled())
+                    EnableDisableAIGK();
             }
 
             // if the local ball isn't spawned, just spawn it asap
@@ -210,7 +205,7 @@ public class ServerManager : NetworkBehaviour
         UpdateGameTimer();
     }
 
-    private bool CanGoalkeepersBeDisabled()
+    public bool CanGoalkeepersBeDisabled()
     {
         return blueGoalkeeper.GetComponent<HandleGoalkeeperAI>().canGoalkeeperBeDisabled && redGoalkeeper.GetComponent<HandleGoalkeeperAI>().canGoalkeeperBeDisabled;
     }
@@ -341,10 +336,10 @@ public class ServerManager : NetworkBehaviour
         }
     }
 
-    #region Practice Ball Physics
+    #region Practice Ball Physics and AI GK
 
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnLowBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
+    public void SpawnLowBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
         Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
@@ -358,7 +353,7 @@ public class ServerManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnHighBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
+    public void SpawnHighBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
         Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
@@ -369,6 +364,12 @@ public class ServerManager : NetworkBehaviour
 
         // add force
         rb.AddForce(-playerForwardDir * spawnBallInFrontForceLower + Vector3.up * spawnBallToSideUpwardsForce, ForceMode.Impulse);
+    }
+
+    public void EnableDisableAIGK()
+    {
+        blueGoalkeeper.gameObject.SetActive(!blueGoalkeeper.gameObject.activeInHierarchy);
+        redGoalkeeper.gameObject.SetActive(!redGoalkeeper.gameObject.activeInHierarchy);
     }
 
     #endregion

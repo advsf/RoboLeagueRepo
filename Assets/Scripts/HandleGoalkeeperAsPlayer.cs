@@ -592,4 +592,24 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             isInGoalkeeperBox = false;
         }
     }
+
+    #region UI button functions
+
+    public void DiveViaButton()
+    {
+        if (isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall)
+            PerformDive();
+    }
+
+    public void CatchViaButton()
+    {
+        // only allow the player to catch when the game has started
+        if (PlayerMovement.instance.IsOnGround && isDiveCooldownOver && isCatchCooldownOver
+            && !ServerManager.instance.didATeamScore.Value
+            && !ServerManager.instance.isStartingGame.Value
+            && !ServerManager.instance.isGameOver.Value)
+            CatchBall();
+    }
+
+    #endregion
 }

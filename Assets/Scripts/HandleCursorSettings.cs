@@ -33,37 +33,33 @@ public class HandleCursorSettings : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-
-        else
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
 #endif
     }
 
     public void EnableCursor(bool condition, bool canCamMove = true)
     {
-        // if we should enable the cursor
+        // if we should disable the cursor
         if (condition)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
             // for mobile
-            HandleMobileUI.instance.EnableTouchPadObj(false);
+            if (Application.isMobilePlatform)
+                HandleMobileUI.instance.EnableTouchPadObj(false);
 
             isUIOn = true;
         }
 
-        // disable cursor
+        // enable cursor
         else
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
             // for mobile
-            HandleMobileUI.instance.EnableTouchPadObj(true);
+            if (Application.isMobilePlatform)   
+                HandleMobileUI.instance.EnableTouchPadObj(true);
 
             isUIOn = false;
         }
@@ -71,7 +67,13 @@ public class HandleCursorSettings : MonoBehaviour
         CameraLook.instance.EnableCamera(canCamMove);
     }
 
-    public void SetUIOnMode(bool condition) => isUIOn = condition;
+    public void SetUIOnMode(bool condition)
+    {
+        if (Application.isMobilePlatform)
+            HandleMobileUI.instance.EnableTouchPadObj(condition);
+
+        isUIOn = condition;
+    }
 
     public bool IsUIOn() => isUIOn;
 }

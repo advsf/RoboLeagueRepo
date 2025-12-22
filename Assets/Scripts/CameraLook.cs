@@ -83,10 +83,15 @@ public class CameraLook : NetworkBehaviour
         if (canCamMove)
         {
             // pc input
-            Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+            Vector2 mouseDelta = Vector2.zero;
+            Vector2 touchDelta = Vector2.zero;
 
-            // mobile input
-            Vector2 touchDelta = touchPanel.GetTouchDelta;
+            if (!Application.isMobilePlatform)
+                mouseDelta = Mouse.current.delta.ReadValue();
+            
+            else
+                // mobile input
+                touchDelta = touchPanel.GetTouchDelta;
 
             mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x;
             mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y;
