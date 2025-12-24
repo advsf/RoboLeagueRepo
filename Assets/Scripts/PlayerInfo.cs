@@ -229,8 +229,10 @@ public class PlayerInfo : NetworkBehaviour
         // move the player to the found spawn point
         playingRb.position = spawnPoint.position;
         playingRb.linearVelocity = Vector3.zero;
-    }
 
+        if (Application.isMobilePlatform)
+            HandleMobileUI.instance.HandleAbilityButtons(position == PlayerDataTypes.Position.GK);
+    }
 
     public void StartTutorialPlayer(Transform spawnPoint, PlayerDataTypes.Team team, PlayerDataTypes.Position position, bool hasAbility)
     {

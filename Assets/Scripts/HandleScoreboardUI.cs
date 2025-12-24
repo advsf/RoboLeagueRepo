@@ -14,6 +14,7 @@ public class HandleScoreboardUI : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI redTeamGoalAmount;
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private TextMeshProUGUI scoreInformationText;
+    [SerializeField] private GameObject mobileStartButton;
 
     private void Start()
     {
@@ -31,6 +32,12 @@ public class HandleScoreboardUI : NetworkBehaviour
         // dont show the clients the helper text "Press T To Start Game"
         if (!IsServer)
             EnableStartGameHelperTextUI(false);
+
+        EnableMobileStartGameBututon(false);
+
+        // handle mobile starting game 
+        if (IsServer && Application.isMobilePlatform)
+            ChangeStartGameHelperTextUI("Press the button below to start (must be >1 players).");
     }
 
     public override void OnNetworkDespawn()
@@ -51,6 +58,10 @@ public class HandleScoreboardUI : NetworkBehaviour
     public void EnableTimerUI(bool condition) => scoreboardUI.SetActive(condition);
 
     public void EnableStartGameHelperTextUI(bool condition) => startGameHelpText.enabled = condition;
+
+    public void EnableMobileStartGameBututon(bool condition) => mobileStartButton.SetActive(condition);
+
+    public void ChangeStartGameHelperTextUI(string text) => startGameHelpText.text = text;
 
     private void UpdateTimer(float previous, float current)
     {

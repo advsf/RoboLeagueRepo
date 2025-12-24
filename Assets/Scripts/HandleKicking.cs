@@ -19,8 +19,8 @@ public class HandleKicking : NetworkBehaviour
     [Header("Mobile Settings")]
     public KickMode currentMobileKickMode = KickMode.Shooting;
     [SerializeField] private float mobileMinCurveMagnitude = 0.05f;
-    [SerializeField] private float mobileUpwardInfluenceMultiplier = 2f;
     [SerializeField] private float mobileCurveMultiplier = 1500f;
+    [SerializeField] private float mobileSliderIncrementValue;
 
     [Header("Dribbling Settings")]
     [SerializeField] private float dribblingMultipler;
@@ -365,7 +365,7 @@ public class HandleKicking : NetworkBehaviour
         ChangeShootingBarColor();
 
         shootingBarSlider.gameObject.SetActive(true);
-        shootingBarSlider.value += sliderIncrementValue * Time.deltaTime;
+        shootingBarSlider.value += (!Application.isMobilePlatform ? sliderIncrementValue : mobileSliderIncrementValue) * Time.deltaTime;
     }
 
     private void ApplyMovementDebuff()
@@ -596,7 +596,7 @@ public class HandleKicking : NetworkBehaviour
 
         if (Application.isMobilePlatform)
             if (joystickVal.magnitude > mobileMinCurveMagnitude)
-                return joystickVal.x * mobileCurveMultiplier;
+                return Mathf.Min(joystickVal.x * mobileCurveMultiplier, 1500);
             else
                 return 0;
 
@@ -646,15 +646,7 @@ public class HandleKicking : NetworkBehaviour
         float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (Application.isMobilePlatform)
-        {
-            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = mobileVerticalInput * dribblingHeightMultiplier * mobileUpwardInfluenceMultiplier;
-        }
-
-        // pc upward influnce logic
-        else
-            upwardInfluence = cameraLookY * dribblingHeightMultiplier;
+        upwardInfluence = cameraLookY * dribblingHeightMultiplier;
 
         float powerBoost = PlayerMovement.instance.IsSprinting ? shotMultiplier : 1f;
 
@@ -687,15 +679,7 @@ public class HandleKicking : NetworkBehaviour
         float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (Application.isMobilePlatform)
-        {
-            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = mobileVerticalInput * shootingHeightMultiplier * mobileUpwardInfluenceMultiplier + shootingYHeightAddition;
-        }
-
-        // pc upward influnce logic
-        else
-            upwardInfluence = cameraLookY * shootingHeightMultiplier + shootingYHeightAddition;
+        upwardInfluence = cameraLookY * shootingHeightMultiplier + shootingYHeightAddition;
 
         float powerBoost = CalculateShootingPowerBoost(mouseX);
 
@@ -727,15 +711,7 @@ public class HandleKicking : NetworkBehaviour
         float upwardInfluence = 0;
 
         // mobile upward influnce logic
-        if (Application.isMobilePlatform)
-        {
-            float mobileVerticalInput = -Mathf.Clamp01(joystickVal.y);
-            upwardInfluence = mobileVerticalInput * shootingHeightMultiplier * mobileUpwardInfluenceMultiplier;
-        }
-
-        // pc upward influnce logic
-        else
-            upwardInfluence = cameraLookY * shootingHeightMultiplier;
+        upwardInfluence = cameraLookY * shootingHeightMultiplier;
 
         float powerBoost = CalculatePowerShotBoost(ref upwardInfluence);
 
@@ -1051,10 +1027,6 @@ public class HandleKicking : NetworkBehaviour
 
     public void SpawnBallViaButton()
     {
-        // don't do anything if it's a tutorial server
-        if (ServerManager.instance.isTutorialServer)
-            return;
-
         // if it is a practice server, then just set the main ball's position to the player
         if (ServerManager.instance.isPracticeServer)
         {

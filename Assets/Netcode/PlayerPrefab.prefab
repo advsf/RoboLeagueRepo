@@ -3689,7 +3689,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6300772821972414672}
         m_TargetAssemblyTypeName: HandleLeaderboardUI, Assembly-CSharp
         m_MethodName: RevealLobbyCode
         m_Mode: 1
@@ -3945,8 +3945,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   currentMobileKickMode: 0
   mobileMinCurveMagnitude: 0.25
-  mobileUpwardInfluenceMultiplier: 0.1
-  mobileCurveMultiplier: 40
+  mobileCurveMultiplier: 35
+  mobileSliderIncrementValue: 3
   dribblingMultipler: 25
   dribblingStaminaLoss: 0
   dribblingHeightMultiplier: -0.9
@@ -4075,7 +4075,7 @@ MonoBehaviour:
   rouletteAbility: {fileID: 11400000, guid: 182917b3371021e479d6451b17183641, type: 2}
   deflectAbility: {fileID: 11400000, guid: 44bc11e435e0fca40b3551cac48ffe00, type: 2}
   killAbility: {fileID: 11400000, guid: 013790b3adddbcd4cb6a319bef9e698f, type: 2}
-  doublePressInterval: 0
+  doublePressInterval: 0.5
   maxBackgroundAlpha: 1
   throwInScript: {fileID: 3081759442585155596}
 --- !u!114 &748043346148210115
@@ -7572,19 +7572,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3946041651836777485}
-        m_TargetAssemblyTypeName: HandleChatbox, Assembly-CSharp
-        m_MethodName: SendMessage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -10522,7 +10510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -137.59998, y: 349.99997}
+  m_AnchoredPosition: {x: -137.59998, y: 327.13995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &2752171043238602687
@@ -16174,7 +16162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -387.39996, y: 349.66}
+  m_AnchoredPosition: {x: -387.39996, y: 326.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &4825110548785000564
@@ -18319,7 +18307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: -0.5000019}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501069777428049311
@@ -19084,7 +19072,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8472311232518785221}
         m_TargetAssemblyTypeName: HandleAbilities, Assembly-CSharp
-        m_MethodName: ActiviateRightAbilityThrough
+        m_MethodName: ActiviateRightAbilityThroughUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19425,7 +19413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6051262131349784668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20431,7 +20419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -387.40002, y: 349.66}
+  m_AnchoredPosition: {x: -387.40002, y: 326.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &5999906960543563802
@@ -21488,7 +21476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: R
+  m_text: D
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ce22a6361789534d8a80e97e13fe084, type: 2}
   m_sharedMaterial: {fileID: 7152840957315151798, guid: 3ce22a6361789534d8a80e97e13fe084,
@@ -24236,7 +24224,7 @@ RectTransform:
   m_GameObject: {fileID: 6914126779947356895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6032724, y: 1.6032724, z: 1.6032724}
+  m_LocalScale: {x: 1.3765216, y: 1.3765216, z: 1.3765216}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5931132640849340320}
@@ -24245,7 +24233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 225, y: 225}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &6917391563761909381
@@ -25621,7 +25609,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: L
+  m_text: C
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ce22a6361789534d8a80e97e13fe084, type: 2}
   m_sharedMaterial: {fileID: 7152840957315151798, guid: 3ce22a6361789534d8a80e97e13fe084,
@@ -26787,7 +26775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -137.59998, y: 350}
+  m_AnchoredPosition: {x: -137.59998, y: 327.13995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &7523222941306139753
@@ -27429,7 +27417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4239452967
+  GlobalObjectIdHash: 3593903617
   InScenePlacedSourceGlobalObjectIdHash: 2615699612
   DeferredDespawnTick: 0
   Ownership: 1

@@ -70,6 +70,8 @@ public class HandleChatbox : NetworkBehaviour
 
         isChattingGlobally = true;
         currentChatOption.text = "(ALL)";
+
+        inputField.onSubmit.AddListener(OnInputSubmit);
     }
 
     private void OnEnable()
@@ -247,7 +249,8 @@ public class HandleChatbox : NetworkBehaviour
         if (!openedChat.activeInHierarchy && !closedChat.activeInHierarchy)
             closedChat.SetActive(true);
     }
-    public void SendMessage()
+
+    public void SendChatMessage()
     {
         // if still in cooldown or nothing is typed
         if (!canText || string.IsNullOrWhiteSpace(inputField.text))
@@ -255,13 +258,16 @@ public class HandleChatbox : NetworkBehaviour
 
         HandleTrackingAmountOfTextSent();
 
-        Debug.Log("sending message");
-
         SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), inputField.text);
 
         // reset the inputfield text
         inputField.text = "";
         inputField.ActivateInputField();
+    }
+
+    private void OnInputSubmit(string text)
+    {
+        SendChatMessage();
     }
 
     [ServerRpc]

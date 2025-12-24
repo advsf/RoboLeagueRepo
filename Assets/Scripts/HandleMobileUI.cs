@@ -167,32 +167,50 @@ public class HandleMobileUI : NetworkBehaviour
     public void SpawnBall()
     {
         HandleKicking.instance.SpawnBallViaButton();
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     public void SpawnLowBall()
     {
         ServerManager.instance.SpawnLowBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     public void SpawnHighBall()
     {
         ServerManager.instance.SpawnHighBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     public void SpawnDummy()
     {
         HandleTrainingDummies.instance.CreateDummy();
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     public void DeleteDummy()
     {
         HandleTrainingDummies.instance.DestroyAllDummy(false);
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     public void HandleEnablingAIGK()
     {
         if (!BallManager.instance.mainBallSync.GetRigidbody().isKinematic && ServerManager.instance.CanGoalkeepersBeDisabled())
             ServerManager.instance.EnableDisableAIGK();
+
+        // disable the buttons
+        HandleEnablingSpawnBallSettingsUI();
     }
 
     #endregion

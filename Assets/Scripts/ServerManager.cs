@@ -219,7 +219,12 @@ public class ServerManager : NetworkBehaviour
             HandleScoreboardUI.instance.ChangeScoreboardInformationText($"Waiting for players... {spawnedPlayerCount.Value}/10");
 
             if (IsServer)
+            {
                 HandleScoreboardUI.instance.EnableStartGameHelperTextUI(true);
+
+                if (Application.isMobilePlatform)
+                    HandleScoreboardUI.instance.EnableMobileStartGameBututon(spawnedPlayerCount.Value > 1);
+            }
         }
 
         // handle staring game timer
@@ -804,6 +809,8 @@ public class ServerManager : NetworkBehaviour
         if (clientUsernames.ContainsKey(clientId))
             clientUsernames.Remove(clientId);
     }
+
+    public void StartGameFromUI() => StartCoroutine(HandleStartingGame());
 
     private IEnumerator HandleStartingGame()
     {

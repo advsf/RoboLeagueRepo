@@ -39,9 +39,6 @@ public class SpawnButtonInfo : NetworkBehaviour
         else
             ServerManager.instance.RequestSpawnServerRpc(buttonTeam, buttonPosition);
 
-        if (Application.isMobilePlatform)
-            HandleMobileUI.instance.HandleAbilityButtons(buttonPosition == PlayerDataTypes.Position.GK);
-
         canvaObj.SetActive(false);
     } 
 

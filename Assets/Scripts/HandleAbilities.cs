@@ -310,15 +310,21 @@ public class HandleAbilities : NetworkBehaviour
     public void ActiviateLeftAbilityThroughUI()
     {
         if (Time.time - lastLeftAbilityPressTime <= doublePressInterval)
+        {
             PerformLeftAbility();
+            lastLeftAbilityPressTime = 0;
+        }
 
         lastLeftAbilityPressTime = Time.time;
     }
 
-    public void ActiviateRightAbilityThrough()
+    public void ActiviateRightAbilityThroughUI()
     {
         if (Time.time - lastRightAbilityPressTime <= doublePressInterval)
+        {
             PerformRightAbility();
+            lastRightAbilityPressTime = 0;
+        }
 
         lastRightAbilityPressTime = Time.time;
     }
