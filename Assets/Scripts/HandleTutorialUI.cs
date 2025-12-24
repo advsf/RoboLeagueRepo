@@ -11,6 +11,7 @@ public class HandleTutorialUI : MonoBehaviour
 
     [Header("Typewriter Setting")]
     [SerializeField] private string messageText;
+    [SerializeField] private string mobileMessageText;
     [SerializeField] private float typeWriterDelay;
 
     [Header("Animation Setting")]
@@ -39,10 +40,22 @@ public class HandleTutorialUI : MonoBehaviour
     {
         yield return new WaitForSeconds(animationIntroDuration);
 
-        foreach (char letter in messageText)
+        if (!Application.isMobilePlatform)
         {
-            text.text += letter;
-            yield return new WaitForSeconds(typeWriterDelay);
+            foreach (char letter in messageText)
+            {
+                text.text += letter;
+                yield return new WaitForSeconds(typeWriterDelay);
+            }
+        }
+
+        else
+        {
+            foreach (char letter in mobileMessageText)
+            {
+                text.text += letter;
+                yield return new WaitForSeconds(typeWriterDelay);
+            }
         }
 
         // wait a second before allowing the user to proceed

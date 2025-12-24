@@ -38,6 +38,9 @@ public class HandleMobileUI : NetworkBehaviour
         foreach (GameObject button in gkAbilityButtons)
             button.SetActive(false);
 
+        foreach (GameObject button in spawnBallButtons)
+            button.SetActive(false);
+
         emoteUI.SetActive(false);
     }
 
@@ -168,12 +171,12 @@ public class HandleMobileUI : NetworkBehaviour
 
     public void SpawnLowBall()
     {
-        ServerManager.instance.SpawnLowBallServerRpc(PlayerInfo.instance.transform.position, PlayerInfo.instance.transform.forward);
+        ServerManager.instance.SpawnLowBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
     }
 
     public void SpawnHighBall()
     {
-        ServerManager.instance.SpawnHighBallServerRpc(PlayerInfo.instance.transform.position, PlayerInfo.instance.transform.forward);
+        ServerManager.instance.SpawnHighBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
     }
 
     public void SpawnDummy()
@@ -183,7 +186,7 @@ public class HandleMobileUI : NetworkBehaviour
 
     public void DeleteDummy()
     {
-        HandleTrainingDummies.instance.DestroyAllDummy();
+        HandleTrainingDummies.instance.DestroyAllDummy(false);
     }
 
     public void HandleEnablingAIGK()

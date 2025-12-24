@@ -151,10 +151,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner) return;
 
         GatherInput();
-        SpeedControl();
         HandleStamina();
-
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2, groundMask);
 
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) return;
 
@@ -176,12 +173,18 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsOwner || !canPlayerMove) 
+        if (!IsOwner) 
+            return;
+
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2, groundMask);
+
+        if (!canPlayerMove)
             return;
 
         if (!isGrounded)
             rb.AddForce(Vector3.down * jumpDownForce, ForceMode.Impulse);
 
+        SpeedControl();
         HandleCountermovement();
 
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) 
@@ -203,7 +206,7 @@ public class PlayerMovement : NetworkBehaviour
                 currentSpeed = Mathf.Lerp(currentSpeed, desiredSpeed, accelerationSmoothing * Time.fixedDeltaTime);
             else
                 currentSpeed = Mathf.Lerp(currentSpeed, 0f, decelerationSmoothing * Time.fixedDeltaTime);
-            rb.AddForce(moveDirection.normalized * currentSpeed, ForceMode.Impulse);
+            rb.AddForce(moveDirection.normalized * currentSpeed, ForceMode.VelocityChange);
         }
     }
 

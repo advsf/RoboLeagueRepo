@@ -83156,6 +83156,7 @@ GameObject:
   - component: {fileID: 2134151149}
   - component: {fileID: 2134151148}
   - component: {fileID: 2134151147}
+  - component: {fileID: 2134151150}
   m_Layer: 0
   m_Name: VideoSubButton
   m_TagString: Untagged
@@ -83289,6 +83290,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134151145}
   m_CullTransparentMesh: 1
+--- !u!114 &2134151150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134151145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3386e22ae02a544bd7d61c5d496068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableForMobilePlatforms
 --- !u!1 &2135069800
 GameObject:
   m_ObjectHideFlags: 0

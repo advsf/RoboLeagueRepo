@@ -3295,6 +3295,10 @@ MonoBehaviour:
   blueStartingKickOffBarrier: {fileID: 1894195359}
   redStartingKickOffBarrier: {fileID: 111772010}
   timeBeforeAutoDisableOnKickOffBarriers: 10
+  spawnBallInFrontDistance: 0
+  spawnBallInFrontForce: 0
+  spawnBallInFrontForceLower: 0
+  spawnBallToSideUpwardsForce: 0
   networkPlayerObj: {fileID: 2413559938881226704, guid: 556cc464e6d64234b9cc9eb4711ac5ef,
     type: 3}
   originalBallSpawnPos: {fileID: 822947527}
@@ -7126,6 +7130,9 @@ MonoBehaviour:
   proceedButton: {fileID: 1708901461}
   messageText: now you will learn how to shoot. hold the left mouse button to charge
     up a kick. you can add height by looking up before you kick the ball.
+  mobileMessageText: now you will learn how to shoot. hold the joystick with the
+    "S" button to charge up a kick. you can height by moving your camera up before
+    you kick.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!224 &246023724
@@ -7137,7 +7144,7 @@ RectTransform:
   m_GameObject: {fileID: 246023721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1412259092}
@@ -14308,7 +14315,7 @@ RectTransform:
   m_GameObject: {fileID: 541985695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 124571787}
@@ -14361,6 +14368,9 @@ MonoBehaviour:
   messageText: now that you know how to kick, you will learn how to add spin onto
     the ball. simply flick the ball with your mouse before you shoot to make the
     ball spin in that direction. spin shots are faster than non-spin shots.
+  mobileMessageText: now that you know how to kick, you will learn how to add spin
+    onto the ball. just like dribbling, the direction of the joystick will determine
+    the direction of the spin. also, spin shots are faster than non-spin shots.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &543073519
@@ -14420,6 +14430,8 @@ MonoBehaviour:
   messageText: You can also press T to catch the ball when you are grounded. You
     must make sure that you are on top of the ball to ensure that you can actually
     catch the ball. Useful for completely stopping attacks.
+  mobileMessageText: You can also press the "C" button to catch the ball when you
+    are grounded. Useful for completely stopping attacks.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!224 &543073522
@@ -14431,7 +14443,7 @@ RectTransform:
   m_GameObject: {fileID: 543073519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1760759653}
@@ -14745,7 +14757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &552215094
 Animator:
   serializedVersion: 7
@@ -14785,6 +14797,10 @@ MonoBehaviour:
   messageText: welcome to this tutorial! for the first stage, you will learn the
     basics of movement. Use WASD to move, left-shift to sprint, space to jump, left-control
     to slide, and e to dash.
+  mobileMessageText: welcome to this tutorial! for the first stage, you will learn
+    the basics of movement. Use the left joystick to walk and push it further to
+    sprint. On the right, you can click on the three buttons to jump, slide, and
+    dash.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!224 &552215096
@@ -14796,7 +14812,7 @@ RectTransform:
   m_GameObject: {fileID: 552215093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2119701601}
@@ -17491,7 +17507,7 @@ RectTransform:
   m_GameObject: {fileID: 623336329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 697932745}
@@ -17544,6 +17560,9 @@ MonoBehaviour:
   messageText: cf's next ability "speedster" allows you to move faster for a short
     duration. this can be used to make a quick run through the defences to create
     plays.
+  mobileMessageText: cf's next ability "speedster" allows you to move faster for
+    a short duration. this can be used to make a quick run through the defences to
+    create plays. You can activiate it by pressing the "R" button twice.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &624455056
@@ -20849,7 +20868,7 @@ RectTransform:
   m_GameObject: {fileID: 730992468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 988903310}
@@ -20901,6 +20920,10 @@ MonoBehaviour:
   proceedButton: {fileID: 661308998}
   messageText: As a midfielder (LMF/RMF), you will have the ability to "trap" the
     ball, or stop the ball's velocity entirely. to use this, you should get near
+    the ball and use the ability. useful for catching high passes or fast moving
+    balls.
+  mobileMessageText: As a midfielder (LMF/RMF), you will have the ability to "trap"
+    the ball, or stop the ball's velocity entirely. to use this, you should get near
     the ball and use the ability. useful for catching high passes or fast moving
     balls.
   typeWriterDelay: 0.015
@@ -23633,6 +23656,7 @@ MonoBehaviour:
   catchSaveBallVelThreshold: 4
   sweeperBallPositionThreshold: 18
   dropKickPositionThreshold: 2
+  interceptTriggerSpeed: 5
   saveCooldown: 1.25
   timeBeforeDownwardForce: 0.15
   keeperHeight: 2
@@ -23653,6 +23677,7 @@ MonoBehaviour:
   catchBallPos: {fileID: 203870328}
   minKickPower: 15
   maxKickPower: 40
+  dropKickHeightMultiplier: 1.2
   maxDistanceForMaxPower: 200
   minDistanceToPassTo: 100
   rb: {fileID: 800274293}
@@ -25498,7 +25523,7 @@ RectTransform:
   m_GameObject: {fileID: 857109538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 926079842}
@@ -25549,6 +25574,11 @@ MonoBehaviour:
   text: {fileID: 284426509}
   proceedButton: {fileID: 1340700990}
   messageText: Congratulations on passing the tutorial! Now that you have learned
+    the basics, you can either play a full online match with other people or continue
+    to develop your skills by joining a practice server. There's a lot more hidden
+    techs and cool things that this tutorial has not covered. Good luck, and have
+    fun!
+  mobileMessageText: Congratulations on passing the tutorial! Now that you have learned
     the basics, you can either play a full online match with other people or continue
     to develop your skills by joining a practice server. There's a lot more hidden
     techs and cool things that this tutorial has not covered. Good luck, and have
@@ -26769,6 +26799,9 @@ MonoBehaviour:
   messageText: as a defender (CB), you have access to two defensive moves. the first
     one is called "kill", and to use it you must aim at a player to temporarily stun
     them. this can be extremely effective at stopping attacks.
+  mobileMessageText: '  as a defender (CB), you have access to two defensive moves.
+    the first one is called "kill", and to use it you must aim at a player to temporarily
+    stun them. this can be extremely effective at stopping attacks.'
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!224 &890312119
@@ -26780,7 +26813,7 @@ RectTransform:
   m_GameObject: {fileID: 890312116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 808190545}
@@ -29931,7 +29964,7 @@ RectTransform:
   m_GameObject: {fileID: 983516942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1153267140}
@@ -29983,6 +30016,9 @@ MonoBehaviour:
   proceedButton: {fileID: 2119016883}
   messageText: Your next defensive ability is called "deflect", and it allows you
     to deflect balls in the air. this can be used to block high passes or shots.
+    really powerful if used well.
+  mobileMessageText: Your next defensive ability is called "deflect", and it allows
+    you to deflect balls in the air. this can be used to block high passes or shots.
     really powerful if used well.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
@@ -30623,7 +30659,7 @@ RectTransform:
   m_GameObject: {fileID: 1004397856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1855116379}
@@ -30676,6 +30712,9 @@ MonoBehaviour:
   messageText: as a gk, you won't have any abilities. however, you are able to dive
     and deflect the ball upon contact. press q to dive in the direction that your
     player is moving, and jump before diving to cover the air.
+  mobileMessageText: as a gk, you won't have any abilities. however, you are able
+    to dive and deflect the ball upon contact. Press the "D" button to dive in the
+    direction that your player is moving, and jump before diving to cover the air.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &1007151023
@@ -36149,7 +36188,7 @@ RectTransform:
   m_GameObject: {fileID: 1189461477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651813240}
@@ -36202,6 +36241,10 @@ MonoBehaviour:
   messageText: next, you will learn how to dribble. use your right mouse button to
     trigger a dribble move, which will make the ball follow the direction of your
     player. useful for cutting through defenses.
+  mobileMessageText: next, you will learn how to dribble. use the right joystick
+    with the "D" button and hold on it to trigger a dribble move. depending on the
+    direction of the joystick, the ball will move in that direction. useful for cutting
+    through defenses.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &1194874442
@@ -36306,7 +36349,7 @@ RectTransform:
   m_GameObject: {fileID: 1195559603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1435532230}
@@ -36360,6 +36403,10 @@ MonoBehaviour:
     Starting with cf, the powerkick ability allows you to shoot with a greater power,
     provided that you time the shooting bar well. to get a perfect timing, you must
     release when the bar touches the white part.
+  mobileMessageText: Each position has two unique abilities. Starting with cf, the
+    powerkick ability allows you to shoot with a greater power, provided that you
+    time the shooting bar well. to get a perfect timing, you must release when the
+    bar touches the white part. you can activiate it by pressing the "L" button twice.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &1199628198
@@ -40708,6 +40755,7 @@ MonoBehaviour:
   catchSaveBallVelThreshold: 4
   sweeperBallPositionThreshold: 18
   dropKickPositionThreshold: 2
+  interceptTriggerSpeed: 5
   saveCooldown: 1.25
   timeBeforeDownwardForce: 0.15
   keeperHeight: 2
@@ -40728,6 +40776,7 @@ MonoBehaviour:
   catchBallPos: {fileID: 1697463669}
   minKickPower: 15
   maxKickPower: 40
+  dropKickHeightMultiplier: 1.2
   maxDistanceForMaxPower: 200
   minDistanceToPassTo: 100
   rb: {fileID: 1351218283}
@@ -42982,7 +43031,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adc4c49e3c5f9644a319204edb2a922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   startUIObj: {fileID: 183118079}
+  kickPlayersButtonUIObj: {fileID: 0}
+  kickPlayersUIObj: {fileID: 0}
+  kickPlayersButtonPrefab: {fileID: 0}
+  kickPlayersParent: {fileID: 0}
 --- !u!114 &1400972192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50567,7 +50621,7 @@ RectTransform:
   m_GameObject: {fileID: 1627340214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 219695511}
@@ -50621,6 +50675,10 @@ MonoBehaviour:
     ball or roll the ball. in order to perform a drop kick, you will use your left
     mouse button to charge up your drop kick\u2014the same as charging up a regular
     kick. drop kicks can go further and higher than a roll pass."
+  mobileMessageText: 'once the ball is in your hands, you have two options: drop
+    kick the ball or roll the ball. in order to perform a drop kick, you will have
+    to perform a regular kick (joystick with the "S" button). drop kicks can go further
+    and higher than a roll pass.'
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &1628278854
@@ -51885,7 +51943,7 @@ RectTransform:
   m_GameObject: {fileID: 1668271628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1182105978}
@@ -51936,6 +51994,10 @@ MonoBehaviour:
   text: {fileID: 175448370}
   proceedButton: {fileID: 98700213}
   messageText: your next ability as a midfielder allows you to perform a roulette
+    move, or a spin move that drags the ball with your player. performing this move
+    gives you a slight speed boost as well. to use it, you must be the last kicker
+    and be close enough to the ball.
+  mobileMessageText: your next ability as a midfielder allows you to perform a roulette
     move, or a spin move that drags the ball with your player. performing this move
     gives you a slight speed boost as well. to use it, you must be the last kicker
     and be close enough to the ball.
@@ -54861,7 +54923,7 @@ RectTransform:
   m_GameObject: {fileID: 1731455502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1302296794}
@@ -54914,6 +54976,9 @@ MonoBehaviour:
   messageText: you can add force to the ball by sliding into it by pressing left
     control. this is useful for tackling the ball out of opponents or to deflect
     a low-driven shot. now, slide the ball into the barrier.
+  mobileMessageText: you can add force to the ball by sliding into it by pressing
+    the slide button. this is useful for tackling the ball out of opponents or to
+    deflect a low-driven shot. now, slide the ball into the barrier.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &1742504643
@@ -61619,7 +61684,7 @@ RectTransform:
   m_GameObject: {fileID: 2011135477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5748, y: 1.5748, z: 1.5748}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381910267}
@@ -61673,6 +61738,9 @@ MonoBehaviour:
     hold your right mouse button (the same as dribbling) to charge up a roll pass
     then let go of the button to release the ball. This will execute a short but
     more controllable pass.
+  mobileMessageText: To perform a roll pass, you must have the ball in your hands.
+    Then, perform a dribble shot. This will execute a short but more controllable
+    pass.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
 --- !u!1 &2011151274

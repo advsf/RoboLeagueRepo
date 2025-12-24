@@ -31,7 +31,7 @@ public class HandleTrainingDummies : MonoBehaviour
 
             // delete all dummies (double-press B)
             if (Input.GetKeyDown(KeyCode.B))
-                DestroyAllDummy();
+                DestroyAllDummy(true);
         }
     }
 
@@ -44,9 +44,16 @@ public class HandleTrainingDummies : MonoBehaviour
         Instantiate(dummyPrefab, spawnPos, spawnRot, dummyParent);
     }
 
-    public void DestroyAllDummy()
+    public void DestroyAllDummy(bool requireDoubleClick)
     {
-        if (Time.time - lastBPressTime <= doublePressInterval)
+        if (requireDoubleClick)
+        {
+            if (Time.time - lastBPressTime <= doublePressInterval)
+                foreach (Transform dummy in dummyParent)
+                    Destroy(dummy.gameObject);
+        }
+
+        else
             foreach (Transform dummy in dummyParent)
                 Destroy(dummy.gameObject);
 

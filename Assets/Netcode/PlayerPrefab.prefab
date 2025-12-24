@@ -3859,15 +3859,15 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   counterMovementMultiplier: 2
   accelerationSmoothing: 3
-  decelerationSmoothing: 900
+  decelerationSmoothing: 5
   walkSpeeds:
-    forwardSpeed: 8
-    sidewaysSpeed: 6
+    forwardSpeed: 2
+    sidewaysSpeed: 3
     backwardSpeed: 5
   sprintSpeeds:
-    forwardSpeed: 17
-    sidewaysSpeed: 14
-    backwardSpeed: 11
+    forwardSpeed: 11
+    sidewaysSpeed: 10
+    backwardSpeed: 7
   canPlayerMove: 1
   jumpCooldown: 2
   jumpForce: 45
@@ -3945,8 +3945,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   currentMobileKickMode: 0
   mobileMinCurveMagnitude: 0.25
-  mobileUpwardInfluenceMultiplier: 0.2
-  mobileCurveMultiplier: 55
+  mobileUpwardInfluenceMultiplier: 0.1
+  mobileCurveMultiplier: 40
   dribblingMultipler: 25
   dribblingStaminaLoss: 0
   dribblingHeightMultiplier: -0.9
@@ -4075,6 +4075,7 @@ MonoBehaviour:
   rouletteAbility: {fileID: 11400000, guid: 182917b3371021e479d6451b17183641, type: 2}
   deflectAbility: {fileID: 11400000, guid: 44bc11e435e0fca40b3551cac48ffe00, type: 2}
   killAbility: {fileID: 11400000, guid: 013790b3adddbcd4cb6a319bef9e698f, type: 2}
+  doublePressInterval: 0
   maxBackgroundAlpha: 1
   throwInScript: {fileID: 3081759442585155596}
 --- !u!114 &748043346148210115
@@ -6591,7 +6592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012207031, y: 171.1}
+  m_AnchoredPosition: {x: -0.00012207031, y: 116.6}
   m_SizeDelta: {x: 0, y: 704.32}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &3659454024180198188
@@ -10851,7 +10852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1010207729858949433}
         m_TargetAssemblyTypeName: HandleMobileUI, Assembly-CSharp
-        m_MethodName: GoBackToMenuViaUI
+        m_MethodName: HandleEnablingChatInputFieldUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15287,7 +15288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleHitboxSize
   ShowTopMostFoldoutHeaderGroup: 1
-  mobileHitboxMultiplier: 1.5
+  mobileHitboxMultiplier: 1.25
 --- !u!1 &4472193477729500763
 GameObject:
   m_ObjectHideFlags: 0
@@ -19424,7 +19425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6051262131349784668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27428,7 +27429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3593903617
+  GlobalObjectIdHash: 4239452967
   InScenePlacedSourceGlobalObjectIdHash: 2615699612
   DeferredDespawnTick: 0
   Ownership: 1
@@ -27624,6 +27625,8 @@ MonoBehaviour:
   id:
     m_InternalValue: 0
   CurrentPlayerMode:
+    m_InternalValue: 0
+  CurrentPlatform:
     m_InternalValue: 0
   pingSmoothingFactor: 0.05
   playingRb: {fileID: 4717857105800505031}
@@ -30774,7 +30777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleHitboxSize
   ShowTopMostFoldoutHeaderGroup: 1
-  mobileHitboxMultiplier: 1.5
+  mobileHitboxMultiplier: 1.25
 --- !u!1 &8893732508468291933
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class HandlePlayerLeaderboardStats : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private Image platformIcon;
     [SerializeField] private Image rankImage;
     [SerializeField] private Image rankShadowImage;
     [SerializeField] private TextMeshProUGUI usernameText;
@@ -21,6 +22,10 @@ public class HandlePlayerLeaderboardStats : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float updateInterval = 1;
+
+    [Header("Sprite References")]
+    [SerializeField] private Sprite mobileIcon;
+    [SerializeField] private Sprite desktopIcon;
 
     private PlayerInfo playerInfo;
     private float updateTimer;
@@ -66,6 +71,14 @@ public class HandlePlayerLeaderboardStats : MonoBehaviour
             else
                 backgrounds[i].color = new(0.8018868f, 0.2458615f, 0.2517279f, i % 2 == 0 ? higherAlphaBackground : lowerAlphaBackground); // red
         }
+
+        // handle the platform icon
+        platformIcon.enabled = true;
+
+        if (playerInfo.CurrentPlatform.Value == 0) // pc 
+            platformIcon.sprite = desktopIcon;
+        else if (playerInfo.CurrentPlatform.Value == 1) // mobile
+            platformIcon.sprite = mobileIcon;
 
         // handle the rank image
         rankImage.enabled = true;

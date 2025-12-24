@@ -44,6 +44,9 @@ public class PlayerInfo : NetworkBehaviour
     public NetworkVariable<byte> CurrentPlayerMode = new(
         (byte)PlayerMode.Default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    public NetworkVariable<int> CurrentPlatform = new(
+        0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner); // 0 - desktop, 1 - mobile
+
     [SerializeField] private float pingSmoothingFactor = 0.1f;
     [SerializeField] private Rigidbody playingRb;
     public GameObject playingObj;
@@ -91,6 +94,12 @@ public class PlayerInfo : NetworkBehaviour
 
             // initialize rank
             rankIndex.Value = FBPP.GetInt("RankIndex");
+
+            // set up platform detection
+            if (!Application.isMobilePlatform)
+                CurrentPlatform.Value = 0; // desktop
+            else
+                CurrentPlatform.Value = 1; // mobile
 
             // set up listeners for when a goals stat increases
             goals.OnValueChanged += UpdateGoalsDataCount;

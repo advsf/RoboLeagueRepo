@@ -132,10 +132,16 @@ public class HandleLeaderboardUI : NetworkBehaviour
     public void HandleMobileLeaderboardUI()
     {
         if (!leaderboardParent.gameObject.activeInHierarchy && !HandleCursorSettings.instance.IsUIOn())
+        {
             SetUpLeaderboard();
+            HandleMobileUI.instance.EnableTouchPadObj(false);
+        }
 
         else
+        {
             DisableLeaderboard();
+            HandleMobileUI.instance.EnableTouchPadObj(true);
+        }
     }
 
     #endregion

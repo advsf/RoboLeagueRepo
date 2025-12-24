@@ -38,6 +38,11 @@ public class HandleAbilities : NetworkBehaviour
     [SerializeField] private Abilities deflectAbility;
     [SerializeField] private Abilities killAbility;
 
+    [Header("Double Tap Cooldown Settings")]
+    [SerializeField] private float doublePressInterval = 0.3f;
+    private float lastLeftAbilityPressTime;
+    private float lastRightAbilityPressTime;
+
     [Header("Other References")]
     [SerializeField] private float maxBackgroundAlpha;
     [SerializeField] private HandleThrowIn throwInScript;
@@ -50,6 +55,9 @@ public class HandleAbilities : NetworkBehaviour
 
     private bool isLeftAbilityTriggered;
     private bool isRightAbilityTriggered;
+
+    // ui button double click
+
 
     public override void OnNetworkSpawn()
     {
@@ -299,9 +307,21 @@ public class HandleAbilities : NetworkBehaviour
     }
 
     // called by mobile UI buttons
-    public void ActiviateLeftAbilityThroughUI() => PerformLeftAbility();
+    public void ActiviateLeftAbilityThroughUI()
+    {
+        if (Time.time - lastLeftAbilityPressTime <= doublePressInterval)
+            PerformLeftAbility();
 
-    public void ActiviateRightAbilityThrough() => PerformRightAbility();
+        lastLeftAbilityPressTime = Time.time;
+    }
+
+    public void ActiviateRightAbilityThrough()
+    {
+        if (Time.time - lastRightAbilityPressTime <= doublePressInterval)
+            PerformRightAbility();
+
+        lastRightAbilityPressTime = Time.time;
+    }
 
     public bool IsAbilityActivitated() => isLeftAbilityTriggered || isRightAbilityTriggered; 
 }
