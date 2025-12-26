@@ -359,7 +359,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         currentState = State.idle;
 
         // end the out of bounds play
-        ballSync.EndOutOfBoundsPlayServerRpc();
+        ballSync.EndBallOutOfPlayServerRpc();
     }
 
     public void ResetGoalkeeperAfterPassing()

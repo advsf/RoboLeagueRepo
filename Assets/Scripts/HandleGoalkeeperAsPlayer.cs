@@ -258,7 +258,6 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
                     ballSync.LocalKick(kickPayload, (int)OwnerClientId);
 
-                    ServerManager.instance.RegisterGoalkeeperSave();
                     PlayerInfo.instance.saves.Value++;
 
                     if (ServerManager.instance.isTutorialServer)

@@ -62,7 +62,7 @@ public class ServerManager : NetworkBehaviour
 
     // for out of bounds play
     public NetworkVariable<FixedString32Bytes> possessionTeam = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<float> outOfBoundsTime = new(15, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> outOfPlayTime = new(15, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public bool isBallOutOfBounds = false; // transitioning period between the ball being oob and actually being in play again (prevents the users from scoring goals while the ball has yet to teleport)
 
     public List<ulong> blueTeamPlayerIds;
@@ -82,10 +82,6 @@ public class ServerManager : NetworkBehaviour
     // handling the kick off barrier
     private NetworkVariable<FixedString32Bytes> kickOffStartingTeam = new("Blue", NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> didKickOffEnd = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
-    // goalkeeper deflection buffer
-    public double lastGkSaveTimestamp;
-    public const float GOAL_SAVE_BUFFER_TIME = 0.3f;
 
     // only for the editor
     // CHANGE ONLY IN THE EDITOR
@@ -194,8 +190,8 @@ public class ServerManager : NetworkBehaviour
             || isTesting)
             StartCoroutine(HandleStartingGame());
 
-        if (mainBallSync.isOutOfBounds.Value)
-            outOfBoundsTime.Value -= Time.deltaTime;
+        if (mainBallSync.isOutOfPlay.Value)
+            outOfPlayTime.Value -= Time.deltaTime;
 
         // if not enough people, reset the game
         if (spawnedPlayerCount.Value < 2 && didStartGame.Value)
@@ -247,12 +243,26 @@ public class ServerManager : NetworkBehaviour
                 HandleScoreboardUI.instance.EnableStartGameHelperTextUI(false);
         }
 
-        // handle scoreboard information text
-        if (mainBallSync.isOutOfBounds.Value)
+        if (mainBallSync.isOffside.Value)
         {
-            int roundedTime = (int) Mathf.Clamp(outOfBoundsTime.Value, 0f, outOfBoundMaxTimer);
+            HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText("Offside");
+        }
 
-            if (mainBallSync.isGoalKick.Value)
+        // handle scoreboard information text when the ball is out of bounds or out of play
+        if (mainBallSync.isOutOfPlay.Value)
+        {
+            int roundedTime = (int) Mathf.Clamp(outOfPlayTime.Value, 0f, outOfBoundMaxTimer);
+
+            if (mainBallSync.isOffside.Value)
+            {
+                if (possessionTeam.Value.Equals("Blue"))
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Indirect Freekick ({roundedTime}s)");
+                else
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=red>Indirect Freekick ({roundedTime}s)");
+            }
+
+            else if (mainBallSync.isGoalKick.Value)
             {
                 if (possessionTeam.Value.Equals("Blue"))
                     HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Goal kick ({roundedTime}s)");
@@ -280,19 +290,27 @@ public class ServerManager : NetworkBehaviour
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
         }
 
-        else if (didStartGame.Value && !mainBallSync.isOutOfBounds.Value)
+        // disable
+        else if (didStartGame.Value && !mainBallSync.isOutOfPlay.Value && !mainBallSync.isOffside.Value)
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(false);
     }
 
     private void HandleSwappingPossessionTeamAfterTimerRunsOut()
     {
         // change the possession team
-        if (outOfBoundsTime.Value <= 0 && !isPossessionChanging && outOfBoundsScript != null)
+        if (outOfPlayTime.Value <= 0 && !isPossessionChanging)
         {
             isPossessionChanging = true;
 
+            // just swap possession
+            if (mainBallSync.isOffside.Value)
+            {
+                // throw in goes to the other team (we also reset the timer here)
+                HandleOffsides.instance.StartIndirectionKickServerRpc(mainBallSync.GetRigidbody().position, possessionTeam.Value.Equals("Blue") ? "Red" : "Blue", true);
+            }
+
             // goalkick -> corner kick
-            if (mainBallSync.isGoalKick.Value)
+            else if (mainBallSync.isGoalKick.Value)
             {
                 mainBallSync.isGoalKick.Value = false;
                 mainBallSync.isCornerKick.Value = true;
@@ -315,7 +333,7 @@ public class ServerManager : NetworkBehaviour
                 Invoke(nameof(DropBallIfThrowInPickedUpClientRpc), outOfBoundsScript.restartPlayDelay);
             }
 
-            Invoke(nameof(EndChangePossessionState), outOfBoundsScript.restartPlayDelay + 0.15f);
+            Invoke(nameof(EndChangePossessionState), (mainBallSync.isOffside.Value ? HandleOffsides.instance.restartPlayDelay : outOfBoundsScript.restartPlayDelay) + 0.15f);
         }
     }
 
@@ -346,6 +364,9 @@ public class ServerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void SpawnLowBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
+        if (!HandleKicking.instance.IsLocalBallSpawned() && !isPracticeServer)
+            HandleKicking.instance.HandleSpawningLocalBall();
+
         Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
         rb.linearVelocity = Vector3.zero;
@@ -360,6 +381,9 @@ public class ServerManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void SpawnHighBallServerRpc(Vector3 playerPos, Vector3 playerForwardDir, ServerRpcParams serverRpcParams = default)
     {
+        if (!HandleKicking.instance.IsLocalBallSpawned() && !isPracticeServer)
+            HandleKicking.instance.HandleSpawningLocalBall();
+
         Rigidbody rb = isPracticeServer ? mainBallRb : BallManager.instance.GetLocalSpawnedBall(serverRpcParams.Receive.SenderClientId).GetRigidbody();
 
         rb.linearVelocity = Vector3.zero;
@@ -407,7 +431,7 @@ public class ServerManager : NetworkBehaviour
 
         ShowEndOfGameChatMessageClientRpc(wonTeam.Value.ToString(), wonTeam.Value.Equals("Tie"));
 
-        mainBallSync.EndOutOfBoundsPlayServerRpc();
+        mainBallSync.EndBallOutOfPlayServerRpc();
 
         // wait 8 seconds before resetting
         yield return new WaitForSeconds(8);
@@ -427,7 +451,7 @@ public class ServerManager : NetworkBehaviour
         didATeamScore.Value = false;
         didKickOffEnd.Value = true;
         possessionTeam.Value = string.Empty;
-        outOfBoundsTime.Value = outOfBoundMaxTimer;
+        outOfPlayTime.Value = outOfBoundMaxTimer;
 
         // reset the ball to the center
         ResetBallToTheCenter();
@@ -459,6 +483,12 @@ public class ServerManager : NetworkBehaviour
 
         // be able to spawn the local ball again
         HandleKicking.instance.DeleteLocalSpawnedBall();
+
+        PlayerInfo.instance.amountOfGamesPlayedInThisServer++;
+
+        // play ads for that dolla
+        if (Application.isMobilePlatform)
+            HandleInterstitialAds.instance.ShowAd();
     }
 
     [ClientRpc]
@@ -611,15 +641,6 @@ public class ServerManager : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     private void RegisterUsernameServerRpc(string newUsername, ServerRpcParams rpcParams = default) => RegisterClient(rpcParams.Receive.SenderClientId, newUsername);
-
-    public void RegisterGoalkeeperSave()
-    {
-        if (!IsServer) 
-            return;
-
-        // track when the gk last saved
-        lastGkSaveTimestamp = NetworkManager.Singleton.ServerTime.Time;
-    }
 
     #region Kick-off Barriers
 
@@ -810,7 +831,13 @@ public class ServerManager : NetworkBehaviour
             clientUsernames.Remove(clientId);
     }
 
-    public void StartGameFromUI() => StartCoroutine(HandleStartingGame());
+    public void StartGameFromUI()
+    {
+        if (isStartingGame.Value)
+            return;
+
+        StartCoroutine(HandleStartingGame());
+    }
 
     private IEnumerator HandleStartingGame()
     {
@@ -957,12 +984,21 @@ public class ServerManager : NetworkBehaviour
         }
     }
 
-    #region Out Of Bounds Validation
+    #region Out Of Play Validation
+
+    [ServerRpc(RequireOwnership = false)]
+    public void HandleWhichTeamHasPossessionInIndirectFreeKickServerRpc(string possessionTeam)
+    {
+        mainBallSync.isOutOfPlay.Value = true;
+        mainBallSync.isIndirectFreekick.Value = true;
+
+        this.possessionTeam.Value = new FixedString32Bytes(possessionTeam);
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void HandleWhichTeamHasPossessionInOutOfBoundsInServerRpc(bool isThrowIn, string possessionTeam)
     {
-        mainBallSync.isOutOfBounds.Value = true;
+        mainBallSync.isOutOfPlay.Value = true;
         mainBallSync.isThrowIn.Value = isThrowIn;
 
         this.possessionTeam.Value = new FixedString32Bytes(possessionTeam);
@@ -994,7 +1030,7 @@ public class ServerManager : NetworkBehaviour
 
     public void ResetOutOfBoundsTimer()
     {
-        outOfBoundsTime.Value = outOfBoundMaxTimer;
+        outOfPlayTime.Value = outOfBoundMaxTimer;
     }
 
     private void EndChangePossessionState() => isPossessionChanging = false;

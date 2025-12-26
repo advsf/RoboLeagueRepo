@@ -81,7 +81,7 @@ public class HandleThrowIn : NetworkBehaviour
         }
 
         // handle picking up the ball
-        if (!isPickedUp && !isOutOfBoundsDrop && ballSync.isOutOfBounds.Value && ballSync.isThrowIn.Value)
+        if (!isPickedUp && !isOutOfBoundsDrop && ballSync.isOutOfPlay.Value && ballSync.isThrowIn.Value)
         {
             RaycastHit[] hits = Physics.SphereCastAll(transform.position, ballDetectionSphereRadius, transform.forward, ballDetectionMaxRadius);
 
@@ -118,7 +118,7 @@ public class HandleThrowIn : NetworkBehaviour
 
         PredictAndRequestKick(power * direction);
 
-        ballSync.EndOutOfBoundsPlayServerRpc(timeBeforeEndingOutOfBoundsPlay);
+        ballSync.EndOutOfPlayServerRpc(timeBeforeEndingOutOfBoundsPlay);
 
         Invoke(nameof(EnablePickUp), 3f);
     }
@@ -231,5 +231,5 @@ public class HandleThrowIn : NetworkBehaviour
     [ClientRpc]
     private void MakeBallFollowSetPositionClientRpc(bool condition) => MakeBallFollowSetPositionDuringAnimation(condition);
 
-    public void EndOutOfBoundsPlay() => ballSync.EndOutOfBoundsPlayServerRpc();
+    public void EndOutOfBoundsPlay() => ballSync.EndBallOutOfPlayServerRpc();
 }

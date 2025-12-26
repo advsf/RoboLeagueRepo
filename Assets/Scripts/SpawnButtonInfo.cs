@@ -31,7 +31,7 @@ public class SpawnButtonInfo : NetworkBehaviour
             return;
 
         // if the ball is out of bounds
-        if (BallManager.instance.mainBallSync.isOutOfBounds.Value)
+        if (BallManager.instance.mainBallSync.isOutOfPlay.Value)
             return;
 
         if (PlayerInfo.instance.playingObj.activeInHierarchy)

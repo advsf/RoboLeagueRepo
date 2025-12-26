@@ -465,7 +465,7 @@ public class HandleKicking : NetworkBehaviour
             return false;
 
         // check possession during out of bounds situations
-        if (nearestBallSync.isOutOfBounds.Value &&
+        if (nearestBallSync.isOutOfPlay.Value &&
             !ServerManager.instance.possessionTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value))
             return false;
 
@@ -482,7 +482,7 @@ public class HandleKicking : NetworkBehaviour
     private bool ValidateKickConditionsForBicycleKick()
     {
         // check possession during out of bounds situations
-        if (nearestBallSync.isOutOfBounds.Value &&
+        if (nearestBallSync.isOutOfPlay.Value &&
             !ServerManager.instance.possessionTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value))
             return false;
 
@@ -531,9 +531,9 @@ public class HandleKicking : NetworkBehaviour
         else
             ResetShootingBar();
 
-        if (nearestBallSync.isOutOfBounds.Value)
+        if (nearestBallSync.isOutOfPlay.Value)
         {
-            nearestBallSync.EndOutOfBoundsPlayServerRpc();
+            nearestBallSync.EndBallOutOfPlayServerRpc();
             hasPossession = false;
         }
 

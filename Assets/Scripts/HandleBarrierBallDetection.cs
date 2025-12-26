@@ -53,7 +53,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         // meaning that the former is to prevent multiple occurences of the ball being detected
         // and the latter is to check if the ball has been thrown back into play
         // and the final one is to check if the ball has been scored
-        if (!IsServer || isOutOfBounds || ballSync.isOutOfBounds.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds)
+        if (!IsServer || isOutOfBounds || ballSync.isOutOfPlay.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds)
             return;
 
         // if the game did not start yet, do nothing, let the ball fly off.
@@ -167,7 +167,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         {
             ServerManager.instance.HandleGoalkickPossessionsServerRpc(possessionTeam);
 
-            ballSync.isOutOfBounds.Value = true;
+            ballSync.isOutOfPlay.Value = true;
             EnableGoalkickBoundary(possessionTeam.Equals("Blue"), true);
         }
 
@@ -200,7 +200,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         {
             ServerManager.instance.HandleGoalkickPossessionsServerRpc(newPossessionTeam);
 
-            ballSync.isOutOfBounds.Value = true;
+            ballSync.isOutOfPlay.Value = true;
             EnableGoalkickBoundary(newPossessionTeam.Equals("Blue"), true);
         }
 

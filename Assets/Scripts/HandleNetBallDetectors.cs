@@ -42,7 +42,7 @@ public class HandleNetBallDetectors : NetworkBehaviour
             return;
 
         // if we haven't started the game
-        if (!ServerManager.instance.didStartGame.Value)
+        if (!ServerManager.instance.didStartGame.Value || ballSync.isKickedFromIndirectKick)
         {
             ServerManager.instance.ResetBallToTheCenter();
             return;

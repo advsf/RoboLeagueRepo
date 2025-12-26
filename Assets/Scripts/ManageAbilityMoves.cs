@@ -287,7 +287,7 @@ public class ManageAbilityMoves : NetworkBehaviour
 
     public void Trap(float trapBallSphereRadius, float trapBallSphereMaxDistance, float highTrapBallYThreshold, float movementDelay, float delay, Trap trap)
     {
-        if (BallManager.instance.mainBallSync.isOutOfBounds.Value || ServerManager.instance.isStartingGame.Value)
+        if (BallManager.instance.mainBallSync.isOutOfPlay.Value || ServerManager.instance.isStartingGame.Value)
         {
             HandleAbilityMessageUI("Cannot trap right now!");
             StartCoroutine(StartCustomCooldown(0, 2f, trap));

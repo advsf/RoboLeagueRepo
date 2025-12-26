@@ -87,17 +87,19 @@ public class BallSync : NetworkBehaviour
     private int _lastValidKickTick = -1;
 
     // prevent lag switching (dirty little cheaters)
-    private const double MAX_ACCEPTABLE_LAG = 0.500;
+    private const double MAX_ACCEPTABLE_LAG = 0.800;
 
     private bool _isKickOnCooldown = false;
 
     private NetworkVariable<StateSnapshot> _serverState = new NetworkVariable<StateSnapshot>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public NetworkVariable<bool> isBallPickedUp = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public NetworkVariable<bool> isOutOfBounds = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isIndirectFreekick = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isOutOfPlay = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> isThrowIn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> isCornerKick = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> isGoalKick = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isOffside = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     public NetworkVariable<int> lastKickedClientId = new(-1);
     public NetworkVariable<int> secondLastKickedClientId = new(-1);
@@ -105,6 +107,8 @@ public class BallSync : NetworkBehaviour
 
     public NetworkVariable<FixedString64Bytes> scorerUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<FixedString64Bytes> assisterUsername = new(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    public bool isKickedFromIndirectKick = false;
 
     public override void OnNetworkSpawn()
     {
@@ -145,7 +149,7 @@ public class BallSync : NetworkBehaviour
     private void LateUpdate()
     {
         // no interpolation when the ball is kinematic or out of bounds (mainly for the throw in and goalkeeper animation)
-        if (isOutOfBounds.Value || ballRb.isKinematic)
+        if (isOutOfPlay.Value || ballRb.isKinematic)
         {
             visualBallTransform.position = transform.position;
             visualBallTransform.rotation = transform.rotation;
@@ -187,6 +191,7 @@ public class BallSync : NetworkBehaviour
 
     public void LocalKick(InputPayload kickPayload, int kickerId)
     {
+        // if we can't slide kick
         if (kickPayload.SlideKick && !CanSlideKick())
             return;
 
@@ -195,6 +200,15 @@ public class BallSync : NetworkBehaviour
         // populate client's ball state for server validation
         kickPayload.ClientBallPosition = ballRb.position;
         kickPayload.ClientBallVelocity = ballRb.linearVelocity;
+
+        if (HandleOffsides.instance.IsPlayerOffside(kickerId))
+        {
+            HandleOffsides.instance.StartIndirectionKickServerRpc(ballRb.position, PlayerInfo.instance.currentTeam.Value.ToString().Equals("Blue") ? "Red" : "Blue");
+            return;
+        }
+
+        else
+            HandleOffsides.instance.CheckForOffsidesServerRpc(kickerId);
 
         if (IsServer)
             HandleKickRequestServerSide(kickPayload, (ulong)kickerId, estimatedServerTime);
@@ -219,6 +233,10 @@ public class BallSync : NetworkBehaviour
         // reject future ticks
         if (payload.Tick > currentServerTick + 2)
             return;
+
+        // if another player kicks it after an indirect kick
+        if (isKickedFromIndirectKick)
+            isKickedFromIndirectKick = false;
 
         _contestedKicks.Add(new ContestedKickRequest
         {
@@ -247,7 +265,7 @@ public class BallSync : NetworkBehaviour
     #endregion
 
     #region Physics Networking
-private void HandleSpinDecay()
+    private void HandleSpinDecay()
     {
         if (_kickTime <= 0f)
             return;
@@ -327,7 +345,7 @@ private void HandleSpinDecay()
             if (_lastValidKickTick == -1 || tickDelta >= cooldownTicks)
             {
                 winner = req;
-                break; 
+                break;
             }
         }
 
@@ -360,7 +378,7 @@ private void HandleSpinDecay()
     }
 
     private bool IsForceIllegal(Vector3 force) => force.magnitude > maxLegalForce;
-    private bool CanSlideKick() => !isOutOfBounds.Value;
+    private bool CanSlideKick() => !isOutOfPlay.Value;
 
     public void Teleport(Vector3 newPosition, Quaternion newRotation)
     {
@@ -427,9 +445,9 @@ private void HandleSpinDecay()
     {
         ballCollider.enabled = condition;
 
-        if (IsServer) 
+        if (IsServer)
             EnableColliderClientRpc(condition);
-        else 
+        else
             EnableColliderServerRpc(condition);
     }
 
@@ -520,16 +538,21 @@ private void HandleSpinDecay()
 
     #endregion
 
-    #region Out of Bounds Handling
+    #region Out of Play Handling
 
     [ServerRpc(RequireOwnership = false)]
-    public void EndOutOfBoundsPlayServerRpc()
+    public void EndBallOutOfPlayServerRpc()
     {
-        isOutOfBounds.Value = false;
+        if (isIndirectFreekick.Value)
+            isKickedFromIndirectKick = true;
+
+        isOutOfPlay.Value = false;
         isThrowIn.Value = false;
         isCornerKick.Value = false;
         isBallPickedUp.Value = false;
         isGoalKick.Value = false;
+        isIndirectFreekick.Value = false;
+        isOffside.Value = false;
 
         ServerManager.instance.isBallOutOfBounds = false;
         ServerManager.instance.DisableGoalkickBoundaries();
@@ -538,19 +561,24 @@ private void HandleSpinDecay()
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void EndOutOfBoundsPlayServerRpc(float delay)
+    public void EndOutOfPlayServerRpc(float delay)
     {
         isBallPickedUp.Value = false;
-        Invoke(nameof(EndOutOfBoundsPlay), delay);
+        Invoke(nameof(EndOutOfPlay), delay);
     }
 
-    private void EndOutOfBoundsPlay()
+    private void EndOutOfPlay()
     {
-        isOutOfBounds.Value = false;
+        if (isIndirectFreekick.Value)
+            isKickedFromIndirectKick = true;
+
+        isOutOfPlay.Value = false;
         isThrowIn.Value = false;
         isCornerKick.Value = false;
         isBallPickedUp.Value = false;
         isGoalKick.Value = false;
+        isIndirectFreekick.Value = false;
+        isOffside.Value = false;
 
         ServerManager.instance.isBallOutOfBounds = false;
         ServerManager.instance.SetAllDetectorsToInactive();

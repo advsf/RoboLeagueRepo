@@ -66,6 +66,8 @@ public class PlayerInfo : NetworkBehaviour
     [Header("Audio Source Reference")]
     [SerializeField] private GameObject audioSourcesObj;
 
+    [Header("Other Info")]
+    public int amountOfGamesPlayedInThisServer = 0;
     public float gamePlayDuration = 0;
 
     public override void OnNetworkSpawn()
