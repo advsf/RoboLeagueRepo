@@ -42,6 +42,7 @@ public class HandleMobileUI : NetworkBehaviour
             button.SetActive(false);
 
         emoteUI.SetActive(false);
+        chatInputField.gameObject.SetActive(false);
     }
 
     public override void OnNetworkDespawn()
@@ -112,12 +113,13 @@ public class HandleMobileUI : NetworkBehaviour
         // if active, disable
         if (chatInputField.gameObject.activeInHierarchy)
         {
-            chatInputField.DeactivateInputField(true);
+            chatInputField.ActivateInputField();
             chatInputField.gameObject.SetActive(false);
         }
 
         else
         {
+            chatInputField.text = "";
             chatInputField.gameObject.SetActive(true);
             chatInputField.ActivateInputField();
         }

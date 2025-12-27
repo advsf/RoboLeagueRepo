@@ -2228,7 +2228,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &89148610
 RectTransform:
@@ -17603,7 +17603,7 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-  outOfBoundsTime:
+  outOfPlayTime:
     m_InternalValue: 15
   isBallOutOfBounds: 0
   blueTeamPlayerIds: 
@@ -17655,7 +17655,6 @@ MonoBehaviour:
         byte0029: 0
   didKickOffEnd:
     m_InternalValue: 0
-  lastGkSaveTimestamp: 0
   isTesting: 0
 --- !u!114 &1202841961
 MonoBehaviour:

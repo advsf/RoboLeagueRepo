@@ -59,10 +59,12 @@ public class HandleConnections : NetworkBehaviour
     // called via a button
     public void LeaveGame()
     {
-        ReturnToLobby();
-
-        if (Application.isMobilePlatform && PlayerInfo.instance.amountOfGamesPlayedInThisServer < 1)
+        /*
+        if ((Application.isMobilePlatform && PlayerInfo.instance.amountOfGamesPlayedInThisServer < 1) || Application.isEditor)
             HandleInterstitialAds.instance.ShowAd();
+        */
+
+        ReturnToLobby();
     }
 
     private async void ReturnToLobby()

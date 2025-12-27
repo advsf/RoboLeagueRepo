@@ -201,14 +201,18 @@ public class BallSync : NetworkBehaviour
         kickPayload.ClientBallPosition = ballRb.position;
         kickPayload.ClientBallVelocity = ballRb.linearVelocity;
 
-        if (HandleOffsides.instance.IsPlayerOffside(kickerId))
+        // handle offsides
+        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer)
         {
-            HandleOffsides.instance.StartIndirectionKickServerRpc(ballRb.position, PlayerInfo.instance.currentTeam.Value.ToString().Equals("Blue") ? "Red" : "Blue");
-            return;
-        }
+            if (HandleOffsides.instance.IsPlayerOffside(kickerId))
+            {
+                HandleOffsides.instance.StartIndirectionKickServerRpc(ballRb.position, PlayerInfo.instance.currentTeam.Value.ToString().Equals("Blue") ? "Red" : "Blue");
+                return;
+            }
 
-        else
-            HandleOffsides.instance.CheckForOffsidesServerRpc(kickerId);
+            else
+                HandleOffsides.instance.CheckForOffsidesServerRpc(kickerId);
+        }
 
         if (IsServer)
             HandleKickRequestServerSide(kickPayload, (ulong)kickerId, estimatedServerTime);

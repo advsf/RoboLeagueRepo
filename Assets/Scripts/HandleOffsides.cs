@@ -28,7 +28,7 @@ public class HandleOffsides : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void CheckForOffsidesServerRpc(int kickedPlayerId)
     {
-        if (!IsServer || !ServerManager.instance.didStartGame.Value || ServerManager.instance.spawnedPlayerCount.Value < 3)
+        if (!IsServer || !ServerManager.instance.didStartGame.Value || ServerManager.instance.blueTeamPlayerIds.Count < 2 || ServerManager.instance.redTeamPlayerIds.Count < 2)
             return;
 
         ClearPotentialOffsidesIdListClientRpc();

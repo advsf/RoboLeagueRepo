@@ -22,6 +22,7 @@ public class HandleChatbox : NetworkBehaviour
 
     [Header("UI References")]
     [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private TMP_InputField mobileInputField;
     [SerializeField] private TextMeshProUGUI currentChatOption;
 
     [Header("Chat Settings")]
@@ -250,24 +251,39 @@ public class HandleChatbox : NetworkBehaviour
             closedChat.SetActive(true);
     }
 
-    public void SendChatMessage()
+    public void SendChatMessage(string text)
     {
         // if still in cooldown or nothing is typed
-        if (!canText || string.IsNullOrWhiteSpace(inputField.text))
+        if (!canText || string.IsNullOrWhiteSpace(text))
             return;
 
         HandleTrackingAmountOfTextSent();
 
-        SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), inputField.text);
+        SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
 
         // reset the inputfield text
-        inputField.text = "";
-        inputField.ActivateInputField();
+        if (!Application.isMobilePlatform)
+        {
+            inputField.text = "";
+            inputField.ActivateInputField();
+        }
+
+        else
+        {
+            mobileInputField.text = "";
+            mobileInputField.DeactivateInputField();
+        }
     }
 
     private void OnInputSubmit(string text)
     {
-        SendChatMessage();
+        SendChatMessage(text);
+    }
+
+    public void SendMobileChatMessage()
+    {
+        SendChatMessage(mobileInputField.text);
+        mobileInputField.gameObject.SetActive(false);
     }
 
     [ServerRpc]

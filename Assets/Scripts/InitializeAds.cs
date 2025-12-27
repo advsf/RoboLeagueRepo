@@ -17,7 +17,7 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
     public void HandleInitializingAds()
     {
 #if !UNITY_ANDROID && !UNITY_IOS
-    if (!testMode)
+    if (!_testMode)
     {
     gameObject.SetActive(false);
     return;
@@ -39,6 +39,8 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
+
+        HandleInterstitialAds.instance.LoadAd();
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)

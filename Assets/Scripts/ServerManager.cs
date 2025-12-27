@@ -487,8 +487,10 @@ public class ServerManager : NetworkBehaviour
         PlayerInfo.instance.amountOfGamesPlayedInThisServer++;
 
         // play ads for that dolla
+        /*
         if (Application.isMobilePlatform)
             HandleInterstitialAds.instance.ShowAd();
+        */
     }
 
     [ClientRpc]

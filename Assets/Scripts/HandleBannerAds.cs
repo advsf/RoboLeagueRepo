@@ -9,7 +9,7 @@ public class HandleBannerAds : MonoBehaviour
     [SerializeField] Button _showBannerButton;
     [SerializeField] Button _hideBannerButton;
 
-    [SerializeField] BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
+    [SerializeField] BannerPosition _bannerPosition = BannerPosition.TOP_CENTER;
 
     [SerializeField] string _androidAdUnitId = "Banner_Android";
     [SerializeField] string _iOSAdUnitId = "Banner_iOS";
@@ -24,8 +24,14 @@ public class HandleBannerAds : MonoBehaviour
         _adUnitId = _androidAdUnitId;
 #endif
 
-        // Set the banner position:
-        Advertisement.Banner.SetPosition(_bannerPosition);
+        if (Application.isMobilePlatform || Application.isEditor)
+        {
+            // Set the banner position:
+            Advertisement.Banner.SetPosition(_bannerPosition);
+
+            LoadBanner();
+            Invoke(nameof(ShowBannerAd), 2f);
+        }
     }
 
     void OnEnable()
@@ -100,11 +106,14 @@ public class HandleBannerAds : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (!Application.isMobilePlatform && !Application.isEditor)
+            return;
+
         if (scene.name == "Lobby")
             LoadBanner();
 
         else
-            Advertisement.Banner.Hide();
+            HideBannerAd();
     }
     void OnDestroy()
     {
