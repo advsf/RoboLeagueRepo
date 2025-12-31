@@ -24873,7 +24873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
   mobilePosition: {x: 0, y: -46, z: 0}
-  mobileScale: {x: 1.299196, y: 1.299196, z: 1.299196}
+  mobileScale: {x: 1.2, y: 1.2, z: 1.2}
   changeMobilePosition: 1
   changeMobileScale: 1
 --- !u!1 &670314389
@@ -33336,7 +33336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &902594488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51602,7 +51602,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: public v1.0.4.0
+  m_text: public v1.0.4.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a80dca6a382c0f64bb04d153be203890, type: 2}
   m_sharedMaterial: {fileID: -8959949237166888110, guid: a80dca6a382c0f64bb04d153be203890,
@@ -69206,20 +69206,32 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<U><size=15>V1.0.4.0 patch notes:</U>\n<size=10>* Added offside detection.\n\n*
-    Added indirection free kicks for offsides.\n\n* Fixed lower FPS causing faster
-    movement.\n\n\n<U><size=15>V1.0.3.2 patch notes:</U>\n<size=10>* Added LAN multiplayer.\n\n*
-    clients can no longer see the session id or ip address.\n\n* you can no longer
-    trap when the ball is out of bounds.\n\n\n<U><size=15>V1.0.3.1 patch notes:</U>\n<size=10>*
-    Max stamina 200 -> 250\n\n* Spin shot multiplier 1.35 -> 1.37\n\n* Non-spin shot
-    multiplier 0.85 -> 0.9\n\n* Increased bicycle kick hitbox.\n\n* bicycle kicks
-    can now also be performed on the ground.\n\n* improved player gk's catch hitbox.\n\n*
-    made player gk deflection logic server-sided.\n\n* Made AI goalkicks faster and
-    lower.\n\n* revamped the ai goalkeeper's saving logic.\n\n* added a ui pop-up
-    message for player gk's when they\ntry to catch their own teammate's passes.\n\n*
-    Added jersey customization.\n\n* Added the ability to spin player in the lobby.\n\n*
-    added UI indicators for high latency and server desync.\n\n* made the roulette
-    ability server-sided.\n\n* fixed the ball becoming permanently stuck when a player\nswitches
+  m_text: "<U><size=15>V1.0.4.1 patch notes:</U>\n<size=10>* Heavily optimized the
+    game for mobile.\n\n* Optimized the game by a little bit by caching variables.
+    \r\n\r\n* You can no longer activiate abilities by pressing on the ability icon
+    UI.\r\n\r\n* Added exception handling for connections.\r\n\r\n* Made practice
+    and tutorial servers offline capable.\r\n\r\n* Fixed tutorial servers for mobile.\r\n\r\n*
+    Added emoji text support (some emojis may not be available, however).\r\n\r\n*
+    Made UI on mobile bigger.\r\n\r\n* Implemented mobile bicycle kicking.\r\n\r\n*
+    Fixed camera breaking when you opened settings while in-game.\r\n\r\n* Abilities
+    now display CD as a number as well. \r\n\r\n* Fixed a rare bug where the L and
+    R button did not appear when you first joined a game.\r\n\r\n* Fixed not being
+    able to sprint in spectator mode.\r\n\r\n* Fixed being able to kick the ball
+    after an offside call.\r\n\r\n* Mobile assist radius boost 1.25x -> 1.325x.\r\n\n\n<U><size=15>V1.0.4.0
+    patch notes:</U>\n<size=10>* Added offside detection.\n\n* Added indirection
+    free kicks for offsides.\n\n* Fixed lower FPS causing faster movement.\n\n\n<U><size=15>V1.0.3.2
+    patch notes:</U>\n<size=10>* Added LAN multiplayer.\n\n* clients can no longer
+    see the session id or ip address.\n\n* you can no longer trap when the ball is
+    out of bounds.\n\n\n<U><size=15>V1.0.3.1 patch notes:</U>\n<size=10>* Max stamina
+    200 -> 250\n\n* Spin shot multiplier 1.35 -> 1.37\n\n* Non-spin shot multiplier
+    0.85 -> 0.9\n\n* Increased bicycle kick hitbox.\n\n* bicycle kicks can now also
+    be performed on the ground.\n\n* improved player gk's catch hitbox.\n\n* made
+    player gk deflection logic server-sided.\n\n* Made AI goalkicks faster and lower.\n\n*
+    revamped the ai goalkeeper's saving logic.\n\n* added a ui pop-up message for
+    player gk's when they\ntry to catch their own teammate's passes.\n\n* Added jersey
+    customization.\n\n* Added the ability to spin player in the lobby.\n\n* added
+    UI indicators for high latency and server desync.\n\n* made the roulette ability
+    server-sided.\n\n* fixed the ball becoming permanently stuck when a player\nswitches
     to the GK position while the AI has the ball.\n\n* you now cannot change positions
     while the ball is out of \nbounds.\n\n* fixed in-game stats (goals, assists,
     and saves) not resetting\nback to 0 after the game ends.\n\n\n<U><size=15>V1.0.3.0

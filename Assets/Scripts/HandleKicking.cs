@@ -528,8 +528,8 @@ public class HandleKicking : NetworkBehaviour
 
     private void FinalizeKick()
     {
-        if ((!Application.isMobilePlatform || Application.isEditor) && ServerManager.instance.isTutorialServer)
-            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifShootOrDribbleIsPressedForMobile(currentMobileKickMode == KickMode.Shooting, currentMobileKickMode == KickMode.Dribbling);
+        if ((Application.isMobilePlatform || Application.isEditor) && ServerManager.instance.isTutorialServer)
+            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifShootOrDribbleIsPressedForMobile(didShoot, didDribble);
 
         // if we can still powerkick (meaning that the ball is still in our player hitbox
         if (canPowerShot)
@@ -960,25 +960,16 @@ public class HandleKicking : NetworkBehaviour
 
     public void SetModeToShooting()
     {
-        if (IsChargingKick)
-            return;
-
         currentMobileKickMode = KickMode.Shooting;
     }
 
     public void SetModeToDribbling()
     {
-        if (IsChargingKick)
-            return;
-
         currentMobileKickMode = KickMode.Dribbling;
     }
 
     public void SetModeToBicycleKick()
     {
-        if (IsChargingKick)
-            return;
-
         currentMobileKickMode = KickMode.BicycleKick;
     }
 

@@ -99,7 +99,7 @@ public class HandleSettings : MonoBehaviour
 
     [Header("Quality Settings")]
     [SerializeField] private TextMeshProUGUI qualitySettingText;
-    private int currentQualitySettings = 0; // 0 - fancy, 1 - performative, 2 - balanced
+    private int currentQualitySettings = 0; // 0 - fancy, 1 - balanced, 2 - performance
 
     [Header("Anti-Aliasing Setting")]
     [SerializeField] private TextMeshProUGUI antiAliasingText;

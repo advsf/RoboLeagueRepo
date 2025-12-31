@@ -148,14 +148,15 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             && !ServerManager.instance.isTutorialServer) 
             DropBall();
 
-        if (PlayerInputReference.instance.controls.Gameplay.GoalkeeperDive.WasPressedThisFrame() && isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall)
+        if (PlayerInputReference.instance.controls.Gameplay.GoalkeeperDive.WasPressedThisFrame() && isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall && !HandleCursorSettings.instance.IsUIOn())
             PerformDive();
 
         // only allow the player to catch when the game has started
         if (PlayerInputReference.instance.controls.Gameplay.GoalkeeperCatch.WasPressedThisFrame() && PlayerMovement.instance.IsOnGround && isDiveCooldownOver && isCatchCooldownOver 
             && !ServerManager.instance.didATeamScore.Value
             && !ServerManager.instance.isStartingGame.Value
-            && !ServerManager.instance.isGameOver.Value)
+            && !ServerManager.instance.isGameOver.Value
+            && !HandleCursorSettings.instance.IsUIOn())
             CatchBall();
 
         // handle drop kicking or passing
@@ -596,7 +597,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
     public void DiveViaButton()
     {
-        if (isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall)
+        if (isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall && !HandleCursorSettings.instance.IsUIOn())
         {
             PerformDive();
 
@@ -610,7 +611,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         if (PlayerMovement.instance.IsOnGround && isDiveCooldownOver && isCatchCooldownOver
             && !ServerManager.instance.didATeamScore.Value
             && !ServerManager.instance.isStartingGame.Value
-            && !ServerManager.instance.isGameOver.Value)
+            && !ServerManager.instance.isGameOver.Value
+            && !HandleCursorSettings.instance.IsUIOn())
         {
             CatchBall();
 
