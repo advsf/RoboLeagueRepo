@@ -52,7 +52,7 @@ public class HandleSpectatingMovement : NetworkBehaviour
 
     private void ControlSpeed()
     {
-        desiredFlySpeed = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 ? flySpeed : slowFlySpeed;
+        desiredFlySpeed = (PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 || PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.825f) ? flySpeed : slowFlySpeed;
     }
 
     private void MoveSpectator()

@@ -278,7 +278,7 @@ public class HandleSettings : MonoBehaviour
         UpdateFPSSettings();
 
         // quality setting
-        currentQualitySettings = 0;
+        currentQualitySettings = !Application.isMobilePlatform ? 0 : 1; // pc default to Fancy graphics, mobile default to performance graphics
         UpdateQuality();
 
         // anti aliasing
@@ -932,7 +932,16 @@ public class HandleSettings : MonoBehaviour
 
     private void UpdateQuality()
     {
-        QualitySettings.SetQualityLevel(currentQualitySettings);
+        QualitySettings.SetQualityLevel(currentQualitySettings, true);
+
+        // on mobile, set the rendering scale
+        // to 0.5x to make it run way better
+        if (Application.isMobilePlatform)
+        {
+            var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+
+            urp.renderScale = 0.5f;
+        }
 
         qualitySettingText.text = QualitySettings.names[currentQualitySettings];
 

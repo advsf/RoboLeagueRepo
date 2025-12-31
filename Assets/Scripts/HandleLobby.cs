@@ -21,7 +21,8 @@ public class HandleLobby : NetworkBehaviour
     [Header("LAN Settings")]
     [SerializeField] private TMP_InputField ipInputField;
     [SerializeField] private float lanTransitionDuration;
-    private ushort k_Port = 7777; 
+    private ushort k_Port = 7777;
+    private string lanSceneGameName;
 
     [Header("Scene Names")]
     [SerializeField] private string gameSceneName;
@@ -52,6 +53,7 @@ public class HandleLobby : NetworkBehaviour
     private bool isHost = false;
 
     private bool cancelJoin = false;
+
     private void Awake()
     {
         // for singleton
@@ -103,11 +105,14 @@ public class HandleLobby : NetworkBehaviour
     {
         try
         {
+            cancelJoin = false;
+
             HandleLobbyUI.instance.CloseCreateSessionUI();
             HandleLobbyUI.instance.OpenJoiningServerUI();
 
             HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
 
+            // get our current region
             string myRegion = await GetBestRegion();
 
             // handle session settings
@@ -141,16 +146,24 @@ public class HandleLobby : NetworkBehaviour
 
             isHost = true;
 
-            // handle loading the scene the RIGHT way
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadComplete;
-
             // we invoke loading scene
             // allowing the transition to play
-            Invoke(nameof(LoadSceneToGame), transitionDuration);
+            Invoke(nameof(JoinNetworkGame), transitionDuration);
         }
+
+        catch (RequestFailedException e)
+        {
+            Debug.LogException(e);
+
+            RefreshSessionList();
+            CancelJoiningWithErrorMessageUI("Join Request Failed!");
+        }
+
         catch (Exception e)
         {
-            // error
+            Debug.LogException(e);
+
+            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
         }
     }
 
@@ -206,6 +219,8 @@ public class HandleLobby : NetworkBehaviour
     {
         try
         {
+            cancelJoin = false;
+
             HandleLobbyUI.instance.CloseSessionListUI();
             HandleLobbyUI.instance.OpenJoiningServerUI();
 
@@ -235,13 +250,30 @@ public class HandleLobby : NetworkBehaviour
             isHost = false;
 
             // load the scene
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadComplete;
-            Invoke(nameof(LoadSceneToGame), transitionDuration);
+            Invoke(nameof(JoinNetworkGame), transitionDuration);
+        }
+
+        catch (RequestFailedException e)
+        {
+            Debug.LogException(e);
+
+            RefreshSessionList();
+            CancelJoiningWithErrorMessageUI("Join Request Failed!");
+        }
+
+        catch (SessionException e)
+        {
+            Debug.LogException(e);
+
+            RefreshSessionList();
+            CancelJoiningWithErrorMessageUI("Server not found!");
         }
 
         catch (Exception e)
         {
-            // error
+            Debug.LogException(e);
+
+            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
         }
     }
 
@@ -249,6 +281,8 @@ public class HandleLobby : NetworkBehaviour
     {
         try
         {
+            cancelJoin = false;
+
             HandleLobbyUI.instance.CloseSessionListUI();
             HandleLobbyUI.instance.OpenJoiningServerUI();
 
@@ -265,7 +299,7 @@ public class HandleLobby : NetworkBehaviour
             // if we are banned from the session
             if (sessionHolder.IsSessionBanned(activeSession))
             {
-                CancelJoining();
+                CancelJoiningWithErrorMessageUI("You are banned from this server!");
                 return;
             }
 
@@ -280,13 +314,22 @@ public class HandleLobby : NetworkBehaviour
             isHost = false;
 
             // load the scene
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadComplete;
-            Invoke(nameof(LoadSceneToGame), transitionDuration);
+            Invoke(nameof(JoinNetworkGame), transitionDuration);
+        }
+
+        catch (RequestFailedException e)
+        {
+            Debug.LogException(e);
+
+            RefreshSessionList();
+            CancelJoiningWithErrorMessageUI("Join Request Failed!");
         }
 
         catch (Exception e)
         {
-            // error
+            Debug.LogException(e);
+
+            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
         }
     }
 
@@ -312,104 +355,12 @@ public class HandleLobby : NetworkBehaviour
             return false;
     }
 
-    public async void CreateAndJoinPracticeServer()
+    public void CreateAndJoinPracticeServer()
     {
         try
         {
-            HandleLobbyUI.instance.ClosePracticeSessionUI();
-            HandleLobbyUI.instance.OpenJoiningServerUI();
+            cancelJoin = false;
 
-            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
-
-            // handle session settings
-            SessionOptions options = new SessionOptions
-            {
-                MaxPlayers = 1,
-                Name = "Practice",
-                IsPrivate = true,
-            }.WithRelayNetwork();
-
-            // create the new session
-            activeSession = await MultiplayerService.Instance.CreateSessionAsync(options);
-
-            if (await DidUserCancelJoin() || activeSession == null)
-                return;
-
-            // play transition
-            HandleTransitions.instance.PlayFadeInTransition();
-
-            // fade out music
-            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
-
-            sessionHolder.ActiveSession = activeSession;
-
-            isHost = true;
-
-            // handle loading the scene the RIGHT way
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadComplete;
-
-            // we invoke loading scene
-            // allowing the transition to play
-            Invoke(nameof(LoadSceneToPractice), transitionDuration);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-    }
-
-    public async void CreateAndJoinTutorialServer()
-    {
-        try
-        {
-            HandleLobbyUI.instance.ClosePracticeSessionUI();
-            HandleLobbyUI.instance.OpenJoiningServerUI();
-
-            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
-
-            // handle session settings
-            SessionOptions options = new SessionOptions
-            {
-                MaxPlayers = 1,
-                Name = "Tutorial",
-                IsPrivate = true,
-            }.WithRelayNetwork();
-
-            // create the new session
-            activeSession = await MultiplayerService.Instance.CreateSessionAsync(options);
-
-            if (await DidUserCancelJoin() || activeSession == null)
-                return;
-
-            // play transition
-            HandleTransitions.instance.PlayFadeInTransition();
-
-            // fade out music
-            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 1.5f));
-
-            sessionHolder.ActiveSession = activeSession;
-
-            isHost = true;
-
-            // handle loading the scene the RIGHT way
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnSceneLoadComplete;
-
-            // we invoke loading scene
-            // allowing the transition to play
-            Invoke(nameof(LoadSceneToTutorial), transitionDuration);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-    }
-
-    #endregion
-
-    public void HostLanSession()
-    {
-        try
-        {
             HandleLobbyUI.instance.CloseCreateSessionUI();
             HandleLobbyUI.instance.OpenJoiningServerUI();
             HandleLobbyUI.instance.CloseLanSessionUI();
@@ -423,21 +374,84 @@ public class HandleLobby : NetworkBehaviour
             StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 0.1f));
 
             isHost = true;
-            activeSession = null; 
+            activeSession = null;
 
+            lanSceneGameName = practiceSceneName;
+            Invoke(nameof(CreateLan), lanTransitionDuration);
+        }
+        catch (Exception e)
+        {
+            CancelLanJoin();
+        }
+    }
+
+    public void CreateAndJoinTutorialServer()
+    {
+        try
+        {
+            cancelJoin = false;
+
+            HandleLobbyUI.instance.CloseCreateSessionUI();
+            HandleLobbyUI.instance.OpenJoiningServerUI();
+            HandleLobbyUI.instance.CloseLanSessionUI();
+
+            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
+
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetConnectionData("0.0.0.0", k_Port);
+
+            HandleTransitions.instance.PlayFadeInTransition();
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 0.1f));
+
+            isHost = true;
+            activeSession = null;
+
+            lanSceneGameName = tutorialSceneName;
+            Invoke(nameof(CreateLan), lanTransitionDuration);
+        }
+        catch (Exception e)
+        {
+            CancelLanJoin();
+        }
+    }
+
+    #endregion
+
+    public void HostLanSession()
+    {
+        try
+        {
+            cancelJoin = false;
+
+            HandleLobbyUI.instance.CloseCreateSessionUI();
+            HandleLobbyUI.instance.OpenJoiningServerUI();
+            HandleLobbyUI.instance.CloseLanSessionUI();
+
+            HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(true);
+
+            var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            transport.SetConnectionData("0.0.0.0", k_Port);
+
+            HandleTransitions.instance.PlayFadeInTransition();
+            StartCoroutine(HandleLobbySound.instance.FadeOutMusic(0, 0.1f));
+
+            isHost = true;
+            activeSession = null;
+
+            lanSceneGameName = gameSceneName;
             Invoke(nameof(CreateLan), lanTransitionDuration);
         }
 
         catch (Exception e)
         {
-            Debug.LogException(e);
+            CancelLanJoin();
         }
     }
 
     private void CreateLan()
     {
         if (NetworkManager.Singleton.StartHost())
-            NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene(lanSceneGameName, LoadSceneMode.Single);
 
         else
             CancelJoining();
@@ -447,6 +461,8 @@ public class HandleLobby : NetworkBehaviour
     {
         try
         {
+            cancelJoin = false;
+
             string ipAddress = "";
 
             if (ipInputField.text.Length > 0)
@@ -473,8 +489,6 @@ public class HandleLobby : NetworkBehaviour
 
         catch (Exception e)
         {
-            Debug.LogException(e);
-
             CancelLanJoin();
         }
     }
@@ -499,14 +513,18 @@ public class HandleLobby : NetworkBehaviour
         {
             // successfully joined
             if (NetworkManager.Singleton.IsConnectedClient)
-                yield break; 
+                yield break;
+
+            // canceled via UI so dont show this
+            if (!cancelJoin)
+                yield break;
 
             timer += Time.deltaTime;
             yield return null;
         }
 
         // timed out
-        CancelLanJoin();
+        CancelJoiningWithErrorMessageUI("Couldn't join: Timed out!");
     }
 
     private void CancelLanJoin()
@@ -520,63 +538,24 @@ public class HandleLobby : NetworkBehaviour
         StartCoroutine(HandleLobbySound.instance.FadeInMusic(1, 1.5f)); 
     }
 
-    private void LoadSceneToGame()
-    {
-        try
-        {
-            NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
-        }
-
-        catch (Exception e)
-        {
-
-        }
-    }
-
-    private void LoadSceneToPractice()
-    {
-        try
-        {
-            NetworkManager.Singleton.SceneManager.LoadScene(practiceSceneName, LoadSceneMode.Single);
-        }
-
-        catch (Exception e)
-        {
-
-        }
-    }
-
-    private void LoadSceneToTutorial()
-    {
-        try
-        {
-            NetworkManager.Singleton.SceneManager.LoadScene(tutorialSceneName, LoadSceneMode.Single);
-        }
-
-        catch (Exception e)
-        {
-
-        }
-    }
-
-    private void OnSceneLoadComplete(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
-    {
-        // dont allow the user to cancel now--it's too late
-        HandleLobbyUI.instance.SetJoiningServerExitButtonActiveness(false);
-
-        // prevent duplicate calls 
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnSceneLoadComplete;
-
-        // join the game
-        JoinNetworkGame();
-    }
-
     private void JoinNetworkGame()
     {
         if (isHost)
+        {
             NetworkManager.Singleton.StartHost();
+
+            NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
+        }
+
         else
-            NetworkManager.Singleton.StartClient();
+        {
+            // if we successfully joined as a client, do not load the scene manually
+            // the server will automatically sync to the current game scene
+            if (NetworkManager.Singleton.StartClient())
+                StartCoroutine(TimeoutConnectionCheck(10f));
+            else
+                CancelJoiningWithErrorMessageUI("Couldn't join: Timed out!");
+        }
 
         isHost = false;
     }
@@ -595,7 +574,6 @@ public class HandleLobby : NetworkBehaviour
     private void DisableSessionButtonInteraction() => sessionJoinIdButton.interactable = false;
 
 
-    // invoked by a button
     public void CancelJoining()
     {
         cancelJoin = true;
@@ -603,5 +581,20 @@ public class HandleLobby : NetworkBehaviour
 
         activeSession = null;
         sessionHolder.ActiveSession = null;
+
+        if (NetworkManager.Singleton.IsListening)
+            NetworkManager.Singleton.Shutdown();
+    }
+
+    public void CancelJoiningWithErrorMessageUI(string errorMessage)
+    {
+        cancelJoin = true;
+        HandleLobbyUI.instance.CloseJoiningServerUI(errorMessage);
+
+        activeSession = null;
+        sessionHolder.ActiveSession = null;
+
+        if (NetworkManager.Singleton.IsListening)
+            NetworkManager.Singleton.Shutdown();
     }
 }

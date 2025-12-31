@@ -29,7 +29,12 @@ public class TutorialPlayerDetectorListener : NetworkBehaviour
     [SerializeField] private bool shouldUserUseAbilityToPass = false;
     [SerializeField] private bool shouldUserOnlyUseAbilityToPass = false;
     [SerializeField] private bool shouldBallBeKinematicForAbilityToCount = false;
-    public InputActionReference abilityAction;
+    [SerializeField] private bool isDiveSection;
+    [SerializeField] private bool isCatchSection;
+    [SerializeField] private bool isShootSection;
+    [SerializeField] private bool isDribbleSection;
+    [SerializeField] private Abilities ability; // for mobile abiltiy detection
+    public InputActionReference abilityAction; // for pc ability detection
     public bool isAbilityPressed = false;
 
     [Header("Player Teleport Settings")]
@@ -64,6 +69,42 @@ public class TutorialPlayerDetectorListener : NetworkBehaviour
 
     private void Update()
     {
+        if (!Application.isMobilePlatform)
+            CheckIfAbilityIsPressed();
+
+        if (Input.GetKeyDown(KeyCode.R))
+            RespawnTutorialBall();
+    }
+
+    public void RespawnTutorialBall()
+    {
+        // if the user has to reset the ball,
+        // make them do the ability again
+        isAbilityPressed = false;
+
+        // launch ball
+        if (shouldLaunchBall)
+        {
+            HandleKicking.instance.ResetLocalBallPosition(ballSpawnPlace.position);
+            BallManager.instance.GetLocalSpawnedBall(NetworkManager.LocalClientId).GetRigidbody().AddForce((randomizeBallLaunchDirectionOnTheZAxis
+                ? new(ballLaunchDirection.x, ballLaunchDirection.y, Random.Range(-randomizeBallLaunchDirectionAmount, randomizeBallLaunchDirectionAmount)) : ballLaunchDirection)
+                * forwardBallLaunchForce + Vector3.up * upwardBallLaunchForce, ForceMode.Impulse);
+        }
+
+        // spawn the ball regularly (to the player's position)
+        else
+        {
+            if (HandleKicking.instance.IsLocalBallSpawned())
+                HandleKicking.instance.ResetLocalBallPosition(PlayerMovement.instance.transform.position);
+            else
+                BallManager.instance.RequestBallSpawnServerRpc(PlayerMovement.instance.transform.position);
+        }
+    }
+
+    #region Ability Check Detection
+
+    private void CheckIfAbilityIsPressed()
+    {
         // if using an ability is a requirement to pass
         if (shouldUserUseAbilityToPass)
         {
@@ -83,32 +124,72 @@ public class TutorialPlayerDetectorListener : NetworkBehaviour
                 HandleTutorialObjectiveUI.instance.UpdateTutorialObjectiveUI();
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.R))
+    public void CheckIfAbilityIsPressedForMobile(Abilities abilityAction)
+    {
+        // if using an ability is a requirement to pass
+        if (shouldUserUseAbilityToPass)
         {
-            // if the user has to reset the ball,
-            // make them do the ability again
-            isAbilityPressed = false;
-
-            // launch ball
-            if (shouldLaunchBall)
+            if (ability == abilityAction && !tutorialUI.activeInHierarchy)
             {
-                HandleKicking.instance.ResetLocalBallPosition(ballSpawnPlace.position);
-                BallManager.instance.GetLocalSpawnedBall(NetworkManager.LocalClientId).GetRigidbody().AddForce((randomizeBallLaunchDirectionOnTheZAxis 
-                    ? new(ballLaunchDirection.x, ballLaunchDirection.y, Random.Range(-randomizeBallLaunchDirectionAmount, randomizeBallLaunchDirectionAmount)) : ballLaunchDirection)
-                    * forwardBallLaunchForce + Vector3.up * upwardBallLaunchForce, ForceMode.Impulse);
+                if (!shouldBallBeKinematicForAbilityToCount || (shouldBallBeKinematicForAbilityToCount && BallManager.instance.FindNearestBall(transform.position).GetRigidbody().isKinematic))
+                    isAbilityPressed = true;
             }
+        }
 
-            // spawn the ball regularly (to the player's position)
-            else
+        // if we only need to use an ability to pass
+        if (shouldUserOnlyUseAbilityToPass)
+        {
+            if (ability == abilityAction)
             {
-                if (HandleKicking.instance.IsLocalBallSpawned())
-                    HandleKicking.instance.ResetLocalBallPosition(PlayerMovement.instance.transform.position);
-                else
-                    BallManager.instance.RequestBallSpawnServerRpc(PlayerMovement.instance.transform.position);
+                tutorialDetector.AdvanceToNextDetector(timeBeforeNextDetector);
+                HandleTutorialObjectiveUI.instance.UpdateTutorialObjectiveUI();
             }
         }
     }
+
+    public void CheckifDiveOrCatchIsPressedForMobile(bool isDive, bool isCatch)
+    {
+        // if using an ability is a requirement to pass
+        if (shouldUserUseAbilityToPass)
+        {
+            if ((isDive && isDiveSection) || (isCatch && isCatchSection))
+                isAbilityPressed = true;
+        }
+
+        // if we only need to use an ability to pass
+        if (shouldUserOnlyUseAbilityToPass)
+        {
+            if ((isDive && isDiveSection) || (isCatch && isCatchSection))
+            {
+                tutorialDetector.AdvanceToNextDetector(timeBeforeNextDetector);
+                HandleTutorialObjectiveUI.instance.UpdateTutorialObjectiveUI();
+            }
+        }
+    }
+
+    public void CheckifShootOrDribbleIsPressedForMobile(bool isShoot, bool isDribble)
+    {
+        // if using an ability is a requirement to pass
+        if (shouldUserUseAbilityToPass)
+        {
+            if ((isShoot && isShootSection) || (isDribble && isDribbleSection))
+                isAbilityPressed = true;
+        }
+
+        // if we only need to use an ability to pass
+        if (shouldUserOnlyUseAbilityToPass)
+        {
+            if ((isShoot && isShootSection) || (isDribble && isDribbleSection))
+            {
+                tutorialDetector.AdvanceToNextDetector(timeBeforeNextDetector);
+                HandleTutorialObjectiveUI.instance.UpdateTutorialObjectiveUI();
+            }
+        }
+    }
+
+    #endregion
 
     public void OpenTutorialUI()
     {

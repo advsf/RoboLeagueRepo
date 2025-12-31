@@ -232,7 +232,7 @@ public class PlayerInfo : NetworkBehaviour
         playingRb.position = spawnPoint.position;
         playingRb.linearVelocity = Vector3.zero;
 
-        if (Application.isMobilePlatform)
+        if (Application.isMobilePlatform || Application.isEditor)
             HandleMobileUI.instance.HandleAbilityButtons(position == PlayerDataTypes.Position.GK);
     }
 
@@ -268,6 +268,9 @@ public class PlayerInfo : NetworkBehaviour
         // move the player to the set spawnPoint
         playingRb.position = spawnPoint.position;
         playingRb.linearVelocity = Vector3.zero;
+
+        if (Application.isMobilePlatform || Application.isEditor)
+            HandleMobileUI.instance.HandleAbilityButtons(position == PlayerDataTypes.Position.GK);
     }
 
     public void SetTeamAndPositionAndUsername(PlayerDataTypes.Team team, PlayerDataTypes.Position position, string username)

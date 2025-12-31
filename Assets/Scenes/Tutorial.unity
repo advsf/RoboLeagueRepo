@@ -94,7 +94,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: b3950e17cb6f4a7439c66b75715caf07,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -690,7 +691,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &47244282
 Transform:
@@ -983,6 +984,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 1
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: -4853839544865866255, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -1383,7 +1389,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &64730275
 Transform:
@@ -1494,7 +1500,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &69759907
 Transform:
@@ -1616,7 +1622,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &75642470
 Transform:
@@ -1803,7 +1809,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &79299953
 Transform:
@@ -2183,6 +2189,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -2606,7 +2617,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &107694460
 Transform:
@@ -2837,7 +2848,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &111394381
 Transform:
@@ -3353,7 +3364,7 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-  outOfBoundsTime:
+  outOfPlayTime:
     m_InternalValue: 15
   isBallOutOfBounds: 0
   blueTeamPlayerIds: 
@@ -3405,7 +3416,6 @@ MonoBehaviour:
         byte0029: 0
   didKickOffEnd:
     m_InternalValue: 0
-  lastGkSaveTimestamp: 0
   isTesting: 0
 --- !u!114 &116501632
 MonoBehaviour:
@@ -4523,6 +4533,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -4601,6 +4615,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -6245,7 +6263,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &223887359
 Transform:
@@ -6671,7 +6689,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &234202151
 Transform:
@@ -7085,6 +7103,7 @@ GameObject:
   - component: {fileID: 246023724}
   - component: {fileID: 246023723}
   - component: {fileID: 246023722}
+  - component: {fileID: 246023725}
   m_Layer: 5
   m_Name: ShootingTutorialUI
   m_TagString: Untagged
@@ -7144,7 +7163,7 @@ RectTransform:
   m_GameObject: {fileID: 246023721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1412259092}
@@ -7158,6 +7177,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &246023725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246023721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &247723011
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,7 +7210,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &247723012
 Transform:
@@ -7487,7 +7522,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &279728361
 Transform:
@@ -7528,7 +7563,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &281789879
 Transform:
@@ -7673,6 +7708,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 4b072f2d82b517443b9395fc9798e4d5, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -8206,7 +8246,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &295578269
 Transform:
@@ -8503,6 +8543,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -8772,6 +8817,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -8928,7 +8977,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &314759575
 Transform:
@@ -9444,7 +9493,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &335790114
 Transform:
@@ -9574,7 +9623,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &343580692
 Transform:
@@ -9854,7 +9903,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &352400325
 Transform:
@@ -11387,7 +11436,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &411312876
 Transform:
@@ -11509,7 +11558,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &421175156
 Transform:
@@ -11874,7 +11923,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &440678430
 Transform:
@@ -12074,6 +12123,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -12153,7 +12206,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &444432185
 Transform:
@@ -12243,7 +12296,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &446805334
 Transform:
@@ -12387,7 +12440,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &454493243
 Transform:
@@ -12498,6 +12551,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -12607,7 +12664,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &456904364
 Transform:
@@ -12674,7 +12731,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &459781206
 Transform:
@@ -12989,6 +13046,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -13309,7 +13371,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &483158626
 Transform:
@@ -13498,6 +13560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552901019017533310, guid: f26c4802677a5194091851e89ded1f3a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9077517995956080068, guid: f26c4802677a5194091851e89ded1f3a,
         type: 3}
@@ -13805,6 +13872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552901019017533310, guid: f26c4802677a5194091851e89ded1f3a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9077517995956080068, guid: f26c4802677a5194091851e89ded1f3a,
         type: 3}
@@ -14299,6 +14371,7 @@ GameObject:
   - component: {fileID: 541985696}
   - component: {fileID: 541985698}
   - component: {fileID: 541985697}
+  - component: {fileID: 541985699}
   m_Layer: 5
   m_Name: ShootingFlickTutorialUI
   m_TagString: Untagged
@@ -14315,7 +14388,7 @@ RectTransform:
   m_GameObject: {fileID: 541985695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 124571787}
@@ -14373,6 +14446,22 @@ MonoBehaviour:
     the direction of the spin. also, spin shots are faster than non-spin shots.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &541985699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541985695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &543073519
 GameObject:
   m_ObjectHideFlags: 0
@@ -14384,6 +14473,7 @@ GameObject:
   - component: {fileID: 543073522}
   - component: {fileID: 543073521}
   - component: {fileID: 543073520}
+  - component: {fileID: 543073523}
   m_Layer: 5
   m_Name: GKCatchTutorialStageUI
   m_TagString: Untagged
@@ -14443,7 +14533,7 @@ RectTransform:
   m_GameObject: {fileID: 543073519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1760759653}
@@ -14457,6 +14547,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &543073523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543073519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &546262611
 GameObject:
   m_ObjectHideFlags: 0
@@ -14521,6 +14627,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -14751,6 +14862,7 @@ GameObject:
   - component: {fileID: 552215096}
   - component: {fileID: 552215095}
   - component: {fileID: 552215094}
+  - component: {fileID: 552215097}
   m_Layer: 5
   m_Name: BeginningTutorialUI
   m_TagString: Untagged
@@ -14812,7 +14924,7 @@ RectTransform:
   m_GameObject: {fileID: 552215093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2119701601}
@@ -14826,6 +14938,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &552215097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552215093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1001 &554334969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14841,6 +14969,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -14920,6 +15052,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -15125,6 +15261,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -15729,7 +15869,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &574074555
 Transform:
@@ -15851,6 +15991,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -15979,6 +16123,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -16197,6 +16346,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -16336,6 +16490,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 1
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: -4853839544865866255, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -16641,6 +16800,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -16963,7 +17127,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &603664515
 Transform:
@@ -17072,7 +17236,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &606909682
 Transform:
@@ -17115,7 +17279,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &607105595
 Transform:
@@ -17320,6 +17484,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -17491,6 +17660,7 @@ GameObject:
   - component: {fileID: 623336330}
   - component: {fileID: 623336332}
   - component: {fileID: 623336331}
+  - component: {fileID: 623336333}
   m_Layer: 5
   m_Name: SpeedsterTutorialStageUI
   m_TagString: Untagged
@@ -17507,7 +17677,7 @@ RectTransform:
   m_GameObject: {fileID: 623336329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 697932745}
@@ -17565,6 +17735,22 @@ MonoBehaviour:
     create plays. You can activiate it by pressing the "R" button twice.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &623336333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623336329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &624455056
 GameObject:
   m_ObjectHideFlags: 0
@@ -17582,7 +17768,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &624455057
 Transform:
@@ -17726,7 +17912,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &626067610
 Transform:
@@ -18225,7 +18411,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &641903260
 Transform:
@@ -18942,6 +19128,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -19320,7 +19510,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &674969047
 Transform:
@@ -19862,7 +20052,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &700832506
 Transform:
@@ -20118,6 +20308,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -20263,6 +20457,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -20473,7 +20672,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &721722231
 Transform:
@@ -20516,7 +20715,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &722680831
 Transform:
@@ -20778,6 +20977,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0468993
@@ -20852,6 +21055,7 @@ GameObject:
   - component: {fileID: 730992469}
   - component: {fileID: 730992471}
   - component: {fileID: 730992470}
+  - component: {fileID: 730992472}
   m_Layer: 5
   m_Name: TrapTutorialStageUI
   m_TagString: Untagged
@@ -20868,7 +21072,7 @@ RectTransform:
   m_GameObject: {fileID: 730992468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 988903310}
@@ -20928,6 +21132,22 @@ MonoBehaviour:
     balls.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &730992472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730992468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &732419777
 GameObject:
   m_ObjectHideFlags: 0
@@ -21105,6 +21325,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -21343,6 +21568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveText: {fileID: 771407648}
+  resetBallText: {fileID: 378155137}
   animator: {fileID: 740029269}
 --- !u!1 &743073275
 GameObject:
@@ -21360,7 +21586,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &743073276
 Transform:
@@ -21669,7 +21895,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &749126378
 Transform:
@@ -21707,7 +21933,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &757677078
 Transform:
@@ -21829,7 +22055,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &762679641
 Transform:
@@ -21972,7 +22198,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &770133666
 Transform:
@@ -24250,6 +24476,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -24353,7 +24584,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &820909485
 Transform:
@@ -24629,6 +24860,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 1
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: -4853839544865866255, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -25507,6 +25743,7 @@ GameObject:
   - component: {fileID: 857109539}
   - component: {fileID: 857109541}
   - component: {fileID: 857109540}
+  - component: {fileID: 857109542}
   m_Layer: 5
   m_Name: EndingTutorialStageUI
   m_TagString: Untagged
@@ -25523,7 +25760,7 @@ RectTransform:
   m_GameObject: {fileID: 857109538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 926079842}
@@ -25585,6 +25822,22 @@ MonoBehaviour:
     fun!
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &857109542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857109538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &859471069
 GameObject:
   m_ObjectHideFlags: 0
@@ -25635,6 +25888,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -25927,6 +26185,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -26223,6 +26485,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -26753,6 +27019,7 @@ GameObject:
   - component: {fileID: 890312119}
   - component: {fileID: 890312118}
   - component: {fileID: 890312117}
+  - component: {fileID: 890312120}
   m_Layer: 5
   m_Name: KillTutorialStageUI
   m_TagString: Untagged
@@ -26813,7 +27080,7 @@ RectTransform:
   m_GameObject: {fileID: 890312116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 808190545}
@@ -26827,6 +27094,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &890312120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890312116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &891711394
 GameObject:
   m_ObjectHideFlags: 0
@@ -27881,6 +28164,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 44bc11e435e0fca40b3551cac48ffe00, type: 2}
   abilityAction: {fileID: 4956649475421701263, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -28177,7 +28465,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &923599275
 Transform:
@@ -28541,7 +28829,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &931271047
 Transform:
@@ -28630,7 +28918,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &931760127
 Transform:
@@ -29054,6 +29342,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -29519,7 +29812,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &965360185
 Transform:
@@ -29842,7 +30135,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &976251880
 Transform:
@@ -29948,6 +30241,7 @@ GameObject:
   - component: {fileID: 983516943}
   - component: {fileID: 983516945}
   - component: {fileID: 983516944}
+  - component: {fileID: 983516946}
   m_Layer: 5
   m_Name: DeflectTutorialStageUI
   m_TagString: Untagged
@@ -29964,7 +30258,7 @@ RectTransform:
   m_GameObject: {fileID: 983516942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1153267140}
@@ -30022,6 +30316,22 @@ MonoBehaviour:
     really powerful if used well.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &983516946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983516942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &988458075
 GameObject:
   m_ObjectHideFlags: 0
@@ -30202,7 +30512,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &994221074
 Transform:
@@ -30643,6 +30953,7 @@ GameObject:
   - component: {fileID: 1004397857}
   - component: {fileID: 1004397859}
   - component: {fileID: 1004397858}
+  - component: {fileID: 1004397860}
   m_Layer: 5
   m_Name: GKDiveTutorialStageUI
   m_TagString: Untagged
@@ -30659,7 +30970,7 @@ RectTransform:
   m_GameObject: {fileID: 1004397856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1855116379}
@@ -30717,6 +31028,22 @@ MonoBehaviour:
     direction that your player is moving, and jump before diving to cover the air.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1004397860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004397856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1007151023
 GameObject:
   m_ObjectHideFlags: 0
@@ -30907,7 +31234,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1020758931
 Transform:
@@ -31028,6 +31355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552901019017533310, guid: f26c4802677a5194091851e89ded1f3a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9077517995956080068, guid: f26c4802677a5194091851e89ded1f3a,
         type: 3}
@@ -31557,7 +31889,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1047717542
 Transform:
@@ -31731,7 +32063,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1069376057
 Transform:
@@ -32350,6 +32682,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -32493,7 +32830,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1092302903
 Transform:
@@ -33096,6 +33433,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -34119,6 +34461,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -34402,6 +34748,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -34863,6 +35213,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -35058,7 +35413,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1164322358
 Transform:
@@ -35203,6 +35558,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 1
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 1
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: -9020199075958174837, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -35470,7 +35830,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1168260493
 Transform:
@@ -35560,7 +35920,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1169671819
 Transform:
@@ -35913,6 +36273,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -36067,6 +36431,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -36172,6 +36540,7 @@ GameObject:
   - component: {fileID: 1189461478}
   - component: {fileID: 1189461480}
   - component: {fileID: 1189461479}
+  - component: {fileID: 1189461481}
   m_Layer: 5
   m_Name: DribblingTutorialUI
   m_TagString: Untagged
@@ -36188,7 +36557,7 @@ RectTransform:
   m_GameObject: {fileID: 1189461477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651813240}
@@ -36247,6 +36616,22 @@ MonoBehaviour:
     through defenses.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1189461481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189461477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1194874442
 GameObject:
   m_ObjectHideFlags: 0
@@ -36333,6 +36718,7 @@ GameObject:
   - component: {fileID: 1195559604}
   - component: {fileID: 1195559606}
   - component: {fileID: 1195559605}
+  - component: {fileID: 1195559607}
   m_Layer: 5
   m_Name: PowerkickTutorialStageUI
   m_TagString: Untagged
@@ -36349,7 +36735,7 @@ RectTransform:
   m_GameObject: {fileID: 1195559603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1435532230}
@@ -36409,6 +36795,22 @@ MonoBehaviour:
     bar touches the white part. you can activiate it by pressing the "L" button twice.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1195559607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195559603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1199628198
 GameObject:
   m_ObjectHideFlags: 0
@@ -36874,7 +37276,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1209516271
 Transform:
@@ -37203,7 +37605,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1214718327
 Transform:
@@ -37293,7 +37695,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1214863194
 Transform:
@@ -37517,7 +37919,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1217051074
 Transform:
@@ -37989,7 +38391,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1248724406
 Transform:
@@ -39027,6 +39429,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -39107,7 +39513,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1298106534
 Transform:
@@ -40184,7 +40590,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1341698008
 Transform:
@@ -40369,6 +40775,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 013790b3adddbcd4cb6a319bef9e698f, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -40476,7 +40887,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1346953591
 Transform:
@@ -41226,6 +41637,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 292bb348e79f2f2418d4c2bd318da4dd, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -42219,6 +42635,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0468993
@@ -42812,6 +43232,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -43458,7 +43882,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1414211835
 Transform:
@@ -43707,7 +44131,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1418279944
 Transform:
@@ -43941,6 +44365,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 4998449107377086746, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -44305,7 +44734,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1429414872
 Transform:
@@ -44805,6 +45234,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -44918,6 +45351,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 292bb348e79f2f2418d4c2bd318da4dd, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -46027,6 +46465,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -46244,7 +46686,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1498828110
 Transform:
@@ -46514,6 +46956,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -46652,6 +47099,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -47051,6 +47503,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 292bb348e79f2f2418d4c2bd318da4dd, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -47306,6 +47763,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 1
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 7cea9ad0f1382f8429e0e6a6913ff1c4, type: 2}
   abilityAction: {fileID: 4956649475421701263, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -47710,6 +48172,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8552901019017533310, guid: f26c4802677a5194091851e89ded1f3a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9077517995956080068, guid: f26c4802677a5194091851e89ded1f3a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -47976,7 +48443,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1540119928
 Transform:
@@ -48017,6 +48484,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -48347,7 +48818,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1565825759
 Transform:
@@ -48389,7 +48860,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1567344672
 Transform:
@@ -48677,6 +49148,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -48969,7 +49444,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1587766287
 Transform:
@@ -50104,6 +50579,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 4b072f2d82b517443b9395fc9798e4d5, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -50606,6 +51086,7 @@ GameObject:
   - component: {fileID: 1627340215}
   - component: {fileID: 1627340217}
   - component: {fileID: 1627340216}
+  - component: {fileID: 1627340218}
   m_Layer: 5
   m_Name: GKDropkickTutorialStageUI
   m_TagString: Untagged
@@ -50622,7 +51103,7 @@ RectTransform:
   m_GameObject: {fileID: 1627340214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 219695511}
@@ -50682,6 +51163,22 @@ MonoBehaviour:
     and higher than a roll pass.'
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1627340218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627340214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1628278854
 GameObject:
   m_ObjectHideFlags: 0
@@ -50918,7 +51415,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1633871836
 Transform:
@@ -51139,6 +51636,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -51451,6 +51952,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0468993
@@ -51703,6 +52208,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0468993
@@ -51928,6 +52437,7 @@ GameObject:
   - component: {fileID: 1668271629}
   - component: {fileID: 1668271631}
   - component: {fileID: 1668271630}
+  - component: {fileID: 1668271632}
   m_Layer: 5
   m_Name: RouletteTutorialStageUI
   m_TagString: Untagged
@@ -51944,7 +52454,7 @@ RectTransform:
   m_GameObject: {fileID: 1668271628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1182105978}
@@ -52004,6 +52514,22 @@ MonoBehaviour:
     and be close enough to the ball.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1668271632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668271628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1671044375
 GameObject:
   m_ObjectHideFlags: 0
@@ -52143,6 +52669,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 4b072f2d82b517443b9395fc9798e4d5, type: 2}
   abilityAction: {fileID: 6807303907831415830, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -54487,6 +55018,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 1
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 1
+  ability: {fileID: 0}
   abilityAction: {fileID: -5130048126042604373, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -54731,6 +55267,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 1
@@ -54908,6 +55449,7 @@ GameObject:
   - component: {fileID: 1731455503}
   - component: {fileID: 1731455505}
   - component: {fileID: 1731455504}
+  - component: {fileID: 1731455506}
   m_Layer: 5
   m_Name: SlideToHitBallUI
   m_TagString: Untagged
@@ -54924,7 +55466,7 @@ RectTransform:
   m_GameObject: {fileID: 1731455502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1302296794}
@@ -54982,6 +55524,22 @@ MonoBehaviour:
     deflect a low-driven shot. now, slide the ball into the barrier.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &1731455506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731455502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &1742504643
 GameObject:
   m_ObjectHideFlags: 0
@@ -55137,6 +55695,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 1
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 4998449107377086746, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -55965,7 +56528,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1788829647
 Transform:
@@ -56120,6 +56683,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 1
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 11400000, guid: 182917b3371021e479d6451b17183641, type: 2}
   abilityAction: {fileID: 4956649475421701263, guid: 99add7585edc5534795aca4bdcb12ca9,
     type: 3}
   isAbilityPressed: 0
@@ -56266,7 +56834,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1793049508
 Transform:
@@ -57184,7 +57752,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1813758694
 Transform:
@@ -57473,7 +58041,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1823337681
 Transform:
@@ -58112,7 +58680,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1859500423
 Transform:
@@ -58515,7 +59083,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1875772201
 Transform:
@@ -58868,7 +59436,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1888515623
 Transform:
@@ -59061,6 +59629,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -60084,6 +60657,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -60922,7 +61499,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1978784249
 Transform:
@@ -61669,6 +62246,7 @@ GameObject:
   - component: {fileID: 2011135478}
   - component: {fileID: 2011135480}
   - component: {fileID: 2011135479}
+  - component: {fileID: 2011135481}
   m_Layer: 5
   m_Name: GKRollPassTutorialStageUI
   m_TagString: Untagged
@@ -61685,7 +62263,7 @@ RectTransform:
   m_GameObject: {fileID: 2011135477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2268479, y: 1.2268479, z: 1.2268479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381910267}
@@ -61744,6 +62322,22 @@ MonoBehaviour:
     pass.
   typeWriterDelay: 0.015
   animationIntroDuration: 1
+--- !u!114 &2011135481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011135477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a20aa61e6403f44aa84192144defcf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IncreaseMobileUISize
+  mobilePosition: {x: 0, y: 0, z: 0}
+  mobileScale: {x: 1.474447, y: 1.474447, z: 1.474447}
+  changeMobilePosition: 0
+  changeMobileScale: 1
 --- !u!1 &2011151274
 GameObject:
   m_ObjectHideFlags: 0
@@ -62613,7 +63207,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2048719014
 Transform:
@@ -62656,6 +63250,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -62907,6 +63505,11 @@ MonoBehaviour:
   shouldUserUseAbilityToPass: 0
   shouldUserOnlyUseAbilityToPass: 0
   shouldBallBeKinematicForAbilityToCount: 0
+  isDiveSection: 0
+  isCatchSection: 0
+  isShootSection: 0
+  isDribbleSection: 0
+  ability: {fileID: 0}
   abilityAction: {fileID: 0}
   isAbilityPressed: 0
   shouldTeleportPlayer: 0
@@ -63558,7 +64161,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2108014118
 Transform:
@@ -63795,6 +64398,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.0469
@@ -63873,6 +64480,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalScale.x
@@ -64090,7 +64701,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2118736870
 Transform:

@@ -8,6 +8,7 @@ public class HandleTutorialObjectiveUI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private TextMeshProUGUI objectiveText;
+    [SerializeField] private TextMeshProUGUI resetBallText;
     [SerializeField] private Animator animator;
 
     private int onEnableHash;
@@ -21,6 +22,14 @@ public class HandleTutorialObjectiveUI : MonoBehaviour
 
         onEnableHash = Animator.StringToHash("OnEnable");
         onDisableHash = Animator.StringToHash("OnDisable");
+
+        // pc
+        if (!Application.isMobilePlatform)
+            resetBallText.text = "Press R to reset the ball";
+
+        // mobile
+        else
+            resetBallText.text = "Press the ball icon to reset the ball";
     }
 
     private void OnDisable()

@@ -106,7 +106,7 @@ public class HandleKicking : NetworkBehaviour
             bool pcInput = PlayerInputReference.instance.controls.Gameplay.Kick.ReadValue<float>() > 0 || PlayerInputReference.instance.controls.Gameplay.Dribble.ReadValue<float>() > 0;
             bool mobileInput = PlayerInputReference.instance.controls.Gameplay.MobileShooting.IsPressed();
 
-            if (!Application.isMobilePlatform)
+            if (!isMobile)
                 return pcInput;
             
             else
@@ -127,6 +127,8 @@ public class HandleKicking : NetworkBehaviour
     private bool isShotBarReset;
     private bool canStartKick = false;
 
+    private bool isMobile;
+
     private GameObject ball;
     private Rigidbody ballRb;
 
@@ -142,6 +144,14 @@ public class HandleKicking : NetworkBehaviour
     private float shotBarAmount;
 
     private Vector2 joystickVal;
+
+    // colors
+    private static readonly Color greenColor = new(0, 1, 0.07011509f, 1);
+    private static readonly Color yellowGreenColor = new(0.9702021f, 1, 0.259434f, 1);
+    private static readonly Color redColor = new(1, 0, 0.07710934f, 1);
+    private static readonly Color blueColor = new(0.06132078f, 0.7101388f, 1, 1);
+
+    private Vector3 screenCenter;
 
     public override void OnNetworkSpawn()
     {
@@ -172,6 +182,10 @@ public class HandleKicking : NetworkBehaviour
 
         ball = SceneReferenceManager.instance.ball;
         ballRb = SceneReferenceManager.instance.ballRb;
+
+        isMobile = Application.isMobilePlatform;
+
+        screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f);
 
         if (PlayerMovement.instance != null)
         {
@@ -351,7 +365,7 @@ public class HandleKicking : NetworkBehaviour
         bool pcBicycleKick = isDribbling && isShooting;
 
         // mobile bicycle kick lgoic
-        bool mobileBicycle = (currentMobileKickMode == KickMode.BicycleKick) && (joystickVal.magnitude > mobileMinCurveMagnitude);
+        bool mobileBicycle = currentMobileKickMode == KickMode.BicycleKick;
 
         // if the user is performing a bicycle kick
         if (pcBicycleKick || mobileBicycle)
@@ -365,7 +379,7 @@ public class HandleKicking : NetworkBehaviour
         ChangeShootingBarColor();
 
         shootingBarSlider.gameObject.SetActive(true);
-        shootingBarSlider.value += (!Application.isMobilePlatform ? sliderIncrementValue : mobileSliderIncrementValue) * Time.deltaTime;
+        shootingBarSlider.value += (!isMobile ? sliderIncrementValue : mobileSliderIncrementValue) * Time.deltaTime;
     }
 
     private void ApplyMovementDebuff()
@@ -514,6 +528,9 @@ public class HandleKicking : NetworkBehaviour
 
     private void FinalizeKick()
     {
+        if ((!Application.isMobilePlatform || Application.isEditor) && ServerManager.instance.isTutorialServer)
+            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifShootOrDribbleIsPressedForMobile(currentMobileKickMode == KickMode.Shooting, currentMobileKickMode == KickMode.Dribbling);
+
         // if we can still powerkick (meaning that the ball is still in our player hitbox
         if (canPowerShot)
         {
@@ -594,7 +611,7 @@ public class HandleKicking : NetworkBehaviour
         // same goes for the sensitivity
         // during testing those were the mouse specs i was using so we'll just make everyone use my own settings LOL
 
-        if (Application.isMobilePlatform)
+        if (isMobile)
             if (joystickVal.magnitude > mobileMinCurveMagnitude)
                 return Mathf.Min(joystickVal.x * mobileCurveMultiplier, 1500);
             else
@@ -607,15 +624,15 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandleDribbling()
     {
-        SoundManager.instance?.PlayDribbleSoundEffect();
-        PlayerMovement.instance?.ChangeStamina(dribblingStaminaLoss);
+        SoundManager.instance.PlayDribbleSoundEffect();
+        PlayerMovement.instance.ChangeStamina(dribblingStaminaLoss);
 
         // for dribbling,
         // if it's on the pc, the ball moves in the direction of the player
         // if it's on mobile, the ball moves in the direction of the joystick
         Vector3 direction;
 
-        if (!Application.isMobilePlatform)
+        if (!isMobile)
             direction = GetPlayerDirection();
 
         else
@@ -662,11 +679,10 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandleShooting()
     {
-        SoundManager.instance?.PlayShootSoundEffect();
-        PlayerMovement.instance?.ChangeStamina(shootingStaminaLoss);
+        SoundManager.instance.PlayShootSoundEffect();
+        PlayerMovement.instance.ChangeStamina(shootingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(new
-            Vector3(Screen.width / 2f, Screen.height / 2f));
+        Ray ray = cam.ScreenPointToRay(screenCenter);
         Vector3 direction = ray.direction.normalized;
 
         // prevent shooting at the ground (causes weird issues)
@@ -695,10 +711,10 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandlePowerShot()
     {
-        SoundManager.instance?.PlayPowerShotSoundEffect();
-        PlayerMovement.instance?.ChangeStamina(shootingStaminaLoss);
+        SoundManager.instance.PlayPowerShotSoundEffect();
+        PlayerMovement.instance.ChangeStamina(shootingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+        Ray ray = cam.ScreenPointToRay(screenCenter);
         Vector3 direction = ray.direction.normalized;
 
         // prevent shooting at the ground (causes weird issues)
@@ -727,10 +743,10 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandleHeading()
     {
-        SoundManager.instance?.PlayShootSoundEffect();
-        PlayerMovement.instance?.ChangeStamina(headingStaminaLoss);
+        SoundManager.instance.PlayShootSoundEffect();
+        PlayerMovement.instance.ChangeStamina(headingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+        Ray ray = cam.ScreenPointToRay(screenCenter);
         Vector3 direction = ray.direction.normalized;
 
         var headingPayload = new BallSync.InputPayload
@@ -748,6 +764,7 @@ public class HandleKicking : NetworkBehaviour
     private IEnumerator DetectBallDuringBicycleKick()
     {
         float startTime = Time.time;
+        WaitForFixedUpdate waitFixed = new WaitForFixedUpdate();
 
         while (Time.time - startTime < bicycleKickDuration)
         {
@@ -759,7 +776,7 @@ public class HandleKicking : NetworkBehaviour
                 if (ball != null && ball.transform.position.y > 3)
                 {
                     HandleBicycleKicking(ball);
-                    yield break;
+                    yield return waitFixed;
                 }
             }
 
@@ -769,12 +786,12 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandleBicycleKicking(BallSync _nearestBallSync)
     {
-        SoundManager.instance?.PlayShootSoundEffect();
-        PlayerMovement.instance?.ChangeStamina(bicycleKickStaminaLoss);
+        SoundManager.instance.PlayShootSoundEffect();
+        PlayerMovement.instance.ChangeStamina(bicycleKickStaminaLoss);
 
         PlayerMovement.instance.DisableMovement(true);
 
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+        Ray ray = cam.ScreenPointToRay(screenCenter);
 
         // reverse since we are bicycle kicking
         Vector3 direction = -ray.direction.normalized;
@@ -890,26 +907,26 @@ public class HandleKicking : NetworkBehaviour
         float goodUpperBound = perfectTimingSliderValue + goodTimingSliderValueWindow;
 
         if (sliderVal >= perfectLowerBound && sliderVal <= perfectUpperBound)
-            powerShotBarFill.color = new Color(0, 1, 0.07011509f, 1); // green
+            powerShotBarFill.color = greenColor;
         else if (sliderVal >= goodLowerBound && sliderVal <= goodUpperBound)
-            powerShotBarFill.color = new Color(0.9702021f, 1, 0.259434f, 1); // yellow-green
+            powerShotBarFill.color = yellowGreenColor;
         else
-            powerShotBarFill.color = new Color(1, 0, 0.07710934f, 1); // red
+            powerShotBarFill.color = redColor;
     }
 
     private void ChangeShootingBarColor()
     {
         // bicycle kicking
         if (didBicycleKick)
-            barFill.color = new Color(0.9702021f, 1, 0.259434f, 1); // yellow-green
+            barFill.color = yellowGreenColor;
 
         // dribbling
         else if (didDribble)
-            barFill.color = new Color(0.06132078f, 0.7101388f, 1, 1); // blue
+            barFill.color = blueColor;
 
         // shooting
         else
-            barFill.color = new Color(1, 0, 0.07710934f, 1); // red
+            barFill.color = redColor;
     }
 
     public void ResetShootingBar()
@@ -943,16 +960,25 @@ public class HandleKicking : NetworkBehaviour
 
     public void SetModeToShooting()
     {
+        if (IsChargingKick)
+            return;
+
         currentMobileKickMode = KickMode.Shooting;
     }
 
     public void SetModeToDribbling()
     {
+        if (IsChargingKick)
+            return;
+
         currentMobileKickMode = KickMode.Dribbling;
     }
 
     public void SetModeToBicycleKick()
     {
+        if (IsChargingKick)
+            return;
+
         currentMobileKickMode = KickMode.BicycleKick;
     }
 

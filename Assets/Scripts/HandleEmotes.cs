@@ -55,7 +55,7 @@ public class HandleEmotes : NetworkBehaviour
             emoteUI.SetActive(!emoteUI.activeInHierarchy);
             isEnabled = emoteUI.activeInHierarchy;
 
-            HandleCursorSettings.instance.SetUIOnMode(true);
+            HandleCursorSettings.instance.SetUIOnMode(emoteUI.activeInHierarchy);
         }
 
         // if the emote UI isn't open

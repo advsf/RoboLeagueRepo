@@ -457,38 +457,6 @@ public class BallSync : NetworkBehaviour
 
     public Rigidbody GetRigidbody() => ballRb;
 
-    public bool IsMagnusActive() => ballRb != null && ballRb.angularVelocity.magnitude > 0.1f;
-
-    public Vector3 PredictBallPosition(float timeAhead)
-    {
-        Vector3 predictedPosition = transform.position;
-        Vector3 predictedVelocity = ballRb.linearVelocity;
-        Vector3 currentAngularVelocity = ballRb.angularVelocity;
-        int ticksAhead = Mathf.RoundToInt(timeAhead / Time.fixedDeltaTime);
-        float stepTime = Time.fixedDeltaTime;
-
-        for (int i = 0; i < ticksAhead; i++)
-        {
-            Vector3 magnusForce = Vector3.Cross(currentAngularVelocity, predictedVelocity) * magnusForceMultiplier;
-            predictedVelocity += (Vector3.down * downForceMultiplier + magnusForce) * stepTime;
-            predictedPosition += predictedVelocity * stepTime;
-            currentAngularVelocity *= (1 - ballRb.angularDamping * stepTime);
-        }
-
-        return predictedPosition;
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void ForceBallStateServerRpc(Vector3 pos, Quaternion rot)
-    {
-        ForceBallStateClientRpc(pos, rot);
-    }
-
-    [ClientRpc]
-    public void ForceBallStateClientRpc(Vector3 pos, Quaternion rot)
-    {
-        Teleport(pos, rot);
-    }
 
     [ServerRpc(RequireOwnership = false)]
     public void ResetBallServerRpc(Vector3 newPosition)

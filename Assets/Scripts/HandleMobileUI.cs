@@ -35,9 +35,6 @@ public class HandleMobileUI : NetworkBehaviour
         foreach (GameObject button in abilityButtons)
             button.SetActive(false);
 
-        foreach (GameObject button in gkAbilityButtons)
-            button.SetActive(false);
-
         foreach (GameObject button in spawnBallButtons)
             button.SetActive(false);
 
@@ -168,10 +165,18 @@ public class HandleMobileUI : NetworkBehaviour
 
     public void SpawnBall()
     {
-        HandleKicking.instance.SpawnBallViaButton();
+        if (ServerManager.instance.isTutorialServer)
+        {
+            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().RespawnTutorialBall();
+        }
 
-        // disable the buttons
-        HandleEnablingSpawnBallSettingsUI();
+        else
+        {
+            HandleKicking.instance.SpawnBallViaButton();
+
+            // disable the buttons
+            HandleEnablingSpawnBallSettingsUI();
+        }
     }
 
     public void SpawnLowBall()

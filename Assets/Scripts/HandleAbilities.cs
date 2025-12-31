@@ -18,6 +18,8 @@ public class HandleAbilities : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI leftAbilityName;
     [SerializeField] private TextMeshProUGUI leftAbilityKeyForeground;
     [SerializeField] private TextMeshProUGUI leftAbilityKeyBackground;
+    [SerializeField] private GameObject leftAbilityCooldownObj;
+    [SerializeField] private TextMeshProUGUI leftAbilityCooldownText;
 
     [Header("Right Ability UI References")]
     [SerializeField] private GameObject rightAbilityObj;
@@ -25,6 +27,8 @@ public class HandleAbilities : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI rightAbilityName;
     [SerializeField] private TextMeshProUGUI rightAbilityKeyForeground;
     [SerializeField] private TextMeshProUGUI rightAbilityKeyBackground;
+    [SerializeField] private GameObject rightAbilityCooldownObj;
+    [SerializeField] private TextMeshProUGUI rightAbilityCooldownText;
 
     [Header("Animation References")]
     [SerializeField] private Animator leftAnimator;
@@ -37,11 +41,6 @@ public class HandleAbilities : NetworkBehaviour
     [SerializeField] private Abilities rouletteAbility;
     [SerializeField] private Abilities deflectAbility;
     [SerializeField] private Abilities killAbility;
-
-    [Header("Double Tap Cooldown Settings")]
-    [SerializeField] private float doublePressInterval = 0.3f;
-    private float lastLeftAbilityPressTime;
-    private float lastRightAbilityPressTime;
 
     [Header("Other References")]
     [SerializeField] private float maxBackgroundAlpha;
@@ -74,6 +73,9 @@ public class HandleAbilities : NetworkBehaviour
 
         isLeftAbilityTriggered = false;
         isRightAbilityTriggered = false;
+
+        leftAbilityCooldownObj.SetActive(false);
+        rightAbilityCooldownObj.SetActive(false);
     }
 
     private void OnEnable()
@@ -159,13 +161,27 @@ public class HandleAbilities : NetworkBehaviour
         else
             leftAbilityName.text = "None";
 
-        leftAbilityKeyForeground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();
-        leftAbilityKeyBackground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();
-        leftAbilityBackground.fillAmount = 1;
+        if (!Application.isMobilePlatform)
+        {
+            leftAbilityKeyForeground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();
+            leftAbilityKeyBackground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();
+            leftAbilityBackground.fillAmount = 1;
 
-        rightAbilityKeyForeground.text = PlayerInputReference.instance.controls.Gameplay.RightAbility.GetBindingDisplayString();
-        rightAbilityKeyBackground.text = PlayerInputReference.instance.controls.Gameplay.RightAbility.GetBindingDisplayString();
-        rightAbilityBackground.fillAmount = 1;
+            rightAbilityKeyForeground.text = PlayerInputReference.instance.controls.Gameplay.RightAbility.GetBindingDisplayString();
+            rightAbilityKeyBackground.text = PlayerInputReference.instance.controls.Gameplay.RightAbility.GetBindingDisplayString();
+            rightAbilityBackground.fillAmount = 1;
+        }
+
+        else
+        {
+            leftAbilityKeyForeground.text = "L";
+            leftAbilityKeyBackground.text = "L";
+            leftAbilityBackground.fillAmount = 1;
+
+            rightAbilityKeyForeground.text = "R";
+            rightAbilityKeyBackground.text = "R";
+            rightAbilityBackground.fillAmount = 1;
+        }
     }
 
     private void HandleCooldown()
@@ -180,8 +196,13 @@ public class HandleAbilities : NetworkBehaviour
                 float elapsedTime = leftCurrentCooldownDuration - leftCooldownTimer;
                 float calculatedFillAmount = elapsedTime / leftCurrentCooldownDuration;
                 leftAbilityBackground.fillAmount = Mathf.Clamp01(calculatedFillAmount);
+
+                leftAbilityCooldownText.text = Mathf.RoundToInt(leftCooldownTimer).ToString();
             }
         }
+
+        else if (leftAbilityCooldownObj.activeInHierarchy)
+            leftAbilityCooldownObj.SetActive(false);
 
         // right ability
         if (rightCooldownTimer > 0)
@@ -193,8 +214,13 @@ public class HandleAbilities : NetworkBehaviour
                 float elapsedTime = rightCurrentCooldownDuration - rightCooldownTimer;
                 float calculatedFillAmount = elapsedTime / rightCurrentCooldownDuration;
                 rightAbilityBackground.fillAmount = Mathf.Clamp01(calculatedFillAmount);
+
+                rightAbilityCooldownText.text = Mathf.RoundToInt(rightCooldownTimer).ToString();
             }
         }
+
+        else if (rightAbilityCooldownObj.activeInHierarchy)
+            rightAbilityCooldownObj.SetActive(false);
     }
 
     public void TriggerCooldown(Abilities abilityUsed)
@@ -209,6 +235,8 @@ public class HandleAbilities : NetworkBehaviour
                 leftAbilityBackground.fillAmount = 0;
                 isLeftAbilityTriggered = false;
                 leftAbility.StopAnimation();
+
+                leftAbilityCooldownObj.SetActive(true);
             }
 
             else if (abilityUsed == rightAbility)
@@ -218,6 +246,8 @@ public class HandleAbilities : NetworkBehaviour
                 rightAbilityBackground.fillAmount = 0;
                 isRightAbilityTriggered = false;
                 rightAbility.StopAnimation();
+
+                rightAbilityCooldownObj.SetActive(true);
             }
 
             return;
@@ -230,6 +260,8 @@ public class HandleAbilities : NetworkBehaviour
             leftAbilityBackground.fillAmount = 0; 
             isLeftAbilityTriggered = false;
             leftAbility.StopAnimation();
+
+            leftAbilityCooldownObj.SetActive(true);
         }
 
         else if (abilityUsed == rightAbility)
@@ -239,6 +271,8 @@ public class HandleAbilities : NetworkBehaviour
             rightAbilityBackground.fillAmount = 0;
             isRightAbilityTriggered = false;
             rightAbility.StopAnimation();
+
+            rightAbilityCooldownObj.SetActive(true);
         }
     }
 
@@ -254,6 +288,8 @@ public class HandleAbilities : NetworkBehaviour
                 leftAbilityBackground.fillAmount = 0;
                 isLeftAbilityTriggered = false;
                 leftAbility.StopAnimation();
+
+                leftAbilityCooldownObj.SetActive(true);
             }
 
             else if (abilityUsed == rightAbility)
@@ -263,6 +299,8 @@ public class HandleAbilities : NetworkBehaviour
                 rightAbilityBackground.fillAmount = 0;
                 isRightAbilityTriggered = false;
                 rightAbility.StopAnimation();
+
+                rightAbilityCooldownObj.SetActive(true);
             }
 
             return;
@@ -276,6 +314,8 @@ public class HandleAbilities : NetworkBehaviour
             leftAbilityBackground.fillAmount = 0;
             isLeftAbilityTriggered = false;
             leftAbility.StopAnimation();
+
+            leftAbilityCooldownObj.SetActive(true);
         }
 
         else if (abilityUsed == rightAbility)
@@ -285,6 +325,8 @@ public class HandleAbilities : NetworkBehaviour
             rightAbilityBackground.fillAmount = 0;
             isRightAbilityTriggered = false;
             rightAbility.StopAnimation();
+
+            rightAbilityCooldownObj.SetActive(true);
         }
     }
 
@@ -309,24 +351,32 @@ public class HandleAbilities : NetworkBehaviour
     // called by mobile UI buttons
     public void ActiviateLeftAbilityThroughUI()
     {
-        if (Time.time - lastLeftAbilityPressTime <= doublePressInterval)
-        {
-            PerformLeftAbility();
-            lastLeftAbilityPressTime = 0;
-        }
+        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || throwInScript.isPickedUp)
+            return;
 
-        lastLeftAbilityPressTime = Time.time;
+        PerformLeftAbility();
+
+        // for tutorial progression
+        if (ServerManager.instance.isTutorialServer)
+        {
+            TutorialPlayerDetectorListener tutorialListener = HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector();
+            tutorialListener.CheckIfAbilityIsPressedForMobile(leftAbility);
+        }
     }
 
     public void ActiviateRightAbilityThroughUI()
     {
-        if (Time.time - lastRightAbilityPressTime <= doublePressInterval)
-        {
-            PerformRightAbility();
-            lastRightAbilityPressTime = 0;
-        }
+        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || throwInScript.isPickedUp)
+            return;
 
-        lastRightAbilityPressTime = Time.time;
+        PerformRightAbility();
+
+        // for tutorial progression
+        if (ServerManager.instance.isTutorialServer)
+        {
+            TutorialPlayerDetectorListener tutorialListener = HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector();
+            tutorialListener.CheckIfAbilityIsPressedForMobile(rightAbility);
+        }
     }
 
     public bool IsAbilityActivitated() => isLeftAbilityTriggered || isRightAbilityTriggered; 

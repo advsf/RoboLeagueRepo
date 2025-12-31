@@ -17,12 +17,19 @@ using System.Collections;
  */
 public class HandleTutorialPlayerDetectors : MonoBehaviour
 {
+    public static HandleTutorialPlayerDetectors instance;
+
     [Header("References")]
     [SerializeField] private GameObject[] playerDetectors;
     private int currentPlayerDetectorIndex;
 
     [Header("Settings")]
     [SerializeField] private float stageTransitionDuration = 3;
+
+    private void Start()
+    {
+        instance = this;
+    }
 
     private void OnEnable()
     {
@@ -39,6 +46,15 @@ public class HandleTutorialPlayerDetectors : MonoBehaviour
         // activiate tutorial UI
         if (tutorialListener.shouldOpenBeginningTutorialUI)
             tutorialListener.OpenTutorialUI();
+    }
+
+    private void Update()
+    {
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+                MoveToNextStage();
+        }
     }
 
     public void AdvanceToNextDetector(float delay)
@@ -86,5 +102,10 @@ public class HandleTutorialPlayerDetectors : MonoBehaviour
     public void MoveToNextDetector()
     {
         StartCoroutine(playerDetectors[currentPlayerDetectorIndex].GetComponentInChildren<TutorialPlayerDetectorListener>().PassToNextDectector());
+    }
+
+    public TutorialPlayerDetectorListener GetCurrentTutorialDetector()
+    {
+        return playerDetectors[currentPlayerDetectorIndex].GetComponentInChildren<TutorialPlayerDetectorListener>();
     }
 }

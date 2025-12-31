@@ -597,7 +597,11 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
     public void DiveViaButton()
     {
         if (isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall)
+        {
             PerformDive();
+
+            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifDiveOrCatchIsPressedForMobile(true, false);
+        }
     }
 
     public void CatchViaButton()
@@ -607,7 +611,11 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             && !ServerManager.instance.didATeamScore.Value
             && !ServerManager.instance.isStartingGame.Value
             && !ServerManager.instance.isGameOver.Value)
+        {
             CatchBall();
+
+            HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifDiveOrCatchIsPressedForMobile(false, true);
+        }
     }
 
     #endregion

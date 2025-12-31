@@ -21,7 +21,9 @@ public class HandleLobbyUI : MonoBehaviour
 
     [Header("Joining Server UI Reference")]
     [SerializeField] private GameObject joiningServerUI;
-    [SerializeField] private Button joiningServerExitButton; 
+    [SerializeField] private Button joiningServerExitButton;
+    [SerializeField] private GameObject joiningServerErrorUI;
+    [SerializeField] private TextMeshProUGUI joiningServerErrorText;
 
     [Header("Practice Session References")]
     [SerializeField] private GameObject practiceSessionCreationUI;
@@ -75,6 +77,7 @@ public class HandleLobbyUI : MonoBehaviour
         sessionListObj.SetActive(false);
 
         joiningServerUI.SetActive(false);
+        joiningServerErrorUI.SetActive(false);
         practiceSessionCreationUI.SetActive(false);
         changeUsernameUI.SetActive(false);
 
@@ -175,6 +178,20 @@ public class HandleLobbyUI : MonoBehaviour
     {
         joiningServerUI.SetActive(false);
         practiceSessionCreationUI.SetActive(false);
+    }
+
+    public void CloseJoiningServerUI(string errorText)
+    {
+        joiningServerErrorUI.SetActive(true);
+        joiningServerErrorText.text = errorText;
+
+        joiningServerUI.SetActive(false);
+        practiceSessionCreationUI.SetActive(false);
+    }
+
+    public void CloseJoiningServerErrorMessageUI()
+    {
+        joiningServerErrorUI.SetActive(false);
     }
 
     public void SetJoiningServerExitButtonActiveness(bool condition)

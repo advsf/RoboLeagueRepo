@@ -48,6 +48,10 @@ public class HandleNetBallDetectors : NetworkBehaviour
             return;
         }
 
+        // if the ball is offsides
+        if (ballSync.isOffside.Value)
+            return;
+
         ServerManager.instance.didATeamScore.Value = true;
 
         // get the ids
