@@ -52,6 +52,10 @@ public class HandleNetBallDetectors : NetworkBehaviour
         if (ballSync.isOffside.Value)
             return;
 
+        // if we are in halftime
+        if (ServerManager.instance.isInHalftime.Value)
+            return;
+
         ServerManager.instance.didATeamScore.Value = true;
 
         // get the ids

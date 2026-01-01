@@ -44,7 +44,7 @@ public class ServerManager : NetworkBehaviour
     public bool isTutorialServer = false;
 
     [Header("Match Settings")]
-    [SerializeField] private float matchTimeDuration;
+    public float eachHalfDuration = 300;
 
     private List<SpawnButtonInfo> _spawnButtons = new List<SpawnButtonInfo>();
 
@@ -73,6 +73,7 @@ public class ServerManager : NetworkBehaviour
     public NetworkVariable<bool> isStartingGame = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> didStartGame = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public NetworkVariable<bool> isGameOver = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isInHalftime = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private bool isPossessionChanging = false;
 
     // get winning team
@@ -249,6 +250,15 @@ public class ServerManager : NetworkBehaviour
             HandleScoreboardUI.instance.ChangeScoreboardInformationText("Offside");
         }
 
+        // handle halftime information
+        if (isInHalftime.Value)
+        {
+            int roundedTime = (int)Mathf.Clamp(HandleHalftime.instance.halftimeDuration.Value, 0f, 5);
+
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText($"Halftime ({roundedTime})s");
+            HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
+        }
+
         // handle scoreboard information text when the ball is out of bounds or out of play
         if (mainBallSync.isOutOfPlay.Value)
         {
@@ -291,7 +301,7 @@ public class ServerManager : NetworkBehaviour
         }
 
         // disable
-        else if (didStartGame.Value && !mainBallSync.isOutOfPlay.Value && !mainBallSync.isOffside.Value)
+        if (didStartGame.Value && !mainBallSync.isOutOfPlay.Value && !mainBallSync.isOffside.Value && !isInHalftime.Value)
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(false);
     }
 
@@ -350,11 +360,17 @@ public class ServerManager : NetworkBehaviour
     {
         if (didStartGame.Value)
         {
-            if (matchTime.Value < matchTimeDuration)
+            // if it's not in halftime
+            // up the clock
+            if (matchTime.Value <= eachHalfDuration && !isInHalftime.Value)
                 matchTime.Value += Time.deltaTime;
 
-            // end game
-            if (matchTime.Value >= matchTimeDuration && !isGameOver.Value)
+            // if we need to start halftime
+            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime)
+                StartCoroutine(HandleHalftime.instance.TurnOnHalftime());
+
+            // end game AFTER the halftime is called as well
+            if (matchTime.Value >= eachHalfDuration && !isGameOver.Value && HandleHalftime.instance.isAfterHalftime)
                 StartCoroutine(HandleEndingGame());
         }
     }
@@ -435,6 +451,10 @@ public class ServerManager : NetworkBehaviour
 
         // wait 8 seconds before resetting
         yield return new WaitForSeconds(8);
+
+        // reset the stadium
+        HandleHalftime.instance.isAfterHalftime = false;
+        HandleHalftime.instance.ChangeIntoStadiumHalf1ClientRpc();
 
         // clear player game stats values
         ResetPlayersDataClientRpc();

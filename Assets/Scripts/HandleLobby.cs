@@ -340,13 +340,7 @@ public class HandleLobby : NetworkBehaviour
             // reset the flag
             cancelJoin = false;
 
-            // leave the session
-            if (activeSession != null)
-                await activeSession.LeaveAsync();
-
-            // leave the LAN session
-            else
-                NetworkManager.Singleton.Shutdown();
+            await CleanUpSessionAndNetwork();
 
             return true;
         }
@@ -499,10 +493,7 @@ public class HandleLobby : NetworkBehaviour
 
         // this pretty much ensures that if the user doesn't join a lan session
         // we just fallback
-        if (started)
-            StartCoroutine(TimeoutConnectionCheck(5f));
-
-        else
+        if (!started)
             CancelLanJoin();
     }
 
@@ -516,7 +507,7 @@ public class HandleLobby : NetworkBehaviour
                 yield break;
 
             // canceled via UI so dont show this
-            if (!cancelJoin)
+            if (cancelJoin)
                 yield break;
 
             timer += Time.deltaTime;
@@ -551,10 +542,7 @@ public class HandleLobby : NetworkBehaviour
         {
             // if we successfully joined as a client, do not load the scene manually
             // the server will automatically sync to the current game scene
-            if (NetworkManager.Singleton.StartClient())
-                StartCoroutine(TimeoutConnectionCheck(10f));
-            else
-                CancelJoiningWithErrorMessageUI("Couldn't join: Timed out!");
+            NetworkManager.Singleton.StartClient();
         }
 
         isHost = false;
@@ -574,24 +562,39 @@ public class HandleLobby : NetworkBehaviour
     private void DisableSessionButtonInteraction() => sessionJoinIdButton.interactable = false;
 
 
-    public void CancelJoining()
+    public async void CancelJoining()
     {
         cancelJoin = true;
         HandleLobbyUI.instance.CloseJoiningServerUI();
 
-        activeSession = null;
-        sessionHolder.ActiveSession = null;
-
-        if (NetworkManager.Singleton.IsListening)
-            NetworkManager.Singleton.Shutdown();
+        await CleanUpSessionAndNetwork();
     }
 
-    public void CancelJoiningWithErrorMessageUI(string errorMessage)
+    public async void CancelJoiningWithErrorMessageUI(string errorMessage)
     {
         cancelJoin = true;
         HandleLobbyUI.instance.CloseJoiningServerUI(errorMessage);
 
-        activeSession = null;
+        await CleanUpSessionAndNetwork();
+    }
+
+    private async Task CleanUpSessionAndNetwork()
+    {
+        if (activeSession != null)
+        {
+            try
+            {
+                await activeSession.LeaveAsync();
+            }
+
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+
+            activeSession = null;
+        }
+
         sessionHolder.ActiveSession = null;
 
         if (NetworkManager.Singleton.IsListening)

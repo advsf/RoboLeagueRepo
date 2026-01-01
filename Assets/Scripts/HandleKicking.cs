@@ -151,7 +151,6 @@ public class HandleKicking : NetworkBehaviour
     private static readonly Color redColor = new(1, 0, 0.07710934f, 1);
     private static readonly Color blueColor = new(0.06132078f, 0.7101388f, 1, 1);
 
-    private Vector3 screenCenter;
 
     public override void OnNetworkSpawn()
     {
@@ -184,8 +183,6 @@ public class HandleKicking : NetworkBehaviour
         ballRb = SceneReferenceManager.instance.ballRb;
 
         isMobile = Application.isMobilePlatform;
-
-        screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f);
 
         if (PlayerMovement.instance != null)
         {
@@ -682,7 +679,7 @@ public class HandleKicking : NetworkBehaviour
         SoundManager.instance.PlayShootSoundEffect();
         PlayerMovement.instance.ChangeStamina(shootingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(screenCenter);
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         Vector3 direction = ray.direction.normalized;
 
         // prevent shooting at the ground (causes weird issues)
@@ -714,7 +711,7 @@ public class HandleKicking : NetworkBehaviour
         SoundManager.instance.PlayPowerShotSoundEffect();
         PlayerMovement.instance.ChangeStamina(shootingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(screenCenter);
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         Vector3 direction = ray.direction.normalized;
 
         // prevent shooting at the ground (causes weird issues)
@@ -746,7 +743,7 @@ public class HandleKicking : NetworkBehaviour
         SoundManager.instance.PlayShootSoundEffect();
         PlayerMovement.instance.ChangeStamina(headingStaminaLoss);
 
-        Ray ray = cam.ScreenPointToRay(screenCenter);
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         Vector3 direction = ray.direction.normalized;
 
         var headingPayload = new BallSync.InputPayload
@@ -791,7 +788,7 @@ public class HandleKicking : NetworkBehaviour
 
         PlayerMovement.instance.DisableMovement(true);
 
-        Ray ray = cam.ScreenPointToRay(screenCenter);
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
 
         // reverse since we are bicycle kicking
         Vector3 direction = -ray.direction.normalized;
