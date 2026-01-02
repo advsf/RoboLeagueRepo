@@ -127,7 +127,17 @@ public class HandleLobby : NetworkBehaviour
             {
                 { "Region", new SessionProperty(myRegion, VisibilityPropertyOptions.Public)},
                 { "HostRankIndex", new SessionProperty(FBPP.GetInt("RankIndex").ToString(), VisibilityPropertyOptions.Public)},
-                { "HostUsername", new SessionProperty(FBPP.GetString("Username").ToString(), VisibilityPropertyOptions.Public)}
+                { "HostUsername", new SessionProperty(FBPP.GetString("Username").ToString(), VisibilityPropertyOptions.Public)},
+
+                // server customization
+                { "IsServerModified", new SessionProperty(HandleServerCustomizations.instance.areServerSettingsChanged ? "T" : "F", VisibilityPropertyOptions.Public)},
+                { "EachHalfDuration", new SessionProperty(HandleServerCustomizations.instance.serverEachHalfDuration.ToString(), VisibilityPropertyOptions.Public)},
+                { "HalftimeDuration", new SessionProperty(HandleServerCustomizations.instance.serverHalftimeDuration.ToString(), VisibilityPropertyOptions.Public)},
+                { "KickMultiplier", new SessionProperty(HandleServerCustomizations.instance.serverBallKickMultiplier.ToString(), VisibilityPropertyOptions.Public)},
+                { "CurveMultiplier", new SessionProperty(HandleServerCustomizations.instance.serverBallCurveMultiplier.ToString(), VisibilityPropertyOptions.Public)},
+                { "PlayerSpeedMultiplier", new SessionProperty(HandleServerCustomizations.instance.serverPlayerSpeedMultiplier.ToString(), VisibilityPropertyOptions.Public)},
+                { "IsAbilityEnabled", new SessionProperty(HandleServerCustomizations.instance.serverAbilityEnabled, VisibilityPropertyOptions.Public)}, // True or False string
+                { "DoAbilityCD", new SessionProperty(HandleServerCustomizations.instance.serverDoAbilityHaveCooldown, VisibilityPropertyOptions.Public)}
             };
 
             // create the new session

@@ -498,7 +498,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         var kickPayload = new BallSync.InputPayload
         {
             Tick = NetworkManager.Singleton.ServerTime.Tick,
-            Force = force,
+            Force = force * ServerManager.instance.ballKickMultiplier.Value,
             AngularImpulse = angularImpulse,
             StopBallFirst = true
         };

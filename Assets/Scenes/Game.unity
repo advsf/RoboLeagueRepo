@@ -17622,6 +17622,9 @@ MonoBehaviour:
   isPracticeServer: 0
   isTutorialServer: 0
   eachHalfDuration: 300
+  ballKickMultiplier: 1
+  ballCurveMultiplier: 1
+  playerSpeedMultiplier: 1
   spawnedPlayerCount:
     m_InternalValue: 0
   redTeamGoalCount:
@@ -34298,6 +34301,7 @@ SceneRoots:
   - {fileID: 1809964413}
   - {fileID: 1202841957}
   - {fileID: 360443456}
+  - {fileID: 1532674218}
   - {fileID: 1253049906}
   - {fileID: 570781877}
   - {fileID: 557206631}
@@ -34307,7 +34311,6 @@ SceneRoots:
   - {fileID: 899084787}
   - {fileID: 1062647275}
   - {fileID: 736202845}
-  - {fileID: 1532674218}
   - {fileID: 5363136258456139106}
   - {fileID: 516978251}
   - {fileID: 87125036}

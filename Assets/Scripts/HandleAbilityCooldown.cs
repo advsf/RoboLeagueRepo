@@ -13,6 +13,10 @@ public class HandleAbilityCooldown : NetworkBehaviour
     [SerializeField] private float maxForegroundAlpha = 1;
     [SerializeField] private float maxBackgroundAlpha = 0.5058824f;
 
+    [Header("Lock UI References")]
+    [SerializeField] private GameObject leftAbilityLockUI;
+    [SerializeField] private GameObject rightAbilityLockUI;
+
     [Header("References")]
     [SerializeField] private Image[] images; // should be two pairs of images
 
@@ -42,6 +46,10 @@ public class HandleAbilityCooldown : NetworkBehaviour
         for (int i = 0; i < images.Length / 2; i++)
             for (int j = 0; j < 2; j++)
                 UIImages[i, j] = images[cumIndex++];
+
+        // lock UI
+        leftAbilityLockUI.SetActive(!ServerManager.instance.isAbilityEnabled.Value);
+        rightAbilityLockUI.SetActive(!ServerManager.instance.isAbilityEnabled.Value);
 
         base.OnNetworkSpawn();
     }

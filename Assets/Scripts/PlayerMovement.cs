@@ -206,7 +206,7 @@ public class PlayerMovement : NetworkBehaviour
                 currentSpeed = Mathf.Lerp(currentSpeed, desiredSpeed, accelerationSmoothing * Time.fixedDeltaTime);
             else
                 currentSpeed = Mathf.Lerp(currentSpeed, 0f, decelerationSmoothing * Time.fixedDeltaTime);
-            rb.AddForce(moveDirection.normalized * currentSpeed, ForceMode.VelocityChange);
+            rb.AddForce(moveDirection.normalized * currentSpeed * ServerManager.instance.playerSpeedMultiplier.Value, ForceMode.VelocityChange);
         }
     }
 

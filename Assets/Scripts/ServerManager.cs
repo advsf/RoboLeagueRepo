@@ -43,8 +43,13 @@ public class ServerManager : NetworkBehaviour
     public bool isPracticeServer = false;
     public bool isTutorialServer = false;
 
-    [Header("Match Settings")]
+    [Header("Server Settings")]
     public float eachHalfDuration = 300;
+    public NetworkVariable<float> ballKickMultiplier = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> ballCurveMultiplier = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<float> playerSpeedMultiplier = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> isAbilityEnabled = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<bool> doAbilityCD = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     private List<SpawnButtonInfo> _spawnButtons = new List<SpawnButtonInfo>();
 
@@ -148,6 +153,9 @@ public class ServerManager : NetworkBehaviour
 
         if (isPracticeServer)
             mainBallRb = BallManager.instance.mainBallSync.GetRigidbody();
+
+        // initialize custom server settings
+        InitializeCustomServerSettings();
     }
 
     private void Update()
@@ -200,6 +208,24 @@ public class ServerManager : NetworkBehaviour
 
         HandleSwappingPossessionTeamAfterTimerRunsOut();
         UpdateGameTimer();
+    }
+
+    private void InitializeCustomServerSettings()
+    {
+        if (!IsServer || !HandleServerCustomizations.instance.areServerSettingsChanged)
+            return;
+
+        eachHalfDuration = HandleServerCustomizations.instance.serverEachHalfDuration;
+        HandleHalftime.instance.halftimeDuration.Value = HandleServerCustomizations.instance.serverHalftimeDuration;
+        ballKickMultiplier.Value = HandleServerCustomizations.instance.serverBallKickMultiplier;
+        ballCurveMultiplier.Value = HandleServerCustomizations.instance.serverBallCurveMultiplier;
+        playerSpeedMultiplier.Value = HandleServerCustomizations.instance.serverPlayerSpeedMultiplier;
+        isAbilityEnabled.Value = HandleServerCustomizations.instance.serverAbilityEnabled.Equals("True");
+        doAbilityCD.Value = HandleServerCustomizations.instance.serverDoAbilityHaveCooldown.Equals("True");
+
+        Debug.Log($"is ability enabled: {HandleServerCustomizations.instance.serverAbilityEnabled.Equals("True")} ||| do ability CD: {HandleServerCustomizations.instance.serverDoAbilityHaveCooldown.Equals("True")}");
+
+        Debug.Log(eachHalfDuration);
     }
 
     public bool CanGoalkeepersBeDisabled()
@@ -445,7 +471,8 @@ public class ServerManager : NetworkBehaviour
 
         HandleEndingGameClientRpc();
 
-        ShowEndOfGameChatMessageClientRpc(wonTeam.Value.ToString(), wonTeam.Value.Equals("Tie"));
+        if (!HandleServerCustomizations.instance.areServerSettingsChanged)
+            ShowEndOfGameChatMessageClientRpc(wonTeam.Value.ToString(), wonTeam.Value.Equals("Tie"));
 
         mainBallSync.EndBallOutOfPlayServerRpc();
 

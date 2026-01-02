@@ -18,6 +18,7 @@ public class HandleLobbyUI : MonoBehaviour
     [Header("Create Session UI References")]
     [SerializeField] private GameObject createSessionObj;
     [SerializeField] private GameObject sessionListObj;
+    [SerializeField] private Image serverCustomizationImage;
 
     [Header("Joining Server UI Reference")]
     [SerializeField] private GameObject joiningServerUI;
@@ -122,14 +123,33 @@ public class HandleLobbyUI : MonoBehaviour
     #region Create Session UI
     public void OpenCreateSessionUI()
     {
+        serverCustomizationImage.color = Color.white;
+        HandleServerCustomizations.instance.ResetToDefaultCustomizations();
+
         createSessionObj.SetActive(true);
         sessionListObj.SetActive(false);
     }
 
+    public void UpdateServerCustomizationButtonColor()
+    {
+        serverCustomizationImage.color = Color.yellow;
+    }
+
     public void CloseCreateSessionUI()
     {
+        serverCustomizationImage.color = Color.white;
+
         createSessionObj.SetActive(false);
         sessionListObj.SetActive(false);
+    }
+
+    #endregion
+
+    #region Server Customization Setting
+
+    public void OpenServerCustomizationUI()
+    {
+        HandleServerCustomizations.instance.EnableServerCustomizationUI();
     }
 
     #endregion

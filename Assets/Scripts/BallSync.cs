@@ -77,7 +77,6 @@ public class BallSync : NetworkBehaviour
     private float _kickTime = -1f;
 
     [Header("Server Validation")]
-    [SerializeField] private float maxLegalForce = 54.6f;
     [SerializeField] private SphereCollider ballCollider;
 
     [Header("Server-Side Arbitration")]
@@ -202,7 +201,7 @@ public class BallSync : NetworkBehaviour
         kickPayload.ClientBallVelocity = ballRb.linearVelocity;
 
         // handle offsides
-        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer)
+        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value)
         {
             if (HandleOffsides.instance.IsPlayerOffside(kickerId))
             {
@@ -290,7 +289,7 @@ public class BallSync : NetworkBehaviour
 
     private void ApplyKickMechanics(InputPayload input, ulong clientId)
     {
-        if (IsForceIllegal(input.Force) || (input.SlideKick && !CanSlideKick()))
+        if (input.SlideKick && !CanSlideKick())
             return;
 
         if (input.StopBallFirst)
@@ -305,9 +304,6 @@ public class BallSync : NetworkBehaviour
 
     private void ApplyKickForces(InputPayload input)
     {
-        if (IsForceIllegal(input.Force))
-            return;
-
         ballRb.AddForce(input.Force, ForceMode.Impulse);
         ballRb.AddTorque(input.AngularImpulse, ForceMode.Impulse);
     }
@@ -316,7 +312,7 @@ public class BallSync : NetworkBehaviour
     {
         if (ballRb.angularVelocity.magnitude > 0.1f && ballRb.linearVelocity.magnitude > 0.1f)
         {
-            Vector3 magnusForce = Vector3.Cross(ballRb.angularVelocity, ballRb.linearVelocity) * magnusForceMultiplier;
+            Vector3 magnusForce = magnusForceMultiplier * ServerManager.instance.ballCurveMultiplier.Value * Vector3.Cross(ballRb.angularVelocity, ballRb.linearVelocity);
             ballRb.AddForce(magnusForce, ForceMode.Force);
         }
 
@@ -381,7 +377,6 @@ public class BallSync : NetworkBehaviour
         }
     }
 
-    private bool IsForceIllegal(Vector3 force) => force.magnitude > maxLegalForce;
     private bool CanSlideKick() => !isOutOfPlay.Value;
 
     public void Teleport(Vector3 newPosition, Quaternion newRotation)

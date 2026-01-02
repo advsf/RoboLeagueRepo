@@ -697,7 +697,7 @@ public class HandleKicking : NetworkBehaviour
         float powerBoost = CalculateShootingPowerBoost(mouseX);
 
         CreateAndSendKick(
-            kickingMultipler,
+            kickingMultipler * ServerManager.instance.ballKickMultiplier.Value,
             shotBarAmount,
             mouseX,
             direction,
@@ -729,7 +729,7 @@ public class HandleKicking : NetworkBehaviour
         float powerBoost = CalculatePowerShotBoost(ref upwardInfluence);
 
         CreateAndSendKick(
-            powerBoost,
+            powerBoost * ServerManager.instance.ballKickMultiplier.Value,
             1f,
             mouseX,
             direction,
@@ -749,7 +749,7 @@ public class HandleKicking : NetworkBehaviour
         var headingPayload = new BallSync.InputPayload
         {
             Tick = NetworkManager.Singleton.ServerTime.Tick,
-            Force = headingMultipler * shotBarAmount * direction,
+            Force = headingMultipler * ServerManager.instance.ballKickMultiplier.Value * shotBarAmount * direction,
             AngularImpulse = Vector3.zero,
             StopBallFirst = false,
             SlideKick = false
@@ -804,7 +804,7 @@ public class HandleKicking : NetworkBehaviour
         var bicycleKickPayload = new BallSync.InputPayload
         {
             Tick = NetworkManager.Singleton.ServerTime.Tick,
-            Force = force,
+            Force = force * ServerManager.instance.ballKickMultiplier.Value,
             AngularImpulse = angularImpulse,
             StopBallFirst = false,
             SlideKick = false

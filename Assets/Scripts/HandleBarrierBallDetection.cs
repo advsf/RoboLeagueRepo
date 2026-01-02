@@ -53,7 +53,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         // meaning that the former is to prevent multiple occurences of the ball being detected
         // and the latter is to check if the ball has been thrown back into play
         // and the final one is to check if the ball has been scored
-        if (!IsServer || isOutOfBounds || ballSync.isOutOfPlay.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds)
+        if (!IsServer || isOutOfBounds || ballSync.isOutOfPlay.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds || ServerManager.instance.isInHalftime.Value)
             return;
 
         // if the game did not start yet, do nothing, let the ball fly off.

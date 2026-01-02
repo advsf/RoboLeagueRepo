@@ -139,7 +139,7 @@ public class HandleAbilities : NetworkBehaviour
 
         HandleCooldown();
 
-        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || throwInScript.isPickedUp)
+        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || !ServerManager.instance.isAbilityEnabled.Value || throwInScript.isPickedUp)
             return;
 
         if (PlayerInputReference.instance.controls.Gameplay.LeftAbility.IsPressed() && leftAbility != null)
@@ -225,6 +225,12 @@ public class HandleAbilities : NetworkBehaviour
 
     public void TriggerCooldown(Abilities abilityUsed)
     {
+        if (!ServerManager.instance.doAbilityCD.Value)
+        {
+            SetCooldownToOne(abilityUsed); // we need 1 seconds to avoid breaking any abilities
+            return;
+        }
+
         // skip cooldown
         if (ServerManager.instance.isTutorialServer || ServerManager.instance.isPracticeServer || !ServerManager.instance.didStartGame.Value)
         {
@@ -278,6 +284,12 @@ public class HandleAbilities : NetworkBehaviour
 
     public void TriggerCooldown(Abilities abilityUsed, float newCooldown)
     {
+        if (!ServerManager.instance.doAbilityCD.Value)
+        {
+            SetCooldownToOne(abilityUsed); // we need 1 seconds to avoid breaking any abilities
+            return;
+        }
+
         // skip cooldown
         if (ServerManager.instance.isTutorialServer || ServerManager.instance.isPracticeServer || !ServerManager.instance.didStartGame.Value)
         {
@@ -330,6 +342,58 @@ public class HandleAbilities : NetworkBehaviour
         }
     }
 
+    private void SetCooldownToOne(Abilities abilityUsed)
+    {
+        if (ServerManager.instance.isTutorialServer || ServerManager.instance.isPracticeServer || !ServerManager.instance.didStartGame.Value)
+        {
+            if (abilityUsed == leftAbility)
+            {
+                leftCurrentCooldownDuration = 1;
+                leftCooldownTimer = 1;
+                leftAbilityBackground.fillAmount = 0;
+                isLeftAbilityTriggered = false;
+                leftAbility.StopAnimation();
+
+                leftAbilityCooldownObj.SetActive(true);
+            }
+
+            else if (abilityUsed == rightAbility)
+            {
+                rightCurrentCooldownDuration = 1;
+                rightCooldownTimer = 1;
+                rightAbilityBackground.fillAmount = 0;
+                isRightAbilityTriggered = false;
+                rightAbility.StopAnimation();
+
+                rightAbilityCooldownObj.SetActive(true);
+            }
+
+            return;
+        }
+
+        if (abilityUsed == leftAbility)
+        {
+            leftCurrentCooldownDuration = leftAbility.cooldownTime;
+            leftCooldownTimer = 1;
+            leftAbilityBackground.fillAmount = 0;
+            isLeftAbilityTriggered = false;
+            leftAbility.StopAnimation();
+
+            leftAbilityCooldownObj.SetActive(true);
+        }
+
+        else if (abilityUsed == rightAbility)
+        {
+            rightCurrentCooldownDuration = rightAbility.cooldownTime;
+            rightCooldownTimer = 1;
+            rightAbilityBackground.fillAmount = 0;
+            isRightAbilityTriggered = false;
+            rightAbility.StopAnimation();
+
+            rightAbilityCooldownObj.SetActive(true);
+        }
+    }
+
     private void PerformLeftAbility()
     {
         if (leftCooldownTimer > 0 || isLeftAbilityTriggered)
@@ -351,7 +415,7 @@ public class HandleAbilities : NetworkBehaviour
     // called by mobile UI buttons
     public void ActiviateLeftAbilityThroughUI()
     {
-        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || throwInScript.isPickedUp)
+        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || !ServerManager.instance.isAbilityEnabled.Value || throwInScript.isPickedUp)
             return;
 
         PerformLeftAbility();
@@ -366,7 +430,7 @@ public class HandleAbilities : NetworkBehaviour
 
     public void ActiviateRightAbilityThroughUI()
     {
-        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || throwInScript.isPickedUp)
+        if (PlayerMovement.instance.isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || !ServerManager.instance.isAbilityEnabled.Value || throwInScript.isPickedUp)
             return;
 
         PerformRightAbility();
