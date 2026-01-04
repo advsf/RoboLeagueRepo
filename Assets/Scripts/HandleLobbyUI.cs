@@ -179,6 +179,8 @@ public class HandleLobbyUI : MonoBehaviour
 
     public void CloseSessionListUI()
     {
+        HandleServerCusmizationInfo.instance.CloseServerCustomizationInfoUI();
+
         sessionListObj.SetActive(false);
         createSessionObj.SetActive(false);
     }

@@ -75,10 +75,25 @@ namespace Dissonance.Integrations.Unity_NFGO
             if (!IsOwner)
                 return;
 
-            if (PlayerInfo.instance.playingObj.activeInHierarchy && !IsTracking)
+            // if the playing object is active
+            // this is shit code but i dont care
+            if (PlayerMovement.instance.gameObject.activeInHierarchy)
+                _transform = PlayerMovement.instance.transform;
+            else if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
+                _transform = PlayerInfo.instance.spectatingObj.transform.GetChild(0).transform;
+
+            // handle muting
+            // spectators should not be able to talk
+            if (PlayerInfo.instance.spectatingObj.activeInHierarchy && !_comms.IsMuted)
+                _comms.IsMuted = true;
+            else if (_comms.IsMuted)
+                _comms.IsMuted = false;
+
+            // handle tracking
+            if ((PlayerInfo.instance.playingObj.activeInHierarchy || PlayerInfo.instance.spectatingObj.activeInHierarchy) && !IsTracking)
                 StartTracking();
 
-            if (!PlayerInfo.instance.playingObj.activeInHierarchy && IsTracking)
+            if (!PlayerInfo.instance.playingObj.activeInHierarchy && !PlayerInfo.instance.spectatingObj.activeInHierarchy && IsTracking)
                 StopTracking();
         }
 

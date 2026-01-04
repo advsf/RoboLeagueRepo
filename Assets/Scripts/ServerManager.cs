@@ -183,9 +183,15 @@ public class ServerManager : NetworkBehaviour
                 SpawnHighBallServerRpc(PlayerMovement.instance.transform.position, PlayerMovement.instance.transform.forward);
         }
 
-        // if this is a practice or tutorial server, no need to do anything else
-        if (isPracticeServer || isTutorialServer)
+        // if this is a tutorial server, no need to do anything else
+        if (isTutorialServer)
             return;
+
+        if (isPracticeServer)
+        {
+            InitializeCustomServerSettings();
+            return;
+        }
 
         HandleUpdatingScoreboardUI();
 
@@ -206,7 +212,7 @@ public class ServerManager : NetworkBehaviour
         if (spawnedPlayerCount.Value < 2 && didStartGame.Value)
             StartCoroutine(HandleEndingGame());
 
-        HandleSwappingPossessionTeamAfterTimerRunsOut();
+        InitializeCustomServerSettings();
         UpdateGameTimer();
     }
 
@@ -216,16 +222,16 @@ public class ServerManager : NetworkBehaviour
             return;
 
         eachHalfDuration = HandleServerCustomizations.instance.serverEachHalfDuration;
-        HandleHalftime.instance.halftimeDuration.Value = HandleServerCustomizations.instance.serverHalftimeDuration;
         ballKickMultiplier.Value = HandleServerCustomizations.instance.serverBallKickMultiplier;
         ballCurveMultiplier.Value = HandleServerCustomizations.instance.serverBallCurveMultiplier;
         playerSpeedMultiplier.Value = HandleServerCustomizations.instance.serverPlayerSpeedMultiplier;
         isAbilityEnabled.Value = HandleServerCustomizations.instance.serverAbilityEnabled.Equals("True");
         doAbilityCD.Value = HandleServerCustomizations.instance.serverDoAbilityHaveCooldown.Equals("True");
 
-        Debug.Log($"is ability enabled: {HandleServerCustomizations.instance.serverAbilityEnabled.Equals("True")} ||| do ability CD: {HandleServerCustomizations.instance.serverDoAbilityHaveCooldown.Equals("True")}");
-
-        Debug.Log(eachHalfDuration);
+        if (!isPracticeServer)
+        {
+            HandleHalftime.instance.halftimeDuration.Value = HandleServerCustomizations.instance.serverHalftimeDuration;
+        }
     }
 
     public bool CanGoalkeepersBeDisabled()
@@ -392,7 +398,7 @@ public class ServerManager : NetworkBehaviour
                 matchTime.Value += Time.deltaTime;
 
             // if we need to start halftime
-            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime)
+            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime && didATeamScore.Value)
                 StartCoroutine(HandleHalftime.instance.TurnOnHalftime());
 
             // end game AFTER the halftime is called as well

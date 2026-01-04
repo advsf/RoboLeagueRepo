@@ -278,6 +278,8 @@ MonoBehaviour:
   text: {fileID: 6136371468151718916}
   allChatPos: -37.13
   teamChatPos: -24.1
+  yIncreasePos: 0
+  eachCharacterPerLine: 4214
 --- !u!1 &7710165330361186654
 GameObject:
   m_ObjectHideFlags: 0

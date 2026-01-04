@@ -55,9 +55,11 @@ public class PlayerInfo : NetworkBehaviour
     [SerializeField] private Material bluePlayerMat;
     [SerializeField] private Material redPlayerMat;
     [SerializeField] private SkinnedMeshRenderer playerObjRenderer;
+    [SerializeField] private Camera playingCam;
 
     [Header("Spectating Player References")]
     [SerializeField] private Rigidbody spectatingRb;
+    [SerializeField] private Camera spectatingCam;
     public GameObject spectatingObj;
 
     [Header("Default Player References")]
@@ -391,6 +393,16 @@ public class PlayerInfo : NetworkBehaviour
             return spectatingObj.transform;
         else
             return defaultPlayerObj.transform;
+    }
+
+    public Camera GetCurrentPlayerCamera()
+    {
+        if (playingObj.activeInHierarchy)
+            return playingCam;
+        else if (spectatingObj.activeInHierarchy)
+            return spectatingCam;
+
+        return null;
     }
 
     [ServerRpc]

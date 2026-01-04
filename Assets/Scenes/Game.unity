@@ -10716,6 +10716,7 @@ Transform:
   - {fileID: 1774885980}
   - {fileID: 1140898008}
   - {fileID: 1020236243}
+  - {fileID: 929285204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746732092
@@ -11686,7 +11687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13570,8 +13571,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929285203}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.31, y: -2.4475, z: 2.8537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13583,7 +13584,7 @@ Transform:
   - {fileID: 723085938}
   - {fileID: 1984545542}
   - {fileID: 1047108}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 736202845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935098869
 GameObject:
@@ -14472,6 +14473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004201165}
+  - component: {fileID: 1004201166}
   m_Layer: 0
   m_Name: RedNet
   m_TagString: Untagged
@@ -14496,6 +14498,25 @@ Transform:
   - {fileID: 1768142411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+--- !u!114 &1004201166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004201164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b43fd07b32b7ee4eb35f2bb0f41ae61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandleGoalNetMaterial
+  distanceFromNetToDecreaseAlpha: 30
+  minimumAlpha: 0
+  isBlueNet: 0
+  isRedNet: 1
+  goalNetMats:
+  - {fileID: 803353986}
+  - {fileID: 1768142415}
 --- !u!1 &1017077551
 GameObject:
   m_ObjectHideFlags: 0
@@ -17078,7 +17099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17622,9 +17643,16 @@ MonoBehaviour:
   isPracticeServer: 0
   isTutorialServer: 0
   eachHalfDuration: 300
-  ballKickMultiplier: 1
-  ballCurveMultiplier: 1
-  playerSpeedMultiplier: 1
+  ballKickMultiplier:
+    m_InternalValue: 1
+  ballCurveMultiplier:
+    m_InternalValue: 1
+  playerSpeedMultiplier:
+    m_InternalValue: 1
+  isAbilityEnabled:
+    m_InternalValue: 1
+  doAbilityCD:
+    m_InternalValue: 1
   spawnedPlayerCount:
     m_InternalValue: 0
   redTeamGoalCount:
@@ -18732,6 +18760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285618934}
+  - component: {fileID: 1285618935}
   m_Layer: 0
   m_Name: BlueNet
   m_TagString: Untagged
@@ -18756,6 +18785,25 @@ Transform:
   - {fileID: 1731480539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1285618935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285618933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b43fd07b32b7ee4eb35f2bb0f41ae61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  distanceFromNetToDecreaseAlpha: 30
+  minimumAlpha: 0
+  isBlueNet: 1
+  isRedNet: 0
+  goalNetMats:
+  - {fileID: 1160879662}
+  - {fileID: 1731480543}
 --- !u!1 &1287504017
 GameObject:
   m_ObjectHideFlags: 0
@@ -27093,7 +27141,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28046,7 +28094,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34295,7 +34343,6 @@ SceneRoots:
   - {fileID: 1975159521}
   - {fileID: 1658686528}
   - {fileID: 973189706}
-  - {fileID: 929285204}
   - {fileID: 284140173}
   - {fileID: 1664211810}
   - {fileID: 1809964413}

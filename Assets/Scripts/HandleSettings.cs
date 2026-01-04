@@ -25,6 +25,9 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private GameObject graphicsSubMenu;
     [SerializeField] private GameObject audioSubMenu;
 
+    [Header("Mobile UI Readjust References")]
+    [SerializeField] private GameObject mobileReadjustCanvaObj;
+
     [Header("Mandatory Mouse DPI")]
     [SerializeField] private GameObject mandatoryMouseDPISettingObj;
     [SerializeField] private Slider _mouseDPISlider;
@@ -167,6 +170,8 @@ public class HandleSettings : MonoBehaviour
         videoSubMenu.SetActive(true);
         graphicsSubMenu.SetActive(true);
         audioSubMenu.SetActive(true);
+
+        mobileReadjustCanvaObj.SetActive(false);
 
         // get all resolutions
         resolutions = Screen.resolutions.Distinct().ToArray();
@@ -409,6 +414,20 @@ public class HandleSettings : MonoBehaviour
         postVolume.profile.TryGet(out motionBlur);
         postVolume.profile.TryGet(out tonemapping);
     }
+
+    #region Mobile Readjust UI
+
+    public void OpenMobileReadjustUI()
+    {
+        mobileReadjustCanvaObj.SetActive(true);
+    }
+
+    public void CloseMobileReadjustUI()
+    {
+        mobileReadjustCanvaObj.SetActive(false);
+    }
+
+    #endregion
 
     #region Mouse DPI Settings
 

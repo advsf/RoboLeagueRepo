@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.Netcode;
+using Unity.Collections;
 
 public class HandlePlayerNameTag : NetworkBehaviour
 {
@@ -8,21 +9,21 @@ public class HandlePlayerNameTag : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI playerTag;
     [SerializeField] private PlayerInfo playerInfo;
 
-    private Transform localPlayerCam;
+    public Transform localPlayerCam;
 
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
-        {
-            if (NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<Camera>() != null)
-                AssignCamera();
-
             playerTag.text = playerInfo.username.Value.ToString();
-        }
 
         // disable the nametag for the owner
         else
+        {
             gameObject.SetActive(false);
+            return;
+        }
+
+        playerInfo.username.OnValueChanged += HandleNameChange;
 
         base.OnNetworkSpawn();
     }
@@ -31,26 +32,24 @@ public class HandlePlayerNameTag : NetworkBehaviour
     {
         if (!IsOwner && IsSpawned)
         {
-            if (localPlayerCam == null)
-                AssignCamera();
-
-            if (string.IsNullOrEmpty(playerTag.text))
-                playerTag.text = playerInfo.username.Value.ToString();
+            AssignCamera();
 
             if (localPlayerCam != null)
             {
-                if (localPlayerCam.gameObject != null)
-                    transform.rotation = localPlayerCam.rotation;
+                transform.rotation = localPlayerCam.rotation;
             }
         }
     }
 
+    private void HandleNameChange(FixedString64Bytes oldName, FixedString64Bytes newName)
+    {
+        playerTag.text = newName.ToString();
+    }
+
     private void AssignCamera()
     {
-        if (NetworkManager.Singleton == null || NetworkManager.LocalClient == null || NetworkManager.LocalClient.PlayerObject == null)
-            return;
+        Camera cam = NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<PlayerInfo>().GetCurrentPlayerCamera();
 
-        Camera cam = NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<Camera>();
         if (cam != null)
             localPlayerCam = cam.transform;
     }
@@ -58,6 +57,7 @@ public class HandlePlayerNameTag : NetworkBehaviour
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
+
         localPlayerCam = null; 
     }
 }

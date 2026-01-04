@@ -436,3 +436,5 @@ MonoBehaviour:
   text: {fileID: 8515428714672187575}
   allChatPos: -175.6
   teamChatPos: -162.8
+  yIncreasePos: 0
+  eachCharacterPerLine: 412421

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HandleServerCustomizations : MonoBehaviour
@@ -33,6 +34,8 @@ public class HandleServerCustomizations : MonoBehaviour
     {
         if (instance == null)
         {
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -44,7 +47,17 @@ public class HandleServerCustomizations : MonoBehaviour
         }
 
         ResetToDefaultCustomizations();
-        canvaObj.SetActive(false);
+        DisableServerCustoimzationUI();
+    }
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (!arg0.name.Equals("Lobby"))
+            return;
+
+        EnableServerCustomizationUI();
+        ResetToDefaultCustomizations();
+        DisableServerCustoimzationUI();
     }
 
     public void ResetToDefaultCustomizations()

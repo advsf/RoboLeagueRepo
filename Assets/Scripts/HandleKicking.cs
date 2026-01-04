@@ -773,11 +773,11 @@ public class HandleKicking : NetworkBehaviour
                 if (ball != null && ball.transform.position.y > 3)
                 {
                     HandleBicycleKicking(ball);
-                    yield return waitFixed;
+                    yield break;
                 }
             }
 
-            yield return null;
+            yield return waitFixed;
         }
     }
 

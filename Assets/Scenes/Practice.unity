@@ -11794,7 +11794,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13914,7 +13914,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17141,7 +17141,17 @@ MonoBehaviour:
   startingGameTimer: 6
   isPracticeServer: 1
   isTutorialServer: 0
-  matchTimeDuration: 600
+  eachHalfDuration: 300
+  ballKickMultiplier:
+    m_InternalValue: 1
+  ballCurveMultiplier:
+    m_InternalValue: 1
+  playerSpeedMultiplier:
+    m_InternalValue: 1
+  isAbilityEnabled:
+    m_InternalValue: 1
+  doAbilityCD:
+    m_InternalValue: 1
   spawnedPlayerCount:
     m_InternalValue: 0
   redTeamGoalCount:
@@ -17199,6 +17209,8 @@ MonoBehaviour:
   didStartGame:
     m_InternalValue: 0
   isGameOver:
+    m_InternalValue: 0
+  isInHalftime:
     m_InternalValue: 0
   wonTeam:
     m_InternalValue:
@@ -19003,7 +19015,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19478,6 +19490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1288243337}
+  - component: {fileID: 1288243338}
   m_Layer: 0
   m_Name: RedNet
   m_TagString: Untagged
@@ -19502,6 +19515,25 @@ Transform:
   - {fileID: 1274296730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+--- !u!114 &1288243338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288243336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b43fd07b32b7ee4eb35f2bb0f41ae61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandleGoalNetMaterial
+  distanceFromNetToDecreaseAlpha: 30
+  minimumAlpha: 0
+  isBlueNet: 0
+  isRedNet: 1
+  goalNetMats:
+  - {fileID: 1378329169}
+  - {fileID: 1274296735}
 --- !u!1001 &1291472065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21242,7 +21274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6199cf4dc7684d4458d92e8298d172bb, type: 3}
+  - {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27975,6 +28007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848135785}
+  - component: {fileID: 1848135786}
   m_Layer: 0
   m_Name: BlueNet
   m_TagString: Untagged
@@ -27999,6 +28032,25 @@ Transform:
   - {fileID: 911086860}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1848135786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848135784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b43fd07b32b7ee4eb35f2bb0f41ae61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandleGoalNetMaterial
+  distanceFromNetToDecreaseAlpha: 30
+  minimumAlpha: 0
+  isBlueNet: 1
+  isRedNet: 0
+  goalNetMats:
+  - {fileID: 766774192}
+  - {fileID: 911086865}
 --- !u!1 &1850259370
 GameObject:
   m_ObjectHideFlags: 0
