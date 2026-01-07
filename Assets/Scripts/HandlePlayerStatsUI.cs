@@ -131,8 +131,6 @@ public class HandlePlayerStatsUI : MonoBehaviour
         else
             rankXPText.text = $"{currentXP}/100 XP AWAY FROM {HandlePlayerData.instance.GetRankSprite(FBPP.GetInt("RankIndex") + 1).name}";
 
-        Debug.Log(HandlePlayerData.instance.GetGoalsCount());
-
         // username & game stat
         usernameText.text = $"Username | {HandlePlayerData.instance.GetUsername()}";
         gameStatsText.text = $"Goals: {HandlePlayerData.instance.GetGoalsCount()} | Assists: {HandlePlayerData.instance.GetAssistsCount()} | Saves: {HandlePlayerData.instance.GetSavesCount()}";

@@ -398,7 +398,7 @@ public class ServerManager : NetworkBehaviour
                 matchTime.Value += Time.deltaTime;
 
             // if we need to start halftime
-            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime && didATeamScore.Value)
+            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime && !didATeamScore.Value)
                 StartCoroutine(HandleHalftime.instance.TurnOnHalftime());
 
             // end game AFTER the halftime is called as well
@@ -487,7 +487,6 @@ public class ServerManager : NetworkBehaviour
 
         // reset the stadium
         HandleHalftime.instance.isAfterHalftime = false;
-        HandleHalftime.instance.ChangeIntoStadiumHalf1ClientRpc();
 
         // clear player game stats values
         ResetPlayersDataClientRpc();

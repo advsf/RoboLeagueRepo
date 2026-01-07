@@ -176,6 +176,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FirstTouchScreen",
+                    "type": "Value",
+                    "id": "ea564fc0-af2f-4517-a4fb-63a9a291908d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SecondTouchScreen",
+                    "type": "Value",
+                    "id": "26d26f54-c7d7-4cc4-bb72-2f9a6f58b483",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -484,6 +502,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MobileShooting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "826b58ab-16b3-49a3-9a3b-3fa71ab451b2",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstTouchScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58eb1721-c397-4dc3-80b1-53ddd0709864",
+                    "path": "<Touchscreen>/touch1/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondTouchScreen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

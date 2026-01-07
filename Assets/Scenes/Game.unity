@@ -10716,7 +10716,6 @@ Transform:
   - {fileID: 1774885980}
   - {fileID: 1140898008}
   - {fileID: 1020236243}
-  - {fileID: 929285204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746732092
@@ -13572,7 +13571,7 @@ Transform:
   m_GameObject: {fileID: 929285203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.31, y: -2.4475, z: 2.8537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13584,7 +13583,7 @@ Transform:
   - {fileID: 723085938}
   - {fileID: 1984545542}
   - {fileID: 1047108}
-  m_Father: {fileID: 736202845}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935098869
 GameObject:
@@ -23889,12 +23888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleHalftime
   ShowTopMostFoldoutHeaderGroup: 1
-  stadium: {fileID: 736202845}
   mainBallSync: {fileID: 6116091852643443290}
-  halftime1Pos: {x: 3.31, y: 2.4475, z: -2.8537}
-  halftime1Rot: {x: 0, y: 0, z: 0}
-  halftime2Pos: {x: 3.05, y: 2.4475, z: -21.34}
-  halftime2Rot: {x: 0, y: 180, z: 0}
   halftimeDuration:
     m_InternalValue: 5
   isAfterHalftime: 0
@@ -34345,6 +34339,7 @@ SceneRoots:
   - {fileID: 973189706}
   - {fileID: 284140173}
   - {fileID: 1664211810}
+  - {fileID: 929285204}
   - {fileID: 1809964413}
   - {fileID: 1202841957}
   - {fileID: 360443456}

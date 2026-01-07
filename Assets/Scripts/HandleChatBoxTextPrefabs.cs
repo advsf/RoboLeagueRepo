@@ -11,8 +11,6 @@ public class HandleChatBoxTextPrefabs : MonoBehaviour
     [Header("Rank Image Position Setting")]
     [SerializeField] private float allChatPos;
     [SerializeField] private float teamChatPos;
-    [SerializeField] private float yIncreasePos;
-    [SerializeField] private int eachCharacterPerLine; // used to determine how many characters can be in a line before the text wraps
 
     public void SetChatBoxText(int rankIndex, string chatText, bool isChattingAll)
     {
@@ -32,12 +30,9 @@ public class HandleChatBoxTextPrefabs : MonoBehaviour
         RectTransform rankImgRect = rankImage.rectTransform;
         RectTransform rankShadowImgRect = rankImageShadow.rectTransform;
 
-        // get the y Pos
-        float yIncreaseAmount = (int) (text.text.Length / eachCharacterPerLine) * yIncreasePos;
+        rankImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankImgRect.anchoredPosition.y);
+        rankShadowImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankShadowImgRect.anchoredPosition.y);
 
-        rankImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankImgRect.anchoredPosition.y + yIncreaseAmount);
-        rankShadowImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankShadowImgRect.anchoredPosition.y + yIncreaseAmount);
-
-        text.text = chatText;
+        text.text = chatText; 
     }
 }

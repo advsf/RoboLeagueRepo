@@ -89,6 +89,12 @@ public class HandleMobileUI : NetworkBehaviour
 
     #region UI Button Functions
 
+    public void EnableAllMobileUI(bool condition)
+    {
+        foreach (Transform obj in transform)
+            obj.gameObject.SetActive(condition);
+    }
+
     public void HandleEnablingMenuUI()
     {
         // if active, then just disable the spawn UI and enable touchpad

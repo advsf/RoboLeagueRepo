@@ -13,6 +13,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
     [SerializeField] private float diveCooldown;
     [SerializeField] private float movementCooldown;
     [SerializeField] private float diveDuration = 0.7f;
+    [SerializeField] private float diveBallDetectionDuration = 0.75f;
     private bool isDiveCooldownOver = true;
 
     [Header("Check Settings")]
@@ -144,7 +145,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             || ServerManager.instance.didATeamScore.Value  // if scored
             || (Time.time - initialTimeWhenCaughtBall > timeBeforeAutomaticallyDroppingBall) // if holding too long
             || ServerManager.instance.isStartingGame.Value // if the game is about to start, drop the ball
-            || ServerManager.instance.isGameOver.Value) // if the game is over
+            || ServerManager.instance.isGameOver.Value // if the game is over
+            || ServerManager.instance.isInHalftime.Value) // if halftime
             && !ServerManager.instance.isTutorialServer) 
             DropBall();
 
@@ -191,7 +193,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
         StartCoroutine(ApplyDiveForceSmoothly(playerMoveDirection));
 
-        RequestDiveAndDeflectServerRpc(cam.transform.forward);
+        StartCoroutine(HandleDiveBallCatch());
     }
 
     private IEnumerator ApplyDiveForceSmoothly(Vector3 moveDirection)
@@ -220,46 +222,29 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         Invoke(nameof(ResetDiveCooldown), diveCooldown);
     }
 
-    [ServerRpc]
-    private void RequestDiveAndDeflectServerRpc(Vector3 deflectionDirection)
-    {
-        StartCoroutine(ServerCheckForDeflectionCoroutine(deflectionDirection));
-    }
-
-    private IEnumerator ServerCheckForDeflectionCoroutine(Vector3 deflectionDirection)
+    private IEnumerator HandleDiveBallCatch()
     {
         float timer = 0f;
         bool hasDeflected = false;
 
-        while (timer < diveDuration && !hasDeflected)
+        Vector3 diveDir = PlayerMovement.instance.GetPlayerMoveDirection().normalized;
+
+        if (diveDir == Vector3.zero) 
+            diveDir = transform.forward;
+
+        // now instead of deflecting
+        // we just catch now
+        while (timer < diveBallDetectionDuration && !hasDeflected)
         {
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position, ballCatchRadius, transform.forward, ballCatchMaxDistance);
+            Vector3 detectionOrigin = transform.position + (Vector3.up * 0.5f) + (diveDir * 0.5f);
 
-            foreach (RaycastHit hit in hits)
+            Collider[] hits = Physics.OverlapSphere(detectionOrigin, ballCatchRadius);
+
+            foreach (Collider hit in hits)
             {
-                if (hit.collider.CompareTag("Ball"))
+                if (hit.CompareTag("Ball"))
                 {
-                    var ballSync = hit.collider.GetComponentInChildren<BallSync>();
-                    var ballRb = hit.collider.GetComponent<Rigidbody>();
-
-                    if (ballRb == null || ballSync == null) continue;
-
-                    PlayDeflectSoundClientRpc();
-
-                    float ballVelocity = ballRb.linearVelocity.magnitude;
-                    Vector3 force = Mathf.Max(Mathf.Min(deflectionMultiplier * ballVelocity, maxDeflectionPower), minDeflectionPower) * deflectionDirection;
-
-                    var kickPayload = new BallSync.InputPayload
-                    {
-                        Tick = NetworkManager.Singleton.ServerTime.Tick,
-                        Force = force,
-                        AngularImpulse = ballRb.angularVelocity,
-                        StopBallFirst = true
-                    };
-
-                    ballSync.LocalKick(kickPayload, (int)OwnerClientId);
-
-                    PlayerInfo.instance.saves.Value++;
+                    CatchBall(false);
 
                     if (ServerManager.instance.isTutorialServer)
                         TutorialManager.instance.PassToNextDetectorInSameStage();
@@ -291,7 +276,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         PlayerMovement.instance.DisableMovement(false);
     }
 
-    private void CatchBall()
+    private void CatchBall(bool playAnimation = true)
     {
         if (!isInGoalkeeperBox || isHoldingBall)
             return;
@@ -304,7 +289,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         playerAnimation.StopCurrentEmote();
 
         // this is animation has a higher layer priority, so only this will play
-        playerAnimation.PlayGKCatchAnimation();
+        if (playAnimation)
+            playerAnimation.PlayGKCatchAnimation();
 
         Collider[] hits = Physics.OverlapSphere(transform.position, ballCatchRadius);
 

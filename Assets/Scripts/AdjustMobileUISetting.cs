@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
+    [SerializeField] private float scaleSpeed = 0.005f;
     private RectTransform rectTransform;
     private Canvas canvas;
     private bool isTouching = false;
@@ -40,10 +41,10 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
 
         float deltaMagnitudeDiff = touchDeltaMag - prevTouchDeltaMag;
 
-        float newSize = rectTransform.sizeDelta.x + deltaMagnitudeDiff;
-        newSize = Mathf.Clamp(newSize, 0.1f, 500f);
+        float newSize = rectTransform.localScale.x + (deltaMagnitudeDiff * scaleSpeed);
+        newSize = Mathf.Clamp(newSize, 0.5f, 5);
 
-        rectTransform.sizeDelta = new Vector2(newSize, newSize);
+        rectTransform.localScale = new (newSize, newSize, newSize);
     }
 
     private void LoadLayout()
@@ -54,13 +55,13 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
         rectTransform.anchoredPosition = GetSavedPositionLayout(gameObject.name);
 
         float savedScale = GetSavedScaleXLayout(gameObject.name);
-        rectTransform.sizeDelta = new Vector2(savedScale, savedScale);
+        rectTransform.localScale = new (savedScale, savedScale, savedScale);
     }
 
     private void InitializeData()
     {
         Vector2 originalPos = rectTransform.anchoredPosition;
-        Vector2 originalScale = rectTransform.sizeDelta;
+        Vector2 originalScale = rectTransform.localScale;
 
         // store permanent data
         PlayerPrefs.SetFloat(gameObject.name + "OG_X", originalPos.x);
@@ -96,7 +97,7 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
     {
         PlayerPrefs.SetFloat(gameObject.name + "_X", rectTransform.anchoredPosition.x);
         PlayerPrefs.SetFloat(gameObject.name + "_Y", rectTransform.anchoredPosition.y);
-        PlayerPrefs.SetFloat(gameObject.name + "_Scale", rectTransform.sizeDelta.x);
+        PlayerPrefs.SetFloat(gameObject.name + "_Scale", rectTransform.localScale.x);
         PlayerPrefs.Save();
     }
 
@@ -117,7 +118,7 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
         float ogScale = PlayerPrefs.GetFloat(gameObject.name + "OG_Scale");
 
         rectTransform.anchoredPosition = new Vector2(ogX, ogY);
-        rectTransform.sizeDelta = new Vector2(ogScale, ogScale);
+        rectTransform.localScale = new(ogScale, ogScale, ogScale);
 
         // save data
         PlayerPrefs.SetFloat(gameObject.name + "_X", PlayerPrefs.GetFloat(gameObject.name + "OG_X"));

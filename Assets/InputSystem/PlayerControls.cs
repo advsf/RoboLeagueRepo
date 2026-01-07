@@ -262,6 +262,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirstTouchScreen"",
+                    ""type"": ""Value"",
+                    ""id"": ""ea564fc0-af2f-4517-a4fb-63a9a291908d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SecondTouchScreen"",
+                    ""type"": ""Value"",
+                    ""id"": ""26d26f54-c7d7-4cc4-bb72-2f9a6f58b483"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -572,6 +590,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""MobileShooting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""826b58ab-16b3-49a3-9a3b-3fa71ab451b2"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FirstTouchScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58eb1721-c397-4dc3-80b1-53ddd0709864"",
+                    ""path"": ""<Touchscreen>/touch1/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondTouchScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -621,6 +661,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_SpawnBall = m_Gameplay.FindAction("SpawnBall", throwIfNotFound: true);
         m_Gameplay_MobileCurve = m_Gameplay.FindAction("MobileCurve", throwIfNotFound: true);
         m_Gameplay_MobileShooting = m_Gameplay.FindAction("MobileShooting", throwIfNotFound: true);
+        m_Gameplay_FirstTouchScreen = m_Gameplay.FindAction("FirstTouchScreen", throwIfNotFound: true);
+        m_Gameplay_SecondTouchScreen = m_Gameplay.FindAction("SecondTouchScreen", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -720,6 +762,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SpawnBall;
     private readonly InputAction m_Gameplay_MobileCurve;
     private readonly InputAction m_Gameplay_MobileShooting;
+    private readonly InputAction m_Gameplay_FirstTouchScreen;
+    private readonly InputAction m_Gameplay_SecondTouchScreen;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -808,6 +852,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @MobileShooting => m_Wrapper.m_Gameplay_MobileShooting;
         /// <summary>
+        /// Provides access to the underlying input action "Gameplay/FirstTouchScreen".
+        /// </summary>
+        public InputAction @FirstTouchScreen => m_Wrapper.m_Gameplay_FirstTouchScreen;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/SecondTouchScreen".
+        /// </summary>
+        public InputAction @SecondTouchScreen => m_Wrapper.m_Gameplay_SecondTouchScreen;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -890,6 +942,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MobileShooting.started += instance.OnMobileShooting;
             @MobileShooting.performed += instance.OnMobileShooting;
             @MobileShooting.canceled += instance.OnMobileShooting;
+            @FirstTouchScreen.started += instance.OnFirstTouchScreen;
+            @FirstTouchScreen.performed += instance.OnFirstTouchScreen;
+            @FirstTouchScreen.canceled += instance.OnFirstTouchScreen;
+            @SecondTouchScreen.started += instance.OnSecondTouchScreen;
+            @SecondTouchScreen.performed += instance.OnSecondTouchScreen;
+            @SecondTouchScreen.canceled += instance.OnSecondTouchScreen;
         }
 
         /// <summary>
@@ -958,6 +1016,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MobileShooting.started -= instance.OnMobileShooting;
             @MobileShooting.performed -= instance.OnMobileShooting;
             @MobileShooting.canceled -= instance.OnMobileShooting;
+            @FirstTouchScreen.started -= instance.OnFirstTouchScreen;
+            @FirstTouchScreen.performed -= instance.OnFirstTouchScreen;
+            @FirstTouchScreen.canceled -= instance.OnFirstTouchScreen;
+            @SecondTouchScreen.started -= instance.OnSecondTouchScreen;
+            @SecondTouchScreen.performed -= instance.OnSecondTouchScreen;
+            @SecondTouchScreen.canceled -= instance.OnSecondTouchScreen;
         }
 
         /// <summary>
@@ -1144,5 +1208,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMobileShooting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FirstTouchScreen" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFirstTouchScreen(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SecondTouchScreen" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSecondTouchScreen(InputAction.CallbackContext context);
     }
 }
