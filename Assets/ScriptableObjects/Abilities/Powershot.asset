@@ -15,6 +15,6 @@ MonoBehaviour:
   abilityName: Powershot
   cooldownTime: 40
   animator: {fileID: 0}
-  powerShotIncreaseMultiplier: 98
+  powerShotIncreaseMultiplier: 102
   durationBeforeAutoCancel: 5
   autoCancelCooldownDuration: 0.25

@@ -130,7 +130,6 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
     private void Update()
     {
-        // everyone runs this code
         if (followBallAnimationPosParent.Value && caughtBall != null)
             caughtBall.transform.position = catchBallPosParent.position;
 
@@ -147,7 +146,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             || ServerManager.instance.isStartingGame.Value // if the game is about to start, drop the ball
             || ServerManager.instance.isGameOver.Value // if the game is over
             || ServerManager.instance.isInHalftime.Value) // if halftime
-            && !ServerManager.instance.isTutorialServer) 
+            && !ServerManager.instance.isTutorialServer
+            && !isPerformingKick) 
             DropBall();
 
         if (PlayerInputReference.instance.controls.Gameplay.GoalkeeperDive.WasPressedThisFrame() && isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall && !HandleCursorSettings.instance.IsUIOn())
@@ -158,6 +158,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             && !ServerManager.instance.didATeamScore.Value
             && !ServerManager.instance.isStartingGame.Value
             && !ServerManager.instance.isGameOver.Value
+            && !ServerManager.instance.isInHalftime.Value
             && !HandleCursorSettings.instance.IsUIOn())
             CatchBall();
 
@@ -247,7 +248,12 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                     CatchBall(false);
 
                     if (ServerManager.instance.isTutorialServer)
+                    {
+                        yield return new WaitForSeconds(1);
+
+                        DropBall();
                         TutorialManager.instance.PassToNextDetectorInSameStage();
+                    }
 
                     hasDeflected = true;
                     break;
@@ -276,7 +282,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         PlayerMovement.instance.DisableMovement(false);
     }
 
-    private void CatchBall(bool playAnimation = true)
+    private void CatchBall(bool playAnimation = true, GameObject specificBall = null)
     {
         if (!isInGoalkeeperBox || isHoldingBall)
             return;
@@ -292,55 +298,90 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
         if (playAnimation)
             playerAnimation.PlayGKCatchAnimation();
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, ballCatchRadius);
-
         bool didFindBall = false;
 
-        foreach (var hit in hits)
+        if (specificBall != null)
         {
-            if (hit.gameObject.CompareTag("Ball"))
+            touchedBallSync = specificBall.GetComponent<BallSync>();
+
+            if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
             {
-                touchedBallSync = hit.gameObject.GetComponent<BallSync>();
+                abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
+                return; 
+            }
 
-                // still didn't find ball sync? 
-                // move on
-                if (touchedBallSync == null)
-                    continue;
+            // make sure we catch only opponent kicks and our own
+            if (ServerManager.instance.isPracticeServer ||
+                ServerManager.instance.isTutorialServer ||
+                string.IsNullOrEmpty(touchedBallSync.lastKickedTeam.Value.ToString()) ||
+                !touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) ||
+                (ulong)touchedBallSync.lastKickedClientId.Value == NetworkManager.LocalClientId)
+            {
+                SoundManager.instance.PlayPlayerGKCatchSoundEffect();
 
-                // if it's our own teammate that last kicked it and NOT our own
-                if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
+                isHoldingBall = true;
+                didFindBall = true;
+
+                caughtBallRb = specificBall.GetComponent<Rigidbody>();
+
+                // handle timer
+                initialTimeWhenCaughtBall = Time.time;
+
+                // handle animation
+                HandleBallAnimationPos(true, transform.position);
+            }
+        }
+
+        else
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, ballCatchRadius);
+
+            foreach (var hit in hits)
+            {
+                if (hit.gameObject.CompareTag("Ball"))
                 {
-                    abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
-                    break; // this isn't needed but it's for performance so why not
+                    touchedBallSync = hit.gameObject.GetComponent<BallSync>();
+
+                    // still didn't find ball sync? 
+                    // move on
+                    if (touchedBallSync == null)
+                        continue;
+
+                    // if it's our own teammate that last kicked it and NOT our own
+                    if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
+                    {
+                        abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
+                        break; // this isn't needed but it's for performance so why not
+                    }
+
+                    // make sure we catch only opponent kicks and our own
+                    if (ServerManager.instance.isPracticeServer ||
+                        ServerManager.instance.isTutorialServer ||
+                        string.IsNullOrEmpty(touchedBallSync.lastKickedTeam.Value.ToString()) ||
+                        !touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) ||
+                        (ulong)touchedBallSync.lastKickedClientId.Value == NetworkManager.LocalClientId)
+                    {
+                        SoundManager.instance.PlayPlayerGKCatchSoundEffect();
+
+                        isHoldingBall = true;
+                        didFindBall = true;
+
+                        caughtBall = hit.gameObject;
+                        caughtBallRb = caughtBall.GetComponent<Rigidbody>();
+
+                        // handle timer
+                        initialTimeWhenCaughtBall = Time.time;
+
+                        // handle animation
+                        HandleBallAnimationPos(true, transform.position);
+
+                        // for tutorial stage progression
+                        if (ServerManager.instance.isTutorialServer)
+                            TutorialManager.instance.PassToNextDetectorInSameStage();
+                    }
+
+                    break;
                 }
-
-                // make sure we catch only opponent kicks and our own
-                if (ServerManager.instance.isPracticeServer || 
-                    ServerManager.instance.isTutorialServer ||
-                    string.IsNullOrEmpty(touchedBallSync.lastKickedTeam.Value.ToString()) ||
-                    !touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) || 
-                    (ulong)touchedBallSync.lastKickedClientId.Value == NetworkManager.LocalClientId)
-                {
-                    SoundManager.instance.PlayPlayerGKCatchSoundEffect();
-
-                    isHoldingBall = true;
-                    didFindBall = true;
-
-                    caughtBall = hit.gameObject;
-                    caughtBallRb = caughtBall.GetComponent<Rigidbody>();
-
-                    // handle timer
-                    initialTimeWhenCaughtBall = Time.time;
-
-                    // handle animation
-                    HandleBallAnimationPos(true, transform.position);
-
-                    // for tutorial stage progression
-                    if (ServerManager.instance.isTutorialServer)
-                        TutorialManager.instance.PassToNextDetectorInSameStage();
-                }
-
-                break;
             }
         }
 
@@ -427,6 +468,10 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             yield break;
         }
 
+        // check if the goalkeeper automatically dropped the ball or something
+        if (!isHoldingBall)
+            yield break;
+
         HandleBallAnimationPos(false, transform.position);
 
         Vector3 force = shootingBarValue * passingForceMultiplier * transform.forward;
@@ -459,6 +504,10 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             isPerformingKick = false;
             yield break;
         }
+
+        // check if the goalkeeper automatically dropped the ball or something
+        if (!isHoldingBall)
+            yield break;
 
         SoundManager.instance.PlayShootSoundEffect();
 

@@ -50,8 +50,7 @@ public class HandlePlayerNameTag : NetworkBehaviour
     {
         Camera cam = NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<PlayerInfo>().GetCurrentPlayerCamera();
 
-        if (cam != null)
-            localPlayerCam = cam.transform;
+        localPlayerCam = cam.transform;
     }
 
     public override void OnNetworkDespawn()

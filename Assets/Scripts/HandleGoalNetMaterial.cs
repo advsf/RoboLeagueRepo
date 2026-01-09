@@ -35,30 +35,35 @@ public class HandleGoalNetMaterial : MonoBehaviour
 
     private void Update()
     {
-        // if we're not a GK
-        // then the alpha should ALWAYS be at 1
-        if (!PlayerInfo.instance.currentPosition.Value.Equals("GK") && !isTransparent)
-        {
-            ChangeGoalNetMaterial(false);
-            isTransparent = false;
-
-            return;
-        }
-
         // if we are GK
         if ((isBlueNet && PlayerInfo.instance.currentTeam.Value.Equals("Blue")) || (isRedNet && PlayerInfo.instance.currentTeam.Value.Equals("Red")))
         {
-            if ((Vector3.Distance(PlayerMovement.instance.transform.position, transform.position) <= distanceFromNetToDecreaseAlpha) && !isTransparent)
+            if (PlayerInfo.instance.currentPosition.Value == "GK")
             {
-                ChangeGoalNetMaterial(true);
-                isTransparent = true;
+                if ((Vector3.Distance(PlayerMovement.instance.transform.position, transform.position) <= distanceFromNetToDecreaseAlpha) && !isTransparent)
+                {
+                    ChangeGoalNetMaterial(true);
+                    isTransparent = true;
+                }
+
+                else if ((Vector3.Distance(PlayerMovement.instance.transform.position, transform.position) > distanceFromNetToDecreaseAlpha) && isTransparent)
+                {
+                    ChangeGoalNetMaterial(false);
+                    isTransparent = false;
+                }
             }
 
-            else if ((Vector3.Distance(PlayerMovement.instance.transform.position, transform.position) > distanceFromNetToDecreaseAlpha) && isTransparent)
+            else if (isTransparent)
             {
                 ChangeGoalNetMaterial(false);
                 isTransparent = false;
             }
+        }
+
+        else if (isTransparent)
+        {
+            ChangeGoalNetMaterial(false);
+            isTransparent = false;
         }
     }
 

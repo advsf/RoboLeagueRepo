@@ -683,7 +683,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!IsHost || currentState == State.passing || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isGameOver.Value || IsBallBehindGoalkeeper())
+        if (!IsHost || currentState == State.passing || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isGameOver.Value || ServerManager.instance.isInHalftime.Value || IsBallBehindGoalkeeper())
             return;
 
         // catching the ball

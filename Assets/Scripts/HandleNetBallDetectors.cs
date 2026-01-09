@@ -13,12 +13,15 @@ public class HandleNetBallDetectors : NetworkBehaviour
     [SerializeField] private bool isRedNet;
     [SerializeField] private float crowdSoundDelay = 0.4f;
     [SerializeField] private float goalScoreUIDelay = 0.1f;
+    [SerializeField] private float goalDelay = 0.25f;
     
     private PlayerInfo kickerInfo;
     private PlayerInfo secondKickerInfo;
 
     private int kickerId;
     private int secondLastKickerId;
+
+    private bool isVerifyingGoal = false;
 
     public override void OnNetworkSpawn()
     {
@@ -29,14 +32,18 @@ public class HandleNetBallDetectors : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsServer || !other.CompareTag("Ball") || !ServerManager.instance.didStartGame.Value || ServerManager.instance.isBallOutOfBounds)
+        if (!IsServer || !other.CompareTag("Ball") || !ServerManager.instance.didStartGame.Value || ServerManager.instance.isBallOutOfBounds || ballSync.GetRigidbody().isKinematic)
             return;
 
-        HandleScoring();
+        isVerifyingGoal = true;
+
+        Invoke(nameof(HandleScoring), goalDelay);
     }
 
     private void HandleScoring()
     {
+        isVerifyingGoal = false;
+
         // avoid repeating or scoring when the game is finished
         if (ServerManager.instance.didATeamScore.Value || ServerManager.instance.isGameOver.Value)
             return;
@@ -54,6 +61,10 @@ public class HandleNetBallDetectors : NetworkBehaviour
 
         // if we are in halftime
         if (ServerManager.instance.isInHalftime.Value)
+            return;
+
+        // if the ball is kinematic, meaning that it's been caught by a GK, don't count the goal
+        if (ballSync.GetRigidbody().isKinematic)
             return;
 
         ServerManager.instance.didATeamScore.Value = true;
