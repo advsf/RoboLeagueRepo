@@ -85,7 +85,6 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
     public void OnPointerDown(PointerEventData eventData)
     {
         isTouching = true; 
-        rectTransform.SetAsLastSibling();
     }
 
     public void OnPointerUp(PointerEventData eventData)

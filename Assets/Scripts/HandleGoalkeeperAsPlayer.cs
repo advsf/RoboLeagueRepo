@@ -147,7 +147,9 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             || ServerManager.instance.isGameOver.Value // if the game is over
             || ServerManager.instance.isInHalftime.Value) // if halftime
             && !ServerManager.instance.isTutorialServer
-            && !isPerformingKick) 
+            && !isPerformingKick
+            && isDiveCooldownOver
+            && isCatchCooldownOver) 
             DropBall();
 
         if (PlayerInputReference.instance.controls.Gameplay.GoalkeeperDive.WasPressedThisFrame() && isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall && !HandleCursorSettings.instance.IsUIOn())

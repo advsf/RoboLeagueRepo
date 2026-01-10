@@ -104,6 +104,10 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI qualitySettingText;
     private int currentQualitySettings = 0; // 0 - fancy, 1 - balanced, 2 - performance
 
+    [Header("Sens Reference")]
+    [SerializeField] private Slider renderScaleSlider;
+    [SerializeField] private TMP_InputField renderScaleInputField;
+
     [Header("Anti-Aliasing Setting")]
     [SerializeField] private TextMeshProUGUI antiAliasingText;
     private int currentAntiAliasingSettings; // 0 = off, 1 = 2x, 2 = 4x, 3 = 8x
@@ -286,6 +290,10 @@ public class HandleSettings : MonoBehaviour
         currentQualitySettings = !Application.isMobilePlatform ? 0 : 1; // pc default to Fancy graphics, mobile default to performance graphics
         UpdateQuality();
 
+        // render scale
+        renderScaleSlider.value = !Application.isMobilePlatform ? 1 : 0.5f;
+        UpdateRenderScaleThroughSlider();
+
         // anti aliasing
         currentAntiAliasingSettings = 0;
         UpdateAntiAliasing();
@@ -425,6 +433,9 @@ public class HandleSettings : MonoBehaviour
     public void CloseMobileReadjustUI()
     {
         mobileReadjustCanvaObj.SetActive(false);
+
+        if (PlayerInfo.instance != null)
+            HandleMobileUI.instance.HandleUpdatingAllUICustomization();
     }
 
     #endregion
@@ -953,15 +964,6 @@ public class HandleSettings : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(currentQualitySettings, true);
 
-        // on mobile, set the rendering scale
-        // to 0.5x to make it run way better
-        if (Application.isMobilePlatform)
-        {
-            var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
-
-            urp.renderScale = 0.5f;
-        }
-
         qualitySettingText.text = QualitySettings.names[currentQualitySettings];
 
         FBPP.SetInt("Quality", currentQualitySettings);
@@ -986,6 +988,38 @@ public class HandleSettings : MonoBehaviour
             currentQualitySettings = 2;
 
         UpdateQuality();
+    }
+
+    #endregion
+
+    #region Render Scale Settings
+
+    public void UpdateRenderScaleThroughSlider()
+    {
+        FBPP.SetFloat("RenderScale", renderScaleSlider.value);
+        FBPP.Save();
+
+        renderScaleInputField.text = renderScaleSlider.value.ToString("F2");
+        UpdateRenderScale();
+    }
+
+    public void UpdateRenderScaleThroughInputField()
+    {
+        if (float.TryParse(renderScaleInputField.text.ToString(), out float renderScale))
+        {
+            FBPP.SetFloat("RenderScale", renderScale);
+            FBPP.Save();
+
+            renderScaleSlider.value = renderScale;
+            UpdateRenderScale();
+        }
+    }
+
+    private void UpdateRenderScale()
+    {
+        var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+
+        urp.renderScale = FBPP.GetFloat("RenderScale");
     }
 
     #endregion

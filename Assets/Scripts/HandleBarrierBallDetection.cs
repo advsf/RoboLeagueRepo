@@ -35,6 +35,8 @@ public class HandleBarrierBallDetection : NetworkBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody ballRb;
     [SerializeField] private BallSync ballSync;
+    [SerializeField] private HandleNetBallDetectors blueNetDetector;
+    [SerializeField] private HandleNetBallDetectors redNetDetector;
 
     private Vector3 hitPos;
     private int lastKicker;
@@ -58,6 +60,10 @@ public class HandleBarrierBallDetection : NetworkBehaviour
 
         // if the game did not start yet, do nothing, let the ball fly off.
         if (!ServerManager.instance.didStartGame.Value)
+            return;
+
+        // if the ball is inside the net
+        if (blueNetDetector.isVerifyingGoal || redNetDetector.isVerifyingGoal)
             return;
 
         if (other.transform.CompareTag("Ball"))

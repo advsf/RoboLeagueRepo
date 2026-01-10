@@ -217,6 +217,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1047110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,7 +1171,8 @@ MonoBehaviour:
   isRedNet: 0
   crowdSoundDelay: 0.5
   goalScoreUIDelay: 0.05
-  goalDelay: 0.25
+  goalDelay: 0.35
+  isVerifyingGoal: 0
 --- !u!54 &55855484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10417,6 +10420,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &696340707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10618,6 +10623,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &723085940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18432,6 +18439,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1262494654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20594,6 +20603,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1382311024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23985,6 +23996,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1550968055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24962,6 +24975,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1603884995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30810,6 +30825,8 @@ MonoBehaviour:
   redTeamGoalkickBoundaryObj: {fileID: 1903475911}
   ballRb: {fileID: 5566946714734151829}
   ballSync: {fileID: 6116091852643443290}
+  blueNetDetector: {fileID: 55855483}
+  redNetDetector: {fileID: 2016364636}
 --- !u!114 &1984545544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31573,7 +31590,8 @@ MonoBehaviour:
   isRedNet: 1
   crowdSoundDelay: 0.5
   goalScoreUIDelay: 0.05
-  goalDelay: 0.25
+  goalDelay: 0.35
+  isVerifyingGoal: 0
 --- !u!54 &2016364637
 Rigidbody:
   m_ObjectHideFlags: 0

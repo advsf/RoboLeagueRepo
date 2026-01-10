@@ -13,6 +13,11 @@ public class HandleUpdatingCustomMobileUI : NetworkBehaviour
         if (!IsOwner)
             return;
 
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
         string keyName = useAnotherName ? newSaveDataName : gameObject.name;
 
         if (PlayerPrefs.HasKey(keyName + "_X"))

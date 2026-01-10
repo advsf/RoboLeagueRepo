@@ -21,7 +21,7 @@ public class HandleNetBallDetectors : NetworkBehaviour
     private int kickerId;
     private int secondLastKickerId;
 
-    private bool isVerifyingGoal = false;
+    public bool isVerifyingGoal = false;
 
     public override void OnNetworkSpawn()
     {

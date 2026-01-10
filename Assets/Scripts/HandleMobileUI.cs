@@ -89,6 +89,18 @@ public class HandleMobileUI : NetworkBehaviour
 
     #region UI Button Functions
 
+    public void HandleUpdatingAllUICustomization()
+    {
+        foreach (Transform obj in transform)
+        {
+            HandleUpdatingCustomMobileUI script = obj.GetComponent<HandleUpdatingCustomMobileUI>();
+
+            if (obj.GetComponent<HandleUpdatingCustomMobileUI>() != null)
+                script.UpdateUI();
+
+        }
+    }
+
     public void EnableAllMobileUI(bool condition)
     {
         foreach (Transform obj in transform)
