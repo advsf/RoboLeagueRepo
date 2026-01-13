@@ -188,7 +188,7 @@ public class BallSync : NetworkBehaviour
         }
     }
 
-    public void LocalKick(InputPayload kickPayload, int kickerId)
+    public void LocalKick(InputPayload kickPayload, int kickerId, bool countOffside)
     {
         // if we can't slide kick
         if (kickPayload.SlideKick && !CanSlideKick())
@@ -201,7 +201,7 @@ public class BallSync : NetworkBehaviour
         kickPayload.ClientBallVelocity = ballRb.linearVelocity;
 
         // handle offsides
-        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value)
+        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && countOffside)
         {
             if (HandleOffsides.instance.IsPlayerOffside(kickerId))
             {
@@ -213,6 +213,9 @@ public class BallSync : NetworkBehaviour
                 HandleOffsides.instance.CheckForOffsidesServerRpc(kickerId);
         }
 
+        else if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && !countOffside)
+            HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
+
         if (IsServer)
             HandleKickRequestServerSide(kickPayload, (ulong)kickerId, estimatedServerTime);
         else
@@ -220,6 +223,11 @@ public class BallSync : NetworkBehaviour
 
         if (!ServerManager.instance.didKickOffEnd.Value)
             ServerManager.instance.DisableKickOffBarriers();
+    }
+
+    public bool ShouldOffsideCountWhenKicking()
+    {
+        return !isOffside.Value || !isGoalKick.Value || !isThrowIn.Value || !isCornerKick.Value;
     }
 
     [ServerRpc(RequireOwnership = false)]

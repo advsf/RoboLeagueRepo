@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class DisableForPCPlatforms : MonoBehaviour
 {
+    [SerializeField] private bool isTesting;
+
     private void Start()
     {
-        if (Application.isEditor)
+        if (isTesting)
             return;
 
         if (!Application.isMobilePlatform && !Application.isConsolePlatform)

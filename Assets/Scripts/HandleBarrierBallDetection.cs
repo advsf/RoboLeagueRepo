@@ -43,6 +43,8 @@ public class HandleBarrierBallDetection : NetworkBehaviour
 
     private string possessionTeam = "";
 
+    private bool isVerifying;
+
     private void Start()
     {
         blueTeamGoalkickBoundaryObj.SetActive(false);
@@ -55,7 +57,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         // meaning that the former is to prevent multiple occurences of the ball being detected
         // and the latter is to check if the ball has been thrown back into play
         // and the final one is to check if the ball has been scored
-        if (!IsServer || isOutOfBounds || ballSync.isOutOfPlay.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds || ServerManager.instance.isInHalftime.Value)
+        if (!IsServer || isOutOfBounds || ballSync.isOutOfPlay.Value || ballSync.isOffside.Value || ServerManager.instance.didATeamScore.Value || ServerManager.instance.isBallOutOfBounds || ServerManager.instance.isInHalftime.Value)
             return;
 
         // if the game did not start yet, do nothing, let the ball fly off.
@@ -65,6 +67,21 @@ public class HandleBarrierBallDetection : NetworkBehaviour
         // if the ball is inside the net
         if (blueNetDetector.isVerifyingGoal || redNetDetector.isVerifyingGoal)
             return;
+
+        isVerifying = true;
+
+        StartCoroutine(HandleOutOfPlay(other));
+    }
+
+    private IEnumerator HandleOutOfPlay(Collider other)
+    {
+        // wait 0.35 seconds
+        yield return new WaitForSeconds(0.35f);
+
+        if (!isVerifying)
+            yield break;
+
+        isVerifying = false;
 
         if (other.transform.CompareTag("Ball"))
         {
@@ -86,7 +103,7 @@ public class HandleBarrierBallDetection : NetworkBehaviour
 
                 StartCoroutine(HandleSideOutOfBoundsPlay(ballHitPos, lastKicker == -2 ? "Blue" : "Red"));
 
-                return;
+                yield break;
             }
 
             isActive = true;

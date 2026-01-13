@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class HandleGoalNetMaterial : MonoBehaviour
 {
@@ -11,27 +12,18 @@ public class HandleGoalNetMaterial : MonoBehaviour
     [SerializeField] private bool isRedNet;
 
     [Header("References")]
-    [SerializeField] private MeshRenderer[] goalNetMats;
+    [SerializeField] private MeshRenderer netRenderer;
+    [SerializeField] private MeshRenderer postRenderer;
 
-    private Material[] netMats;
+    [Header("Net Materials")]
+    [SerializeField] private Material netOpaqueMaterial;
+    [SerializeField] private Material netTransparentMaterial;
 
-    private Color originalGoalNetColor;
-    private Color decreasedAlphaGoalNetColor;
+    [Header("Post Materials")]
+    [SerializeField] private Material postOpaqueMaterial;
+    [SerializeField] private Material postTransparentMaterial;
 
     private bool isTransparent;
-
-    private void Start()
-    {
-        // this is to prevent memory leaks
-        // since calling materials creates a new copy every time
-        netMats = new Material[goalNetMats.Length];
-
-        for (int i = 0; i < goalNetMats.Length; i++)
-            netMats[i] = goalNetMats[i].material;
-
-        originalGoalNetColor = netMats[0].color;
-        decreasedAlphaGoalNetColor = new Color(netMats[0].color.r, netMats[0].color.g, netMats[0].color.b, minimumAlpha);
-    }
 
     private void Update()
     {
@@ -67,13 +59,18 @@ public class HandleGoalNetMaterial : MonoBehaviour
         }
     }
 
-    private void ChangeGoalNetMaterial(bool makeTransparent)
+    private void ChangeGoalNetMaterial(bool isTransparent) 
     {
-        if (!makeTransparent)
-            foreach (Material mat in netMats)
-                mat.color = originalGoalNetColor;
+        if (isTransparent)
+        {
+            netRenderer.material = netTransparentMaterial;
+            postRenderer.material = postTransparentMaterial;
+        }
+
         else
-            foreach (Material mat in netMats)
-                mat.color = decreasedAlphaGoalNetColor;
+        {
+            netRenderer.material = netOpaqueMaterial;
+            postRenderer.material = postOpaqueMaterial;
+        }
     }
 }

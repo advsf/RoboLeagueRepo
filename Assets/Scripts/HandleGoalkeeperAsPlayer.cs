@@ -540,7 +540,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             StopBallFirst = true
         };
 
-        touchedBallSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        touchedBallSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, touchedBallSync.ShouldOffsideCountWhenKicking());
     }
 
     private void ResetShootingBar() => kickingScript.ResetShootingBar();

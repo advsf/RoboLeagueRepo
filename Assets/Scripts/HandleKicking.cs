@@ -18,7 +18,6 @@ public class HandleKicking : NetworkBehaviour
 
     [Header("Mobile Settings")]
     public KickMode currentMobileKickMode = KickMode.Shooting;
-    [SerializeField] private float mobileMinCurveMagnitude = 0.05f;
     [SerializeField] private float mobileCurveMultiplier = 1500f;
     [SerializeField] private float mobileSliderIncrementValue;
 
@@ -244,7 +243,7 @@ public class HandleKicking : NetworkBehaviour
         if (nearestBallSync == null)
             nearestBallSync = BallManager.instance.mainBallSync;
 
-        if (PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>().magnitude > mobileMinCurveMagnitude)
+        if (PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>().magnitude > FBPP.GetFloat("ShootingJoystickDeadzone"))
             joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
 
         // spawn the local ball
@@ -410,6 +409,9 @@ public class HandleKicking : NetworkBehaviour
     {
         // find the nearest ball
         nearestBallSync = BallManager.instance.FindNearestBall(transform.position);
+
+        if (nearestBallSync == null)
+            return;
 
         canStartKick = false;
         hasBufferedInput = false;
@@ -609,7 +611,7 @@ public class HandleKicking : NetworkBehaviour
         // during testing those were the mouse specs i was using so we'll just make everyone use my own settings LOL
 
         if (isMobile)
-            if (joystickVal.magnitude > mobileMinCurveMagnitude)
+            if (joystickVal.magnitude > FBPP.GetFloat("ShootingJoystickDeadzone"))
                 return Mathf.Min(joystickVal.x * mobileCurveMultiplier, 1500);
             else
                 return 0;
@@ -755,7 +757,7 @@ public class HandleKicking : NetworkBehaviour
             SlideKick = false
         };
 
-        nearestBallSync.LocalKick(headingPayload, (int)NetworkManager.LocalClientId);
+        nearestBallSync.LocalKick(headingPayload, (int)NetworkManager.LocalClientId, nearestBallSync.ShouldOffsideCountWhenKicking());
     }
 
     private IEnumerator DetectBallDuringBicycleKick()
@@ -810,7 +812,7 @@ public class HandleKicking : NetworkBehaviour
             SlideKick = false
         };
 
-        _nearestBallSync.LocalKick(bicycleKickPayload, (int)NetworkManager.LocalClientId);
+        _nearestBallSync.LocalKick(bicycleKickPayload, (int)NetworkManager.LocalClientId, nearestBallSync.ShouldOffsideCountWhenKicking());
 
         Invoke(nameof(EnableMovementAfterBicycleKick), timeBeforeEnablingMovementAfterBicycleKick);
     }
@@ -888,7 +890,7 @@ public class HandleKicking : NetworkBehaviour
             SlideKick = false
         };
 
-        nearestBallSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        nearestBallSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, nearestBallSync.ShouldOffsideCountWhenKicking());
     }
 
     #endregion

@@ -23,7 +23,9 @@ public class SpawnButtonInfo : NetworkBehaviour
 
         // if an ability is active do NOT allow change of positions
         // it will break the ability
-        if (PlayerInfo.instance.playingObj.activeInHierarchy && PlayerInfo.instance.GetComponentInChildren<HandleAbilities>().IsAbilityActivitated())
+
+        // or if the GK has the ball in hand
+        if (PlayerInfo.instance.playingObj.activeInHierarchy && (PlayerInfo.instance.GetComponentInChildren<HandleAbilities>().IsAbilityActivitated() || PlayerInfo.instance.GetComponentInChildren<HandleGoalkeeperAsPlayer>().isHoldingBall))
             return;
 
         // if the game is over, don't allow the user to switch

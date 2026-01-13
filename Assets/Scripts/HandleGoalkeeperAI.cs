@@ -355,7 +355,7 @@ public class HandleGoalkeeperAI : NetworkBehaviour
 
         // -2 = blue team
         // -3 = red team
-        ballSync.LocalKick(kickPayload, team == Team.Blue ? -2 : -3);
+        ballSync.LocalKick(kickPayload, team == Team.Blue ? -2 : -3, ballSync.ShouldOffsideCountWhenKicking());
         currentState = State.idle;
 
         // end the out of bounds play

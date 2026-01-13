@@ -438,7 +438,7 @@ public class ManageAbilityMoves : NetworkBehaviour
             AngularImpulse = Vector3.zero,
         };
 
-        ballSync.LocalKick(kickPayload, (int)senderClientId);
+        ballSync.LocalKick(kickPayload, (int)senderClientId, ballSync.ShouldOffsideCountWhenKicking());
 
         GiveRouletteSpeedBoostClientRpc(speedBoostAmount, speedBoostDuration, new ClientRpcParams
         {
@@ -459,11 +459,11 @@ public class ManageAbilityMoves : NetworkBehaviour
         PlayerMovement.instance.IncreaseSpeedForDuration(speedBoostAmount, speedBoostDuration);
     }
 
-    private IEnumerator HandleDeflectAbility(BallSync ballSynchronizer, Deflect deflect, Transform player, float playerMoveSpeed, float ballKickForce)
+    private IEnumerator HandleDeflectAbility(BallSync ballSync, Deflect deflect, Transform player, float playerMoveSpeed, float ballKickForce)
     {
         // stop the ball
-        ballSynchronizer.StopBall();
-        ballSynchronizer.EnableKinematics(true);
+        ballSync.StopBall();
+        ballSync.EnableKinematics(true);
 
         playerRb.useGravity = false;
 
@@ -489,7 +489,7 @@ public class ManageAbilityMoves : NetworkBehaviour
         yield return new WaitForSeconds(timeBeforeKick);
 
         playerRb.useGravity = true;
-        ballSynchronizer.EnableKinematics(false);
+        ballSync.EnableKinematics(false);
 
         var kickPayload = new BallSync.InputPayload
         {
@@ -499,7 +499,7 @@ public class ManageAbilityMoves : NetworkBehaviour
         };
 
 
-        ballSynchronizer.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, ballSync.ShouldOffsideCountWhenKicking());
 
         SoundManager.instance.PlayShootSoundEffect();
 

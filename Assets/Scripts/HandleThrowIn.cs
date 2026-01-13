@@ -136,7 +136,7 @@ public class HandleThrowIn : NetworkBehaviour
             AngularImpulse = angularImpulse
         };
 
-        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, ballSync.ShouldOffsideCountWhenKicking());
     }
 
     private void AllowThrowIn()
@@ -212,7 +212,7 @@ public class HandleThrowIn : NetworkBehaviour
             AngularImpulse = angularImpulse
         };
 
-        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, ballSync.ShouldOffsideCountWhenKicking());
 
         MakeBallFollowAnimationPos(false);
 

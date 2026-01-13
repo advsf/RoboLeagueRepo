@@ -85,8 +85,11 @@ public class PlayerMovement : NetworkBehaviour
     public bool IsSprinting { 
         get
         {
-            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>().magnitude > 0.825f;
-            bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0 && canSprint && !isSprintingDisabled && IsWalking;
+            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Sprint.IsPressed();
+            bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0;
+
+            if (!canSprint || isSprintingDisabled || !IsWalking)
+                return false;
 
             if (!Application.isMobilePlatform)
                 return isSprintingOnPC;
@@ -153,7 +156,7 @@ public class PlayerMovement : NetworkBehaviour
         GatherInput();
         HandleStamina();
 
-        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) return;
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || Application.isMobilePlatform) return;
 
         if (!isStaminaRecharging)
         {
@@ -452,19 +455,28 @@ public class PlayerMovement : NetworkBehaviour
 
     public void JumpViaUI()
     {
-        if (canJump && isGrounded)
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
+            return;
+
+        if (canJump && isGrounded && !isStaminaRecharging)
             Jump();
     }
 
     public void DashViaUI()
     {
-        if (canDash && isGrounded)
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
+            return;
+
+        if (canDash && isGrounded && !isStaminaRecharging)
             Dash();
     }
 
     public void SlideViaUI()
     {
-        if (canSlide && isGrounded)
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
+            return;
+
+        if (canSlide && isGrounded && !isStaminaRecharging)
             StartCoroutine(Slide());
     }
     

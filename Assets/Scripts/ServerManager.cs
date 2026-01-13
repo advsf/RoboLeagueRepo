@@ -398,7 +398,7 @@ public class ServerManager : NetworkBehaviour
                 matchTime.Value += Time.deltaTime;
 
             // if we need to start halftime
-            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime && !didATeamScore.Value)
+            if (matchTime.Value > eachHalfDuration && !HandleHalftime.instance.isAfterHalftime && !didATeamScore.Value && !mainBallSync.isOutOfPlay.Value && !mainBallSync.isOffside.Value)
                 StartCoroutine(HandleHalftime.instance.TurnOnHalftime());
 
             // end game AFTER the halftime is called as well

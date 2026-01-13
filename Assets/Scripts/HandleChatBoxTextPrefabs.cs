@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class HandleChatBoxTextPrefabs : MonoBehaviour
 {
     [Header("References")]
@@ -12,56 +13,34 @@ public class HandleChatBoxTextPrefabs : MonoBehaviour
     [SerializeField] private float allChatPos;
     [SerializeField] private float teamChatPos;
     [SerializeField] private float yPosIncreaseAmount;
-    [SerializeField] private bool isOpenChatText;
 
-    private int rankIndex;
-    private string chatText;
+    private float initialRankY;
+    private float initialShadowY;
+    private bool hasInitialized;
+
     private bool isChattingAll;
 
-    private bool isUpdated = false;
-
-    // the reason why we have the OnEnable method
-    // is becuase the closed text is disabled since it's being spawned into an already disabled parent
-    // meaning that we aren't able to correctly position the rank sprite y position
+    private void Awake()
+    {
+        initialRankY = rankImage.rectTransform.anchoredPosition.y;
+        initialShadowY = rankImageShadow.rectTransform.anchoredPosition.y;
+        hasInitialized = true;
+    }
 
     private void OnEnable()
     {
-        if (!isUpdated && !isOpenChatText)
-        {
-            isUpdated = true;
-
-            if (rankIndex >= 0)
-            {
-                rankImage.enabled = true;
-                rankImageShadow.enabled = true;
-
-                rankImage.sprite = HandlePlayerData.instance.GetRankSprite(rankIndex);
-                rankImageShadow.sprite = HandlePlayerData.instance.GetRankSprite(rankIndex);
-            }
-
-            // set the position of the rank imgs
-            RectTransform rankImgRect = rankImage.rectTransform;
-            RectTransform rankShadowImgRect = rankImageShadow.rectTransform;
-
-            text.text = chatText;
-
-            text.ForceMeshUpdate();
-
-            // get the y pos
-            float verticalRankIncreaseAmount = (text.textInfo.lineCount - 1) * yPosIncreaseAmount;
-
-            rankImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankImgRect.anchoredPosition.y + verticalRankIncreaseAmount);
-            rankShadowImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankShadowImgRect.anchoredPosition.y + verticalRankIncreaseAmount);
-        }
+        if (hasInitialized)
+            UpdateRankPosition();
     }
 
     public void SetChatBoxText(int rankIndex, string chatText, bool isChattingAll)
     {
-        this.rankIndex = rankIndex;
-        this.chatText = chatText;
         this.isChattingAll = isChattingAll;
 
-        if (rankIndex >= 0 && isOpenChatText)
+        text.text = chatText;
+        text.ForceMeshUpdate(true);
+
+        if (rankIndex >= 0)
         {
             rankImage.sprite = HandlePlayerData.instance.GetRankSprite(rankIndex);
             rankImageShadow.sprite = HandlePlayerData.instance.GetRankSprite(rankIndex);
@@ -73,21 +52,25 @@ public class HandleChatBoxTextPrefabs : MonoBehaviour
             rankImageShadow.enabled = false;
         }
 
-        text.text = chatText;
+        UpdateRankPosition();
+    }
+
+    private void UpdateRankPosition()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
 
         text.ForceMeshUpdate();
 
-        if (isOpenChatText)
-        {
-            // set the position of the rank imgs
-            RectTransform rankImgRect = rankImage.rectTransform;
-            RectTransform rankShadowImgRect = rankImageShadow.rectTransform;
+        RectTransform rankImgRect = rankImage.rectTransform;
+        RectTransform rankShadowImgRect = rankImageShadow.rectTransform;
 
-            // get the y pos
-            float verticalRankIncreaseAmount = (text.textInfo.lineCount - 1) * yPosIncreaseAmount;
+        int lines = Mathf.Max(1, text.textInfo.lineCount) - 1;
 
-            rankImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankImgRect.anchoredPosition.y + verticalRankIncreaseAmount);
-            rankShadowImgRect.anchoredPosition = new(isChattingAll ? allChatPos : teamChatPos, rankShadowImgRect.anchoredPosition.y + verticalRankIncreaseAmount);
-        }
+        float newRankY = initialRankY + (lines * yPosIncreaseAmount);
+        float newShadowY = initialShadowY + (lines * yPosIncreaseAmount);
+
+        rankImgRect.anchoredPosition = new Vector2(isChattingAll ? allChatPos : teamChatPos, newRankY);
+        rankShadowImgRect.anchoredPosition = new Vector2(isChattingAll ? allChatPos : teamChatPos, newShadowY);
     }
 }

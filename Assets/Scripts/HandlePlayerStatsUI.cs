@@ -81,6 +81,9 @@ public class HandlePlayerStatsUI : MonoBehaviour
 
     private bool IsUsernameValid()
     {
+        if (Application.isEditor)
+            return true;
+
         if (usernameInputField.text.Length < 1)
         {
             HandleLobbyUI.instance.SetUsernameErrorTextUI("Username cannot be empty!");

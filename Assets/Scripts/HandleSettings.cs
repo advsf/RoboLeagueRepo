@@ -41,6 +41,14 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private Slider sensSlider;
     [SerializeField] private TMP_InputField sensInputField;
 
+    [Header("Camera FOV Reference")]
+    [SerializeField] private Slider camFOVSlider;
+    [SerializeField] private TMP_InputField camFOVInputField;
+
+    [Header("Shooting Joystick Deadzone Reference")]
+    [SerializeField] private Slider shootJoystickDeadzoneSlider;
+    [SerializeField] private TMP_InputField shootJoystickDeadzoneInputField;
+
     [Header("Mouse Control Reference")]
     [SerializeField] private Toggle invertVerticalToggle;
     [SerializeField] private Toggle invertHorizontalToggle;
@@ -66,6 +74,12 @@ public class HandleSettings : MonoBehaviour
     [Header("Ball Dot Max Size")]
     [SerializeField] private Slider ballDotMaxSizeSlider;
     [SerializeField] private TMP_InputField ballDotMaxSizeInputField;
+
+    [Header("Enable Chat Reference")]
+    [SerializeField] private Toggle enableChatToggle;
+
+    [Header("Moderate Chat Reference")]
+    [SerializeField] private Toggle moderateChatToggle;
 
     [Header("Volume Settings")]
     [SerializeField] private Slider masterVolumeSlider;
@@ -204,6 +218,14 @@ public class HandleSettings : MonoBehaviour
         sensSlider.value = 200;
         UpdateSensitivityThroughSlider();
 
+        // create camFOV value
+        camFOVSlider.value = 60;
+        UpdateCameraFOVThroughSlider();
+
+        // create shooting joystick deadzone
+        shootJoystickDeadzoneSlider.value = 0.05f;
+        UpdateShootingJoystickDeadzoneThroughSlider();
+
         // create mouse invert control values
         invertVerticalToggle.isOn = false;
         invertHorizontalToggle.isOn = false;
@@ -315,19 +337,27 @@ public class HandleSettings : MonoBehaviour
     private void InitializeGameplaySettings()
     {
         // mouse DPI UI
-        mouseDPISlider.value = PlayerPrefs.GetFloat("MouseDPI");
-        mouseDPIInputField.text = PlayerPrefs.GetFloat("MouseDPI").ToString("F2");
+        mouseDPISlider.value = PlayerPrefs.GetFloat("MouseDPI", 200);
+        mouseDPIInputField.text = PlayerPrefs.GetFloat("MouseDPI", 200).ToString("F2");
 
         // sens UI
-        sensSlider.value = FBPP.GetFloat("Sensitivity");
-        sensInputField.text = FBPP.GetFloat("Sensitivity").ToString("F2");
+        sensSlider.value = FBPP.GetFloat("Sensitivity", 400);
+        sensInputField.text = FBPP.GetFloat("Sensitivity", 400).ToString("F2");
+
+        // camera FOV
+        camFOVSlider.value = FBPP.GetFloat("CameraFOV", 60);
+        camFOVInputField.text = FBPP.GetFloat("CameraFOV", 60).ToString("F2");
+
+        // shooting joystick deadzone
+        shootJoystickDeadzoneSlider.value = FBPP.GetFloat("ShootingJoystickDeadzone", 0.05f);
+        shootJoystickDeadzoneInputField.text = FBPP.GetFloat("ShootingJoystickDeadzone", 0.05f).ToString("F2");
 
         // mouse invert UI
-        invertVerticalToggle.isOn = FBPP.GetInt("InvertVerticalMouse") == -1;
-        invertHorizontalToggle.isOn = FBPP.GetInt("InvertHorizontalMouse") == -1;
+        invertVerticalToggle.isOn = FBPP.GetInt("InvertVerticalMouse", 1) == -1;
+        invertHorizontalToggle.isOn = FBPP.GetInt("InvertHorizontalMouse", 1) == -1;
 
         // hud enable UI
-        enableHudToggle.isOn = FBPP.GetInt("EnableHud") == 1;
+        enableHudToggle.isOn = FBPP.GetInt("EnableHud", 1) == 1;
         EnableHud(enableHudToggle.isOn);
 
         // camera distance
@@ -338,14 +368,21 @@ public class HandleSettings : MonoBehaviour
         cameraYOffsetSlider.value = FBPP.GetFloat("CameraYOffset");
         cameraYOffsetInputField.text = FBPP.GetFloat("CameraYOffset").ToString("F2");
 
-        enableBallDotToggle.isOn = FBPP.GetInt("EnableBallDot") == 1;
+        enableBallDotToggle.isOn = FBPP.GetInt("EnableBallDot", 1) == 1;
 
         // ball dot size setting
-        ballDotMinSizeSlider.value = FBPP.GetFloat("BallDotMinSize");
+        ballDotMinSizeSlider.value = FBPP.GetFloat("BallDotMinSize", 0.05f);
         UpdateBallMinSizeThroughSlider();
 
-        ballDotMaxSizeSlider.value = FBPP.GetFloat("BallDotMaxSize");
+        ballDotMaxSizeSlider.value = FBPP.GetFloat("BallDotMaxSize", 0.4f);
         UpdateBallMaxSizeThroughSlider();
+
+        // chat settings
+        enableChatToggle.isOn = FBPP.GetInt("EnableChat", 1) == 1;
+        moderateChatToggle.isOn = FBPP.GetInt("ModerateChat", 1) == 1;
+
+        EnableChat(enableChatToggle.isOn);
+        ModerateChat(moderateChatToggle.isOn);
 
         // volume
         masterVolumeSlider.value = FBPP.GetFloat("MasterVolume");
@@ -360,9 +397,9 @@ public class HandleSettings : MonoBehaviour
         UpdateCrowdVolume();
 
         // dissonance
-        enableProximityChatToggle.isOn = FBPP.GetInt("ProxEnabled") == 1; // 1 = on, 0 = off
+        enableProximityChatToggle.isOn = FBPP.GetInt("ProxEnabled", 1) == 1; // 1 = on, 0 = off
 
-        currentProximityActivationIndex = FBPP.GetInt("ProxActivationMode");
+        currentProximityActivationIndex = FBPP.GetInt("ProxActivationMode", 0);
 
         proximityActivationText.text = proximityActivationTexts[currentProximityActivationIndex];
 
@@ -373,22 +410,22 @@ public class HandleSettings : MonoBehaviour
             inputDeviceText.text = savedMic;
 
         // resolution
-        currentResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex");
+        currentResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", resolutions.Length - 1);
         ApplyResolution();
 
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
         // fullscreen
-        fullScreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen") == 0;
+        fullScreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 0) == 0;
         UpdateFullscreen();
 
         // fullscreen mode
-        currentFullscreenModeIndex = PlayerPrefs.GetInt("FullscreenMode");
+        currentFullscreenModeIndex = PlayerPrefs.GetInt("FullscreenMode", 0);
         UpdateFullscreenMode();
 
         // vsync
-        vSyncToggle.isOn = PlayerPrefs.GetInt("VSync") == 1;
+        vSyncToggle.isOn = PlayerPrefs.GetInt("VSync", 1) == 1;
         UpdateVsync();
 
         // fps
@@ -404,16 +441,20 @@ public class HandleSettings : MonoBehaviour
         currentQualitySettings = FBPP.GetInt("Quality");
         UpdateQuality();
 
+        // render sale
+        renderScaleSlider.value = FBPP.GetFloat("RenderScale", !Application.isMobilePlatform ? 1 : 0.5f);
+        renderScaleInputField.text = FBPP.GetFloat("RenderScale", !Application.isMobilePlatform ? 1 : 0.5f).ToString("F2");
+
         // anti aliasing setting
-        currentAntiAliasingSettings = FBPP.GetInt("AntiAliasing");
+        currentAntiAliasingSettings = FBPP.GetInt("AntiAliasing", !Application.isMobilePlatform ? 0 : 1);
         UpdateAntiAliasing();
 
         // motion blur
-        motionBlurToggle.isOn = FBPP.GetInt("MotionBlur") == 1;
+        motionBlurToggle.isOn = FBPP.GetInt("MotionBlur", 1) == 1;
         UpdateMotionBlur();
 
         // tonemapping
-        currentTonemappingSetting = FBPP.GetInt("Tonemapping");
+        currentTonemappingSetting = FBPP.GetInt("Tonemapping", 2);
         UpdateTonemappingSetting();
     }
 
@@ -495,6 +536,7 @@ public class HandleSettings : MonoBehaviour
     #endregion
 
     #region Sensitivity Settings
+
     public void UpdateSensitivityThroughSlider()
     {
         FBPP.SetFloat("Sensitivity", sensSlider.value);
@@ -507,10 +549,75 @@ public class HandleSettings : MonoBehaviour
     {
         if (float.TryParse(sensInputField.text.ToString(), out float sens))
         {
+            if (sens < sensSlider.minValue || sens > sensSlider.maxValue)
+                return;
+
             FBPP.SetFloat("Sensitivity", sens);
             FBPP.Save();
 
             sensSlider.value = sens;
+        }
+    }
+
+    #endregion
+
+    #region Camera FOV Settings
+
+    public void UpdateCameraFOVThroughSlider()
+    {
+        FBPP.SetFloat("CameraFOV", camFOVSlider.value);
+        FBPP.Save();
+
+        camFOVInputField.text = camFOVSlider.value.ToString("F2");
+
+        UpdateCameraFOVInGame();
+    }
+
+    public void UpdateCameraFOVThroughInputField()
+    {
+        if (float.TryParse(camFOVInputField.text.ToString(), out float FOV))
+        {
+            if (FOV < camFOVSlider.minValue || FOV > camFOVSlider.maxValue)
+                return;
+
+            FBPP.SetFloat("CameraFOV", FOV);
+            FBPP.Save();
+
+            camFOVSlider.value = FOV;
+
+            UpdateCameraFOVInGame();
+        }
+    }
+
+    private void UpdateCameraFOVInGame()
+    {
+        if (PlayerInfo.instance != null)
+            PlayerInfo.instance.GetComponentInChildren<CameraLook>().UpdateCamFOV();
+    }
+
+    #endregion
+
+    #region Shooting Joystick Deadzone Settings
+
+    public void UpdateShootingJoystickDeadzoneThroughSlider()
+    {
+        FBPP.SetFloat("ShootingJoystickDeadzone", shootJoystickDeadzoneSlider.value);
+        FBPP.Save();
+
+        shootJoystickDeadzoneInputField.text = shootJoystickDeadzoneSlider.value.ToString("F2");
+    }
+
+    public void UpdateShootingJoystickDeadzoneThroughInputField()
+    {
+        if (float.TryParse(shootJoystickDeadzoneInputField.text.ToString(), out float deadzone))
+        {
+            if (deadzone < shootJoystickDeadzoneSlider.minValue || deadzone > shootJoystickDeadzoneSlider.maxValue)
+                return;
+
+            FBPP.SetFloat("ShootingJoystickDeadzone", deadzone);
+            FBPP.Save();
+
+            shootJoystickDeadzoneSlider.value = deadzone;
         }
     }
 
@@ -567,7 +674,7 @@ public class HandleSettings : MonoBehaviour
 
     #endregion
 
-    #region Camera Distance Settings
+    #region Camera Y Offset Settings
 
     public void UpdateCameraYOffsetThroughSlider()
     {
@@ -581,6 +688,9 @@ public class HandleSettings : MonoBehaviour
     {
         if (float.TryParse(cameraYOffsetInputField.text.ToString(), out float offset))
         {
+            if (offset < cameraYOffsetSlider.minValue || offset > cameraYOffsetSlider.maxValue)
+                return;
+
             FBPP.SetFloat("CameraYOffset", offset);
             FBPP.Save();
 
@@ -644,6 +754,34 @@ public class HandleSettings : MonoBehaviour
 
             ballDotMaxSizeSlider.value = maxSize;
         }
+    }
+
+    #endregion
+
+    #region Enable Chat Setting
+
+    public void EnableChat(bool isEnabled)
+    {
+        FBPP.SetInt("EnableChat", isEnabled ? 1 : 0);
+        FBPP.Save();
+
+        // if in-game, immedaitely update
+        if (HandleChatbox.instance != null)
+            HandleChatbox.instance.EnableChat(isEnabled);
+    }
+
+    #endregion
+
+    #region Moderate Chat Setting
+
+    public void ModerateChat(bool isEnabled)
+    {
+        FBPP.SetInt("ModerateChat", isEnabled ? 1 : 0);
+        FBPP.Save();
+
+        // if in-game, immedaitely update
+        if (HandleChatbox.instance != null)
+            HandleChatbox.instance.EnableChat(isEnabled);
     }
 
     #endregion

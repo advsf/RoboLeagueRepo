@@ -14,7 +14,7 @@ public class HandleHitbox : NetworkBehaviour
     [SerializeField] private HandleKicking kickScript;
     [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
-    private BallSync ballSynchronizer;
+    private BallSync ballSync;
 
     private bool canSlideKick = true;
 
@@ -25,7 +25,7 @@ public class HandleHitbox : NetworkBehaviour
 
         if (other.gameObject.GetComponent<BallSync>())
         {
-            ballSynchronizer = BallManager.instance.FindNearestBall(transform.position);
+            ballSync = BallManager.instance.FindNearestBall(transform.position);
 
             // with the way this script works, only allow the isKickhitbox enabled script to handle this
             if (PlayerMovement.instance.isSliding && isSlideHitbox && canSlideKick)
@@ -62,7 +62,7 @@ public class HandleHitbox : NetworkBehaviour
             SlideKick = true
         };
 
-        ballSynchronizer.LocalKick(kickPayload, (int)NetworkManager.LocalClientId);
+        ballSync.LocalKick(kickPayload, (int)NetworkManager.LocalClientId, ballSync.ShouldOffsideCountWhenKicking());
     }
 
     private void AllowSlideKick() => canSlideKick = true;

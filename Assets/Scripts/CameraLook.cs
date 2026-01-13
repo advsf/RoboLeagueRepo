@@ -23,6 +23,7 @@ public class CameraLook : NetworkBehaviour
 
     [Header("References")]
     [SerializeField] private Transform player;
+    [SerializeField] private Camera cam;
 
     private float mouseX;
     private float mouseY;
@@ -67,6 +68,8 @@ public class CameraLook : NetworkBehaviour
         instance = this;
 
         HandleCursorSettings.instance.EnableCursor(false, true);
+
+        UpdateCamFOV();
     }
 
     private void LateUpdate()
@@ -93,8 +96,8 @@ public class CameraLook : NetworkBehaviour
                 // mobile input
                 touchDelta = touchPanel.GetTouchDelta;
 
-            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x;
-            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y;
+            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x * Time.deltaTime;
+            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y * Time.deltaTime;
 
             if (isPlayingCamera)
             {
@@ -136,8 +139,14 @@ public class CameraLook : NetworkBehaviour
         else
             transform.localRotation = Quaternion.Euler(yRot, 0f, 0f);
     }
+
     public void EnableCamera(bool condition)
     {
         canCamMove = condition;
+    }
+
+    public void UpdateCamFOV()
+    {
+        cam.fieldOfView = FBPP.GetFloat("CameraFOV");
     }
 }

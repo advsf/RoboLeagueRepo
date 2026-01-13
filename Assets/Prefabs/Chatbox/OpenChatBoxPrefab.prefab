@@ -142,7 +142,6 @@ MonoBehaviour:
   allChatPos: -37.13
   teamChatPos: -24.1
   yPosIncreaseAmount: 10.81
-  isOpenChatText: 1
 --- !u!114 &5934422068537244440
 MonoBehaviour:
   m_ObjectHideFlags: 0

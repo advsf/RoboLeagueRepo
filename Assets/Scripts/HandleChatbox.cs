@@ -8,8 +8,7 @@ public class HandleChatbox : NetworkBehaviour
     public static HandleChatbox instance;
 
     [Header("Prefab References")]
-    [SerializeField] private GameObject openChatText; // to be put in the scrollview with the chat being opened
-    [SerializeField] private GameObject closedChatText; // similar to valorant, when the chat isnt opened show the message without the inputfield
+    [SerializeField] private GameObject chatTextPrefab; // to be put in the scrollview with the chat being opened
 
     [Header("References")]
     [SerializeField] private GameObject quickChatObj;
@@ -80,6 +79,8 @@ public class HandleChatbox : NetworkBehaviour
         if (!IsOwner)
             return;
 
+        EnableChat(FBPP.GetInt("EnableChat") == 1);
+
         PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
         PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
     }
@@ -115,10 +116,26 @@ public class HandleChatbox : NetworkBehaviour
 
         // handle spamming detection and prevent them from doing it
         HandleSpamming();
+
+        // destroy messages for optimization
+        if (openChatParent.childCount > 100)
+            Destroy(openChatParent.GetChild(0).gameObject);
+
+        if (closedChatParent.childCount > 100)
+            Destroy(closedChatParent.GetChild(0).gameObject);
+    }
+
+    public void EnableChat(bool condition)
+    {
+        openedChat.SetActive(condition);
+        closedChat.SetActive(condition);
     }
 
     private void HandleChatToggleInput()
     {
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
+
         if (PlayerInputReference.instance.controls.Gameplay.Chat.WasPressedThisFrame() && !quickChatObj.activeInHierarchy && !emoteChatObj.activeInHierarchy)
         {
             // open up the chatbox
@@ -209,8 +226,8 @@ public class HandleChatbox : NetworkBehaviour
         if (string.IsNullOrEmpty(text))
             return;
 
-        GameObject openTextObj = Instantiate(openChatText, openChatParent);
-        GameObject closedTextObj = Instantiate(closedChatText, closedChatParent);
+        GameObject openTextObj = Instantiate(chatTextPrefab, openChatParent);
+        GameObject closedTextObj = Instantiate(chatTextPrefab, closedChatParent);
 
         string formattedText;
 
@@ -237,18 +254,21 @@ public class HandleChatbox : NetworkBehaviour
                 nameColor = "red";
 
             // add the spaces to give room for the rank image
-            formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username} <color=white>({position}):<color=white> {text}";
+            formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username}</color> <color=white>({position}):<color=white> {text}";
         }
+
+        if (FBPP.GetInt("ModerateChat") == 1)
+            formattedText = ModerateChat(formattedText);
+
+        // open the closed chat agian if it was inactive
+        if (!openedChat.activeInHierarchy && !closedChat.activeInHierarchy)
+            closedChat.SetActive(true);
 
         openTextObj.GetComponent<HandleChatBoxTextPrefabs>().SetChatBoxText(rankIndex, formattedText, isChattingAll);
         closedTextObj.GetComponent<HandleChatBoxTextPrefabs>().SetChatBoxText(rankIndex, formattedText, isChattingAll);
 
         // reset the time since last message
         timeSinceLastMessage = 0;
-
-        // and open the closed chat agian if it was inactive
-        if (!openedChat.activeInHierarchy && !closedChat.activeInHierarchy)
-            closedChat.SetActive(true);
     }
 
     public void SendChatMessage(string text)
@@ -275,8 +295,18 @@ public class HandleChatbox : NetworkBehaviour
         }
     }
 
+    private string ModerateChat(string text)
+    {
+
+
+        return text;
+    }
+
     private void OnInputSubmit(string text)
     {
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
+
         SendChatMessage(text);
     }
 
@@ -313,6 +343,9 @@ public class HandleChatbox : NetworkBehaviour
     [ClientRpc]
     public void SendTextClientRpc(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false, ClientRpcParams clientRpcParams = default)
     {
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
+
         HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
         chatbox.HandleFormattingTexts(isChattingAll, rankIndex, teamColor, username, position, text, isServer);
