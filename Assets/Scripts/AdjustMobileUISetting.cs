@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHandler
 {
-    [SerializeField] private float scaleSpeed = 0.005f;
+    [SerializeField] private float increaseScaleAmount = 0.3f;
+    [SerializeField] private float decreaseScaleAmount = 0.3f;
+    [SerializeField] private Image greenIndicatorUI;
+
     private RectTransform rectTransform;
     private Canvas canvas;
-    private bool isTouching = false;
 
     private void Awake()
     {
@@ -16,6 +19,10 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
 
     private void OnEnable()
     {
+        InitializeData();
+
+        EnableVisualHitboxUI(false);
+
         LoadLayout();   
     }
 
@@ -24,27 +31,20 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
         SaveLayout();
     }
 
-    private void Update()
+    public void IncreaseScale()
     {
-        // pinch to make the UI smaller or bigger
-        if (!isTouching || Input.touchCount != 2)
-            return;
+        float newSize = rectTransform.localScale.x + increaseScaleAmount;
+        newSize = Mathf.Clamp(newSize, 0.9990874f, 5);
 
-        Touch touchZero = Input.GetTouch(0);
-        Touch touchOne = Input.GetTouch(1);
+        rectTransform.localScale = new(newSize, newSize, newSize);
+    }
 
-        Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-        Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+    public void DecreaseScale()
+    {
+        float newSize = rectTransform.localScale.x - decreaseScaleAmount;
+        newSize = Mathf.Clamp(newSize, 0.9990874f, 5);
 
-        float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-        float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-        float deltaMagnitudeDiff = touchDeltaMag - prevTouchDeltaMag;
-
-        float newSize = rectTransform.localScale.x + (deltaMagnitudeDiff * scaleSpeed);
-        newSize = Mathf.Clamp(newSize, 0.5f, 5);
-
-        rectTransform.localScale = new (newSize, newSize, newSize);
+        rectTransform.localScale = new(newSize, newSize, newSize);
     }
 
     private void LoadLayout()
@@ -78,18 +78,24 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
 
     public void OnDrag(PointerEventData eventData)
     {
+        ManageAllMobileUIButtons.instance.AllowEditingOnThisMobileUIButton(this);
+
+        EnableVisualHitboxUI(true);
+
         // move the UI
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        isTouching = true; 
+        ManageAllMobileUIButtons.instance.AllowEditingOnThisMobileUIButton(this);
+
+        EnableVisualHitboxUI(true);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void EnableVisualHitboxUI(bool condition)
     {
-        isTouching = false; 
+        greenIndicatorUI.enabled = condition;
     }
 
     public void SaveLayout()

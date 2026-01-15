@@ -292,8 +292,6 @@ public class PlayerInfo : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        spectatingRb.position = new(0, 20, 0);
-
         // remove their spot, if any
         ServerManager.instance.RequestSpectateServerRpc();
 

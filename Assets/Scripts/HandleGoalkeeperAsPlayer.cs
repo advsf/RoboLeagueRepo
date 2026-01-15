@@ -207,7 +207,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
         PlayerMovement.instance.DisableMovement(true);
 
-        rb.AddForce(upwardDiveForce * transform.up, ForceMode.Impulse);
+        if (moveDirection.sqrMagnitude > 0.01f)
+            rb.AddForce(upwardDiveForce * transform.up, ForceMode.Impulse);
 
         while (timer < diveDuration)
         {

@@ -96,8 +96,8 @@ public class CameraLook : NetworkBehaviour
                 // mobile input
                 touchDelta = touchPanel.GetTouchDelta;
 
-            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x * Time.deltaTime;
-            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y * Time.deltaTime;
+            mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x;
+            mouseY = mouseDelta.y * FBPP.GetInt("InvertVerticalMouse") + touchDelta.y;
 
             if (isPlayingCamera)
             {

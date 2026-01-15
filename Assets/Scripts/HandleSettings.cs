@@ -475,6 +475,8 @@ public class HandleSettings : MonoBehaviour
     {
         mobileReadjustCanvaObj.SetActive(false);
 
+        ManageAllMobileUIButtons.instance.ResetSelectedUIButton();
+
         if (PlayerInfo.instance != null)
             HandleMobileUI.instance.HandleUpdatingAllUICustomization();
     }
@@ -1186,8 +1188,8 @@ public class HandleSettings : MonoBehaviour
                 break;
         }
 
-        PlayerPrefs.SetInt("AntiAliasing", currentAntiAliasingSettings);
-        PlayerPrefs.Save();
+        FBPP.SetInt("AntiAliasing", currentAntiAliasingSettings);
+        FBPP.Save();
     }
 
     public void GoToNextAntiAliasingSetting()

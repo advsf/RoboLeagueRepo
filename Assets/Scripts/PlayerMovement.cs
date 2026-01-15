@@ -85,7 +85,6 @@ public class PlayerMovement : NetworkBehaviour
     public bool IsSprinting { 
         get
         {
-            bool isSprintingOnMobile = PlayerInputReference.instance.controls.Gameplay.Sprint.IsPressed();
             bool isSprintingOnPC = PlayerInputReference.instance.controls.Gameplay.Sprint.ReadValue<float>() > 0;
 
             if (!canSprint || isSprintingDisabled || !IsWalking)
@@ -97,6 +96,8 @@ public class PlayerMovement : NetworkBehaviour
                 return isSprintingOnMobile;
         }
     }
+
+
     public bool IsWalkingForward { get => inputDirection2D.y > 0 && !isSliding; }
     public bool IsWalkingBackwards { get => inputDirection2D.y < 0 && !isSliding; }
     public bool IsStrafingLeft { get => inputDirection2D.x < 0 && !isSliding; }
@@ -112,6 +113,8 @@ public class PlayerMovement : NetworkBehaviour
     public bool isSprinting { get => IsWalking && IsSprinting;  }
 
     public bool isMovementDisabled = false;
+
+    private bool isSprintingOnMobile = false;
 
     public override void OnNetworkSpawn()
     {
@@ -156,7 +159,8 @@ public class PlayerMovement : NetworkBehaviour
         GatherInput();
         HandleStamina();
 
-        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || Application.isMobilePlatform) return;
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || Application.isMobilePlatform) 
+            return;
 
         if (!isStaminaRecharging)
         {
@@ -452,11 +456,18 @@ public class PlayerMovement : NetworkBehaviour
     public Vector3 GetPlayerMoveDirection() => moveDirection;
 
     #region UI Functions (called via button for mobile)
+    
+    public void ToggleSprintViaUI()
+    {
+        isSprintingOnMobile = !isSprintingOnMobile;
+    }
 
     public void JumpViaUI()
     {
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
+
+        Debug.Log("jumping!");
 
         if (canJump && isGrounded && !isStaminaRecharging)
             Jump();
@@ -467,14 +478,18 @@ public class PlayerMovement : NetworkBehaviour
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
 
+        Debug.Log("dashing!");
+
         if (canDash && isGrounded && !isStaminaRecharging)
             Dash();
     }
 
     public void SlideViaUI()
     {
-        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
+        if (isSliding || isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
+
+        Debug.Log("sliding!");
 
         if (canSlide && isGrounded && !isStaminaRecharging)
             StartCoroutine(Slide());

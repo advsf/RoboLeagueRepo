@@ -18,6 +18,7 @@ public class HandleChatbox : NetworkBehaviour
     [SerializeField] private GameObject openedChat; // when the chat is opened
     [SerializeField] private Transform openChatParent;
     [SerializeField] private Transform closedChatParent;
+    [SerializeField] private ProfanityFilter profanityFilter;
 
     [Header("UI References")]
     [SerializeField] private TMP_InputField inputField;
@@ -30,6 +31,7 @@ public class HandleChatbox : NetworkBehaviour
     private bool isChattingGlobally;
 
     [Header("Spam Detection")]
+    [SerializeField] private int maxCharacterLimit = 250;
     [SerializeField] private int maxAmountOfText = 5; // max amount of time 
     [SerializeField] private float spamDuration; // time before user can type again
     public bool canText = true;
@@ -72,6 +74,10 @@ public class HandleChatbox : NetworkBehaviour
         currentChatOption.text = "(ALL)";
 
         inputField.onSubmit.AddListener(OnInputSubmit);
+
+        // limit
+        inputField.characterLimit = maxCharacterLimit;
+        mobileInputField.characterLimit = maxCharacterLimit;
     }
 
     private void OnEnable()
@@ -116,13 +122,6 @@ public class HandleChatbox : NetworkBehaviour
 
         // handle spamming detection and prevent them from doing it
         HandleSpamming();
-
-        // destroy messages for optimization
-        if (openChatParent.childCount > 100)
-            Destroy(openChatParent.GetChild(0).gameObject);
-
-        if (closedChatParent.childCount > 100)
-            Destroy(closedChatParent.GetChild(0).gameObject);
     }
 
     public void EnableChat(bool condition)
@@ -231,6 +230,9 @@ public class HandleChatbox : NetworkBehaviour
 
         string formattedText;
 
+        if (FBPP.GetInt("ModerateChat") == 1)
+            text = profanityFilter.CheckForProfanity(text);
+
         // if the server sent the message
         if (isServer)
             formattedText = $"<color=yellow>{text}";
@@ -257,9 +259,6 @@ public class HandleChatbox : NetworkBehaviour
             formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username}</color> <color=white>({position}):<color=white> {text}";
         }
 
-        if (FBPP.GetInt("ModerateChat") == 1)
-            formattedText = ModerateChat(formattedText);
-
         // open the closed chat agian if it was inactive
         if (!openedChat.activeInHierarchy && !closedChat.activeInHierarchy)
             closedChat.SetActive(true);
@@ -269,6 +268,13 @@ public class HandleChatbox : NetworkBehaviour
 
         // reset the time since last message
         timeSinceLastMessage = 0;
+
+        // destroy messages for optimization
+        if (openChatParent.childCount > 100)
+            Destroy(openChatParent.GetChild(0).gameObject);
+
+        if (closedChatParent.childCount > 100)
+            Destroy(closedChatParent.GetChild(0).gameObject);
     }
 
     public void SendChatMessage(string text)
@@ -293,13 +299,6 @@ public class HandleChatbox : NetworkBehaviour
             mobileInputField.text = "";
             mobileInputField.DeactivateInputField();
         }
-    }
-
-    private string ModerateChat(string text)
-    {
-
-
-        return text;
     }
 
     private void OnInputSubmit(string text)
