@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization;
 
 public class HandleChatbox : NetworkBehaviour
 {
@@ -219,7 +220,7 @@ public class HandleChatbox : NetworkBehaviour
             amountOfTextSent--;
     }
 
-    public void HandleFormattingTexts(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false)
+    public void HandleFormattingTexts(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, LocalizedString localizedString = null, bool isServer = false)
     {
         // if there isnt a message
         if (string.IsNullOrEmpty(text))
@@ -235,7 +236,9 @@ public class HandleChatbox : NetworkBehaviour
 
         // if the server sent the message
         if (isServer)
-            formattedText = $"<color=yellow>{text}";
+        {
+            formattedText = $"<color=yellow>{localizedString.GetLocalizedString()}";
+        }
 
         else
         {
