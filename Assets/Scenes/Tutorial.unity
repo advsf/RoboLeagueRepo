@@ -3442,6 +3442,150 @@ MonoBehaviour:
   spawnBallInFrontForce: 0
   spawnBallInFrontForceLower: 0
   spawnBallToSideUpwardsForce: 0
+  waitingForPlayersLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: WAITING FOR PLAYERS...
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  startingGameLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: GAME STARTING IN
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  matchOverLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: MATCH OVER
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  offsideLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: OFFSIDE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  halftimeLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: HALFTIME
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  indirectFreeKickLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: INDIRECT FREEKICK
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  goalkickLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: GOAL KICK
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  throwInLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: THROW IN
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  cornerKickLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: CORNER KICK
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didWinMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_WIN_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didLoseMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_LOSE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didTieMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_TIE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didNotPlayEnoughMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userConnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_CONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userDisconnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_DISCONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userJoinedTeamLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_JOINED_TEAM_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   networkPlayerObj: {fileID: 2413559938881226704, guid: 2b5f56325470dff4ea6aa5707b371e5f,
     type: 3}
   originalBallSpawnPos: {fileID: 822947527}
@@ -3561,6 +3705,9 @@ MonoBehaviour:
   didKickOffEnd:
     m_InternalValue: 0
   isTesting: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &116501632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7488,6 +7635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 942823248}
   proceedButton: {fileID: 1708901461}
+  currentStageNumber: 4
   messageText: now you will learn how to shoot. hold the left mouse button to charge
     up a kick. you can add height by looking up before you kick the ball.
   mobileMessageText: now you will learn how to shoot. hold the joystick with the
@@ -14837,6 +14985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 48118099}
   proceedButton: {fileID: 748652917}
+  currentStageNumber: 5
   messageText: now that you know how to kick, you will learn how to add spin onto
     the ball. simply flick the ball with your mouse before you shoot to make the
     ball spin in that direction. spin shots are faster than non-spin shots.
@@ -14916,6 +15065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1034019686}
   proceedButton: {fileID: 597442810}
+  currentStageNumber: 13
   messageText: You can also press T to catch the ball when you are grounded. You
     must make sure that you are on top of the ball to ensure that you can actually
     catch the ball. Useful for completely stopping attacks.
@@ -15305,6 +15455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1148562682}
   proceedButton: {fileID: 774448871}
+  currentStageNumber: 1
   messageText: welcome to this tutorial! for the first stage, you will learn the
     basics of movement. Use WASD to move, left-shift to sprint, space to jump, left-control
     to slide, and e to dash.
@@ -18126,6 +18277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2062681139}
   proceedButton: {fileID: 1348848709}
+  currentStageNumber: 7
   messageText: cf's next ability "speedster" allows you to move faster for a short
     duration. this can be used to make a quick run through the defences to create
     plays.
@@ -21548,6 +21700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1908810164}
   proceedButton: {fileID: 661308998}
+  currentStageNumber: 8
   messageText: As a midfielder (LMF/RMF), you will have the ability to "trap" the
     ball, or stop the ball's velocity entirely. to use this, you should get near
     the ball and use the ability. useful for catching high passes or fast moving
@@ -26372,6 +26525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 284426509}
   proceedButton: {fileID: 1340700990}
+  currentStageNumber: 16
   messageText: Congratulations on passing the tutorial! Now that you have learned
     the basics, you can either play a full online match with other people or continue
     to develop your skills by joining a practice server. There's a lot more hidden
@@ -27493,6 +27647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 276538385}
   proceedButton: {fileID: 1210408996}
+  currentStageNumber: 10
   messageText: as a defender (CB), you have access to two defensive moves. the first
     one is called "kill", and to use it you must aim at a player to temporarily stun
     them. this can be extremely effective at stopping attacks.
@@ -30606,6 +30761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 770976162}
   proceedButton: {fileID: 2119016883}
+  currentStageNumber: 11
   messageText: Your next defensive ability is called "deflect", and it allows you
     to deflect balls in the air. this can be used to block high passes or shots.
     really powerful if used well.
@@ -31318,6 +31474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1673541729}
   proceedButton: {fileID: 1046688981}
+  currentStageNumber: 12
   messageText: as a gk, you won't have any abilities. however, you are able to dive
     and deflect the ball upon contact. press q to dive in the direction that your
     player is moving, and jump before diving to cover the air.
@@ -36732,6 +36889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 13200255}
   proceedButton: {fileID: 1701238854}
+  currentStageNumber: 3
   messageText: next, you will learn how to dribble. use your right mouse button to
     trigger a dribble move, which will make the ball follow the direction of your
     player. useful for cutting through defenses.
@@ -36910,6 +37068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 560828763}
   proceedButton: {fileID: 361287061}
+  currentStageNumber: 6
   messageText: Each position has two unique abilities (except for midfield positions).
     Starting with cf, the powerkick ability allows you to shoot with a greater power,
     provided that you time the shooting bar well. to get a perfect timing, you must
@@ -49961,7 +50120,28 @@ MonoBehaviour:
   scoredByText: {fileID: 1590955039}
   assistedByText: {fileID: 1439293341}
   goalScoreAnimationDuration: 4
+  scoredByLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 'SCORED BY:'
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  assistedByLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 'ASSISTED BY:'
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   ballSync: {fileID: 1596709731}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1596049789
 GameObject:
   m_ObjectHideFlags: 0
@@ -51253,6 +51433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 231837205}
   proceedButton: {fileID: 325078173}
+  currentStageNumber: 14
   messageText: "once the ball is in your hands, you have two options: drop kick the
     ball or roll the ball. in order to perform a drop kick, you will use your left
     mouse button to charge up your drop kick\u2014the same as charging up a regular
@@ -52604,6 +52785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 175448370}
   proceedButton: {fileID: 98700213}
+  currentStageNumber: 9
   messageText: your next ability as a midfielder allows you to perform a roulette
     move, or a spin move that drags the ball with your player. performing this move
     gives you a slight speed boost as well. to use it, you must be the last kicker
@@ -55441,6 +55623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 396201259}
   proceedButton: {fileID: 1252509808}
+  currentStageNumber: 2
   messageText: you can add force to the ball by sliding into it by pressing left
     control. this is useful for tackling the ball out of opponents or to deflect
     a low-driven shot. now, slide the ball into the barrier.
@@ -62437,6 +62620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2018000032}
   proceedButton: {fileID: 1967791571}
+  currentStageNumber: 15
   messageText: To perform a roll pass, you must have the ball in your hands. Then,
     hold your right mouse button (the same as dribbling) to charge up a roll pass
     then let go of the button to release the ball. This will execute a short but

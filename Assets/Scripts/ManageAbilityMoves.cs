@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
 using TMPro;
-using System;
+using UnityEngine.Localization;
 
 public class ManageAbilityMoves : NetworkBehaviour
 {
@@ -32,6 +32,7 @@ public class ManageAbilityMoves : NetworkBehaviour
     [Header("Other References")]
     [SerializeField] private AnimationStateController animationController;
     [SerializeField] private Rigidbody playerRb;
+    [SerializeField]
 
     private Rigidbody ballRb;
 
@@ -86,15 +87,15 @@ public class ManageAbilityMoves : NetworkBehaviour
 
         // make a error message
         if (ballSynchronizer.lastKickedClientId.Value == (int)OwnerClientId)
-            HandleAbilityMessageUI("Can't deflect your own shot!");
+            HandleAbilityMessageUI("CANNOT DEFLECT YOUR OWN SHOT!");
 
         else if (ballSynchronizer.lastKickedClientId.Value < 0 && !ServerManager.instance.isTutorialServer)
-            HandleAbilityMessageUI("Can't deflect goal kicks!");
+            HandleAbilityMessageUI("CANNOT DEFLECT GOAL KICKS!");
 
         else if (ballRb.transform.position.y < minYHeightOfBallToDeflect)
-            HandleAbilityMessageUI("Can't deflect low balls!");
+            HandleAbilityMessageUI("CANNOT DEFLECT LOW BALLS!");
         else
-            HandleAbilityMessageUI("Too far!");
+            HandleAbilityMessageUI("TOO FAR!");
 
         // lower cooldown if we couldn't deflect
         StartCoroutine(StartCustomCooldown(0, lowerCooldown, deflect));
@@ -106,7 +107,7 @@ public class ManageAbilityMoves : NetworkBehaviour
         if (!PlayerMovement.instance.IsOnGround)
         {
             // make a error message
-            HandleAbilityMessageUI("Must be on the ground!");
+            HandleAbilityMessageUI("MUST BE ON THE GROUND!");
             StartCoroutine(StartCustomCooldown(0, 2f, kick));
             return;
         }
@@ -114,7 +115,7 @@ public class ManageAbilityMoves : NetworkBehaviour
         if (!ServerManager.instance.didStartGame.Value && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isPracticeServer)
         {
             // make a error message
-            HandleAbilityMessageUI("Cannot use the ability before the game starts!");
+            HandleAbilityMessageUI("CANNOT USE THIS ABILITY BEFORE THE GAME STARTS!");
             StartCoroutine(StartCustomCooldown(0, 2f, kick));
             return;
         }
@@ -157,7 +158,7 @@ public class ManageAbilityMoves : NetworkBehaviour
                     // we cannot kick goalkeeprs
                     if (hitInfo.currentPosition.Value.Equals("GK"))
                     {
-                        HandleAbilityMessageUI("Cannot kick goalkeepers!");
+                        HandleAbilityMessageUI("CANNOT KICK GOALKEEPERS!");
                         StartCoroutine(StartCustomCooldown(0, 2f, kick));
                         break;
                     }
@@ -205,14 +206,14 @@ public class ManageAbilityMoves : NetworkBehaviour
     {
         if (!PlayerMovement.instance.IsOnGround)
         {
-            HandleAbilityMessageUI("Must be on the ground!");
+            HandleAbilityMessageUI("MUST BE ON THE GROUND!");
             StartCoroutine(StartCustomCooldown(0, 2f, roulette));
             return;
         }
 
         if (ServerManager.instance.isStartingGame.Value)
         {
-            HandleAbilityMessageUI("Cannot roulette right now!");
+            HandleAbilityMessageUI("CANNOT ROULETTE RIGHT NOW!");
             StartCoroutine(StartCustomCooldown(0, 2f, roulette));
             return;
         }
@@ -273,10 +274,10 @@ public class ManageAbilityMoves : NetworkBehaviour
 
         // handle the error message
         if (ballSynchronizer.lastKickedClientId.Value != (int)OwnerClientId)
-            HandleAbilityMessageUI("You must be the last kicker!");
+            HandleAbilityMessageUI("YOU MUST BE THE LAST KICKER!");
 
         else
-            HandleAbilityMessageUI("Not in range!");
+            HandleAbilityMessageUI("NOT IN RANGE!");
 
         // play the animation again to show feedback
         animationController.PlayRouletteAnimation();
@@ -289,7 +290,7 @@ public class ManageAbilityMoves : NetworkBehaviour
     {
         if (BallManager.instance.mainBallSync.isOutOfPlay.Value || ServerManager.instance.isStartingGame.Value)
         {
-            HandleAbilityMessageUI("Cannot trap right now!");
+            HandleAbilityMessageUI("CANNOT TRAP RIGHT NOW!");
             StartCoroutine(StartCustomCooldown(0, 2f, trap));
             return;
         }
@@ -351,13 +352,13 @@ public class ManageAbilityMoves : NetworkBehaviour
     {
         if (ServerManager.instance.didStartGame.Value || ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
         {
-            HandleAbilityMessageUI("Increased speed!");
+            HandleAbilityMessageUI("INCREASED SPEED!");
             PlayerMovement.instance.IncreaseSpeedForDuration(speedIncrease, duration, speedster);
         }
 
         else
         {
-            HandleAbilityMessageUI("Cannot use this ability before the game starts!");
+            HandleAbilityMessageUI("CANNOT USE THIS ABILITY BEFORE THE GAME STARTS!");
             StartCoroutine(TriggerDelayedCooldown(2f, 1f, speedster));
         }
     }
@@ -400,8 +401,11 @@ public class ManageAbilityMoves : NetworkBehaviour
 
         // slow down player
         StartCoroutine(PlayerMovement.instance.LimitSpeedToWalkingSpeed(true, 0));
-        
-        HandleRouletteServerRpc(transform.position, transform.forward, Time.time - PlayerInfo.instance.ping.Value / 1000.0f, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce);
+
+        // calculate based on ping -> higher ping = longer duration
+        float rouletteDelay = Mathf.Max(50f, Time.time - PlayerInfo.instance.ping.Value / 1000.0f);
+
+        HandleRouletteServerRpc(transform.position, transform.forward, rouletteDelay, animationDuration, speedBoostAmount, speedBoostDuration, ballExitForce);
     }
 
     [ServerRpc]
@@ -506,10 +510,11 @@ public class ManageAbilityMoves : NetworkBehaviour
         StartCoroutine(StartCooldown(0, deflect));
     }
 
-    public void HandleAbilityMessageUI(string message)
+    public void HandleAbilityMessageUI(string localizationKey)
     {
         abilityMessageUIObj.SetActive(true);
-        abilityMessageText.text = message;
+
+        abilityMessageText.text = new LocalizedString("Table1", localizationKey).GetLocalizedString();
 
         SoundManager.instance.PlayDingSound();
 

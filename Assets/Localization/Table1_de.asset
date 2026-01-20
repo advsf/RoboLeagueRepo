@@ -1,0 +1,1061 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Table1_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 59661c4d3ba204b4aaa1e25747ce201f, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 752613887239520727
+  m_TableData:
+  - m_Id: 436774604689409
+    m_Localized: VERBINDEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689408
+    m_Localized: AKTUALISIEREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4783895793672
+    m_Localized: Aktualisieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6945124175876
+    m_Localized: AUSFAHRT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305920184320
+    m_Localized: EMPFINDLICHKEIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098880
+    m_Localized: KAMERA-FOV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098881
+    m_Localized: KAMERA Y-OFFSET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098882
+    m_Localized: "Schie\xDF-Joystick-Todeszone"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098883
+    m_Localized: MAUS VERTIKAL INVERTIEREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098884
+    m_Localized: Maus horizontal umkehren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098885
+    m_Localized: Kugelpunkt aktivieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098886
+    m_Localized: "BALL DOT MINDESTGR\xD6SSE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098887
+    m_Localized: "MAXIMALE GR\xD6SSE DER BALLPUNKTE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098888
+    m_Localized: HUD AKTIVIEREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098889
+    m_Localized: Chat aktivieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098890
+    m_Localized: "M\xE4\xDFiger Chat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098891
+    m_Localized: "MOBILE BENUTZEROBERFL\xC4CHE ANPASSEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098892
+    m_Localized: "AUFL\xD6SUNG"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098893
+    m_Localized: VOLLBILDMODUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098894
+    m_Localized: FPS-LIMIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098895
+    m_Localized: VOLLBILD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098896
+    m_Localized: VSYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098897
+    m_Localized: "QUALIT\xC4T"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098898
+    m_Localized: RENDER-SKALA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098899
+    m_Localized: Anti-Aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098900
+    m_Localized: TONEMAPPING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098901
+    m_Localized: "Bewegungsunsch\xE4rfe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098902
+    m_Localized: MASTERVOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098903
+    m_Localized: "SPIELERLAUTST\xC4RKE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098904
+    m_Localized: "MUSIKLAUTST\xC4RKE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098905
+    m_Localized: "EMOTIONEN-LAUTST\xC4RKE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098906
+    m_Localized: Zuschaueraufkommen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098907
+    m_Localized: "CHAT IN DER N\xC4HE AKTIVIEREN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098908
+    m_Localized: Sprachaktivierung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098909
+    m_Localized: "EINGABEGER\xC4T"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098910
+    m_Localized: "DR\xDCCKTASTE ZUM SPRECHEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098911
+    m_Localized: "(KANN NICHT GE\xC4NDERT WERDEN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098912
+    m_Localized: SCHLIESSEINSTELLUNGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098913
+    m_Localized: "AUF STANDARD ZUR\xDCCKSETZEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098914
+    m_Localized: "VORW\xC4RTS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098915
+    m_Localized: "R\xDCCKW\xC4RTS GEHEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098916
+    m_Localized: NACH LINKS BEWEGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098917
+    m_Localized: NACH RECHTS BEWEGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098918
+    m_Localized: DRIBBELN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098919
+    m_Localized: "LINKE F\xC4HIGKEIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098920
+    m_Localized: "RECHTE F\xC4HIGKEIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098921
+    m_Localized: SPRINGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098922
+    m_Localized: GLEITEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098923
+    m_Localized: BINDESTRICH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098924
+    m_Localized: GK DIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098925
+    m_Localized: SPAWN BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098926
+    m_Localized: OFFENE RANGLISTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098927
+    m_Localized: "CHAT-EINSTELLUNGEN \xC4NDERN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098928
+    m_Localized: Schnellchat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098929
+    m_Localized: SPIELVERLAUF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293184
+    m_Localized: BILDSCHIRM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293185
+    m_Localized: BEDIENELEMENTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293186
+    m_Localized: GRAFIK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293187
+    m_Localized: VIDEO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293188
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293189
+    m_Localized: HAAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293190
+    m_Localized: "ZUBEH\xD6R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293191
+    m_Localized: Emotes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293192
+    m_Localized: "B\xE4lle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293193
+    m_Localized: Wege
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293194
+    m_Localized: JERSEY-EINSTELLUNGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293195
+    m_Localized: TRIKONAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293196
+    m_Localized: TRIKONNUMMER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293197
+    m_Localized: MAX. 6 ZEICHEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293198
+    m_Localized: AN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293199
+    m_Localized: AUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293200
+    m_Localized: IP-Adresse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503401037824
+    m_Localized: ANPASSEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503455563776
+    m_Localized: ANWENDEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35177865203712
+    m_Localized: WARTEN AUF EINGABE...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37113381310464
+    m_Localized: KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37690567872512
+    m_Localized: "Torwart f\xE4ngt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267456
+    m_Localized: "ALLE R\xE4nge anzeigen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267457
+    m_Localized: "BENUTZERNAME \xC4NDERN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267458
+    m_Localized: AKTUALISIERUNGSPROTOKOLLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267459
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267460
+    m_Localized: '{xp}/100 LEGENDE-EP'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 324502469267461
+    m_Localized: '{xp}/100 EP BIS ZU {rankName}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 332782952304640
+    m_Localized: 'BENUTZERNAME: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 332782952304641
+    m_Localized: 'TORE: {goals} | VORLAGEN: {assists} | PARADEN: {saves}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 435748812148736
+    m_Localized: Sitzungsname
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748858286080
+    m_Localized: Sitzungscode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748862480384
+    m_Localized: ERSTELLEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683840
+    m_Localized: SERVERINFORMATIONEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683841
+    m_Localized: 'HALBZEITDAUER: {duration}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878144
+    m_Localized: 'PAUSENDAUER: {duration}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878145
+    m_Localized: 'BALL-SCHUSS-MULTIPLIKATOR: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878146
+    m_Localized: 'BALL-KURVEN-MULTIPLIKATOR: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878147
+    m_Localized: 'SPIELERGESCHWINDIGKEITS-MULTIPLIKATOR: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878148
+    m_Localized: "F\xC4HIGKEIT AKTIVIERT: {enabled}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 445100335878149
+    m_Localized: "F\xC4HIGKEITSABKLINGZEIT AKTIV: {enabled}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 753189333291008
+    m_Localized: Server wird beigetreten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291009
+    m_Localized: Server wird beigetreten..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291010
+    m_Localized: Server wird beigetreten...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790336
+    m_Localized: Ich konnte dem Server nicht beitreten!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790337
+    m_Localized: Beitrittsanfrage fehlgeschlagen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790338
+    m_Localized: SERVER NICHT GEFUNDEN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790339
+    m_Localized: DU WURDEST VON DIESEM SERVER VERBANNT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790340
+    m_Localized: "\xDCBEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790341
+    m_Localized: ANLEITUNG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835392
+    m_Localized: AKTUALISIEREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835393
+    m_Localized: BENUTZERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835394
+    m_Localized: DER BENUTZERNAME DARF NICHT LEER SEIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029696
+    m_Localized: DER BENUTZERNAME DARF NICHT SO LANG SEIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029697
+    m_Localized: "DER BENUTZERNAME DARF KEINE UNG\xDCLTIGEN ZEICHEN ENTHALTEN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 761093557899264
+    m_Localized: WERDEN SIE TEIL UNSERER COMMUNITY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597760
+    m_Localized: "DAUER JEDER H\xC4LFTE (IN SEKUNDEN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597761
+    m_Localized: HALBZEITDAUER (IN SEKUNDEN)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597762
+    m_Localized: (MINDESTENS 60 SEKUNDEN)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597763
+    m_Localized: (MINDESTENS 5 SEKUNDEN)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597764
+    m_Localized: (MINIMUM 0,1X; MAXIMUM 2,5X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597765
+    m_Localized: (MINIMUM 0,1X; MAXIMUM 2X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597766
+    m_Localized: (MINIMUM 0,1X; MAXIMUM 3X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597767
+    m_Localized: "F\xC4HIGKEIT AKTIVIEREN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597768
+    m_Localized: "Abklingzeit der F\xE4higkeit aktivieren"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362880
+    m_Localized: SERVERANPASSUNG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362881
+    m_Localized: "Jede \xC4nderung f\xFChrt dazu, dass der Server keine XP mehr vergibt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200832
+    m_Localized: KICK-SPIELER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200833
+    m_Localized: EINSTELLUNGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200834
+    m_Localized: Zuschauen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200835
+    m_Localized: "ZUR\xDCCK ZUR LOBBY"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200837
+    m_Localized: 'Tor von: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 772988046200838
+    m_Localized: 'Vorlage von: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 782823332564992
+    m_Localized: "KEINE UNTERST\xDCTZUNG"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938752
+    m_Localized: WARTEN AUF SPIELER... {playerCount}
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 783485780938753
+    m_Localized: "DR\xDCCKEN SIE T ZUM STARTEN (M\xDCSSEN MEHR ALS 1 SPIELER SEIN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157409968128
+    m_Localized: "DR\xDCCKEN SIE DIE UNTENSTEHENDE KNOPFSCHRIFT, UM ZU STARTEN (M\xDCSSEN
+      MEHR ALS 1 SPIELER SEIN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020032
+    m_Localized: 'SPIEL BEGINNT IN: {time}...'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020033
+    m_Localized: SPIEL BEENDET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020034
+    m_Localized: ABSEITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020035
+    m_Localized: HALBZEIT ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020036
+    m_Localized: INDIREKTER FREISTOSS ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020037
+    m_Localized: ABSTOSS ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020038
+    m_Localized: EINWURF ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020039
+    m_Localized: ECKSTOSS ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020040
+    m_Localized: "Du hast {xp} EP f\xFCr {goals} Tore, {assists} Vorlagen und {saves}
+      Paraden erhalten!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020041
+    m_Localized: "Du hast {xp} EP f\xFCr die Niederlage verloren!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020042
+    m_Localized: "F\xFCr ein Unentschieden erh\xE4ltst du keine EP!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020043
+    m_Localized: Du hast keine EP erhalten, da du nicht lange genug gespielt hast!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020044
+    m_Localized: '{username} hat sich verbunden'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 805157519020045
+    m_Localized: '{username} hat die Verbindung getrennt'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1115665900032000
+    m_Localized: '{username} ist {team} als {position} beigetreten'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1115665912614912
+    m_Localized: '{username} wurde gekickt'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1118737883779072
+    m_Localized: Ballkick-Multiplikator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499328
+    m_Localized: Kugelkurvenmultiplikator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499329
+    m_Localized: SPIELERGESCHWINDIGKEITS-MULTIPLIKATOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934067929088
+    m_Localized: Keiner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843648
+    m_Localized: "Abf\xE4lschen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1126491130220544
+    m_Localized: Abschluss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843650
+    m_Localized: Kraftschuss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843651
+    m_Localized: Roulette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843652
+    m_Localized: Sprinter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843653
+    m_Localized: Ballannahme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409600
+    m_Localized: ZIELE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423297495040
+    m_Localized: Zum Anzeigen klicken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381121
+    m_Localized: "Torh\xFCter d\xFCrfen nicht getreten werden!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381122
+    m_Localized: "ERH\xD6HTE GESCHWINDIGKEIT!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381123
+    m_Localized: "DIESE F\xC4HIGKEIT KANN NICHT VOR SPIELBEGINN VERWENDET WERDEN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381124
+    m_Localized: Ich kann den Ball meines Teamkollegen nicht fangen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575424
+    m_Localized: DU KANNST DEINEN EIGENEN SCHUSS NICHT ABWEHREN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575425
+    m_Localized: "Torabst\xF6\xDFe k\xF6nnen nicht abgewehrt werden!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575426
+    m_Localized: "NIEDRIGE ANGEBOTE K\xD6NNEN NICHT ABWEHREN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575427
+    m_Localized: ZU WEIT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575428
+    m_Localized: MUSS AUF DEM BODEN LIEGEN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575429
+    m_Localized: "ROULETTE IST GERADE NICHT M\xD6GLICH!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575430
+    m_Localized: DU MUSST DER LETZTE KICKER SEIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575431
+    m_Localized: NICHT IN REICHWEITE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575432
+    m_Localized: FALLE KANN DERZEIT NICHT AUSGESTELLT WERDEN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409601
+    m_Localized: HILFE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409602
+    m_Localized: SPEICHER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409603
+    m_Localized: POSITION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409604
+    m_Localized: KLINGELN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409605
+    m_Localized: SCHICKEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409606
+    m_Localized: Server-Desynchronisation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409607
+    m_Localized: HOHE LATENZ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300736
+    m_Localized: SPAW-EINSTELLUNGEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300737
+    m_Localized: RESET BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300738
+    m_Localized: SPAWN LOW BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300739
+    m_Localized: SPAWN HIGH BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300740
+    m_Localized: SPAWN DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300741
+    m_Localized: "Dummy l\xF6schen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300742
+    m_Localized: GK AKTIVIEREN/DEAKTIVIEREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156324417654784
+    m_Localized: TEXT EINGEBEN...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875371048960
+    m_Localized: Willkommen zu diesem Tutorial! Im ersten Schritt lernst du die Grundlagen
+      der Bewegung. Benutze WASD zum Bewegen, die linke Umschalttaste zum Sprinten,
+      die Leertaste zum Springen, die linke Strg-Taste zum Rutschen und E zum Sprinten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574912
+    m_Localized: "Du kannst dem Ball mehr Kraft verleihen, indem du mit gedr\xFCckter
+      linker Strg-Taste hineinrutschst. Das ist n\xFCtzlich, um Gegnern den Ball
+      abzunehmen oder einen flachen Schuss abzuwehren. Rutsche den Ball nun in die
+      Bande."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574913
+    m_Localized: "Als N\xE4chstes lernst du das Dribbeln. Benutze die rechte Maustaste,
+      um eine Dribbling-Bewegung auszul\xF6sen. Der Ball folgt dabei der Richtung
+      deines Spielers. Das ist n\xFCtzlich, um die gegnerische Abwehr zu durchbrechen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574914
+    m_Localized: "Jetzt lernst du, wie man schie\xDFt. Halte die linke Maustaste
+      gedr\xFCckt, um den Schuss aufzuladen. Du kannst die Schussh\xF6he erh\xF6hen,
+      indem du vor dem Schuss nach oben schaust."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574915
+    m_Localized: "Nachdem du nun wei\xDFt, wie man schie\xDFt, lernst du, wie man
+      dem Ball einen Spin gibt. Tippe den Ball einfach mit der Maus an, bevor du
+      schie\xDFt, um ihm einen Spin zu verleihen. Sch\xFCsse mit Spin sind schneller
+      als Sch\xFCsse ohne Spin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574916
+    m_Localized: "Jede Position verf\xFCgt \xFCber zwei einzigartige F\xE4higkeiten
+      (au\xDFer Mittelfeldpositionen). Beginnen wir mit dem St\xFCrmer: Die F\xE4higkeit
+      \u201EPowerkick\u201C erm\xF6glicht es dir, mit gr\xF6\xDFerer Wucht zu schie\xDFen,
+      vorausgesetzt, du triffst den richtigen Zeitpunkt f\xFCr den Schussbalken.
+      F\xFCr ein perfektes Timing musst du den Ball loslassen, sobald der Balken
+      den wei\xDFen Bereich ber\xFChrt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574917
+    m_Localized: "CFs n\xE4chste F\xE4higkeit \u201ESpeedster\u201C erm\xF6glicht
+      es dir, dich f\xFCr kurze Zeit schneller zu bewegen. Dies kann genutzt werden,
+      um schnell durch die Verteidigung zu st\xFCrmen und Spielz\xFCge einzuleiten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574918
+    m_Localized: "Als Mittelfeldspieler (LMF/RMF) kannst du den Ball \u201Eannehmen\u201C
+      oder seine Geschwindigkeit komplett stoppen. Um diese F\xE4higkeit zu nutzen,
+      solltest du dich in Balln\xE4he positionieren. Sie ist besonders n\xFCtzlich,
+      um hohe P\xE4sse oder schnelle B\xE4lle abzufangen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574919
+    m_Localized: "Deine n\xE4chste F\xE4higkeit als Mittelfeldspieler erlaubt dir
+      einen Roulette-Move, eine Drehung, bei der du den Ball mitziehst. Dieser Move
+      verleiht dir au\xDFerdem einen kleinen Geschwindigkeitsschub. Um ihn einzusetzen,
+      musst du der letzte Schusspartner sein und dich in Balln\xE4he befinden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574920
+    m_Localized: "Als Verteidiger (CB) stehen dir zwei Verteidigungsman\xF6ver zur
+      Verf\xFCgung. Das erste hei\xDFt \u201ET\xF6tungsangriff\u201C und wird durch
+      Anvisieren eines Spielers kurzzeitig bet\xE4ubt. Dies kann \xE4u\xDFerst effektiv
+      sein, um Angriffe zu stoppen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574921
+    m_Localized: "Deine n\xE4chste Verteidigungsf\xE4higkeit hei\xDFt \u201EAblenken\u201C
+      und erm\xF6glicht es dir, B\xE4lle in der Luft abzuwehren. Damit kannst du
+      hohe P\xE4sse oder Sch\xFCsse blocken. Richtig eingesetzt ist sie extrem wirkungsvoll."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574922
+    m_Localized: "Als Torwart hast du keine besonderen F\xE4higkeiten. Du kannst
+      jedoch hechten und den Ball bei Ber\xFChrung abwehren. Dr\xFCcke Q, um in die
+      Richtung zu hechten, in die sich dein Spieler bewegt, und springe vor dem Hechten,
+      um die Luft zu \xFCberbr\xFCcken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574923
+    m_Localized: "Du kannst auch T dr\xFCcken, um den Ball zu fangen, wenn du am
+      Boden bist. Achte darauf, dass du dich \xFCber dem Ball befindest, um ihn auch
+      wirklich fangen zu k\xF6nnen. N\xFCtzlich, um Angriffe komplett zu stoppen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574924
+    m_Localized: "Sobald du den Ball in den H\xE4nden hast, stehen dir zwei M\xF6glichkeiten
+      offen: Du kannst ihn per Dropkick oder per Rollpass spielen. F\xFCr einen Dropkick
+      l\xE4dst du ihn mit der linken Maustaste auf \u2013 genau wie einen normalen
+      Kick. Dropkicks k\xF6nnen weiter und h\xF6her fliegen als Rollp\xE4sse."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574925
+    m_Localized: "Um einen Rollpass auszuf\xFChren, m\xFCssen Sie den Ball in den
+      H\xE4nden halten. Halten Sie dann die rechte Maustaste gedr\xFCckt (wie beim
+      Dribbeln), um den Rollpass aufzuladen, und lassen Sie die Taste anschlie\xDFend
+      los, um den Ball abzuspielen. Dadurch wird ein kurzer, aber besser kontrollierbarer
+      Pass ausgef\xFChrt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574926
+    m_Localized: "Herzlichen Gl\xFCckwunsch zum erfolgreichen Abschluss des Tutorials!
+      Jetzt, da du die Grundlagen kennst, kannst du entweder ein komplettes Online-Match
+      gegen andere Spieler bestreiten oder deine F\xE4higkeiten auf einem \xDCbungsserver
+      weiterentwickeln. Es gibt noch viele weitere versteckte Techniken und coole
+      Features, die in diesem Tutorial nicht behandelt wurden. Viel Erfolg und viel
+      Spa\xDF!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769216
+    m_Localized: "Willkommen zu diesem Tutorial! Im ersten Schritt lernst du die
+      Grundlagen der Steuerung. Benutze den linken Joystick zum Gehen und dr\xFCcke
+      ihn weiter, um zu sprinten. Rechts findest du drei Tasten zum Springen, Rutschen
+      und Sprinten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769217
+    m_Localized: "Du kannst dem Ball mehr Kraft verleihen, indem du mit der Gleittaste
+      dagegen rutschst. Das ist n\xFCtzlich, um Gegnern den Ball abzunehmen oder
+      einen flachen Schuss abzuwehren. Rutsche den Ball nun gegen die Bande."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769218
+    m_Localized: "Als N\xE4chstes lernst du das Dribbeln. Benutze den rechten Joystick
+      und halte die \u201ED\u201C-Taste gedr\xFCckt, um einen Dribbling-Move auszul\xF6sen.
+      Je nach Richtung des Joysticks bewegt sich der Ball in diese Richtung. Das
+      ist n\xFCtzlich, um die gegnerische Abwehr zu durchbrechen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769219
+    m_Localized: "Jetzt lernst du, wie man schie\xDFt. Halte den Joystick gedr\xFCckt
+      und dr\xFCcke die \u201ES\u201C-Taste, um einen Tritt aufzuladen. Du kannst
+      die H\xF6he anpassen, indem du die Kamera vor dem Tritt nach oben bewegst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769220
+    m_Localized: "Nachdem du nun wei\xDFt, wie man schie\xDFt, lernst du, wie man
+      dem Ball einen Spin gibt. Genau wie beim Dribbling bestimmt die Richtung des
+      Joysticks die Spinrichtung. Au\xDFerdem sind Sch\xFCsse mit Spin schneller
+      als Sch\xFCsse ohne Spin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769221
+    m_Localized: "Jede Position verf\xFCgt \xFCber zwei einzigartige F\xE4higkeiten.
+      Beginnen wir mit der CF-Position: Die Powerkick-F\xE4higkeit erm\xF6glicht
+      es dir, mit gr\xF6\xDFerer Kraft zu schie\xDFen, vorausgesetzt, du triffst
+      das richtige Timing. F\xFCr perfektes Timing musst du loslassen, sobald der
+      Balken den wei\xDFen Bereich ber\xFChrt. Du kannst die F\xE4higkeit durch zweimaliges
+      Dr\xFCcken der \u201EL\u201C-Taste aktivieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769222
+    m_Localized: "CFs n\xE4chste F\xE4higkeit \u201ESpeedster\u201C erm\xF6glicht
+      es dir, dich f\xFCr kurze Zeit schneller zu bewegen. Dies kann genutzt werden,
+      um schnell durch die Verteidigung zu sprinten und Spielz\xFCge einzuleiten.
+      Du kannst sie durch zweimaliges Dr\xFCcken der \u201ER\u201C-Taste aktivieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769223
+    m_Localized: "Als Mittelfeldspieler (LMF/RMF) kannst du den Ball \u201Eannehmen\u201C
+      oder seine Geschwindigkeit komplett stoppen. Um diese F\xE4higkeit zu nutzen,
+      solltest du dich in Balln\xE4he positionieren. Sie ist besonders n\xFCtzlich,
+      um hohe P\xE4sse oder schnelle B\xE4lle abzufangen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769224
+    m_Localized: "Deine n\xE4chste F\xE4higkeit als Mittelfeldspieler erlaubt dir
+      einen Roulette-Move, eine Drehung, bei der du den Ball mitziehst. Dieser Move
+      verleiht dir au\xDFerdem einen kleinen Geschwindigkeitsschub. Um ihn einzusetzen,
+      musst du der letzte Schusspartner sein und dich in Balln\xE4he befinden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769225
+    m_Localized: "Als Verteidiger (CB) stehen dir zwei Verteidigungsman\xF6ver zur
+      Verf\xFCgung. Das erste hei\xDFt \u201ET\xF6tungsangriff\u201C und wird durch
+      Anvisieren eines Spielers kurzzeitig bet\xE4ubt. Dies kann \xE4u\xDFerst effektiv
+      sein, um Angriffe zu stoppen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769226
+    m_Localized: "Deine n\xE4chste Verteidigungsf\xE4higkeit hei\xDFt \u201EAblenken\u201C
+      und erm\xF6glicht es dir, B\xE4lle in der Luft abzuwehren. Damit kannst du
+      hohe P\xE4sse oder Sch\xFCsse blocken. Richtig eingesetzt ist sie extrem wirkungsvoll."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769227
+    m_Localized: "Als Torwart hast du keine besonderen F\xE4higkeiten. Du kannst
+      jedoch hechten und den Ball bei Ber\xFChrung abwehren. Dr\xFCcke die Taste
+      \u201ED\u201C, um in die Richtung zu hechten, in die sich dein Spieler bewegt,
+      und springe vor dem Hechten, um die Luft zu \xFCberbr\xFCcken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769228
+    m_Localized: "Du kannst auch die Taste \u201EC\u201C dr\xFCcken, um den Ball
+      zu fangen, wenn du am Boden bist. Das ist n\xFCtzlich, um Angriffe komplett
+      zu stoppen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769229
+    m_Localized: "Sobald du den Ball in den H\xE4nden hast, stehen dir zwei M\xF6glichkeiten
+      offen: Du kannst ihn per Dropkick oder per Rollpass spielen. F\xFCr einen Dropkick
+      f\xFChrst du einen normalen Schuss aus (Joystick mit der \u201ES\u201C-Taste).
+      Dropkicks k\xF6nnen weiter und h\xF6her fliegen als Rollp\xE4sse."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769230
+    m_Localized: "F\xFCr einen Rollpass musst du den Ball in den H\xE4nden haben.
+      F\xFChre dann einen Dribbling-Wurf aus. Dadurch wird ein kurzer, aber besser
+      kontrollierbarer Pass gespielt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769231
+    m_Localized: "Herzlichen Gl\xFCckwunsch zum erfolgreichen Abschluss des Tutorials!
+      Jetzt, da du die Grundlagen kennst, kannst du entweder ein komplettes Online-Match
+      gegen andere Spieler bestreiten oder deine F\xE4higkeiten auf einem \xDCbungsserver
+      weiterentwickeln. Es gibt noch viele weitere versteckte Techniken und coole
+      Features, die in diesem Tutorial nicht behandelt wurden. Viel Erfolg und viel
+      Spa\xDF!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163166833233920
+    m_Localized: FORTFAHREN
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 752613887239520727
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 324502469267461
+        - id: 324502469267460
+        - id: 332782952304640
+        - id: 445100331683841
+        - id: 445100335878144
+        - id: 445100335878145
+        - id: 445100335878146
+        - id: 445100335878147
+        - id: 445100335878148
+        - id: 445100335878149
+        - id: 772988046200838
+        - id: 772988046200837
+        - id: 783485780938752
+        - id: 805157519020041
+        - id: 805157519020040
+        - id: 805157519020039
+        - id: 805157519020038
+        - id: 805157519020037
+        - id: 805157519020036
+        - id: 805157519020035
+        - id: 805157519020032
+        - id: 332782952304641
+        - id: 805157519020045
+        - id: 805157519020044
+        - id: 1115665912614912
+        - id: 1115665900032000

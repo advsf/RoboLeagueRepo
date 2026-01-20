@@ -1,0 +1,913 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Table1 Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Table1
+  m_TableCollectionNameGuidString: 59661c4d3ba204b4aaa1e25747ce201f
+  m_Entries:
+  - m_Id: 435748812148736
+    m_Key: SESSION NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748858286080
+    m_Key: SESSION CODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4783895793672
+    m_Key: Refresh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305920184320
+    m_Key: SENSITIVITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098880
+    m_Key: CAMERA FOV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098881
+    m_Key: CAMERA Y OFFSET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098882
+    m_Key: SHOOTING JOYSTICK DEADZONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098883
+    m_Key: INVERT MOUSE VERTICAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098884
+    m_Key: INVERT MOUSE HORIZONTAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098885
+    m_Key: ENABLE BALL DOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098886
+    m_Key: BALL DOT MIN. SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098887
+    m_Key: BALL DOT MAX. SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098888
+    m_Key: ENABLE HUD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098889
+    m_Key: ENABLE CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098890
+    m_Key: MODERATE CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098891
+    m_Key: CUSTOMIZE MOBILE UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098892
+    m_Key: RESOLUTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098893
+    m_Key: FULLSCREEN MODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098894
+    m_Key: LIMIT FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098895
+    m_Key: FULLSCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098896
+    m_Key: VSYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098897
+    m_Key: QUALITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098898
+    m_Key: RENDER SCALE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098899
+    m_Key: ANTI-ALIASING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098900
+    m_Key: TONEMAPPING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098901
+    m_Key: MOTION BLUR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098902
+    m_Key: MASTER VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098903
+    m_Key: PLAYER VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098904
+    m_Key: MUSIC VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098905
+    m_Key: EMOTE VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098906
+    m_Key: CROWD VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098907
+    m_Key: ENABLE PROXIMITY CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098908
+    m_Key: VOICE ACTIVATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098909
+    m_Key: INPUT DEVICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098910
+    m_Key: PUSH TO TALK KEY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098911
+    m_Key: (CANNOT BE CHANGED)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098912
+    m_Key: CLOSE SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098913
+    m_Key: RESET TO DEFAULT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098914
+    m_Key: MOVE FORWARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098915
+    m_Key: MOVE BACKWARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098916
+    m_Key: MOVE LEFT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098917
+    m_Key: MOVE RIGHT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098918
+    m_Key: DRIBBLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098919
+    m_Key: LEFT ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098920
+    m_Key: RIGHT ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098921
+    m_Key: JUMP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098922
+    m_Key: SLIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098923
+    m_Key: DASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098924
+    m_Key: GK DIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098925
+    m_Key: SPAWN BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098926
+    m_Key: OPEN LEADERBOARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098927
+    m_Key: CHANGE CHAT SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098928
+    m_Key: QUICK CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098929
+    m_Key: GAMEPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293184
+    m_Key: SCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293185
+    m_Key: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293186
+    m_Key: GRAPHICS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293187
+    m_Key: VIDEO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293188
+    m_Key: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293189
+    m_Key: HAIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293190
+    m_Key: ACCESSORIES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293191
+    m_Key: EMOTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293192
+    m_Key: BALLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293193
+    m_Key: TRAILS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6945124175876
+    m_Key: EXIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293194
+    m_Key: JERSEY SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293195
+    m_Key: JERSEY NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293196
+    m_Key: JERSEY NUMBER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293197
+    m_Key: MAX. 6 CHARACTERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293198
+    m_Key: ON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293199
+    m_Key: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293200
+    m_Key: IP ADDRESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503401037824
+    m_Key: 'CUSTOMIZE    '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503455563776
+    m_Key: APPLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35177865203712
+    m_Key: WAITING FOR INPUT...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37113381310464
+    m_Key: KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37690567872512
+    m_Key: GK CATCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267456
+    m_Key: VIEW ALL RANKS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267457
+    m_Key: CHANGE USERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267458
+    m_Key: UPDATE LOGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267459
+    m_Key: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267460
+    m_Key: XP_MAX_RANK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267461
+    m_Key: XP_NEXT_RANK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 332782952304640
+    m_Key: PLAYER_USERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 332782952304641
+    m_Key: PLAYER_STATS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748862480384
+    m_Key: CREATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689408
+    m_Key: REFRESH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689409
+    m_Key: JOIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683840
+    m_Key: SERVER INFO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683841
+    m_Key: EACH HALF DURATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878144
+    m_Key: HALFTIME DURATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878145
+    m_Key: BALL KICK MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878146
+    m_Key: BALL CURVE MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878147
+    m_Key: PLAYER SPEED MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878148
+    m_Key: IS ABILITY ENABLED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100335878149
+    m_Key: DO ABILITY COOLDOWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291008
+    m_Key: JOINING SERVER.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291009
+    m_Key: JOINING SERVER..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291010
+    m_Key: JOINING SERVER...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790336
+    m_Key: COULDN'T JOIN THE SERVER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790337
+    m_Key: JOIN REQUEST FAILED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790338
+    m_Key: SERVER NOT FOUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790339
+    m_Key: YOU ARE BANNED FROM THIS SERVER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790340
+    m_Key: PRACTICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790341
+    m_Key: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835392
+    m_Key: UPDATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835393
+    m_Key: USERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835394
+    m_Key: USERNAME CANNOT BE EMPTY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029696
+    m_Key: USERNAME CANNOT BE THIS LONG!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029697
+    m_Key: USERNAME CANNOT CONTAIN INVALID CHARACTERS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 761093557899264
+    m_Key: JOIN OUR COMMUNITY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597760
+    m_Key: EACH HALF DURATION (IN SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597761
+    m_Key: HALF TIME DURATION (IN SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597762
+    m_Key: (MINIMUM 60 SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597763
+    m_Key: (MINIMUM 5 SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597764
+    m_Key: (MINIMUM 0.1X; MAXIMUM 2.5X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597765
+    m_Key: (MINIMUM 0.1X; MAXIMUM 2X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597766
+    m_Key: (MINIMUM 0.1X; MAXIMUM 3X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597767
+    m_Key: ENABLE ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597768
+    m_Key: ENABLE ABILITY COOLDOWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362880
+    m_Key: SERVER CUSTOMIZATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362881
+    m_Key: CHANGING ANYTHING WILL RESULT IN THE SERVER NOT GRANTING ANY XP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200832
+    m_Key: KICK PLAYERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200833
+    m_Key: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200834
+    m_Key: SPECTATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200835
+    m_Key: RETURN TO LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200837
+    m_Key: 'SCORED BY:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200838
+    m_Key: 'ASSISTED BY:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 782823332564992
+    m_Key: ASSISTED BY NONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938752
+    m_Key: WAITING FOR PLAYERS...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938753
+    m_Key: PRESS T TO START (MUST BE >1 PLAYERS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157409968128
+    m_Key: PRESS THE BUTTON BELOW TO START (MUST BE >1 PLAYERS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020032
+    m_Key: GAME STARTING IN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020033
+    m_Key: MATCH OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020034
+    m_Key: OFFSIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020035
+    m_Key: HALFTIME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020036
+    m_Key: INDIRECT FREEKICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020037
+    m_Key: GOAL KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020038
+    m_Key: THROW IN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020039
+    m_Key: CORNER KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020040
+    m_Key: DID_WIN_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020041
+    m_Key: DID_LOSE_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020042
+    m_Key: DID_TIE_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020043
+    m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020044
+    m_Key: USER_CONNECTED_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020045
+    m_Key: USER_DISCONNECTED_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1115665900032000
+    m_Key: USER_JOINED_TEAM_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1115665912614912
+    m_Key: USER_KICKED_MESSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737883779072
+    m_Key: BALL KICK MULTIPLIER_NO_SMART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499328
+    m_Key: BALL CURVE MULTIPLIER_NO_SMART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499329
+    m_Key: PLAYER SPEED MULTIPLIER_NO_SMART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934067929088
+    m_Key: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843648
+    m_Key: Deflect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1126491130220544
+    m_Key: Kill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843650
+    m_Key: Powershot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843651
+    m_Key: Roulette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843652
+    m_Key: Speedster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843653
+    m_Key: Trap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381121
+    m_Key: CANNOT KICK GOALKEEPERS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381122
+    m_Key: INCREASED SPEED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381123
+    m_Key: CANNOT USE THIS ABILITY BEFORE THE GAME STARTS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381124
+    m_Key: CANNOT CATCH TEAMMATE'S BALL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575424
+    m_Key: CANNOT DEFLECT YOUR OWN SHOT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575425
+    m_Key: CANNOT DEFLECT GOAL KICKS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575426
+    m_Key: CANNOT DEFLECT LOW BALLS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575427
+    m_Key: TOO FAR!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575428
+    m_Key: MUST BE ON THE GROUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575429
+    m_Key: CANNOT ROULETTE RIGHT NOW!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575430
+    m_Key: YOU MUST BE THE LAST KICKER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575431
+    m_Key: NOT IN RANGE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575432
+    m_Key: CANNOT TRAP RIGHT NOW!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423297495040
+    m_Key: CLICK TO REVEAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409600
+    m_Key: GOALS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409601
+    m_Key: ASSISTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409602
+    m_Key: SAVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409603
+    m_Key: POSITION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409604
+    m_Key: PING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409605
+    m_Key: SEND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409606
+    m_Key: SERVER DESYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409607
+    m_Key: HIGH LATENCY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300736
+    m_Key: SPAWN SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300737
+    m_Key: RESET BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300738
+    m_Key: SPAWN LOW BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300739
+    m_Key: SPAWN HIGH BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300740
+    m_Key: SPAWN DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300741
+    m_Key: DELETE DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300742
+    m_Key: ENABLE/DISABLE GK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156324417654784
+    m_Key: ENTER TEXT...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875371048960
+    m_Key: PC_TUTORIAL_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574912
+    m_Key: PC_TUTORIAL_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574913
+    m_Key: PC_TUTORIAL_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574914
+    m_Key: PC_TUTORIAL_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574915
+    m_Key: PC_TUTORIAL_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574916
+    m_Key: PC_TUTORIAL_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574917
+    m_Key: PC_TUTORIAL_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574918
+    m_Key: PC_TUTORIAL_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574919
+    m_Key: PC_TUTORIAL_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574920
+    m_Key: PC_TUTORIAL_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574921
+    m_Key: PC_TUTORIAL_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574922
+    m_Key: PC_TUTORIAL_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574923
+    m_Key: PC_TUTORIAL_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574924
+    m_Key: PC_TUTORIAL_14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574925
+    m_Key: PC_TUTORIAL_15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574926
+    m_Key: PC_TUTORIAL_16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769216
+    m_Key: MOBILE_TUTORIAL_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769217
+    m_Key: MOBILE_TUTORIAL_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769218
+    m_Key: MOBILE_TUTORIAL_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769219
+    m_Key: MOBILE_TUTORIAL_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769220
+    m_Key: MOBILE_TUTORIAL_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769221
+    m_Key: MOBILE_TUTORIAL_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769222
+    m_Key: MOBILE_TUTORIAL_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769223
+    m_Key: MOBILE_TUTORIAL_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769224
+    m_Key: MOBILE_TUTORIAL_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769225
+    m_Key: MOBILE_TUTORIAL_10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769226
+    m_Key: MOBILE_TUTORIAL_11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769227
+    m_Key: MOBILE_TUTORIAL_12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769228
+    m_Key: MOBILE_TUTORIAL_13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769229
+    m_Key: MOBILE_TUTORIAL_14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769230
+    m_Key: MOBILE_TUTORIAL_15
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769231
+    m_Key: MOBILE_TUTORIAL_16
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163166833233920
+    m_Key: PROCEED
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 752613887239520631
+  references:
+    version: 2
+    RefIds:
+    - rid: 752613887239520631
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768643205794

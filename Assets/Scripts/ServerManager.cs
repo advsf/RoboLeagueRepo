@@ -5,6 +5,8 @@ using System.Linq;
 using Unity.Collections;
 using System;
 using System.Collections;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class ServerManager : NetworkBehaviour
 {
@@ -28,6 +30,24 @@ public class ServerManager : NetworkBehaviour
     [SerializeField] private float spawnBallInFrontForce;
     [SerializeField] private float spawnBallInFrontForceLower;
     [SerializeField] private float spawnBallToSideUpwardsForce;
+
+    [Header("Localization References")]
+    [SerializeField] private LocalizedString waitingForPlayersLoc = new("Table1", "WAITING FOR PLAYERS...");
+    [SerializeField] private LocalizedString startingGameLoc = new("Table1", "GAME STARTING IN");
+    [SerializeField] private LocalizedString matchOverLoc = new("Table1", "MATCH OVER");
+    [SerializeField] private LocalizedString offsideLoc = new("Table1", "OFFSIDE");
+    [SerializeField] private LocalizedString halftimeLoc = new("Table1", "HALFTIME");
+    [SerializeField] private LocalizedString indirectFreeKickLoc = new("Table1", "INDIRECT FREEKICK");
+    [SerializeField] private LocalizedString goalkickLoc = new("Table1", "GOAL KICK");
+    [SerializeField] private LocalizedString throwInLoc = new("Table1", "THROW IN");
+    [SerializeField] private LocalizedString cornerKickLoc = new("Table1", "CORNER KICK");
+    [SerializeField] private LocalizedString didWinMessageLoc = new("Table1", "DID_WIN_MESSAGE");
+    [SerializeField] private LocalizedString didLoseMessageLoc = new("Table1", "DID_LOSE_MESSAGE");
+    [SerializeField] private LocalizedString didTieMessageLoc = new("Table1", "DID_TIE_MESSAGE");
+    [SerializeField] private LocalizedString didNotPlayEnoughMessageLoc = new("Table1", "DID_NOT_PLAY_ENOUGH_MESSAGE");
+    [SerializeField] private LocalizedString userConnectedMessageLoc = new("Table1", "USER_CONNECTED_MESSAGE");
+    [SerializeField] private LocalizedString userDisconnectedMessageLoc = new("Table1", "USER_DISCONNECTED_MESSAGE");
+    [SerializeField] private LocalizedString userJoinedTeamLoc = new("Table1", "USER_JOINED_TEAM_MESSAGE");
 
     [Header("References")]
     [SerializeField] private NetworkObject networkPlayerObj;
@@ -213,6 +233,9 @@ public class ServerManager : NetworkBehaviour
             StartCoroutine(HandleEndingGame());
 
         InitializeCustomServerSettings();
+
+        HandleSwappingPossessionTeamAfterTimerRunsOut();
+
         UpdateGameTimer();
     }
 
@@ -245,7 +268,9 @@ public class ServerManager : NetworkBehaviour
         if (!didStartGame.Value && !isStartingGame.Value)
         {
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
-            HandleScoreboardUI.instance.ChangeScoreboardInformationText($"Waiting for players... {spawnedPlayerCount.Value}/10");
+
+            waitingForPlayersLoc["playerCount"] = new StringVariable { Value = $"{spawnedPlayerCount.Value}/10" };
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText(waitingForPlayersLoc.GetLocalizedString());
 
             if (IsServer)
             {
@@ -262,7 +287,9 @@ public class ServerManager : NetworkBehaviour
             int roundedTime = (int)Mathf.Clamp(startGameTimer.Value, 0f, startingGameTimer);
 
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
-            HandleScoreboardUI.instance.ChangeScoreboardInformationText($"Game starting in {roundedTime}...");
+
+            startingGameLoc["time"] = new IntVariable { Value = roundedTime };
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText(startingGameLoc.GetLocalizedString());
 
             HandleScoreboardUI.instance.EnableStartGameHelperTextUI(false);
         }
@@ -270,7 +297,8 @@ public class ServerManager : NetworkBehaviour
         if (isGameOver.Value)
         {
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
-            HandleScoreboardUI.instance.ChangeScoreboardInformationText("Match over");
+
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText(matchOverLoc.GetLocalizedString());
 
             if (IsServer)
                 HandleScoreboardUI.instance.EnableStartGameHelperTextUI(false);
@@ -279,7 +307,7 @@ public class ServerManager : NetworkBehaviour
         if (mainBallSync.isOffside.Value)
         {
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
-            HandleScoreboardUI.instance.ChangeScoreboardInformationText("Offside");
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText(offsideLoc.GetLocalizedString());
         }
 
         // handle halftime information
@@ -287,7 +315,9 @@ public class ServerManager : NetworkBehaviour
         {
             int roundedTime = (int)Mathf.Clamp(HandleHalftime.instance.halftimeDuration.Value, 0f, 5);
 
-            HandleScoreboardUI.instance.ChangeScoreboardInformationText($"Halftime ({roundedTime})s");
+            halftimeLoc["time"] = new IntVariable { Value = roundedTime };
+            HandleScoreboardUI.instance.ChangeScoreboardInformationText(halftimeLoc.GetLocalizedString());
+
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
         }
 
@@ -298,35 +328,63 @@ public class ServerManager : NetworkBehaviour
 
             if (mainBallSync.isOffside.Value)
             {
+                indirectFreeKickLoc["time"] = new IntVariable { Value = roundedTime };
+
                 if (possessionTeam.Value.Equals("Blue"))
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Indirect Freekick ({roundedTime}s)");
+                {
+                    // #26B5E3 - light blue
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=#26B5E3>" + indirectFreeKickLoc.GetLocalizedString());
+                }
+
                 else
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=red>Indirect Freekick ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=red>" + indirectFreeKickLoc.GetLocalizedString());
+                }
             }
 
             else if (mainBallSync.isGoalKick.Value)
             {
+                goalkickLoc["time"] = new IntVariable { Value = roundedTime };
+
                 if (possessionTeam.Value.Equals("Blue"))
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Goal kick ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=#26B5E3>" + goalkickLoc.GetLocalizedString());
+                }
+
                 else
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=red>Goal kick ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=red>" + goalkickLoc.GetLocalizedString());
+                }
             }
 
             else if (mainBallSync.isThrowIn.Value)
             {
-                // #26B5E3 - light blue
+                throwInLoc["time"] = new IntVariable { Value = roundedTime };
+
                 if (possessionTeam.Value.Equals("Blue"))
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Throw in ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=#26B5E3>" + throwInLoc.GetLocalizedString());
+                }
+
                 else
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=red>Throw in ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=red>" + throwInLoc.GetLocalizedString());
+                }
             }
 
             else if (mainBallSync.isCornerKick.Value)
             {
+                cornerKickLoc["time"] = new IntVariable { Value = roundedTime };
+
                 if (possessionTeam.Value.Equals("Blue"))
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=#26B5E3>Corner kick ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=#26B5E3>" + cornerKickLoc.GetLocalizedString());
+                }
+
                 else
-                    HandleScoreboardUI.instance.ChangeScoreboardInformationText($"<color=red>Corner kick ({roundedTime}s)");
+                {
+                    HandleScoreboardUI.instance.ChangeScoreboardInformationText("<color=red>" + cornerKickLoc.GetLocalizedString());
+                }
             }
 
             HandleScoreboardUI.instance.EnableScoreboardInformationUI(true);
@@ -566,15 +624,28 @@ public class ServerManager : NetworkBehaviour
 
             // if we won
             if (didWin)
-                message = $"You earned {xp} xp for {goals} goals, {assists} assists, and {saves} saves!";
+            {
+                didWinMessageLoc["xp"] = new IntVariable { Value = xp };
+                didWinMessageLoc["goals"] = new IntVariable { Value = goals };
+                didWinMessageLoc["assists"] = new IntVariable { Value = assists };
+                didWinMessageLoc["saves"] = new IntVariable { Value = saves };
+
+                message = didWinMessageLoc.GetLocalizedString();
+            }
 
             // if a tie
             else if (isTie)
-                message = $"You gained zero xp for a tie game!";
+            {
+                message = didTieMessageLoc.GetLocalizedString();
+            }
 
             // if we lost
             else
-                message = $"You lost {-xp} xp for losing a match!";
+            {
+                didLoseMessageLoc["xp"] = new IntVariable { Value = xp };
+
+                message = didLoseMessageLoc.GetLocalizedString();
+            }
 
 
             // didnt know you can give hints as to what the parameter values are (very useful)
@@ -597,7 +668,7 @@ public class ServerManager : NetworkBehaviour
                     teamColor: "",
                     username: "",
                     position: "",
-                    text: "You did not earn any xp for not playing enough!",
+                    text: didNotPlayEnoughMessageLoc.GetLocalizedString(),
                     isServer: true);
         }
     }
@@ -792,7 +863,11 @@ public class ServerManager : NetworkBehaviour
 
         UpdateSpawnButtonUIClientRpc(team, position, username);
 
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", $"{username} joined {team} team as a {position}", true);
+        userJoinedTeamLoc["username"] = new StringVariable { Value = username };
+        userJoinedTeamLoc["team"] = new StringVariable { Value = team.ToString() };
+        userJoinedTeamLoc["position"] = new StringVariable { Value = position.ToString() };
+
+        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userJoinedTeamLoc.GetLocalizedString(), true);
     }
 
     [ClientRpc]
@@ -841,14 +916,16 @@ public class ServerManager : NetworkBehaviour
         connectedPlayers[clientId] = playerInfo;
 
         // send message to all the clients
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", $"{clientUsernames[clientId]} connected", true);
+        userConnectedMessageLoc["username"] = new StringVariable { Value = clientUsernames[clientId].ToString() };
+
+        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userConnectedMessageLoc.GetLocalizedString(), true);
     }
 
     private void HandleClientDisconnectedServer(ulong clientId)
     {
         // send message that the client disconnected
-        if (HandleChatbox.instance != null)
-            HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", $"{clientUsernames[clientId]} disconnected", true);
+        userDisconnectedMessageLoc["username"] = new StringVariable { Value = clientUsernames[clientId].ToString() };
+        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userDisconnectedMessageLoc.GetLocalizedString(), true);
 
         if (connectedPlayers.TryGetValue(clientId, out PlayerInfo playerInfo))
         {

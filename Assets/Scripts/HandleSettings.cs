@@ -41,6 +41,9 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private Slider sensSlider;
     [SerializeField] private TMP_InputField sensInputField;
 
+    [Header("Language Localization Reference")]
+    [SerializeField] private TMP_Dropdown languageDropdown;
+
     [Header("Camera FOV Reference")]
     [SerializeField] private Slider camFOVSlider;
     [SerializeField] private TMP_InputField camFOVInputField;
@@ -480,6 +483,10 @@ public class HandleSettings : MonoBehaviour
         if (PlayerInfo.instance != null)
             HandleMobileUI.instance.HandleUpdatingAllUICustomization();
     }
+
+    #endregion
+
+    #region Language Localiation Settings
 
     #endregion
 

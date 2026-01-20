@@ -2069,6 +2069,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 539817ef25b178e429e3030682f4bd7d, type: 2}
   - {fileID: 11400000, guid: 500dfe51153e20746ab9a263e4f1deaa, type: 2}
   - {fileID: 11400000, guid: 027b03763d4fe054ba86e9b7d66c174a, type: 2}
+  - {fileID: 11400000, guid: 8909d125dc57afd46805a63a2f8b94a5, type: 2}
+  - {fileID: 11400000, guid: 357270ce965b5b6469bbb646b14aa126, type: 2}
+  - {fileID: 11400000, guid: d8c0cfdd2f4d6ea46862841fdd088532, type: 2}
   m_FontWeightTable:
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}

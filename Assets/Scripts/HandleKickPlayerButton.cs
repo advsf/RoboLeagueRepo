@@ -2,11 +2,14 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class HandleKickPlayerButton : NetworkBehaviour
 {
     [SerializeField] private TextMeshProUGUI usernameText;
     [SerializeField] private SessionHolder sessionHolder;
+    [SerializeField] private LocalizedString userKickedLoc = new("Table1", "USER_KICKED_MESSAGE");
     private PlayerInfo playerInfo;
 
     public void InitializeButtonInformation(PlayerInfo info)
@@ -27,6 +30,7 @@ public class HandleKickPlayerButton : NetworkBehaviour
         NetworkManager.Singleton.DisconnectClient(playerInfo.OwnerClientId);
 
         // send a message to everyone that user has been kicked
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", $"{playerInfo.username.Value} has been kicked", true);
+        userKickedLoc["username"] = new StringVariable { Value = playerInfo.username.Value.ToString() };
+        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userKickedLoc.GetLocalizedString(), true);
     }
 }

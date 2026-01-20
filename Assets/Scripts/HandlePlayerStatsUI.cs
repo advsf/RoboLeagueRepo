@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Text.RegularExpressions;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.Localization.Settings;
 
 public class HandlePlayerStatsUI : MonoBehaviour
 {
@@ -16,6 +19,12 @@ public class HandlePlayerStatsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rankXPText;
     [SerializeField] private TextMeshProUGUI usernameText;
     [SerializeField] private TextMeshProUGUI gameStatsText;
+
+    [Header("Localization References")]
+    [SerializeField] private LocalizedString maxRankLoc = new("Table1", "XP_MAX_RANK");
+    [SerializeField] private LocalizedString nextRankLoc = new("Table1", "XP_NEXT_RANK");
+    [SerializeField] private LocalizedString usernameLoc = new("Table1", "PLAYER_USERNAME");
+    [SerializeField] private LocalizedString playerStatsLoc = new("Table1", "PLAYER_STATS");
 
     [Header("UI Bar Settings")]
     [SerializeField] private float xpBarFillDuration = 1.5f;
@@ -32,7 +41,18 @@ public class HandlePlayerStatsUI : MonoBehaviour
 
     private void OnEnable()
     {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
         StartCoroutine(InitializeUIAndAnimate());
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
+        UpdateStatsUI();
     }
 
     private IEnumerator InitializeUIAndAnimate()
@@ -86,19 +106,19 @@ public class HandlePlayerStatsUI : MonoBehaviour
 
         if (usernameInputField.text.Length < 1)
         {
-            HandleLobbyUI.instance.SetUsernameErrorTextUI("Username cannot be empty!");
+            HandleLobbyUI.instance.SetUsernameErrorTextUI("USERNAME CANNOT BE EMPTY!");
             return false;
         }
 
         if (usernameInputField.text.Length > 9)
         {
-            HandleLobbyUI.instance.SetUsernameErrorTextUI("Username cannot be this long!");
+            HandleLobbyUI.instance.SetUsernameErrorTextUI("USERNAME CANNOT BE THIS LONG!");
             return false;
         }
 
         if (!usernameRegex.IsMatch(usernameInputField.text))
         {
-            HandleLobbyUI.instance.SetUsernameErrorTextUI("Username cannot contain illegal characters!");
+            HandleLobbyUI.instance.SetUsernameErrorTextUI("USERNAME CANNOT CONTAIN INVALID CHARACTERS!");
             return false;
         }
 
@@ -129,14 +149,27 @@ public class HandlePlayerStatsUI : MonoBehaviour
         rankBarSlider.value = FBPP.GetFloat("RankXP") / 100;
 
         if (HandlePlayerData.instance.isPlayerMaxRank)
-            rankXPText.text = $"{currentXP}/100 LEGEND XP";
+        {
+            maxRankLoc["xp"] = new FloatVariable { Value = currentXP }; ; 
+            rankXPText.text = maxRankLoc.GetLocalizedString();
+        }
 
         else
-            rankXPText.text = $"{currentXP}/100 XP AWAY FROM {HandlePlayerData.instance.GetRankSprite(FBPP.GetInt("RankIndex") + 1).name}";
+        {
+            string nextRank = HandlePlayerData.instance.GetRankSprite(FBPP.GetInt("RankIndex") + 1).name;
+            nextRankLoc["xp"] = new FloatVariable { Value = currentXP }; ; 
+            nextRankLoc["rankName"] = new StringVariable { Value = nextRank };
+            rankXPText.text = nextRankLoc.GetLocalizedString();
+        }
 
         // username & game stat
-        usernameText.text = $"Username | {HandlePlayerData.instance.GetUsername()}";
-        gameStatsText.text = $"Goals: {HandlePlayerData.instance.GetGoalsCount()} | Assists: {HandlePlayerData.instance.GetAssistsCount()} | Saves: {HandlePlayerData.instance.GetSavesCount()}";
+        usernameLoc["username"] = new StringVariable { Value = HandlePlayerData.instance.GetUsername() };
+        usernameText.text = usernameLoc.GetLocalizedString();
+
+        playerStatsLoc["goals"] = new IntVariable { Value = HandlePlayerData.instance.GetGoalsCount() };
+        playerStatsLoc["assists"] = new IntVariable { Value = HandlePlayerData.instance.GetAssistsCount() };
+        playerStatsLoc["saves"] = new IntVariable { Value = HandlePlayerData.instance.GetSavesCount() };
+        gameStatsText.text = playerStatsLoc.GetLocalizedString();
     }
 
     private IEnumerator FillUpXPBar()

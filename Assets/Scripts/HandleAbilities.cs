@@ -3,6 +3,8 @@ using Unity.Netcode;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class HandleAbilities : NetworkBehaviour
 {
@@ -85,6 +87,8 @@ public class HandleAbilities : NetworkBehaviour
 
         PlayerInputReference.instance.controls.Gameplay.LeftAbility.Enable();
         PlayerInputReference.instance.controls.Gameplay.RightAbility.Enable();
+
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
 
     private void OnDisable()
@@ -94,6 +98,13 @@ public class HandleAbilities : NetworkBehaviour
 
         PlayerInputReference.instance.controls.Gameplay.LeftAbility.Disable();
         PlayerInputReference.instance.controls.Gameplay.RightAbility.Disable();
+
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
+        HandleAbilityNameText();
     }
 
     public void SetPositionAbilities(string position)
@@ -151,15 +162,7 @@ public class HandleAbilities : NetworkBehaviour
 
     private void HandleUI()
     {
-        if (rightAbility != null)
-            rightAbilityName.text = rightAbility.abilityName;
-        else
-            rightAbilityName.text = "None";
-
-        if (leftAbility != null)
-            leftAbilityName.text = leftAbility.abilityName;
-        else
-            leftAbilityName.text = "None";
+        HandleAbilityNameText();
 
         if (!Application.isMobilePlatform)
         {
@@ -182,6 +185,19 @@ public class HandleAbilities : NetworkBehaviour
             rightAbilityKeyBackground.text = "R";
             rightAbilityBackground.fillAmount = 1;
         }
+    }
+
+    private void HandleAbilityNameText()
+    {
+        if (rightAbility != null)
+            rightAbilityName.text = new LocalizedString("Table1", rightAbility.abilityName).GetLocalizedString();
+        else
+            rightAbilityName.text = new LocalizedString("Table1", "None").GetLocalizedString();
+
+        if (leftAbility != null)
+            leftAbilityName.text = new LocalizedString("Table1", leftAbility.abilityName).GetLocalizedString();
+        else
+            leftAbilityName.text = new LocalizedString("Table1", "None").GetLocalizedString();
     }
 
     private void HandleCooldown()

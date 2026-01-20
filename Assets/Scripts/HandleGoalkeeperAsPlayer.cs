@@ -309,7 +309,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
             if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
             {
-                abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
+                abilityScript.HandleAbilityMessageUI("CANNOT CATCH TEAMMATE'S BALL!");
                 return; 
             }
 
@@ -353,7 +353,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                     // if it's our own teammate that last kicked it and NOT our own
                     if (touchedBallSync.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value) && (ulong)touchedBallSync.lastKickedClientId.Value != NetworkManager.LocalClientId)
                     {
-                        abilityScript.HandleAbilityMessageUI("Cannot catch teammate's ball!");
+                        abilityScript.HandleAbilityMessageUI("CANNOT CATCH TEAMMATE'S BALL!");
                         break; // this isn't needed but it's for performance so why not
                     }
 

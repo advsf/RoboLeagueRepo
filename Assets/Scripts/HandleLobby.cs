@@ -11,7 +11,7 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 using Unity.Netcode.Transports.UTP;
-using System.Collections;
+using UnityEngine.Localization;
 
 public class HandleLobby : NetworkBehaviour
 {
@@ -166,14 +166,14 @@ public class HandleLobby : NetworkBehaviour
             Debug.LogException(e);
 
             RefreshSessionList();
-            CancelJoiningWithErrorMessageUI("Join Request Failed!");
+            CancelJoiningWithErrorMessageUI("JOIN REQUEST FAILED!");
         }
 
         catch (Exception e)
         {
             Debug.LogException(e);
 
-            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
+            CancelJoiningWithErrorMessageUI("COULDN'T JOIN THE SERVER!");
         }
     }
 
@@ -268,7 +268,7 @@ public class HandleLobby : NetworkBehaviour
             Debug.LogException(e);
 
             RefreshSessionList();
-            CancelJoiningWithErrorMessageUI("Join Request Failed!");
+            CancelJoiningWithErrorMessageUI("JOIN REQUEST FAILED!");
         }
 
         catch (SessionException e)
@@ -276,14 +276,14 @@ public class HandleLobby : NetworkBehaviour
             Debug.LogException(e);
 
             RefreshSessionList();
-            CancelJoiningWithErrorMessageUI("Server not found!");
+            CancelJoiningWithErrorMessageUI("SERVER NOT FOUND!");
         }
 
         catch (Exception e)
         {
             Debug.LogException(e);
 
-            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
+            CancelJoiningWithErrorMessageUI("COULDN'T JOIN THE SERVER!");
         }
     }
 
@@ -309,7 +309,7 @@ public class HandleLobby : NetworkBehaviour
             // if we are banned from the session
             if (sessionHolder.IsSessionBanned(activeSession))
             {
-                CancelJoiningWithErrorMessageUI("You are banned from this server!");
+                CancelJoiningWithErrorMessageUI("YOU ARE BANNED FROM THIS SERVER!");
                 return;
             }
 
@@ -332,14 +332,14 @@ public class HandleLobby : NetworkBehaviour
             Debug.LogException(e);
 
             RefreshSessionList();
-            CancelJoiningWithErrorMessageUI("Join Request Failed!");
+            CancelJoiningWithErrorMessageUI("JOIN REQUEST FAILED!");
         }
 
         catch (Exception e)
         {
             Debug.LogException(e);
 
-            CancelJoiningWithErrorMessageUI("Couldn't join the server!");
+            CancelJoiningWithErrorMessageUI("COULDN'T JOIN THE SERVER!");
         }
     }
 
@@ -507,27 +507,6 @@ public class HandleLobby : NetworkBehaviour
             CancelLanJoin();
     }
 
-    private IEnumerator TimeoutConnectionCheck(float duration)
-    {
-        float timer = 0;
-        while (timer < duration)
-        {
-            // successfully joined
-            if (NetworkManager.Singleton.IsConnectedClient)
-                yield break;
-
-            // canceled via UI so dont show this
-            if (cancelJoin)
-                yield break;
-
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        // timed out
-        CancelJoiningWithErrorMessageUI("Couldn't join: Timed out!");
-    }
-
     private void CancelLanJoin()
     {
         NetworkManager.Singleton.Shutdown();
@@ -580,9 +559,13 @@ public class HandleLobby : NetworkBehaviour
         await CleanUpSessionAndNetwork();
     }
 
-    public async void CancelJoiningWithErrorMessageUI(string errorMessage)
+    public async void CancelJoiningWithErrorMessageUI(string localizationKey)
     {
         cancelJoin = true;
+
+        var localizedString = new LocalizedString("Table1", localizationKey);
+        string errorMessage = localizedString.GetLocalizedString();
+
         HandleLobbyUI.instance.CloseJoiningServerUI(errorMessage);
 
         await CleanUpSessionAndNetwork();

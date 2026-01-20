@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 
 public class HandleLobbyUI : MonoBehaviour
 {
@@ -278,9 +279,12 @@ public class HandleLobbyUI : MonoBehaviour
         usernameErrorText.text = "";
     }
 
-    public void SetUsernameErrorTextUI(string text)
+    public void SetUsernameErrorTextUI(string localizationKey)
     {
-        usernameErrorText.text = text;
+        var localizedString = new LocalizedString("Table1", localizationKey);
+        string errorMessage = localizedString.GetLocalizedString();
+
+        usernameErrorText.text = errorMessage;
     }
 
     #endregion

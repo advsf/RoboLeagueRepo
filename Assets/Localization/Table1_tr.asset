@@ -1,0 +1,1086 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Table1_tr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: 59661c4d3ba204b4aaa1e25747ce201f, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 752613887239520733
+  m_TableData:
+  - m_Id: 436774604689409
+    m_Localized: KATILMAK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689408
+    m_Localized: "YEN\u0130LE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4783895793672
+    m_Localized: Yenile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6945124175876
+    m_Localized: "\xC7IKI\u015E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305920184320
+    m_Localized: "HASSAS\u0130YET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098880
+    m_Localized: "KAMERA G\xD6R\xDC\u015E ALANI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098881
+    m_Localized: "KAMERA Y OFSET\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098882
+    m_Localized: "ATI\u015E KOLU \xD6L\xDC B\xD6LGES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098883
+    m_Localized: "FAREY\u0130 D\u0130KEY OLARAK TERS \xC7EV\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098884
+    m_Localized: "FAREY\u0130 YATAY KONUMA \xC7EV\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098885
+    m_Localized: "TOP NOKTASINI ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098886
+    m_Localized: "TOP NOKTASI M\u0130N. BOYUTU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098887
+    m_Localized: "TOP NOKTASI MAKS\u0130MUM BOYUTU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098888
+    m_Localized: "HUD'\u0131 ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098889
+    m_Localized: "SOHBET\u0130 ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098890
+    m_Localized: "ORTA D\xDCZEY SOHBET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098891
+    m_Localized: "MOB\u0130L ARAY\xDCZ\xDC \xD6ZELLE\u015ET\u0130R\u0130N"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098892
+    m_Localized: "\xC7\xD6Z\xDCN\xDCRL\xDCK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098893
+    m_Localized: TAM EKRAN MODU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098894
+    m_Localized: "FPS'Y\u0130 SINIRLA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098895
+    m_Localized: TAM EKRAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098896
+    m_Localized: VSYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098897
+    m_Localized: "KAL\u0130TE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098898
+    m_Localized: "RENDER \xD6L\xC7E\u011E\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098899
+    m_Localized: "KISIM YUMU\u015EATMA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098900
+    m_Localized: "TON E\u015ELEME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098901
+    m_Localized: "HAREKET BULANIKLI\u011EI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098902
+    m_Localized: "ANA C\u0130LT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098903
+    m_Localized: "OYUNCU SES SEV\u0130YES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098904
+    m_Localized: "M\xDCZ\u0130K SES SEV\u0130YES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098905
+    m_Localized: "DUYGUSAL SES SEV\u0130YES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098906
+    m_Localized: "KALABALIK HACM\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098907
+    m_Localized: "YAKINLIK SOHBET\u0130N\u0130 ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098908
+    m_Localized: "SESLE AKT\u0130VASYON"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098909
+    m_Localized: "G\u0130R\u0130\u015E C\u0130HAZI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098910
+    m_Localized: "BAS KONU\u015E TU\u015EU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098911
+    m_Localized: "(DE\u011E\u0130\u015ET\u0130R\u0130LEMEZ)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098912
+    m_Localized: AYARLARI KAPAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098913
+    m_Localized: VARSAYILAN AYARLARA SIFIRLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098914
+    m_Localized: "\u0130LER\u0130YE DO\u011ERU HAREKET ET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098915
+    m_Localized: "GER\u0130YE DO\u011ERU HAREKET ET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098916
+    m_Localized: SOLA HAREKET ET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098917
+    m_Localized: "SA\u011EA HAREKET ET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098918
+    m_Localized: "TOP S\xDCRME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098919
+    m_Localized: SOL YETENEK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098920
+    m_Localized: "DO\u011ERU YETENEK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098921
+    m_Localized: ZIPLAMAK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098922
+    m_Localized: SLAYT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098923
+    m_Localized: "\xC7\u0130ZG\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098924
+    m_Localized: "GK DALI\u015EI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098925
+    m_Localized: "DO\u011EUM TOPU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098926
+    m_Localized: "A\xC7IK L\u0130DERL\u0130K TABLOSU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098927
+    m_Localized: "SOHBET AYARLARINI DE\u011E\u0130\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098928
+    m_Localized: HIZLI SOHBET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098929
+    m_Localized: "OYUN \u0130\xC7ER\u0130\u011E\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293184
+    m_Localized: EKRAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293185
+    m_Localized: KONTROLLER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293186
+    m_Localized: "GRAF\u0130KLER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293187
+    m_Localized: "V\u0130DEO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293188
+    m_Localized: SES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293189
+    m_Localized: "SA\xC7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293190
+    m_Localized: AKSESUARLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293191
+    m_Localized: "\u0130FADELER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293192
+    m_Localized: TOPLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293193
+    m_Localized: "PAT\u0130KALAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293194
+    m_Localized: FORMA AYARLARI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293195
+    m_Localized: FORMA ADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293196
+    m_Localized: FORMA NUMARASI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293197
+    m_Localized: "MAKS\u0130MUM 6 KARAKTER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293198
+    m_Localized: "A\xC7IK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293199
+    m_Localized: KAPALI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293200
+    m_Localized: "IP ADRES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503401037824
+    m_Localized: "\xD6ZELLE\u015ET\u0130RMEK    "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503455563776
+    m_Localized: UYGULA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35177865203712
+    m_Localized: "G\u0130R\u0130\u015E BEKLEN\u0130YOR..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37113381310464
+    m_Localized: TEKME ATMAK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37690567872512
+    m_Localized: Kaleci Yakalama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267456
+    m_Localized: "T\xDCM SIRALAMALARI G\xD6R\xDCNT\xDCLE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267457
+    m_Localized: "KULLANICI ADINI DE\u011E\u0130\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267458
+    m_Localized: "G\xDCNCELLEME KAYITLARI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267459
+    m_Localized: "KRED\u0130LER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267460
+    m_Localized: '{xp}/100 EFSANE XP'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 324502469267461
+    m_Localized: "{rankName} \u0130\xC7\u0130N {xp}/100 XP KALDI"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 332782952304640
+    m_Localized: 'KULLANICI ADI: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 332782952304641
+    m_Localized: "GOLLER: {goals} | AS\u0130STLER: {assists} | KURTARI\u015ELAR:
+      {saves}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 435748812148736
+    m_Localized: OTURUM ADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748858286080
+    m_Localized: OTURUM KODU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748862480384
+    m_Localized: YARATMAK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683840
+    m_Localized: "SUNUCU B\u0130LG\u0130LER\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683841
+    m_Localized: "DEVRE S\xDCRES\u0130: {duration}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878144
+    m_Localized: "DEVRE ARASI S\xDCRES\u0130: {duration}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878145
+    m_Localized: "TOP VURU\u015E \xC7ARPANI: {multiplier}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878146
+    m_Localized: "TOP KAV\u0130S \xC7ARPANI: {multiplier}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878147
+    m_Localized: "OYUNCU HIZ \xC7ARPANI: {multiplier}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878148
+    m_Localized: "YETENEK ETK\u0130N M\u0130: {enabled}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 445100335878149
+    m_Localized: "YETENEK BEKLEME S\xDCRES\u0130: {enabled}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 753189333291008
+    m_Localized: SUNUCUYA KATILIYOR.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291009
+    m_Localized: SUNUCUYA KATILIYOR..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291010
+    m_Localized: SUNUCUYA KATILIYOR...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790336
+    m_Localized: SUNUCUYA KATILAMADIM!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790337
+    m_Localized: "KATILIM \u0130STE\u011E\u0130 BA\u015EARISIZ OLDU!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790338
+    m_Localized: SUNUCU BULUNAMADI!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790339
+    m_Localized: "BU SUNUCUYA G\u0130R\u0130\u015E\u0130N\u0130Z YASAKLANDI!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790340
+    m_Localized: "PRAT\u0130K"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790341
+    m_Localized: "E\u011E\u0130T\u0130M V\u0130DEOSU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835392
+    m_Localized: "G\xDCNCELLEME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835393
+    m_Localized: KULLANICI ADI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835394
+    m_Localized: "KULLANICI ADI BO\u015E OLAMAZ!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029696
+    m_Localized: KULLANICI ADI BU KADAR UZUN OLAMAZ!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029697
+    m_Localized: "KULLANICI ADI GE\xC7ERS\u0130Z KARAKTERLER \u0130\xC7ERMEZ!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 761093557899264
+    m_Localized: "TOPLULU\u011EUMUZA KATILIN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597760
+    m_Localized: "HER B\u0130R YARI S\xDCRES\u0130 (SAN\u0130YE OLARAK)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597761
+    m_Localized: "DEVRE ARASI S\xDCRES\u0130 (SAN\u0130YE OLARAK)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597762
+    m_Localized: "(EN AZ 60 SAN\u0130YE)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597763
+    m_Localized: "(EN AZ 5 SAN\u0130YE)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597764
+    m_Localized: "(M\u0130N\u0130MUM 0,1X; MAKS\u0130MUM 2,5X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597765
+    m_Localized: "(M\u0130N\u0130MUM 0,1X; MAKS\u0130MUM 2X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597766
+    m_Localized: "(M\u0130N\u0130MUM 0,1X; MAKS\u0130MUM 3X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597767
+    m_Localized: "ETK\u0130NLE\u015ET\u0130RME"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597768
+    m_Localized: "YETENEK BEKLEME S\xDCRES\u0130N\u0130 ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362880
+    m_Localized: "SUNUCU \xD6ZELLE\u015ET\u0130RMES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362881
+    m_Localized: "Herhangi bir \u015Feyi de\u011Fi\u015Ftirmek, sunucunun size hi\xE7bir
+      XP vermemesine neden olacakt\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200832
+    m_Localized: OYUNCULARI TEKMELE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200833
+    m_Localized: AYARLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200834
+    m_Localized: "\u0130ZLEY\u0130N"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200835
+    m_Localized: "LOB\u0130YE GER\u0130 D\xD6N"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200837
+    m_Localized: "Gol\xFC atan: {username}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 772988046200838
+    m_Localized: 'Asisti yapan: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 782823332564992
+    m_Localized: "H\u0130\xC7 K\u0130MSEDEN YARDIM ALMADI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938752
+    m_Localized: "OYUNCULARI BEKL\u0130YORUZ... {playerCount}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 783485780938753
+    m_Localized: "BA\u015ELATMAK \u0130\xC7\u0130N T TU\u015EUNA BASIN (1'DEN FAZLA
+      OYUNCU OLMALIDIR)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157409968128
+    m_Localized: "BA\u015ELATMAK \u0130\xC7\u0130N A\u015EA\u011EIDAK\u0130 D\xDC\u011EMEYE
+      BASIN (1'DEN FAZLA OYUNCU OLMALIDIR)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020032
+    m_Localized: "OYUNUN BA\u015ELAMASINA: {time}..."
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020033
+    m_Localized: "MA\xC7 B\u0130TT\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020034
+    m_Localized: OFSAYT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020035
+    m_Localized: DEVRE ARASI ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020036
+    m_Localized: "END\u0130REKT SERBEST VURU\u015E ({time}s)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020037
+    m_Localized: "KALE VURU\u015EU ({time}s)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020038
+    m_Localized: "TA\xC7 ATI\u015EI ({time}s)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020039
+    m_Localized: KORNER ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020040
+    m_Localized: "{goals} gol, {assists} asist ve {saves} kurtar\u0131\u015F i\xE7in
+      {xp} XP kazand\u0131n!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020041
+    m_Localized: "Ma\xE7\u0131 kaybetti\u011Fin i\xE7in {xp} XP kaybettin!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020042
+    m_Localized: "Beraberlikte XP kazan\u0131lmaz!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020043
+    m_Localized: "Yeterince oynamad\u0131\u011F\u0131n i\xE7in XP kazanamad\u0131n!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020044
+    m_Localized: "{username} ba\u011Fland\u0131"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 805157519020045
+    m_Localized: "{username} ba\u011Flant\u0131y\u0131 kesti"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1115665900032000
+    m_Localized: "{username}, {team} tak\u0131m\u0131na {position} olarak kat\u0131ld\u0131"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1115665912614912
+    m_Localized: "{username} oyundan at\u0131ld\u0131"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1118737883779072
+    m_Localized: "TOP VURU\u015EU \xC7ARPANI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499328
+    m_Localized: "TOP E\u011ER\u0130 \xC7ARPAN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499329
+    m_Localized: "OYUNCU HIZI \xC7ARPANI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934067929088
+    m_Localized: "Hi\xE7biri"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843648
+    m_Localized: "Sapt\u0131rma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1126491130220544
+    m_Localized: "Bitiri\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843650
+    m_Localized: "G\xFC\xE7l\xFC \u015Fut"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843651
+    m_Localized: Rulet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843652
+    m_Localized: "H\u0131zl\u0131 oyuncu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843653
+    m_Localized: "Top kontrol\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409600
+    m_Localized: HEDEFLER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423297495040
+    m_Localized: "G\xD6STERMEK \u0130\xC7\u0130N TIKLAYIN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381121
+    m_Localized: "KALEC\u0130LER\u0130 VURAMAZSIN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381122
+    m_Localized: "HIZ ARTI\u015EI!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381123
+    m_Localized: "OYUN BA\u015ELAMADAN \xD6NCE BU YETENE\u011E\u0130 KULLANAMAZSINIZ!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381124
+    m_Localized: "TAKIM ARKADA\u015EIMIN TOPUNU YAKALAYAMIYORUM!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575424
+    m_Localized: "KEND\u0130 ATI\u015EINIZI SAPTIRAMAZSINIZ!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575425
+    m_Localized: "GOL VURU\u015ELARINI Y\xD6NLEND\u0130REMEZ!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575426
+    m_Localized: "AL\xC7AK TOPLARI KAR\u015EILAYAMAM!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575427
+    m_Localized: "\xC7OK FAZLA!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575428
+    m_Localized: YERDE OLMALISINIZ!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575429
+    m_Localized: "\u015EU AN RULET OYNAYAMIYORUM!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575430
+    m_Localized: "SON VURU\u015EU SEN YAPMALISIN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575431
+    m_Localized: "MENZ\u0130LDE!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575432
+    m_Localized: "\u015EU AN TUZAK KURAMIYORUM!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409601
+    m_Localized: YARDIMCI OLUR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409602
+    m_Localized: TASARRUF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409603
+    m_Localized: KONUM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409604
+    m_Localized: PING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409605
+    m_Localized: "G\xD6NDERMEK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409606
+    m_Localized: "SUNUCU SENKRON\u0130ZASYON BOZUKLU\u011EU"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409607
+    m_Localized: "Y\xDCKSEK GEC\u0130KME S\xDCRES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300736
+    m_Localized: YARATMA AYARLARI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300737
+    m_Localized: SIFIRLAMA TOPU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300738
+    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VEREREK BA\u015ELATMA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300739
+    m_Localized: SPAWN HIGH BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300740
+    m_Localized: SPAWN MUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300741
+    m_Localized: "SAHTE HESABINI S\u0130L"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300742
+    m_Localized: "GK'y\u0131 ETK\u0130NLE\u015ET\u0130R/DEVRE DI\u015EI BIRAK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156324417654784
+    m_Localized: "MET\u0130N G\u0130R\u0130N..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875371048960
+    m_Localized: "Bu e\u011Fitime ho\u015F geldiniz! \u0130lk a\u015Famada, hareketin
+      temellerini \xF6\u011Freneceksiniz. Hareket etmek i\xE7in WASD tu\u015Flar\u0131n\u0131,
+      ko\u015Fmak i\xE7in sol Shift tu\u015Funu, z\u0131plamak i\xE7in bo\u015Fluk
+      tu\u015Funu, kaymak i\xE7in sol Control tu\u015Funu ve h\u0131zl\u0131 ko\u015Fmak
+      i\xE7in E tu\u015Funu kullan\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574912
+    m_Localized: "Sol kontrol tu\u015Funa basarak topa do\u011Fru kayarak g\xFC\xE7
+      katabilirsiniz. Bu, rakiplerden topu almak veya al\xE7ak \u015Futlar\u0131
+      savu\u015Fturmak i\xE7in kullan\u0131\u015Fl\u0131d\u0131r. \u015Eimdi, topu
+      bariyerin i\xE7ine kayd\u0131r\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574913
+    m_Localized: "Sonraki ad\u0131mda, top s\xFCrmeyi \xF6\u011Freneceksiniz. Top
+      s\xFCrme hareketini ba\u015Flatmak i\xE7in sa\u011F fare d\xFC\u011Fmesini
+      kullan\u0131n; bu, topun oyuncunuzun y\xF6n\xFCn\xFC takip etmesini sa\u011Flayacakt\u0131r.
+      Savunmalar\u0131 a\u015Fmak i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574914
+    m_Localized: "\u015Eimdi nas\u0131l \u015Fut \xE7ekece\u011Finizi \xF6\u011Freneceksiniz.
+      \u015Eut \xE7ekmek i\xE7in sol fare d\xFC\u011Fmesini bas\u0131l\u0131 tutun.
+      Topa vurmadan \xF6nce yukar\u0131 bakarak topun y\xFCksekli\u011Fini art\u0131rabilirsiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574915
+    m_Localized: "Art\u0131k nas\u0131l vuru\u015F yapaca\u011F\u0131n\u0131z\u0131
+      bildi\u011Finize g\xF6re, topa nas\u0131l falso verece\u011Finizi de \xF6\u011Freneceksiniz.
+      Topa falso vermek i\xE7in \u015Fut atmadan \xF6nce fareyle hafif\xE7e vurun.
+      Falsolu \u015Futlar, falsosuz \u015Futlardan daha h\u0131zl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574916
+    m_Localized: "Her pozisyonun (orta saha pozisyonlar\u0131 hari\xE7) iki benzersiz
+      yetene\u011Fi vard\u0131r. Santrafordan ba\u015Flayarak, g\xFC\xE7l\xFC \u015Fut
+      yetene\u011Fi, \u015Fut \xE7ubu\u011Funu do\u011Fru zamanlamayla kulland\u0131\u011F\u0131n\u0131z
+      takdirde daha g\xFC\xE7l\xFC \u015Fut atman\u0131z\u0131 sa\u011Flar. M\xFCkemmel
+      bir zamanlama i\xE7in, \xE7ubuk beyaz k\u0131sma de\u011Fdi\u011Fi anda b\u0131rakmal\u0131s\u0131n\u0131z."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574917
+    m_Localized: "CF'nin bir sonraki yetene\u011Fi olan \"h\u0131zc\u0131\", k\u0131sa
+      bir s\xFCreli\u011Fine daha h\u0131zl\u0131 hareket etmenizi sa\u011Flar. Bu,
+      savunmalar\u0131 h\u0131zla ge\xE7erek oyun kurmak i\xE7in kullan\u0131labilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574918
+    m_Localized: "Orta saha oyuncusu (sol/sa\u011F orta saha) olarak, topu \"tuzaklama\"
+      veya topun h\u0131z\u0131n\u0131 tamamen durdurma yetene\u011Fine sahip olacaks\u0131n\u0131z.
+      Bunu kullanmak i\xE7in topa yakla\u015Fmal\u0131 ve yetene\u011Fi kullanmal\u0131s\u0131n\u0131z.
+      Y\xFCksek paslar\u0131 veya h\u0131zl\u0131 hareket eden toplar\u0131 yakalamak
+      i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574919
+    m_Localized: "Orta saha oyuncusu olarak bir sonraki yetene\u011Finiz, topu oyuncunuzla
+      birlikte s\xFCr\xFCkledi\u011Finiz bir rulet hareketi veya d\xF6n\xFC\u015F
+      hareketi yapman\u0131za olanak tan\u0131r. Bu hareketi yapmak size hafif bir
+      h\u0131z art\u0131\u015F\u0131 da sa\u011Flar. Bunu kullanmak i\xE7in son vuru\u015Fu
+      yapan ki\u015Fi olmal\u0131 ve topa yeterince yak\u0131n olmal\u0131s\u0131n\u0131z."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574920
+    m_Localized: "Bir defans oyuncusu (CB) olarak, iki savunma hamlesine eri\u015Fiminiz
+      var. Birincisi \"\xF6ld\xFCrme\" olarak adland\u0131r\u0131l\u0131yor ve bunu
+      kullanmak i\xE7in bir oyuncuyu ge\xE7ici olarak sersemletmek \xFCzere hedef
+      alman\u0131z gerekiyor. Bu, sald\u0131r\u0131lar\u0131 durdurmada son derece
+      etkili olabilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574921
+    m_Localized: "Bir sonraki savunma yetene\u011Finiz \"sapt\u0131rma\" olarak adland\u0131r\u0131l\u0131yor
+      ve havadaki toplar\u0131 sapt\u0131rman\u0131za olanak tan\u0131yor. Bu \xF6zellik,
+      y\xFCksek paslar\u0131 veya \u015Futlar\u0131 engellemek i\xE7in kullan\u0131labilir.
+      \u0130yi kullan\u0131ld\u0131\u011F\u0131nda ger\xE7ekten g\xFC\xE7l\xFC bir
+      \xF6zellik."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574922
+    m_Localized: "Kaleci olarak herhangi bir yetene\u011Finiz olmayacak. Ancak, topa
+      temas etti\u011Finde dal\u0131\u015F yapabilir ve topu savu\u015Fturabilirsiniz.
+      Oyuncunuzun hareket etti\u011Fi y\xF6ne do\u011Fru dal\u0131\u015F yapmak i\xE7in
+      Q tu\u015Funa bas\u0131n ve havay\u0131 kapatmak i\xE7in dal\u0131\u015Ftan
+      \xF6nce z\u0131play\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574923
+    m_Localized: "Yerdeyken de topu yakalamak i\xE7in T tu\u015Funa basabilirsiniz.
+      Topu ger\xE7ekten yakalayabilmek i\xE7in topun \xFCzerinde oldu\u011Funuzdan
+      emin olmal\u0131s\u0131n\u0131z. Sald\u0131r\u0131lar\u0131 tamamen durdurmak
+      i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574924
+    m_Localized: "Top elinize ge\xE7ti\u011Finde iki se\xE7ene\u011Finiz var: topu
+      yere vurarak pas vermek veya topu yuvarlayarak pas vermek. Yere vurarak pas
+      vermek i\xE7in, normal bir vuru\u015Fta oldu\u011Fu gibi sol fare d\xFC\u011Fmesini
+      kullanarak pas\u0131n\u0131z\u0131 \u015Farj etmeniz gerekir. Yere vurarak
+      paslar, yuvarlayarak yap\u0131lan paslardan daha uza\u011Fa ve daha y\xFCkse\u011Fe
+      gidebilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574925
+    m_Localized: "Yuvarlama pas\u0131 yapmak i\xE7in topun elinizde olmas\u0131 gerekir.
+      Ard\u0131ndan, yuvarlama pas\u0131 i\xE7in haz\u0131rl\u0131k yapmak \xFCzere
+      sa\u011F fare d\xFC\u011Fmesini (top s\xFCrme ile ayn\u0131 \u015Fekilde) bas\u0131l\u0131
+      tutun, sonra topu b\u0131rakmak i\xE7in d\xFC\u011Fmeyi b\u0131rak\u0131n.
+      Bu, k\u0131sa ama daha kontroll\xFC bir pas ger\xE7ekle\u015Ftirecektir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574926
+    m_Localized: "E\u011Fitimi ba\u015Far\u0131yla tamamlad\u0131\u011F\u0131n\u0131z
+      i\xE7in tebrikler! Art\u0131k temel bilgileri \xF6\u011Frendi\u011Finize g\xF6re,
+      di\u011Fer oyuncularla tam bir \xE7evrimi\xE7i ma\xE7 oynayabilir veya bir
+      antrenman sunucusuna kat\u0131larak becerilerinizi geli\u015Ftirmeye devam
+      edebilirsiniz. Bu e\u011Fitimde ele al\u0131nmayan daha bir\xE7ok gizli teknik
+      ve harika \u015Fey var. \u0130yi \u015Fanslar ve iyi e\u011Flenceler!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769216
+    m_Localized: "Bu e\u011Fitime ho\u015F geldiniz! \u0130lk a\u015Famada, hareketin
+      temellerini \xF6\u011Freneceksiniz. Y\xFCr\xFCmek i\xE7in sol joystick'i kullan\u0131n
+      ve ko\u015Fmak i\xE7in daha da ileriye itin. Sa\u011F tarafta ise z\u0131plamak,
+      kaymak ve depar atmak i\xE7in \xFC\xE7 d\xFC\u011Fmeye t\u0131klayabilirsiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769217
+    m_Localized: "Kayd\u0131rma d\xFC\u011Fmesine basarak topa do\u011Fru kayarak
+      topa daha fazla g\xFC\xE7 katabilirsiniz. Bu, rakiplerden topu almak veya al\xE7aktan
+      gelen \u015Futlar\u0131 savu\u015Fturmak i\xE7in kullan\u0131\u015Fl\u0131d\u0131r.
+      \u015Eimdi, topu bariyerin i\xE7ine kayd\u0131r\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769218
+    m_Localized: "Sonraki ad\u0131mda, top s\xFCrmeyi \xF6\u011Freneceksiniz. Top
+      s\xFCrme hareketini ba\u015Flatmak i\xE7in sa\u011F joystick'i \"D\" d\xFC\u011Fmesiyle
+      birlikte kullan\u0131n ve bas\u0131l\u0131 tutun. Joystick'in y\xF6n\xFCne
+      ba\u011Fl\u0131 olarak, top o y\xF6ne do\u011Fru hareket edecektir. Savunmalar\u0131
+      a\u015Fmak i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769219
+    m_Localized: "\u015Eimdi nas\u0131l \xE7ekim yapaca\u011F\u0131n\u0131z\u0131
+      \xF6\u011Freneceksiniz. Vuru\u015F yapmak i\xE7in joystick'i \"S\" d\xFC\u011Fmesiyle
+      birlikte bas\u0131l\u0131 tutun. Vuru\u015F yapmadan \xF6nce kameray\u0131
+      yukar\u0131 hareket ettirerek y\xFCksekli\u011Fi ayarlayabilirsiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769220
+    m_Localized: "Art\u0131k nas\u0131l vuru\u015F yapaca\u011F\u0131n\u0131z\u0131
+      bildi\u011Finize g\xF6re, topa nas\u0131l falso verece\u011Finizi de \xF6\u011Freneceksiniz.
+      T\u0131pk\u0131 top s\xFCrme gibi, joystick'in y\xF6n\xFC falsonun y\xF6n\xFCn\xFC
+      belirleyecektir. Ayr\u0131ca, falsolu vuru\u015Flar falsosuz vuru\u015Flardan
+      daha h\u0131zl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769221
+    m_Localized: "Her pozisyonun iki benzersiz yetene\u011Fi vard\u0131r. CF'den
+      ba\u015Flayarak, Powerkick yetene\u011Fi, \u015Fut \xE7ubu\u011Funu do\u011Fru
+      zamanlamayla kulland\u0131\u011F\u0131n\u0131z takdirde daha g\xFC\xE7l\xFC
+      \u015Fut atman\u0131z\u0131 sa\u011Flar. M\xFCkemmel bir zamanlama i\xE7in,
+      \xE7ubuk beyaz k\u0131sma de\u011Fdi\u011Fi anda b\u0131rakmal\u0131s\u0131n\u0131z.
+      Bunu \"L\" d\xFC\u011Fmesine iki kez basarak etkinle\u015Ftirebilirsiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769222
+    m_Localized: "CF'nin bir sonraki yetene\u011Fi olan \"h\u0131zl\u0131 ko\u015Fucu\",
+      k\u0131sa bir s\xFCre i\xE7in daha h\u0131zl\u0131 hareket etmenizi sa\u011Flar.
+      Bu, savunmalar\u0131 h\u0131zla ge\xE7erek oyun kurmak i\xE7in kullan\u0131labilir.
+      \"R\" tu\u015Funa iki kez basarak etkinle\u015Ftirebilirsiniz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769223
+    m_Localized: "Orta saha oyuncusu (sol/sa\u011F orta saha) olarak, topu \"tuzaklama\"
+      veya topun h\u0131z\u0131n\u0131 tamamen durdurma yetene\u011Fine sahip olacaks\u0131n\u0131z.
+      Bunu kullanmak i\xE7in topa yakla\u015Fmal\u0131 ve yetene\u011Fi kullanmal\u0131s\u0131n\u0131z.
+      Y\xFCksek paslar\u0131 veya h\u0131zl\u0131 hareket eden toplar\u0131 yakalamak
+      i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769224
+    m_Localized: "Orta saha oyuncusu olarak bir sonraki yetene\u011Finiz, topu oyuncunuzla
+      birlikte s\xFCr\xFCkledi\u011Finiz bir rulet hareketi veya d\xF6n\xFC\u015F
+      hareketi yapman\u0131za olanak tan\u0131r. Bu hareketi yapmak size hafif bir
+      h\u0131z art\u0131\u015F\u0131 da sa\u011Flar. Bunu kullanmak i\xE7in son vuru\u015Fu
+      yapan ki\u015Fi olmal\u0131 ve topa yeterince yak\u0131n olmal\u0131s\u0131n\u0131z."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769225
+    m_Localized: "Bir defans oyuncusu (CB) olarak, iki savunma hamlesine eri\u015Fiminiz
+      var. Birincisi \"\xF6ld\xFCrme\" olarak adland\u0131r\u0131l\u0131yor ve bunu
+      kullanmak i\xE7in bir oyuncuyu ge\xE7ici olarak sersemletmek \xFCzere hedef
+      alman\u0131z gerekiyor. Bu, sald\u0131r\u0131lar\u0131 durdurmada son derece
+      etkili olabilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769226
+    m_Localized: "Bir sonraki savunma yetene\u011Finiz \"sapt\u0131rma\" olarak adland\u0131r\u0131l\u0131yor
+      ve havadaki toplar\u0131 sapt\u0131rman\u0131za olanak tan\u0131yor. Bu \xF6zellik,
+      y\xFCksek paslar\u0131 veya \u015Futlar\u0131 engellemek i\xE7in kullan\u0131labilir.
+      \u0130yi kullan\u0131ld\u0131\u011F\u0131nda ger\xE7ekten g\xFC\xE7l\xFC bir
+      \xF6zellik."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769227
+    m_Localized: "Kaleci olarak herhangi bir yetene\u011Finiz olmayacak. Ancak, topa
+      temas etti\u011Finde dal\u0131\u015F yapabilir ve topu savu\u015Fturabilirsiniz.
+      Oyuncunuzun hareket etti\u011Fi y\xF6ne do\u011Fru dal\u0131\u015F yapmak i\xE7in
+      \"D\" tu\u015Funa bas\u0131n ve havay\u0131 kapatmak i\xE7in dal\u0131\u015Ftan
+      \xF6nce z\u0131play\u0131n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769228
+    m_Localized: "Yere d\xFC\u015Ft\xFC\u011F\xFCn\xFCzde topu yakalamak i\xE7in
+      \"C\" tu\u015Funa da basabilirsiniz. Sald\u0131r\u0131lar\u0131 tamamen durdurmak
+      i\xE7in kullan\u0131\u015Fl\u0131d\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769229
+    m_Localized: "Top elinize ge\xE7ti\u011Finde iki se\xE7ene\u011Finiz var: topu
+      yere vurarak paslamak veya topu yuvarlayarak paslamak. Yere vurarak paslamak
+      i\xE7in normal bir vuru\u015F yapman\u0131z gerekecek (joystick'i \"S\" tu\u015Fuyla
+      kullan\u0131n). Yere vurarak paslar, yuvarlayarak paslardan daha uza\u011Fa
+      ve daha y\xFCkse\u011Fe gidebilir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769230
+    m_Localized: "Topu yuvarlayarak pas vermek i\xE7in topun elinizde olmas\u0131
+      gerekir. Ard\u0131ndan, topu s\xFCrerek \u015Fut \xE7ekin. Bu, k\u0131sa ama
+      daha kontrol edilebilir bir pas sa\u011Flayacakt\u0131r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769231
+    m_Localized: "E\u011Fitimi ba\u015Far\u0131yla tamamlad\u0131\u011F\u0131n\u0131z
+      i\xE7in tebrikler! Art\u0131k temel bilgileri \xF6\u011Frendi\u011Finize g\xF6re,
+      di\u011Fer oyuncularla tam bir \xE7evrimi\xE7i ma\xE7 oynayabilir veya bir
+      antrenman sunucusuna kat\u0131larak becerilerinizi geli\u015Ftirmeye devam
+      edebilirsiniz. Bu e\u011Fitimde ele al\u0131nmayan daha bir\xE7ok gizli teknik
+      ve harika \u015Fey var. \u0130yi \u015Fanslar ve iyi e\u011Flenceler!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163166833233920
+    m_Localized: "\u0130LERLEMEK"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 752613887239520733
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 324502469267461
+        - id: 324502469267460
+        - id: 332782952304640
+        - id: 445100331683841
+        - id: 445100335878144
+        - id: 445100335878145
+        - id: 445100335878146
+        - id: 445100335878147
+        - id: 445100335878148
+        - id: 445100335878149
+        - id: 772988046200838
+        - id: 772988046200837
+        - id: 783485780938752
+        - id: 805157519020041
+        - id: 805157519020040
+        - id: 805157519020039
+        - id: 805157519020038
+        - id: 805157519020037
+        - id: 805157519020036
+        - id: 805157519020035
+        - id: 805157519020032
+        - id: 332782952304641
+        - id: 805157519020045
+        - id: 805157519020044
+        - id: 1115665912614912
+        - id: 1115665900032000

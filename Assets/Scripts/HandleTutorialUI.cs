@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization;
 
 public class HandleTutorialUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button proceedButton;
+    [SerializeField] private int currentStageNumber;
 
     [Header("Typewriter Setting")]
     [SerializeField] private string messageText;
@@ -17,8 +19,12 @@ public class HandleTutorialUI : MonoBehaviour
     [Header("Animation Setting")]
     [SerializeField] private float animationIntroDuration;
 
+    private LocalizedString tutorialTextLoc;
+
     private void OnEnable()
     {
+        tutorialTextLoc = new("Table1", (!Application.isMobilePlatform ? "PC_TUTORIAL_" : "MOBILE_TUTORIAL") + currentStageNumber);
+
         StartUI();
     }
 
@@ -34,7 +40,12 @@ public class HandleTutorialUI : MonoBehaviour
 
         text.text = "";
 
-        StartCoroutine(StartTypeWriterEffect());
+        if (!Application.isMobilePlatform)
+            messageText = tutorialTextLoc.GetLocalizedString();
+        else
+            mobileMessageText = tutorialTextLoc.GetLocalizedString();
+
+            StartCoroutine(StartTypeWriterEffect());
     }
     private IEnumerator StartTypeWriterEffect()
     {

@@ -19,11 +19,9 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
 
     private void OnEnable()
     {
-        InitializeData();
+        LoadLayout();
 
         EnableVisualHitboxUI(false);
-
-        LoadLayout();   
     }
 
     private void OnDisable()
@@ -100,6 +98,8 @@ public class AdjustMobileUISetting : MonoBehaviour, IDragHandler, IPointerDownHa
 
     public void SaveLayout()
     {
+        Debug.Log("saving");
+
         PlayerPrefs.SetFloat(gameObject.name + "_X", rectTransform.anchoredPosition.x);
         PlayerPrefs.SetFloat(gameObject.name + "_Y", rectTransform.anchoredPosition.y);
         PlayerPrefs.SetFloat(gameObject.name + "_Scale", rectTransform.localScale.x);

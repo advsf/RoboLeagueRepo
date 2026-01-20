@@ -1,0 +1,1059 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Table1_pt-BR
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: 59661c4d3ba204b4aaa1e25747ce201f, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 752613887239520734
+  m_TableData:
+  - m_Id: 436774604689409
+    m_Localized: JUNTAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689408
+    m_Localized: ATUALIZAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4783895793672
+    m_Localized: Atualizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6945124175876
+    m_Localized: "SA\xCDDA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305920184320
+    m_Localized: SENSIBILIDADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098880
+    m_Localized: "CAMPO DE VIS\xC3O DA C\xC2MERA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098881
+    m_Localized: "DESLOCAMENTO DA C\xC2MERA Y"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098882
+    m_Localized: ZONA MORTA DO JOYSTICK DE TIRO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098883
+    m_Localized: INVERTER MOUSE VERTICALMENTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098884
+    m_Localized: INVERTER MOUSE HORIZONTAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098885
+    m_Localized: ATIVAR PONTO DE BOLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098886
+    m_Localized: "TAMANHO M\xCDNIMO DO PONTO ESF\xC9RICO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098887
+    m_Localized: "TAMANHO M\xC1XIMO DO PONTO DA BOLA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098888
+    m_Localized: ATIVAR HUD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098889
+    m_Localized: ATIVAR CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098890
+    m_Localized: CHAT MODERADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098891
+    m_Localized: "PERSONALIZAR A INTERFACE DO USU\xC1RIO M\xD3VEL"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098892
+    m_Localized: "RESOLU\xC7\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098893
+    m_Localized: MODO DE TELA CHEIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098894
+    m_Localized: LIMITAR FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098895
+    m_Localized: TELA CHEIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098896
+    m_Localized: VSYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098897
+    m_Localized: QUALIDADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098898
+    m_Localized: "ESCALA DE RENDERIZA\xC7\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098899
+    m_Localized: ANTI-ALIASING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098900
+    m_Localized: Mapeamento de tons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098901
+    m_Localized: DESFOQUE DE MOVIMENTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098902
+    m_Localized: VOLUME MESTRE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098903
+    m_Localized: VOLUME DO REPRODUTOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098904
+    m_Localized: "VOLUME DA M\xDASICA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098905
+    m_Localized: "VOLUME DE EMO\xC7\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098906
+    m_Localized: "VOLUME DA MULTID\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098907
+    m_Localized: ATIVAR CHAT POR PROXIMIDADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098908
+    m_Localized: "ATIVA\xC7\xC3O POR VOZ"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098909
+    m_Localized: DISPOSITIVO DE ENTRADA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098910
+    m_Localized: TECLA DE APERTE PARA FALAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098911
+    m_Localized: "(N\xC3O PODE SER ALTERADO)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098912
+    m_Localized: "FECHAR CONFIGURA\xC7\xD5ES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098913
+    m_Localized: "RESTAURAR CONFIGURA\xC7\xD5ES PADR\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098914
+    m_Localized: SIGA EM FRENTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098915
+    m_Localized: RETROCEDER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098916
+    m_Localized: MOVA-SE PARA A ESQUERDA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098917
+    m_Localized: "V\xC1 PARA A DIREITA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098918
+    m_Localized: DRIBLAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098919
+    m_Localized: HABILIDADE ESQUERDA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098920
+    m_Localized: CAPACIDADE CORRETA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098921
+    m_Localized: PULAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098922
+    m_Localized: DESLIZAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098923
+    m_Localized: "TRA\xC7O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098924
+    m_Localized: MERGULHO DO GOL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098925
+    m_Localized: BOLA DE SPAWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098926
+    m_Localized: "CLASSIFICA\xC7\xC3O ABERTA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098927
+    m_Localized: "ALTERAR CONFIGURA\xC7\xD5ES DE CHAT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098928
+    m_Localized: "BATE-PAPO R\xC1PIDO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098929
+    m_Localized: JOGABILIDADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293184
+    m_Localized: TELA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293185
+    m_Localized: CONTROLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293186
+    m_Localized: "GR\xC1FICOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293187
+    m_Localized: "V\xCDDEO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293188
+    m_Localized: "\xC1UDIO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293189
+    m_Localized: CABELO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293190
+    m_Localized: "ACESS\xD3RIOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293191
+    m_Localized: EMOTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293192
+    m_Localized: BOLAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293193
+    m_Localized: TRILHAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293194
+    m_Localized: "CONFIGURA\xC7\xD5ES DE CAMISA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293195
+    m_Localized: NOME DA CAMISA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293196
+    m_Localized: "N\xDAMERO DA CAMISA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293197
+    m_Localized: "M\xC1XIMO DE 6 CARACTERES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293198
+    m_Localized: SOBRE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293199
+    m_Localized: DESLIGADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293200
+    m_Localized: "ENDERE\xC7O \u200B\u200BIP"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503401037824
+    m_Localized: PERSONALIZAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503455563776
+    m_Localized: APLICAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35177865203712
+    m_Localized: AGUARDANDO ENTRADA...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37113381310464
+    m_Localized: CHUTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37690567872512
+    m_Localized: GOLEIRO DEFESA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267456
+    m_Localized: "VER TODAS AS CLASSIFICA\xC7\xD5ES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267457
+    m_Localized: "ALTERAR NOME DE USU\xC1RIO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267458
+    m_Localized: ATUALIZAR REGISTROS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267459
+    m_Localized: "CR\xC9DITOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267460
+    m_Localized: '{xp}/100 XP DE LENDA'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 324502469267461
+    m_Localized: "{xp}/100 XP PARA ALCAN\xC7AR {rankName}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 332782952304640
+    m_Localized: "NOME DE USU\xC1RIO: {username}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 332782952304641
+    m_Localized: "GOLS: {goals} | ASSIST\xCANCIAS: {assists} | DEFESAS: {saves}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 435748812148736
+    m_Localized: "NOME DA SESS\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748858286080
+    m_Localized: "C\xD3DIGO DE SESS\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748862480384
+    m_Localized: CRIAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683840
+    m_Localized: "INFORMA\xC7\xD5ES DO SERVIDOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683841
+    m_Localized: "DURA\xC7\xC3O DE CADA TEMPO: {duration}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878144
+    m_Localized: "DURA\xC7\xC3O DO INTERVALO: {duration}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878145
+    m_Localized: 'MULTIPLICADOR DE CHUTE DA BOLA: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878146
+    m_Localized: 'MULTIPLICADOR DE CURVA DA BOLA: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878147
+    m_Localized: 'MULTIPLICADOR DE VELOCIDADE DO JOGADOR: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878148
+    m_Localized: 'HABILIDADE ATIVADA: {enabled}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 445100335878149
+    m_Localized: 'RECARGA DE HABILIDADE ATIVA: {enabled}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 753189333291008
+    m_Localized: CONECTANDO AO SERVIDOR.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291009
+    m_Localized: CONECTANDO AO SERVIDOR..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291010
+    m_Localized: CONECTANDO AO SERVIDOR...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790336
+    m_Localized: "N\xE3o consegui entrar no servidor!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790337
+    m_Localized: "SOLICITA\xC7\xC3O DE ENTRADA FALHOU!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790338
+    m_Localized: "SERVIDOR N\xC3O ENCONTRADO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790339
+    m_Localized: "VOC\xCA EST\xC1 BANIDO DESTE SERVIDOR!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790340
+    m_Localized: "PR\xC1TICA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790341
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835392
+    m_Localized: ATUALIZAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835393
+    m_Localized: "NOME DE USU\xC1RIO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835394
+    m_Localized: "O NOME DE USU\xC1RIO N\xC3O PODE ESTAR VAZIO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029696
+    m_Localized: "O NOME DE USU\xC1RIO N\xC3O PODE SER T\xC3O LONGO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029697
+    m_Localized: "O NOME DE USU\xC1RIO N\xC3O PODE CONTER CARACTERES INV\xC1LIDOS!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 761093557899264
+    m_Localized: "JUNTE-SE \xC0 NOSSA COMUNIDADE!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597760
+    m_Localized: "DURA\xC7\xC3O DE CADA METADE (EM SEGUNDOS)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597761
+    m_Localized: "DURA\xC7\xC3O DO MEIO TEMPO (EM SEGUNDOS)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597762
+    m_Localized: "(M\xCDNIMO 60 SEGUNDOS)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597763
+    m_Localized: "(M\xCDNIMO 5 SEGUNDOS)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597764
+    m_Localized: "(M\xCDNIMO 0,1X; M\xC1XIMO 2,5X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597765
+    m_Localized: "(M\xCDNIMO 0,1X; M\xC1XIMO 2X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597766
+    m_Localized: "(M\xCDNIMO 0,1X; M\xC1XIMO 3X)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597767
+    m_Localized: "HABILITA\xC7\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597768
+    m_Localized: ATIVAR TEMPO DE RECARGA DA HABILIDADE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362880
+    m_Localized: "PERSONALIZA\xC7\xC3O DO SERVIDOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362881
+    m_Localized: "Alterar qualquer configura\xE7\xE3o resultar\xE1 na n\xE3o concess\xE3o
+      de XP pelo servidor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200832
+    m_Localized: JOGADORES DE CHUTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200833
+    m_Localized: "CONFIGURA\xC7\xD5ES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200834
+    m_Localized: ESPECTADOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200835
+    m_Localized: VOLTAR AO LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200837
+    m_Localized: 'Gol de: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 772988046200838
+    m_Localized: "Assist\xEAncia de: {username}"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 782823332564992
+    m_Localized: "Sem aux\xEDlio de ningu\xE9m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938752
+    m_Localized: AGUARDANDO JOGADORES... {playerCount}
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 783485780938753
+    m_Localized: Pressione T para iniciar (deve haver mais de 1 jogador)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157409968128
+    m_Localized: "Pressione o bot\xE3o abaixo para iniciar (deve haver mais de 1
+      jogador)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020032
+    m_Localized: "O JOGO COME\xC7A EM: {time}..."
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020033
+    m_Localized: FIM DE JOGO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020034
+    m_Localized: IMPEDIMENTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020035
+    m_Localized: INTERVALO ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020036
+    m_Localized: FALTA INDIRETA ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020037
+    m_Localized: TIRO DE META ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020038
+    m_Localized: ARREMESSO LATERAL ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020039
+    m_Localized: ESCANTEIO ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020040
+    m_Localized: "Voc\xEA ganhou {xp} XP por {goals} gols, {assists} assist\xEAncias
+      e {saves} defesas!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020041
+    m_Localized: "Voc\xEA perdeu {xp} XP por perder a partida!"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020042
+    m_Localized: "Voc\xEA n\xE3o ganhou XP por causa do empate!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020043
+    m_Localized: "Voc\xEA n\xE3o ganhou XP por n\xE3o jogar tempo suficiente!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020044
+    m_Localized: '{username} conectou-se'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 805157519020045
+    m_Localized: '{username} desconectou-se'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1115665900032000
+    m_Localized: '{username} entrou no {team} como {position}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1115665912614912
+    m_Localized: '{username} foi expulso'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1118737883779072
+    m_Localized: MULTIPLICADOR DE CHUTES NA BOLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499328
+    m_Localized: MULTIPLICADOR DE CURVA DE BOLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499329
+    m_Localized: MULTIPLICADOR DE VELOCIDADE DO JOGADOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934067929088
+    m_Localized: Nenhum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843648
+    m_Localized: Desvio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1126491130220544
+    m_Localized: "Finaliza\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843650
+    m_Localized: Chute potente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843651
+    m_Localized: Roleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843652
+    m_Localized: Velocista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843653
+    m_Localized: "Dom\xEDnio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409600
+    m_Localized: METAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423297495040
+    m_Localized: CLIQUE PARA REVELAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381121
+    m_Localized: "N\xC3O \xC9 PERMITIDO CHUTAR OS GOLEIROS!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381122
+    m_Localized: VELOCIDADE AUMENTADA!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381123
+    m_Localized: "N\xC3O \xC9 POSS\xCDVEL USAR ESTA HABILIDADE ANTES DO IN\xCDCIO
+      DA PARTIDA!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381124
+    m_Localized: "N\xC3O CONSIGO PEGAR A BOLA DO MEU COLEGA DE EQUIPE!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575424
+    m_Localized: "Voc\xEA n\xE3o consegue desviar seu pr\xF3prio tiro!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575425
+    m_Localized: "N\xC3O \xC9 POSS\xCDVEL DESFOR\xC7AR TIROS DE GOL!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575426
+    m_Localized: "N\xC3O CONSEGUE DESVIAR BOLAS BAIXAS!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575427
+    m_Localized: FOI LONGE DEMAIS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575428
+    m_Localized: "DEVE ESTAR NO CH\xC3O!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575429
+    m_Localized: "N\xC3O POSSO JOGAR NA ROLETA AGORA!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575430
+    m_Localized: "VOC\xCA DEVE SER O \xDALTIMO CHUTADOR!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575431
+    m_Localized: FORA DO ALCANCE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575432
+    m_Localized: "N\xC3O POSSO CA\xC7AR PESCA AGORA!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409601
+    m_Localized: "ASSIST\xCANCIAS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409602
+    m_Localized: ECONOMIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409603
+    m_Localized: "POSI\xC7\xC3O"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409604
+    m_Localized: PING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409605
+    m_Localized: ENVIAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409606
+    m_Localized: "DESINCRONIZA\xC7\xC3O DO SERVIDOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409607
+    m_Localized: "ALTA LAT\xCANCIA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300736
+    m_Localized: "CONFIGURA\xC7\xD5ES DE SPAWN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300737
+    m_Localized: REINICIAR BOLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300738
+    m_Localized: SPAWN OFERTA BAIXA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300739
+    m_Localized: SPAWN HIGH BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300740
+    m_Localized: SPAWN DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300741
+    m_Localized: EXCLUIR DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300742
+    m_Localized: ATIVAR/DESATIVAR GK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156324417654784
+    m_Localized: DIGITE O TEXTO...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875371048960
+    m_Localized: "Bem-vindo(a) a este tutorial! Nesta primeira etapa, voc\xEA aprender\xE1
+      o b\xE1sico da movimenta\xE7\xE3o. Use WASD para se mover, Shift esquerdo para
+      correr, Espa\xE7o para pular, Ctrl esquerdo para deslizar e E para dar um impulso."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574912
+    m_Localized: "Voc\xEA pode imprimir mais for\xE7a \xE0 bola deslizando em dire\xE7\xE3o
+      a ela pressionando a tecla Ctrl esquerda. Isso \xE9 \xFAtil para desarmar advers\xE1rios
+      ou desviar chutes rasteiros. Agora, deslize a bola em dire\xE7\xE3o \xE0 barreira."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574913
+    m_Localized: "Em seguida, voc\xEA aprender\xE1 a driblar. Use o bot\xE3o direito
+      do mouse para executar um drible, que far\xE1 a bola seguir a dire\xE7\xE3o
+      do seu jogador. \xDAtil para driblar a defesa advers\xE1ria."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574914
+    m_Localized: "Agora voc\xEA vai aprender a chutar. Segure o bot\xE3o esquerdo
+      do mouse para carregar o chute. Voc\xEA pode aumentar a altura do chute olhando
+      para cima antes de chutar a bola."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574915
+    m_Localized: "Agora que voc\xEA j\xE1 sabe como chutar, vai aprender a dar efeito
+      na bola. Basta dar um toque r\xE1pido na bola com o mouse antes de chutar para
+      faz\xEA-la girar nessa dire\xE7\xE3o. Chutes com efeito s\xE3o mais r\xE1pidos
+      do que chutes sem efeito."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574916
+    m_Localized: "Cada posi\xE7\xE3o possui duas habilidades \xFAnicas (exceto as
+      posi\xE7\xF5es de meio-campo). Come\xE7ando pelo centroavante, a habilidade
+      chute potente permite chutar com mais for\xE7a, desde que o tempo de chute
+      seja bem sincronizado. Para um chute perfeito, \xE9 preciso soltar a barra
+      quando ela tocar a parte branca."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574917
+    m_Localized: "A pr\xF3xima habilidade do CF, \"Velocista\", permite que voc\xEA
+      se mova mais r\xE1pido por um curto per\xEDodo. Isso pode ser usado para fazer
+      uma corrida r\xE1pida atrav\xE9s das defesas e criar jogadas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574918
+    m_Localized: "Como meio-campista (MEI/MEI), voc\xEA ter\xE1 a habilidade de \"dominar\"
+      a bola, ou seja, parar completamente a velocidade dela. Para usar essa habilidade,
+      voc\xEA deve se aproximar da bola e ativ\xE1-la. \xC9 \xFAtil para interceptar
+      passes altos ou bolas em alta velocidade."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574919
+    m_Localized: "Sua pr\xF3xima habilidade como meio-campista permite que voc\xEA
+      execute um movimento de roleta, ou um giro que arrasta a bola junto com o jogador.
+      Executar esse movimento tamb\xE9m lhe d\xE1 um pequeno aumento de velocidade.
+      Para us\xE1-lo, voc\xEA precisa ser o \xFAltimo a chutar a bola e estar perto
+      o suficiente dela."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574920
+    m_Localized: "Como zagueiro (CB), voc\xEA tem acesso a dois movimentos defensivos.
+      O primeiro se chama \"matar\" e, para us\xE1-lo, voc\xEA deve mirar em um jogador
+      para atordo\xE1-lo temporariamente. Isso pode ser extremamente eficaz para
+      interromper ataques."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574921
+    m_Localized: "Sua pr\xF3xima habilidade defensiva se chama \"desviar\" e permite
+      desviar bolas no ar. Isso pode ser usado para bloquear passes altos ou chutes.
+      \xC9 realmente poderoso se usado corretamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574922
+    m_Localized: "Como goleiro, voc\xEA n\xE3o ter\xE1 nenhuma habilidade especial.
+      No entanto, voc\xEA poder\xE1 mergulhar e desviar a bola no momento do contato.
+      Pressione Q para mergulhar na dire\xE7\xE3o em que seu jogador est\xE1 se movendo
+      e pule antes de mergulhar para cobrir o ar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574923
+    m_Localized: "Voc\xEA tamb\xE9m pode pressionar T para pegar a bola quando estiver
+      no ch\xE3o. Certifique-se de estar em cima da bola para conseguir peg\xE1-la.
+      \xDAtil para bloquear ataques completamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574924
+    m_Localized: "Assim que a bola estiver em suas m\xE3os, voc\xEA tem duas op\xE7\xF5es:
+      chutar de drop ou rolar a bola. Para executar um drop, voc\xEA usar\xE1 o bot\xE3o
+      esquerdo do mouse para carregar o chute \u2014 da mesma forma que carrega um
+      chute normal. Drop kicks podem ir mais longe e mais alto do que um passe rolado."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574925
+    m_Localized: "Para executar um passe rolado, voc\xEA precisa ter a bola nas m\xE3os.
+      Em seguida, mantenha pressionado o bot\xE3o direito do mouse (o mesmo que para
+      driblar) para carregar o passe e solte o bot\xE3o para liberar a bola. Isso
+      executar\xE1 um passe curto, por\xE9m mais control\xE1vel."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574926
+    m_Localized: "Parab\xE9ns por concluir o tutorial! Agora que voc\xEA aprendeu
+      o b\xE1sico, pode jogar uma partida online completa com outras pessoas ou continuar
+      a desenvolver suas habilidades entrando em um servidor de pr\xE1tica. H\xE1
+      muitas outras t\xE9cnicas e truques interessantes que este tutorial n\xE3o
+      abordou. Boa sorte e divirta-se!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769216
+    m_Localized: "Bem-vindo(a) a este tutorial! Nesta primeira etapa, voc\xEA aprender\xE1
+      o b\xE1sico da movimenta\xE7\xE3o. Use o joystick esquerdo para andar e pressione-o
+      para correr. \xC0 direita, voc\xEA pode clicar nos tr\xEAs bot\xF5es para pular,
+      deslizar e dar um impulso."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769217
+    m_Localized: "Voc\xEA pode adicionar for\xE7a \xE0 bola deslizando em dire\xE7\xE3o
+      a ela pressionando o bot\xE3o de deslizar. Isso \xE9 \xFAtil para desarmar
+      os advers\xE1rios ou desviar um chute rasteiro. Agora, deslize a bola em dire\xE7\xE3o
+      \xE0 barreira."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769218
+    m_Localized: "Em seguida, voc\xEA aprender\xE1 a driblar. Use o joystick direito
+      com o bot\xE3o \"D\" e mantenha-o pressionado para executar um drible. Dependendo
+      da dire\xE7\xE3o do joystick, a bola se mover\xE1 nessa dire\xE7\xE3o. \xDAtil
+      para driblar a defesa advers\xE1ria."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769219
+    m_Localized: "Agora voc\xEA vai aprender a chutar. Segure o joystick com o bot\xE3o
+      \"S\" para carregar um chute. Voc\xEA pode ajustar a altura movendo a c\xE2mera
+      para cima antes de chutar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769220
+    m_Localized: "Agora que voc\xEA j\xE1 sabe como chutar, vai aprender a dar efeito
+      na bola. Assim como no drible, a dire\xE7\xE3o do joystick determina a dire\xE7\xE3o
+      do efeito. Al\xE9m disso, chutes com efeito s\xE3o mais r\xE1pidos do que chutes
+      sem efeito."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769221
+    m_Localized: "Cada posi\xE7\xE3o possui duas habilidades \xFAnicas. Come\xE7ando
+      pela posi\xE7\xE3o de centroavante (CF), a habilidade \"chute potente\" permite
+      chutar com mais for\xE7a, desde que voc\xEA acerte o tempo da barra de chute.
+      Para um chute perfeito, voc\xEA deve soltar a barra quando ela tocar a parte
+      branca. Voc\xEA pode ativ\xE1-la pressionando o bot\xE3o \"L\" duas vezes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769222
+    m_Localized: "A pr\xF3xima habilidade do CF, \"Velocista\", permite que voc\xEA
+      se mova mais r\xE1pido por um curto per\xEDodo. Isso pode ser usado para fazer
+      uma corrida r\xE1pida atrav\xE9s das defesas e criar jogadas. Voc\xEA pode
+      ativ\xE1-la pressionando o bot\xE3o \"R\" duas vezes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769223
+    m_Localized: "Como meio-campista (MEI/MEI), voc\xEA ter\xE1 a habilidade de \"dominar\"
+      a bola, ou seja, parar completamente a velocidade dela. Para usar essa habilidade,
+      voc\xEA deve se aproximar da bola e ativ\xE1-la. \xC9 \xFAtil para interceptar
+      passes altos ou bolas em alta velocidade."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769224
+    m_Localized: "Sua pr\xF3xima habilidade como meio-campista permite que voc\xEA
+      execute um movimento de roleta, ou um giro que arrasta a bola junto com o jogador.
+      Executar esse movimento tamb\xE9m lhe d\xE1 um pequeno aumento de velocidade.
+      Para us\xE1-lo, voc\xEA precisa ser o \xFAltimo a chutar a bola e estar perto
+      o suficiente dela."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769225
+    m_Localized: "Como zagueiro (CB), voc\xEA tem acesso a dois movimentos defensivos.
+      O primeiro se chama \"matar\" e, para us\xE1-lo, voc\xEA deve mirar em um jogador
+      para atordo\xE1-lo temporariamente. Isso pode ser extremamente eficaz para
+      interromper ataques."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769226
+    m_Localized: "Sua pr\xF3xima habilidade defensiva se chama \"desviar\" e permite
+      desviar bolas no ar. Isso pode ser usado para bloquear passes altos ou chutes.
+      \xC9 realmente poderoso se usado corretamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769227
+    m_Localized: "Como goleiro, voc\xEA n\xE3o ter\xE1 nenhuma habilidade especial.
+      No entanto, voc\xEA poder\xE1 mergulhar e desviar a bola no momento do contato.
+      Pressione o bot\xE3o \"D\" para mergulhar na dire\xE7\xE3o em que seu jogador
+      est\xE1 se movendo e pule antes de mergulhar para cobrir o ar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769228
+    m_Localized: "Voc\xEA tamb\xE9m pode pressionar o bot\xE3o \"C\" para pegar a
+      bola quando estiver no ch\xE3o. \xDAtil para interromper completamente os ataques."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769229
+    m_Localized: "Assim que a bola estiver em suas m\xE3os, voc\xEA tem duas op\xE7\xF5es:
+      chutar de drop ou rolar a bola. Para executar um drop, voc\xEA precisar\xE1
+      dar um chute normal (joystick com o bot\xE3o \"S\"). Os drop goals podem ir
+      mais longe e mais alto do que um passe rolado."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769230
+    m_Localized: "Para executar um passe rolado, voc\xEA precisa ter a bola nas m\xE3os.
+      Em seguida, execute um drible com arremesso. Isso resultar\xE1 em um passe
+      curto, por\xE9m mais control\xE1vel."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769231
+    m_Localized: "Parab\xE9ns por concluir o tutorial! Agora que voc\xEA aprendeu
+      o b\xE1sico, pode jogar uma partida online completa com outras pessoas ou continuar
+      a desenvolver suas habilidades entrando em um servidor de pr\xE1tica. H\xE1
+      muitas outras t\xE9cnicas e truques interessantes que este tutorial n\xE3o
+      abordou. Boa sorte e divirta-se!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163166833233920
+    m_Localized: PROSSEGUIR
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 752613887239520734
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 324502469267461
+        - id: 324502469267460
+        - id: 332782952304640
+        - id: 445100331683841
+        - id: 445100335878144
+        - id: 445100335878145
+        - id: 445100335878146
+        - id: 445100335878147
+        - id: 445100335878148
+        - id: 445100335878149
+        - id: 772988046200838
+        - id: 772988046200837
+        - id: 783485780938752
+        - id: 805157519020041
+        - id: 805157519020040
+        - id: 805157519020039
+        - id: 805157519020038
+        - id: 805157519020037
+        - id: 805157519020036
+        - id: 805157519020035
+        - id: 805157519020032
+        - id: 332782952304641
+        - id: 805157519020045
+        - id: 805157519020044
+        - id: 1115665912614912
+        - id: 1115665900032000

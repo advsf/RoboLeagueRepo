@@ -1,0 +1,1041 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Table1_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 59661c4d3ba204b4aaa1e25747ce201f, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 752613887239520728
+  m_TableData:
+  - m_Id: 436774604689409
+    m_Localized: JOIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 436774604689408
+    m_Localized: REFRESH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4783895793672
+    m_Localized: Refresh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6945124175876
+    m_Localized: EXIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305920184320
+    m_Localized: SENSITIVITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098880
+    m_Localized: CAMERA FOV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098881
+    m_Localized: CAMERA Y OFFSET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098882
+    m_Localized: SHOOTING JOYSTICK DEADZONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098883
+    m_Localized: INVERT MOUSE VERTICAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098884
+    m_Localized: INVERT MOUSE HORIZONTAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098885
+    m_Localized: ENABLE BALL DOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098886
+    m_Localized: BALL DOT MIN. SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098887
+    m_Localized: BALL DOT MAX. SIZE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098888
+    m_Localized: ENABLE HUD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098889
+    m_Localized: ENABLE CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098890
+    m_Localized: MODERATE CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098891
+    m_Localized: CUSTOMIZE MOBILE UI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098892
+    m_Localized: RESOLUTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098893
+    m_Localized: FULLSCREEN MODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098894
+    m_Localized: LIMIT FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098895
+    m_Localized: FULLSCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098896
+    m_Localized: VSYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098897
+    m_Localized: QUALITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098898
+    m_Localized: RENDER SCALE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098899
+    m_Localized: ANTI-ALIASING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098900
+    m_Localized: TONEMAPPING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098901
+    m_Localized: MOTION BLUR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098902
+    m_Localized: MASTER VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098903
+    m_Localized: PLAYER VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098904
+    m_Localized: MUSIC VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098905
+    m_Localized: EMOTE VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098906
+    m_Localized: CROWD VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098907
+    m_Localized: ENABLE PROXIMITY CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098908
+    m_Localized: VOICE ACTIVATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098909
+    m_Localized: INPUT DEVICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098910
+    m_Localized: PUSH TO TALK KEY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098911
+    m_Localized: (CANNOT BE CHANGED)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098912
+    m_Localized: CLOSE SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098913
+    m_Localized: RESET TO DEFAULT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098914
+    m_Localized: MOVE FORWARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098915
+    m_Localized: MOVE BACKWARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098916
+    m_Localized: MOVE LEFT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098917
+    m_Localized: MOVE RIGHT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098918
+    m_Localized: DRIBBLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098919
+    m_Localized: LEFT ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098920
+    m_Localized: RIGHT ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098921
+    m_Localized: JUMP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098922
+    m_Localized: SLIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098923
+    m_Localized: DASH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098924
+    m_Localized: GK DIVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098925
+    m_Localized: SPAWN BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098926
+    m_Localized: OPEN LEADERBOARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098927
+    m_Localized: CHANGE CHAT SETTING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098928
+    m_Localized: QUICK CHAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305983098929
+    m_Localized: GAMEPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293184
+    m_Localized: SCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293185
+    m_Localized: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293186
+    m_Localized: GRAPHICS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293187
+    m_Localized: VIDEO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293188
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293189
+    m_Localized: HAIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293190
+    m_Localized: ACCESSORIES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293191
+    m_Localized: EMOTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293192
+    m_Localized: BALLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293193
+    m_Localized: TRAILS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293194
+    m_Localized: JERSEY SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293195
+    m_Localized: JERSEY NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293196
+    m_Localized: JERSEY NUMBER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293197
+    m_Localized: MAX. 6 CHARACTERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293198
+    m_Localized: ON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293199
+    m_Localized: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20305987293200
+    m_Localized: IP ADDRESS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503401037824
+    m_Localized: 'CUSTOMIZE    '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25503455563776
+    m_Localized: APPLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35177865203712
+    m_Localized: WAITING FOR INPUT...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37113381310464
+    m_Localized: KICK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37690567872512
+    m_Localized: GK CATCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267456
+    m_Localized: VIEW ALL RANKS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267457
+    m_Localized: CHANGE USERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267458
+    m_Localized: UPDATE LOGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267459
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324502469267460
+    m_Localized: '{xp}/100 LEGEND XP'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 324502469267461
+    m_Localized: '{xp}/100 XP AWAY FROM {rankName}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 332782952304640
+    m_Localized: 'USERNAME: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 332782952304641
+    m_Localized: 'GOALS: {goals} | ASSISTS: {assists} | SAVES: {saves}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 435748812148736
+    m_Localized: SESSION NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748858286080
+    m_Localized: SESSION CODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435748862480384
+    m_Localized: CREATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683840
+    m_Localized: SERVER INFO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445100331683841
+    m_Localized: 'EACH HALF DURATION: {duration}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878144
+    m_Localized: 'HALFTIME DURATION: {duration}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878145
+    m_Localized: 'BALL KICK MULTIPLIER: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878146
+    m_Localized: 'BALL CURVE MULTIPLIER: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878147
+    m_Localized: 'PLAYER SPEED MULTIPLIER: {multiplier}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878148
+    m_Localized: 'IS ABILITY ENABLED: {enabled}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 445100335878149
+    m_Localized: 'DO ABILITY COOLDOWN: {enabled}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 753189333291008
+    m_Localized: JOINING SERVER.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291009
+    m_Localized: JOINING SERVER..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 753189333291010
+    m_Localized: JOINING SERVER...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790336
+    m_Localized: COULDN'T JOIN THE SERVER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790337
+    m_Localized: JOIN REQUEST FAILED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790338
+    m_Localized: SERVER NOT FOUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790339
+    m_Localized: YOU ARE BANNED FROM THIS SERVER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790340
+    m_Localized: PRACTICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758759083790341
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835392
+    m_Localized: UPDATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835393
+    m_Localized: USERNAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177131835394
+    m_Localized: USERNAME CANNOT BE EMPTY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029696
+    m_Localized: USERNAME CANNOT BE THIS LONG!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 760177136029697
+    m_Localized: USERNAME CANNOT CONTAIN INVALID CHARACTERS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 761093557899264
+    m_Localized: JOIN OUR COMMUNITY!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597760
+    m_Localized: EACH HALF DURATION (IN SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597761
+    m_Localized: HALF TIME DURATION (IN SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597762
+    m_Localized: (MINIMUM 60 SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597763
+    m_Localized: (MINIMUM 5 SECONDS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597764
+    m_Localized: (MINIMUM 0.1X; MAXIMUM 2.5X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597765
+    m_Localized: (MINIMUM 0.1X; MAXIMUM 2X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597766
+    m_Localized: (MINIMUM 0.1X; MAXIMUM 3X)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597767
+    m_Localized: ENABLE ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769949092597768
+    m_Localized: ENABLE ABILITY COOLDOWN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362880
+    m_Localized: SERVER CUSTOMIZATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770589898362881
+    m_Localized: CHANGING ANYTHING WILL RESULT IN THE SERVER NOT GRANTING ANY XP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200832
+    m_Localized: KICK PLAYERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200833
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200834
+    m_Localized: SPECTATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200835
+    m_Localized: RETURN TO LOBBY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 772988046200837
+    m_Localized: 'SCORED BY: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 772988046200838
+    m_Localized: 'ASSISTED BY: {username}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 782823332564992
+    m_Localized: ASSISTED BY NONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783485780938752
+    m_Localized: WAITING FOR PLAYERS... {playerCount}
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 783485780938753
+    m_Localized: PRESS T TO START (MUST BE >1 PLAYERS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157409968128
+    m_Localized: PRESS THE BUTTON BELOW TO START (MUST BE >1 PLAYERS)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020032
+    m_Localized: 'GAME STARTING IN: {time}...'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020033
+    m_Localized: MATCH OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020034
+    m_Localized: OFFSIDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020035
+    m_Localized: HALFTIME ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020036
+    m_Localized: INDIRECT FREEKICK ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020037
+    m_Localized: GOAL KICK ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020038
+    m_Localized: THROW IN ({time}s)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020039
+    m_Localized: CORNER KICK ({time})s
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020040
+    m_Localized: You earned {xp} xp for {goals} goals, {assists} assists, and {saves}
+      saves!
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020041
+    m_Localized: You lost {xp} xp for losing a match!
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020042
+    m_Localized: You gained zero xp for a tie game!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020043
+    m_Localized: You did not earn any xp for not playing enough!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 805157519020044
+    m_Localized: '{username} connected'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 805157519020045
+    m_Localized: '{username} disconnected'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 1115665900032000
+    m_Localized: '{username} joined {team} as a {position}'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 1115665912614912
+    m_Localized: '{username} has been kicked'
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520728
+  - m_Id: 1118737883779072
+    m_Localized: BALL KICK MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499328
+    m_Localized: BALL CURVE MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118737942499329
+    m_Localized: PLAYER SPEED MULTIPLIER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934067929088
+    m_Localized: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843648
+    m_Localized: Deflect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1126491130220544
+    m_Localized: Kill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843650
+    m_Localized: Powershot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843651
+    m_Localized: Roulette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843652
+    m_Localized: Speedster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1125934130843653
+    m_Localized: Trap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409600
+    m_Localized: GOALS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423297495040
+    m_Localized: CLICK TO REVEAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381121
+    m_Localized: CANNOT KICK GOALKEEPERS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381122
+    m_Localized: INCREASED SPEED!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381123
+    m_Localized: CANNOT USE THIS ABILITY BEFORE THE GAME STARTS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512789381124
+    m_Localized: CANNOT CATCH TEAMMATE'S BALL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575424
+    m_Localized: CANNOT DEFLECT YOUR OWN SHOT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575425
+    m_Localized: CANNOT DEFLECT GOAL KICKS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575426
+    m_Localized: CANNOT DEFLECT LOW BALLS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575427
+    m_Localized: TOO FAR!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575428
+    m_Localized: MUST BE ON THE GROUND!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575429
+    m_Localized: CANNOT ROULETTE RIGHT NOW!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575430
+    m_Localized: YOU MUST BE THE LAST KICKER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575431
+    m_Localized: NOT IN RANGE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133512793575432
+    m_Localized: CANNOT TRAP RIGHT NOW!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409601
+    m_Localized: ASSISTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409602
+    m_Localized: SAVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409603
+    m_Localized: POSITION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409604
+    m_Localized: PING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409605
+    m_Localized: SEND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409606
+    m_Localized: SERVER DESYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1146423360409607
+    m_Localized: HIGH LATENCY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300736
+    m_Localized: SPAWN SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300737
+    m_Localized: RESET BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300738
+    m_Localized: SPAWN LOW BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300739
+    m_Localized: SPAWN HIGH BALL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300740
+    m_Localized: SPAWN DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300741
+    m_Localized: DELETE DUMMY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155336189300742
+    m_Localized: ENABLE/DISABLE GK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1156324417654784
+    m_Localized: ENTER TEXT...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875371048960
+    m_Localized: welcome to this tutorial! for the first stage, you will learn the
+      basics of movement. Use WASD to move, left-shift to sprint, space to jump,
+      left-control to slide, and e to dash.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574912
+    m_Localized: you can add force to the ball by sliding into it by pressing left
+      control. this is useful for tackling the ball out of opponents or to deflect
+      a low-driven shot. now, slide the ball into the barrier.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574913
+    m_Localized: next, you will learn how to dribble. use your right mouse button
+      to trigger a dribble move, which will make the ball follow the direction of
+      your player. useful for cutting through defenses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574914
+    m_Localized: now you will learn how to shoot. hold the left mouse button to charge
+      up a kick. you can add height by looking up before you kick the ball.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574915
+    m_Localized: now that you know how to kick, you will learn how to add spin onto
+      the ball. simply flick the ball with your mouse before you shoot to make the
+      ball spin in that direction. spin shots are faster than non-spin shots.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574916
+    m_Localized: Each position has two unique abilities (except for midfield positions).
+      Starting with cf, the powerkick ability allows you to shoot with a greater
+      power, provided that you time the shooting bar well. to get a perfect timing,
+      you must release when the bar touches the white part.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574917
+    m_Localized: cf's next ability "speedster" allows you to move faster for a short
+      duration. this can be used to make a quick run through the defences to create
+      plays.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574918
+    m_Localized: As a midfielder (LMF/RMF), you will have the ability to "trap" the
+      ball, or stop the ball's velocity entirely. to use this, you should get near
+      the ball and use the ability. useful for catching high passes or fast moving
+      balls.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574919
+    m_Localized: your next ability as a midfielder allows you to perform a roulette
+      move, or a spin move that drags the ball with your player. performing this
+      move gives you a slight speed boost as well. to use it, you must be the last
+      kicker and be close enough to the ball.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574920
+    m_Localized: as a defender (CB), you have access to two defensive moves. the
+      first one is called "kill", and to use it you must aim at a player to temporarily
+      stun them. this can be extremely effective at stopping attacks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574921
+    m_Localized: Your next defensive ability is called "deflect", and it allows you
+      to deflect balls in the air. this can be used to block high passes or shots.
+      really powerful if used well.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574922
+    m_Localized: as a gk, you won't have any abilities. however, you are able to
+      dive and deflect the ball upon contact. press q to dive in the direction that
+      your player is moving, and jump before diving to cover the air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574923
+    m_Localized: You can also press T to catch the ball when you are grounded. You
+      must make sure that you are on top of the ball to ensure that you can actually
+      catch the ball. Useful for completely stopping attacks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574924
+    m_Localized: "once the ball is in your hands, you have two options: drop kick
+      the ball or roll the ball. in order to perform a drop kick, you will use your
+      left mouse button to charge up your drop kick\u2014the same as charging up
+      a regular kick. drop kicks can go further and higher than a roll pass."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574925
+    m_Localized: To perform a roll pass, you must have the ball in your hands. Then,
+      hold your right mouse button (the same as dribbling) to charge up a roll pass
+      then let go of the button to release the ball. This will execute a short but
+      more controllable pass.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875425574926
+    m_Localized: Congratulations on passing the tutorial! Now that you have learned
+      the basics, you can either play a full online match with other people or continue
+      to develop your skills by joining a practice server. There's a lot more hidden
+      techs and cool things that this tutorial has not covered. Good luck, and have
+      fun!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769216
+    m_Localized: welcome to this tutorial! for the first stage, you will learn the
+      basics of movement. Use the left joystick to walk and push it further to sprint.
+      On the right, you can click on the three buttons to jump, slide, and dash.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769217
+    m_Localized: you can add force to the ball by sliding into it by pressing the
+      slide button. this is useful for tackling the ball out of opponents or to deflect
+      a low-driven shot. now, slide the ball into the barrier.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769218
+    m_Localized: next, you will learn how to dribble. use the right joystick with
+      the "D" button and hold on it to trigger a dribble move. depending on the direction
+      of the joystick, the ball will move in that direction. useful for cutting through
+      defenses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769219
+    m_Localized: now you will learn how to shoot. hold the joystick with the "S"
+      button to charge up a kick. you can height by moving your camera up before
+      you kick.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769220
+    m_Localized: now that you know how to kick, you will learn how to add spin onto
+      the ball. just like dribbling, the direction of the joystick will determine
+      the direction of the spin. also, spin shots are faster than non-spin shots.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769221
+    m_Localized: Each position has two unique abilities. Starting with cf, the powerkick
+      ability allows you to shoot with a greater power, provided that you time the
+      shooting bar well. to get a perfect timing, you must release when the bar touches
+      the white part. you can activiate it by pressing the "L" button twice.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769222
+    m_Localized: cf's next ability "speedster" allows you to move faster for a short
+      duration. this can be used to make a quick run through the defences to create
+      plays. You can activiate it by pressing the "R" button twice.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769223
+    m_Localized: As a midfielder (LMF/RMF), you will have the ability to "trap" the
+      ball, or stop the ball's velocity entirely. to use this, you should get near
+      the ball and use the ability. useful for catching high passes or fast moving
+      balls.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769224
+    m_Localized: your next ability as a midfielder allows you to perform a roulette
+      move, or a spin move that drags the ball with your player. performing this
+      move gives you a slight speed boost as well. to use it, you must be the last
+      kicker and be close enough to the ball.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769225
+    m_Localized: '  as a defender (CB), you have access to two defensive moves. the
+      first one is called "kill", and to use it you must aim at a player to temporarily
+      stun them. this can be extremely effective at stopping attacks.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769226
+    m_Localized: Your next defensive ability is called "deflect", and it allows you
+      to deflect balls in the air. this can be used to block high passes or shots.
+      really powerful if used well.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769227
+    m_Localized: as a gk, you won't have any abilities. however, you are able to
+      dive and deflect the ball upon contact. Press the "D" button to dive in the
+      direction that your player is moving, and jump before diving to cover the air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769228
+    m_Localized: You can also press the "C" button to catch the ball when you are
+      grounded. Useful for completely stopping attacks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769229
+    m_Localized: 'once the ball is in your hands, you have two options: drop kick
+      the ball or roll the ball. in order to perform a drop kick, you will have to
+      perform a regular kick (joystick with the "S" button). drop kicks can go further
+      and higher than a roll pass.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769230
+    m_Localized: To perform a roll pass, you must have the ball in your hands. Then,
+      perform a dribble shot. This will execute a short but more controllable pass.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162875429769231
+    m_Localized: Congratulations on passing the tutorial! Now that you have learned
+      the basics, you can either play a full online match with other people or continue
+      to develop your skills by joining a practice server. There's a lot more hidden
+      techs and cool things that this tutorial has not covered. Good luck, and have
+      fun!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163166833233920
+    m_Localized: PROCEED
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 752613887239520728
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 324502469267461
+        - id: 324502469267460
+        - id: 332782952304640
+        - id: 445100331683841
+        - id: 445100335878144
+        - id: 445100335878145
+        - id: 445100335878146
+        - id: 445100335878147
+        - id: 445100335878148
+        - id: 445100335878149
+        - id: 772988046200838
+        - id: 772988046200837
+        - id: 783485780938752
+        - id: 805157519020041
+        - id: 805157519020040
+        - id: 805157519020039
+        - id: 805157519020038
+        - id: 805157519020037
+        - id: 805157519020036
+        - id: 805157519020035
+        - id: 805157519020032
+        - id: 332782952304641
+        - id: 805157519020045
+        - id: 805157519020044
+        - id: 1115665912614912
+        - id: 1115665900032000

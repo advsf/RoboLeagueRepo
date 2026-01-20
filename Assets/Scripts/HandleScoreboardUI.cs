@@ -1,6 +1,8 @@
-using UnityEngine;
-using Unity.Netcode;
 using TMPro;
+using Unity.Netcode;
+using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class HandleScoreboardUI : NetworkBehaviour
 {
@@ -15,6 +17,21 @@ public class HandleScoreboardUI : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] private TextMeshProUGUI scoreInformationText;
     [SerializeField] private GameObject mobileStartButton;
+
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
+        HandleMobileStartingGameText();
+    }
 
     private void Start()
     {
@@ -35,9 +52,18 @@ public class HandleScoreboardUI : NetworkBehaviour
 
         EnableMobileStartGameBututon(false);
 
-        // handle mobile starting game 
-        if (IsServer && Application.isMobilePlatform)
-            ChangeStartGameHelperTextUI("Press the button below to start (must be >1 players).");
+        HandleMobileStartingGameText();
+    }
+
+    private void HandleMobileStartingGameText()
+    {
+        if (!IsServer)
+            return;
+
+        var localizedString = new LocalizedString("Table1", !Application.isMobilePlatform ? "PRESS T TO START (MUST BE >1 PLAYERS)" : "PRESS THE BUTTON BELOW TO START (MUST BE >1 PLAYERS)");
+        string translatedMessage = localizedString.GetLocalizedString();
+
+        ChangeStartGameHelperTextUI(translatedMessage);
     }
 
     public override void OnNetworkDespawn()

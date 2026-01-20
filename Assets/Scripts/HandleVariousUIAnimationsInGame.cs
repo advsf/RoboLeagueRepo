@@ -1,5 +1,7 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class HandleVariousUIAnimationsInGame : MonoBehaviour
 {
@@ -10,6 +12,10 @@ public class HandleVariousUIAnimationsInGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoredByText;
     [SerializeField] private TextMeshProUGUI assistedByText;
     [SerializeField] private float goalScoreAnimationDuration = 5f;
+
+    [Header("Localization References")]
+    [SerializeField] private LocalizedString scoredByLoc = new("Table1", "SCORED BY:");
+    [SerializeField] private LocalizedString assistedByLoc = new("Table1", "ASSISTED BY:");
 
     [Header("Ball References")]
     [SerializeField] private BallSync ballSync;
@@ -33,12 +39,20 @@ public class HandleVariousUIAnimationsInGame : MonoBehaviour
 
         goalScoreUIObj.SetActive(true); // all that is needed to do since the base animation is the animation that we are looking to play
 
-        scoredByText.text = $"Scored by {ballSync.scorerUsername.Value}";
+        scoredByLoc["username"] = new StringVariable { Value = ballSync.scorerUsername.Value.ToString() };
+
+        scoredByText.text = scoredByLoc.GetLocalizedString();
 
         if (!ballSync.assisterUsername.Value.IsEmpty)
-            assistedByText.text = $"Assisted by {ballSync.assisterUsername.Value}";
+        {
+            assistedByLoc["username"] = new StringVariable { Value = ballSync.assisterUsername.Value.ToString() };
+            assistedByText.text = assistedByLoc.GetLocalizedString();
+        }
+
         else
-            assistedByText.text = $"Assisted by none";
+        {
+            assistedByText.text = new LocalizedString("Table1", "ASSISTED BY NONE").GetLocalizedString();
+        }
 
         Invoke(nameof(DisableGoalScoreUIAnimation), goalScoreAnimationDuration);
     }
