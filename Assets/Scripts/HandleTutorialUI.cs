@@ -10,6 +10,7 @@ public class HandleTutorialUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button proceedButton;
     [SerializeField] private int currentStageNumber;
+    [SerializeField] private StartUIManager startUIManager;
 
     [Header("Typewriter Setting")]
     [SerializeField] private string messageText;
@@ -39,6 +40,9 @@ public class HandleTutorialUI : MonoBehaviour
         proceedButton.interactable = false;
 
         text.text = "";
+
+        // disable the start UI
+        startUIManager.CloseSettingsAndOrStartUIMenu();
 
         if (!Application.isMobilePlatform)
             messageText = tutorialTextLoc.GetLocalizedString();

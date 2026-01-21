@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using System.Collections;
 
@@ -30,11 +29,6 @@ public class HandleSettings : MonoBehaviour
 
     [Header("Mobile UI Readjust References")]
     [SerializeField] private GameObject mobileReadjustCanvaObj;
-
-    [Header("Mandatory Mouse DPI")]
-    [SerializeField] private GameObject mandatoryMouseDPISettingObj;
-    [SerializeField] private Slider _mouseDPISlider;
-    [SerializeField] private TMP_InputField _mouseDPIInputField;
 
     [Header("Mouse DPI Reference")]
     [SerializeField] private Slider mouseDPISlider;
@@ -205,9 +199,6 @@ public class HandleSettings : MonoBehaviour
         GetAllPostProcessing();
 
         StartCoroutine(PopulateLanguageDropdown());
-
-        if (!Application.isMobilePlatform)
-            mandatoryMouseDPISettingObj.SetActive(!PlayerPrefs.HasKey("MouseDPI"));
 
         // create or initialize data
         if (!FBPP.HasKey("IsDefaultCreated"))
@@ -546,60 +537,6 @@ public class HandleSettings : MonoBehaviour
 
         languageDropdown.RefreshShownValue();
         UpdateLanguage(savedIndex);
-    }
-
-    #endregion
-
-    #region Mouse DPI Settings
-
-    public void MandatoryUpdateMouseDPIThroughSlider()
-    {
-        if (_mouseDPISlider.value <= 0)
-            _mouseDPISlider.value = 1;
-
-        PlayerPrefs.SetFloat("MouseDPI", _mouseDPISlider.value);
-        PlayerPrefs.Save();
-
-        _mouseDPIInputField.text = _mouseDPISlider.value.ToString("F2");
-    }
-
-    public void MandatoryUpdateMouseDPIThroughInputField()
-    {
-        if (float.TryParse(_mouseDPIInputField.text.ToString(), out float DPI))
-        {
-            if (DPI <= 0)
-                DPI = 1;
-
-            PlayerPrefs.SetFloat("MouseDPI", DPI);
-            PlayerPrefs.Save();
-
-            _mouseDPISlider.value = DPI;
-        }
-    }
-
-    public void UpdateMouseDPIThroughSlider()
-    {
-        if (mouseDPISlider.value <= 0)
-            mouseDPISlider.value = 1;
-
-        PlayerPrefs.SetFloat("MouseDPI", mouseDPISlider.value);
-        PlayerPrefs.Save();
-
-        mouseDPIInputField.text = mouseDPISlider.value.ToString("F2");
-    }
-
-    public void UpdateMouseDPIThroughInputField()
-    {
-        if (float.TryParse(mouseDPIInputField.text.ToString(), out float DPI))
-        {
-            if (DPI <= 0)
-                DPI = 1;
-
-            PlayerPrefs.SetFloat("MouseDPI", DPI);
-            PlayerPrefs.Save();
-
-            mouseDPISlider.value = DPI;
-        }
     }
 
     #endregion
@@ -1404,11 +1341,6 @@ public class HandleSettings : MonoBehaviour
         audioSubMenu.SetActive(true);
         graphicsSubMenu.SetActive(false);
         videoSubMenu.SetActive(false);
-    }
-
-    public void CloseMandatoryMouseDPIUI()
-    {
-        mandatoryMouseDPISettingObj.SetActive(!PlayerPrefs.HasKey("MouseDPI"));
     }
 
     public void ResetAllSettings()

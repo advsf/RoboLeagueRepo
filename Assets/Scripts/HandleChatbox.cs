@@ -425,6 +425,6 @@ public class HandleChatbox : NetworkBehaviour
 
         HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
-        chatbox.HandleFormattingTexts(false, 0, "", "", "", text, true);
+        chatbox.HandleFormattingTexts(false, -1, "", "", "", text, true);
     }
 }

@@ -710,7 +710,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575425
-    m_Localized: "N\xC3O \xC9 POSS\xCDVEL DESFOR\xC7AR TIROS DE GOL!"
+    m_Localized: "N\xC3O \xC9 POSS\xCDVEL DEFENDER TIROS DE GOL!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575426
@@ -1027,6 +1027,107 @@ MonoBehaviour:
     m_Localized: LINGUAGEM
     m_Metadata:
       m_Items: []
+  - m_Id: 1470623971332096
+    m_Localized: "CONEX\xC3O PERDIDA \\n RETORNANDO AO LOBBY."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801088
+    m_Localized: "CONEX\xC3O PERDIDA \\n RETORNANDO AO LOBBY.."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801089
+    m_Localized: "CONEX\xC3O PERDIDA \\n RETORNANDO AO LOBBY..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801090
+    m_Localized: "N\xC3O DISPON\xCDVEL DURANTE O TUTORIAL"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1496039209619456
+    m_Localized: Passe pelas barreiras ({amountOfDetectorsPassed}/5)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619457
+    m_Localized: Drible pelas barreiras ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619458
+    m_Localized: Marque um gol ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619459
+    m_Localized: Marque um gol com chute poderoso ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619460
+    m_Localized: Use a habilidade de velocidade ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619461
+    m_Localized: Domine a bola ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619462
+    m_Localized: Use a habilidade de roleta ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619463
+    m_Localized: "Use a habilidade de finaliza\xE7\xE3o ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619464
+    m_Localized: Use a habilidade de desvio ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619465
+    m_Localized: Mergulhe e desvie a bola ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619466
+    m_Localized: Pegue a bola ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619467
+    m_Localized: Chute de primeira ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039209619468
+    m_Localized: Pegue a bola e role ({amountOfDetectorsPassed}3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520734
+  - m_Id: 1496039218008064
+    m_Localized: "Pressione o \xEDcone da bola para reiniciar a bola."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500994368753664
+    m_Localized: Pressione R para reiniciar a bola.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414178619392
+    m_Localized: "(CLIQUE PARA MAIS INFORMA\xC7\xD5ES)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728256
+    m_Localized: NORMAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728257
+    m_Localized: MODIFICADO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -1061,3 +1162,16 @@ MonoBehaviour:
         - id: 805157519020044
         - id: 1115665912614912
         - id: 1115665900032000
+        - id: 1496039209619467
+        - id: 1496039209619466
+        - id: 1496039209619465
+        - id: 1496039209619464
+        - id: 1496039209619463
+        - id: 1496039209619462
+        - id: 1496039209619461
+        - id: 1496039209619460
+        - id: 1496039209619459
+        - id: 1496039209619458
+        - id: 1496039209619457
+        - id: 1496039209619456
+        - id: 1496039209619468

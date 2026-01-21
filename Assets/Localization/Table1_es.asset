@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098881
-    m_Localized: "DESPLAZAMIENTO DE C\xC1MARA Y"
+    m_Localized: "DESPLAZAMIENTO DE LA C\xC1MARA Y"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098882
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597767
-    m_Localized: HABILITAR LA CAPACIDAD
+    m_Localized: HABILITAR CAPACIDAD
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597768
@@ -555,7 +555,7 @@ MonoBehaviour:
       m_Items:
       - rid: 752613887239520729
   - m_Id: 783485780938753
-    m_Localized: PRESIONA T PARA COMENZAR (DEBEN SER >1 JUGADORES)
+    m_Localized: "PRESIONA T PARA COMENZAR (DEBEN SER M\xC1S DE 1 JUGADOR)"
     m_Metadata:
       m_Items: []
   - m_Id: 805157409968128
@@ -1026,6 +1026,107 @@ MonoBehaviour:
     m_Localized: IDIOMA
     m_Metadata:
       m_Items: []
+  - m_Id: 1470623971332096
+    m_Localized: "CONEXI\xD3N PERDIDA \\n REGRESANDO AL LOBBY."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801088
+    m_Localized: "CONEXI\xD3N PERDIDA \\n REGRESANDO AL LOBBY.."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801089
+    m_Localized: "CONEXI\xD3N PERDIDA \\n REGRESANDO AL LOBBY..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801090
+    m_Localized: NO DISPONIBLE DURANTE EL TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1496039209619456
+    m_Localized: "Pasa a trav\xE9s de las barreras ({amountOfDetectorsPassed}/5)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619457
+    m_Localized: "Regatea a trav\xE9s de las barreras ({amountOfDetectorsPassed}/8)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619458
+    m_Localized: Marca un gol ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619459
+    m_Localized: Marca un gol con tiro potente ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619460
+    m_Localized: Usa la habilidad de velocidad ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619461
+    m_Localized: "Controla el bal\xF3n ({amountOfDetectorsPassed}/3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619462
+    m_Localized: Usa la habilidad de ruleta ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619463
+    m_Localized: Usa la habilidad de remate ({amountOfDetectorsPassed}/1)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619464
+    m_Localized: "Usa la habilidad de desv\xEDo ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619465
+    m_Localized: "L\xE1nzate y desv\xEDa el bal\xF3n ({amountOfDetectorsPassed}/3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619466
+    m_Localized: "Atrapa el bal\xF3n ({amountOfDetectorsPassed}/3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619467
+    m_Localized: Volea ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039209619468
+    m_Localized: "Atrapa y luego rueda con el bal\xF3n ({amountOfDetectorsPassed}3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520729
+  - m_Id: 1496039218008064
+    m_Localized: PRESIONE EL ICONO DE LA PELOTA PARA REINICIARLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500994368753664
+    m_Localized: PRESIONE R PARA REINICIAR LA PELOTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414178619392
+    m_Localized: "(HAGA CLIC PARA M\xC1S INFORMACI\xD3N)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728256
+    m_Localized: NORMAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728257
+    m_Localized: MODIFICADO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -1060,3 +1161,16 @@ MonoBehaviour:
         - id: 805157519020044
         - id: 1115665912614912
         - id: 1115665900032000
+        - id: 1496039209619467
+        - id: 1496039209619466
+        - id: 1496039209619465
+        - id: 1496039209619464
+        - id: 1496039209619463
+        - id: 1496039209619462
+        - id: 1496039209619461
+        - id: 1496039209619460
+        - id: 1496039209619459
+        - id: 1496039209619458
+        - id: 1496039209619457
+        - id: 1496039209619456
+        - id: 1496039209619468

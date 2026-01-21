@@ -71,6 +71,12 @@ public class StartUIManager : NetworkBehaviour
         HandleSettings.instance.OpenSettingsUI();
     }
 
+    public void CloseSettingsAndOrStartUIMenu()
+    {
+        HandleSettings.instance.CloseSettingsUI();
+        startUIObj.SetActive(false);
+    }
+    
     public void ChangeSpectatorMode()
     {
         startUIObj.SetActive(false);

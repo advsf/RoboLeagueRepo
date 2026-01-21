@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.Netcode;
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 
 public class HandleKicking : NetworkBehaviour
 {
@@ -76,6 +77,7 @@ public class HandleKicking : NetworkBehaviour
     [SerializeField] private float sliderIncrementValue;
 
     [Header("Ball Physics")]
+    [SerializeField] private float inputCurveMultiplier = 25f;
     [SerializeField] private float sideSpinMultiplier;
     [SerializeField] private float topSpinMultiplier;
     [SerializeField] private float minimumMagnusMouseThreshold = 5f;
@@ -133,6 +135,10 @@ public class HandleKicking : NetworkBehaviour
 
     private BallSync nearestBallSync;
 
+    // pc curve detection
+    private float lastCameraYaw;
+    private float accumulatedCameraYaw;
+
     // input buffering for better responsiveness
     private const float INPUT_BUFFER_TIME = 0.1f;
     private float lastInputTime;
@@ -182,6 +188,9 @@ public class HandleKicking : NetworkBehaviour
         ballRb = SceneReferenceManager.instance.ballRb;
 
         isMobile = Application.isMobilePlatform;
+
+        lastCameraYaw = cam.transform.eulerAngles.y;
+        accumulatedCameraYaw = 0f;
 
         if (PlayerMovement.instance != null)
         {
@@ -321,7 +330,11 @@ public class HandleKicking : NetworkBehaviour
         }
 
         if (!IsChargingKick)
+        {
             sliderChargingStartTime = Time.time;
+            lastCameraYaw = cam.transform.eulerAngles.y;
+            accumulatedCameraYaw = 0f;
+        }
     }
 
     private void HandleChargingLogic()
@@ -631,8 +644,13 @@ public class HandleKicking : NetworkBehaviour
                 return 0;
 
         // pc curve input
-        float curve = Mouse.current.delta.ReadValue().x * (5000 / PlayerPrefs.GetFloat("MouseDPI"));
-        return Mathf.Min(curve, 1500);
+        float currentYaw = cam.transform.eulerAngles.y;
+        float deltaYaw = Mathf.DeltaAngle(lastCameraYaw, currentYaw);
+        float yawSpeed = deltaYaw / Time.deltaTime;
+
+        lastCameraYaw = currentYaw;
+
+        return Mathf.Clamp(yawSpeed * inputCurveMultiplier, -1500f, 1500f);
     }
 
     private void HandleDribbling()
@@ -659,8 +677,9 @@ public class HandleKicking : NetworkBehaviour
             playerRightDir.y = 0;
             playerRightDir.Normalize();
 
+            // if we just hold, make the ball go up
             if (joystickVal.x == 0 || joystickVal.y == 0)
-                direction = transform.forward;
+                direction = transform.up;
             else
 
                 direction = (playerForwardDir * joystickVal.y + playerRightDir * joystickVal.x).normalized;

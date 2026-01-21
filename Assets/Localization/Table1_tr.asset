@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098894
-    m_Localized: "FPS'Y\u0130 SINIRLA"
+    m_Localized: "FPS'yi s\u0131n\u0131rla"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098895
@@ -715,7 +715,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575426
-    m_Localized: "AL\xC7AK TOPLARI KAR\u015EILAYAMAM!"
+    m_Localized: "AL\xC7AK TOPLARI FERAGAT EDEMEZS\u0130N\u0130Z!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575427
@@ -771,7 +771,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300736
-    m_Localized: YARATMA AYARLARI
+    m_Localized: "OLU\u015ETURMA AYARLARI"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300737
@@ -779,7 +779,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300738
-    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VEREREK BA\u015ELATMA"
+    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VERME"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300739
@@ -1054,6 +1054,107 @@ MonoBehaviour:
     m_Localized: "D\u0130L"
     m_Metadata:
       m_Items: []
+  - m_Id: 1470623971332096
+    m_Localized: "BA\u011ELANTI KAYBOLDU \\n LOB\u0130YE D\xD6N\xDCL\xDCYOR."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801088
+    m_Localized: "BA\u011ELANTI KAYBOLDU \\n LOB\u0130YE D\xD6N\xDCL\xDCYOR.."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801089
+    m_Localized: "BA\u011ELANTI KAYBOLDU \\n LOB\u0130YE D\xD6N\xDCL\xDCYOR..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801090
+    m_Localized: "E\u011E\u0130T\u0130M SIRASINDA MEVCUT DE\u011E\u0130LD\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1496039209619456
+    m_Localized: "Engellerin aras\u0131ndan ge\xE7 ({amountOfDetectorsPassed}/5)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619457
+    m_Localized: "Top s\xFCrerek engelleri ge\xE7 ({amountOfDetectorsPassed}/8)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619458
+    m_Localized: Gol at ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619459
+    m_Localized: "G\xFC\xE7l\xFC vuru\u015Fla gol at ({amountOfDetectorsPassed}/3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619460
+    m_Localized: "H\u0131z yetene\u011Fini kullan ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619461
+    m_Localized: Topu kontrol et ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619462
+    m_Localized: "Rulet yetene\u011Fini kullan ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619463
+    m_Localized: "Bitirici yetene\u011Fi kullan ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619464
+    m_Localized: "Sapt\u0131rma yetene\u011Fini kullan ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619465
+    m_Localized: "Atlay\u0131p topu kurtar ({amountOfDetectorsPassed}/3)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619466
+    m_Localized: Topu yakala ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619467
+    m_Localized: Drop kick ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039209619468
+    m_Localized: Topu yakala ve yuvarlan ({amountOfDetectorsPassed}3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520733
+  - m_Id: 1496039218008064
+    m_Localized: "TOPU SIFIRLAMAK \u0130\xC7\u0130N TOP S\u0130MGES\u0130NE BASIN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500994368753664
+    m_Localized: "TOPU SIFIRLAMAK \u0130\xC7\u0130N R TU\u015EUNA BASIN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414178619392
+    m_Localized: "(B\u0130LG\u0130 \u0130\xC7\u0130N TIKLAYIN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728256
+    m_Localized: NORMAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728257
+    m_Localized: "DE\u011E\u0130\u015ET\u0130R\u0130LM\u0130\u015E"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -1088,3 +1189,16 @@ MonoBehaviour:
         - id: 805157519020044
         - id: 1115665912614912
         - id: 1115665900032000
+        - id: 1496039209619467
+        - id: 1496039209619466
+        - id: 1496039209619465
+        - id: 1496039209619464
+        - id: 1496039209619463
+        - id: 1496039209619462
+        - id: 1496039209619461
+        - id: 1496039209619460
+        - id: 1496039209619459
+        - id: 1496039209619458
+        - id: 1496039209619457
+        - id: 1496039209619456
+        - id: 1496039209619468

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using Unity.Services.Multiplayer;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class SessionItemData : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
@@ -19,10 +21,30 @@ public class SessionItemData : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField] private Color greenColor;
     [SerializeField] private Color purpleColor;
 
+    [Header("Localization References")]
+    [SerializeField] private LocalizedString normalTextLoc = new("Table1", "NORMAL");
+    [SerializeField] private LocalizedString modifiedTextLoc = new("Table1", "MODIFIED");
+
     public UnityEvent<ISessionInfo> OnSessionSelected;
     public UnityEvent OnSessionDeselected;
 
     private ISessionInfo sessionInfo;
+
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
+        SetServerCustomizationStatus();
+    }
+
 
     public void SetSession(ISessionInfo sessionInfo)
     {
@@ -51,14 +73,14 @@ public class SessionItemData : MonoBehaviour, ISelectHandler, IDeselectHandler
         // if not modified
         if (sessionInfo.Properties["IsServerModified"].Value.Equals("F"))
         {
-            serverCustomizationStatusText.text = "Normal";
+            serverCustomizationStatusText.text = normalTextLoc.GetLocalizedString();
             serverCustomizationButtonImage.color = greenColor;
         }
 
         // if modified
         else
         {
-            serverCustomizationStatusText.text = "Modified";
+            serverCustomizationStatusText.text = modifiedTextLoc.GetLocalizedString();
             serverCustomizationButtonImage.color = purpleColor;
         }
     }

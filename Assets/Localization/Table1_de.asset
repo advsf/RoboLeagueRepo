@@ -1029,6 +1029,107 @@ MonoBehaviour:
     m_Localized: SPRACHE
     m_Metadata:
       m_Items: []
+  - m_Id: 1470623971332096
+    m_Localized: "VERBINDUNG VERLOREN \\n R\xDCCKKEHR ZUR LOBBY."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801088
+    m_Localized: "VERBINDUNG VERLOREN \\n R\xDCCKKEHR ZUR LOBBY.."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801089
+    m_Localized: "VERBINDUNG VERLOREN \\n R\xDCCKKEHR ZUR LOBBY..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1470624067801090
+    m_Localized: "W\xC4HREND DES TUTORIALS NICHT VERF\xDCGBAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1496039209619456
+    m_Localized: Durchquere die Barrieren ({amountOfDetectorsPassed}/5)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619457
+    m_Localized: Dribble durch die Barrieren ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619458
+    m_Localized: Tore erzielen ({amountOfDetectorsPassed}/8)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619459
+    m_Localized: Erzielt ein Tor mit einem Powerkick ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619460
+    m_Localized: "Nutze die Speedster-F\xE4higkeit ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619461
+    m_Localized: Den Ball annehmen ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619462
+    m_Localized: "Nutze die Roulette-F\xE4higkeit ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619463
+    m_Localized: "Nutze die Kill-F\xE4higkeit ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619464
+    m_Localized: "Nutze die Abwehr-F\xE4higkeit ({amountOfDetectorsPassed}/1)"
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619465
+    m_Localized: Hechte und wehre den Ball ab ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619466
+    m_Localized: Fange den Ball ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619467
+    m_Localized: Dropkick ({amountOfDetectorsPassed}/3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039209619468
+    m_Localized: Fange den Ball und rolle ihn ({amountOfDetectorsPassed}3)
+    m_Metadata:
+      m_Items:
+      - rid: 752613887239520727
+  - m_Id: 1496039218008064
+    m_Localized: "Dr\xFCcken Sie das Ballsymbol, um den Ball zur\xFCckzusetzen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500994368753664
+    m_Localized: "DR\xDCCKEN SIE R, UM DEN BALL ZUR\xDCCKZUSETZEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414178619392
+    m_Localized: "(KLICKEN SIE HIER F\xDCR WEITERE INFORMATIONEN)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728256
+    m_Localized: NORMAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1514414245728257
+    m_Localized: MODIFIZIERT
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -1063,3 +1164,16 @@ MonoBehaviour:
         - id: 805157519020044
         - id: 1115665912614912
         - id: 1115665900032000
+        - id: 1496039209619467
+        - id: 1496039209619466
+        - id: 1496039209619465
+        - id: 1496039209619464
+        - id: 1496039209619463
+        - id: 1496039209619462
+        - id: 1496039209619461
+        - id: 1496039209619460
+        - id: 1496039209619459
+        - id: 1496039209619458
+        - id: 1496039209619457
+        - id: 1496039209619456
+        - id: 1496039209619468

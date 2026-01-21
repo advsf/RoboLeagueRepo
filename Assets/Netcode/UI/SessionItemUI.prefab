@@ -371,9 +371,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 14
+  m_fontSizeMax: 24
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -656,12 +656,33 @@ MonoBehaviour:
   rankImage: {fileID: 2117526208265216176}
   greenColor: {r: 0.15686275, g: 1, b: 0.3137255, a: 1}
   purpleColor: {r: 1, g: 0.15686275, b: 0.8745098, a: 1}
+  normalTextLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: NORMAL
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  modifiedTextLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: MODIFIED
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   OnSessionSelected:
     m_PersistentCalls:
       m_Calls: []
   OnSessionDeselected:
     m_PersistentCalls:
       m_Calls: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1240025496684294541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,9 +1065,9 @@ MonoBehaviour:
   m_fontSize: 13
   m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
+  m_fontSizeMax: 13
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

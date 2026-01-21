@@ -2611,6 +2611,7 @@ GameObject:
   - component: {fileID: 98700215}
   - component: {fileID: 98700214}
   - component: {fileID: 98700213}
+  - component: {fileID: 98700216}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2732,6 +2733,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98700211}
   m_CullTransparentMesh: 1
+--- !u!114 &98700216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98700211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 917160150}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &107694459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,69 +3561,6 @@ MonoBehaviour:
     m_TableEntryReference:
       m_KeyId: 0
       m_Key: CORNER KICK
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didWinMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_WIN_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didLoseMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_LOSE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didTieMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_TIE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didNotPlayEnoughMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userConnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_CONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userDisconnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_DISCONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userJoinedTeamLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_JOINED_TEAM_MESSAGE
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
@@ -5472,9 +5450,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -6685,9 +6663,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -7636,6 +7614,7 @@ MonoBehaviour:
   text: {fileID: 942823248}
   proceedButton: {fileID: 1708901461}
   currentStageNumber: 4
+  startUIManager: {fileID: 1400972191}
   messageText: now you will learn how to shoot. hold the left mouse button to charge
     up a kick. you can add height by looking up before you kick the ball.
   mobileMessageText: now you will learn how to shoot. hold the joystick with the
@@ -9627,9 +9606,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -9719,6 +9698,7 @@ GameObject:
   - component: {fileID: 325078175}
   - component: {fileID: 325078174}
   - component: {fileID: 325078173}
+  - component: {fileID: 325078176}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -9840,6 +9820,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325078171}
   m_CullTransparentMesh: 1
+--- !u!114 &325078176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325078171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1321866078}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &325910446
 GameObject:
   m_ObjectHideFlags: 0
@@ -10588,6 +10608,7 @@ GameObject:
   - component: {fileID: 361287063}
   - component: {fileID: 361287062}
   - component: {fileID: 361287061}
+  - component: {fileID: 361287064}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -10709,6 +10730,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361287059}
   m_CullTransparentMesh: 1
+--- !u!114 &361287064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361287059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1335758994}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &362668897
 GameObject:
   m_ObjectHideFlags: 0
@@ -11180,9 +11241,9 @@ MonoBehaviour:
   m_fontSize: 12
   m_fontSizeBase: 12
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 8
+  m_fontSizeMax: 12
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -14986,6 +15047,7 @@ MonoBehaviour:
   text: {fileID: 48118099}
   proceedButton: {fileID: 748652917}
   currentStageNumber: 5
+  startUIManager: {fileID: 1400972191}
   messageText: now that you know how to kick, you will learn how to add spin onto
     the ball. simply flick the ball with your mouse before you shoot to make the
     ball spin in that direction. spin shots are faster than non-spin shots.
@@ -15066,6 +15128,7 @@ MonoBehaviour:
   text: {fileID: 1034019686}
   proceedButton: {fileID: 597442810}
   currentStageNumber: 13
+  startUIManager: {fileID: 1400972191}
   messageText: You can also press T to catch the ball when you are grounded. You
     must make sure that you are on top of the ball to ensure that you can actually
     catch the ball. Useful for completely stopping attacks.
@@ -15456,6 +15519,7 @@ MonoBehaviour:
   text: {fileID: 1148562682}
   proceedButton: {fileID: 774448871}
   currentStageNumber: 1
+  startUIManager: {fileID: 1400972191}
   messageText: welcome to this tutorial! for the first stage, you will learn the
     basics of movement. Use WASD to move, left-shift to sprint, space to jump, left-control
     to slide, and e to dash.
@@ -17505,6 +17569,7 @@ GameObject:
   - component: {fileID: 597442812}
   - component: {fileID: 597442811}
   - component: {fileID: 597442810}
+  - component: {fileID: 597442814}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -17626,6 +17691,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -164.85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &597442814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597442809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 315335392}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &599177604
 GameObject:
   m_ObjectHideFlags: 0
@@ -18278,6 +18383,7 @@ MonoBehaviour:
   text: {fileID: 2062681139}
   proceedButton: {fileID: 1348848709}
   currentStageNumber: 7
+  startUIManager: {fileID: 1400972191}
   messageText: cf's next ability "speedster" allows you to move faster for a short
     duration. this can be used to make a quick run through the defences to create
     plays.
@@ -19400,6 +19506,7 @@ GameObject:
   - component: {fileID: 661309000}
   - component: {fileID: 661308999}
   - component: {fileID: 661308998}
+  - component: {fileID: 661309001}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -19521,6 +19628,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661308996}
   m_CullTransparentMesh: 1
+--- !u!114 &661309001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661308996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1076891634}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &662458114
 GameObject:
   m_ObjectHideFlags: 0
@@ -19892,9 +20039,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -21701,6 +21848,7 @@ MonoBehaviour:
   text: {fileID: 1908810164}
   proceedButton: {fileID: 661308998}
   currentStageNumber: 8
+  startUIManager: {fileID: 1400972191}
   messageText: As a midfielder (LMF/RMF), you will have the ability to "trap" the
     ball, or stop the ball's velocity entirely. to use this, you should get near
     the ball and use the ability. useful for catching high passes or fast moving
@@ -22149,6 +22297,144 @@ MonoBehaviour:
   objectiveText: {fileID: 771407648}
   resetBallText: {fileID: 378155137}
   animator: {fileID: 740029269}
+  pressRToResetLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: PRESS R TO RESET THE BALL
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  pressTheBallToResetLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: PRESS THE BALL ICON TO RESET THE BALL
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective0Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_0
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective1Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_1
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective2Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_2
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective3Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_3
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective4Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_4
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective5Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_5
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective6Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_6
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective7Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_7
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective8Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_8
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective9Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_9
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective10Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_10
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective11Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_11
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialObjective12Loc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: TUTORIAL_OBJECTIVE_12
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &743073275
 GameObject:
   m_ObjectHideFlags: 0
@@ -22382,6 +22668,7 @@ GameObject:
   - component: {fileID: 748652919}
   - component: {fileID: 748652918}
   - component: {fileID: 748652917}
+  - component: {fileID: 748652920}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -22503,6 +22790,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748652915}
   m_CullTransparentMesh: 1
+--- !u!114 &748652920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748652915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 174615645}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &748891513
 GameObject:
   m_ObjectHideFlags: 0
@@ -23209,9 +23536,9 @@ MonoBehaviour:
   m_fontSize: 18
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -23416,6 +23743,7 @@ GameObject:
   - component: {fileID: 774448873}
   - component: {fileID: 774448872}
   - component: {fileID: 774448871}
+  - component: {fileID: 774448875}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -23537,6 +23865,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -164.85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &774448875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774448870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 635415575}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &776246311
 GameObject:
   m_ObjectHideFlags: 0
@@ -23625,9 +23993,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -26152,6 +26520,7 @@ GameObject:
   - component: {fileID: 854532923}
   - component: {fileID: 854532922}
   - component: {fileID: 854532921}
+  - component: {fileID: 854532924}
   m_Layer: 5
   m_Name: ReturnToLobby
   m_TagString: Untagged
@@ -26273,6 +26642,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854532919}
   m_CullTransparentMesh: 1
+--- !u!114 &854532924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854532919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 772988046200835
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1875956887}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &855683134
 GameObject:
   m_ObjectHideFlags: 0
@@ -26526,6 +26935,7 @@ MonoBehaviour:
   text: {fileID: 284426509}
   proceedButton: {fileID: 1340700990}
   currentStageNumber: 16
+  startUIManager: {fileID: 1400972191}
   messageText: Congratulations on passing the tutorial! Now that you have learned
     the basics, you can either play a full online match with other people or continue
     to develop your skills by joining a practice server. There's a lot more hidden
@@ -27648,6 +28058,7 @@ MonoBehaviour:
   text: {fileID: 276538385}
   proceedButton: {fileID: 1210408996}
   currentStageNumber: 10
+  startUIManager: {fileID: 1400972191}
   messageText: as a defender (CB), you have access to two defensive moves. the first
     one is called "kill", and to use it you must aim at a player to temporarily stun
     them. this can be extremely effective at stopping attacks.
@@ -28072,9 +28483,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -28524,9 +28935,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -30762,6 +31173,7 @@ MonoBehaviour:
   text: {fileID: 770976162}
   proceedButton: {fileID: 2119016883}
   currentStageNumber: 11
+  startUIManager: {fileID: 1400972191}
   messageText: Your next defensive ability is called "deflect", and it allows you
     to deflect balls in the air. this can be used to block high passes or shots.
     really powerful if used well.
@@ -31475,6 +31887,7 @@ MonoBehaviour:
   text: {fileID: 1673541729}
   proceedButton: {fileID: 1046688981}
   currentStageNumber: 12
+  startUIManager: {fileID: 1400972191}
   messageText: as a gk, you won't have any abilities. however, you are able to dive
     and deflect the ball upon contact. press q to dive in the direction that your
     player is moving, and jump before diving to cover the air.
@@ -32208,6 +32621,7 @@ GameObject:
   - component: {fileID: 1046688983}
   - component: {fileID: 1046688982}
   - component: {fileID: 1046688981}
+  - component: {fileID: 1046688984}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -32329,6 +32743,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046688979}
   m_CullTransparentMesh: 1
+--- !u!114 &1046688984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046688979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 669564695}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1047717541
 GameObject:
   m_ObjectHideFlags: 0
@@ -32826,6 +33280,7 @@ GameObject:
   - component: {fileID: 1072897253}
   - component: {fileID: 1072897255}
   - component: {fileID: 1072897254}
+  - component: {fileID: 1072897256}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -32903,9 +33358,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 22
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -32952,6 +33407,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072897252}
   m_CullTransparentMesh: 1
+--- !u!114 &1072897256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072897252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1470624067801090
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1072897254}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1076891632
 GameObject:
   m_ObjectHideFlags: 0
@@ -33040,9 +33535,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -34138,6 +34633,7 @@ GameObject:
   - component: {fileID: 1121200313}
   - component: {fileID: 1121200315}
   - component: {fileID: 1121200314}
+  - component: {fileID: 1121200316}
   m_Layer: 5
   m_Name: Text1
   m_TagString: Untagged
@@ -34264,6 +34760,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121200312}
   m_CullTransparentMesh: 1
+--- !u!114 &1121200316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121200312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1470623971332096
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1121200314}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1123327717
 GameObject:
   m_ObjectHideFlags: 0
@@ -35305,6 +35841,7 @@ GameObject:
   - component: {fileID: 1159233557}
   - component: {fileID: 1159233559}
   - component: {fileID: 1159233558}
+  - component: {fileID: 1159233560}
   m_Layer: 5
   m_Name: Text3
   m_TagString: Untagged
@@ -35431,6 +35968,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159233556}
   m_CullTransparentMesh: 1
+--- !u!114 &1159233560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159233556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1470624067801089
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1159233558}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1160857164
 GameObject:
   m_ObjectHideFlags: 0
@@ -36890,6 +37467,7 @@ MonoBehaviour:
   text: {fileID: 13200255}
   proceedButton: {fileID: 1701238854}
   currentStageNumber: 3
+  startUIManager: {fileID: 1400972191}
   messageText: next, you will learn how to dribble. use your right mouse button to
     trigger a dribble move, which will make the ball follow the direction of your
     player. useful for cutting through defenses.
@@ -37069,6 +37647,7 @@ MonoBehaviour:
   text: {fileID: 560828763}
   proceedButton: {fileID: 361287061}
   currentStageNumber: 6
+  startUIManager: {fileID: 1400972191}
   messageText: Each position has two unique abilities (except for midfield positions).
     Starting with cf, the powerkick ability allows you to shoot with a greater power,
     provided that you time the shooting bar well. to get a perfect timing, you must
@@ -37169,6 +37748,7 @@ GameObject:
   - component: {fileID: 1206065136}
   - component: {fileID: 1206065138}
   - component: {fileID: 1206065137}
+  - component: {fileID: 1206065139}
   m_Layer: 5
   m_Name: Text2
   m_TagString: Untagged
@@ -37295,6 +37875,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206065135}
   m_CullTransparentMesh: 1
+--- !u!114 &1206065139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206065135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1470624067801088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1206065137}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1206764852
 GameObject:
   m_ObjectHideFlags: 0
@@ -37677,6 +38297,7 @@ GameObject:
   - component: {fileID: 1210408998}
   - component: {fileID: 1210408997}
   - component: {fileID: 1210408996}
+  - component: {fileID: 1210409000}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -37798,6 +38419,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -164.85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1210409000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210408995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1926998157}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1211626178
 GameObject:
   m_ObjectHideFlags: 0
@@ -38762,6 +39423,7 @@ GameObject:
   - component: {fileID: 1252509810}
   - component: {fileID: 1252509809}
   - component: {fileID: 1252509808}
+  - component: {fileID: 1252509811}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -38883,6 +39545,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252509806}
   m_CullTransparentMesh: 1
+--- !u!114 &1252509811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252509806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 222078153}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1253792565
 GameObject:
   m_ObjectHideFlags: 0
@@ -40447,9 +41149,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -40616,9 +41318,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -40709,6 +41411,7 @@ GameObject:
   - component: {fileID: 1340700992}
   - component: {fileID: 1340700991}
   - component: {fileID: 1340700990}
+  - component: {fileID: 1340700993}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -40830,6 +41533,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340700988}
   m_CullTransparentMesh: 1
+--- !u!114 &1340700993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340700988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1387278204}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1341698007
 GameObject:
   m_ObjectHideFlags: 0
@@ -41251,6 +41994,7 @@ GameObject:
   - component: {fileID: 1348848711}
   - component: {fileID: 1348848710}
   - component: {fileID: 1348848709}
+  - component: {fileID: 1348848712}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -41372,6 +42116,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348848707}
   m_CullTransparentMesh: 1
+--- !u!114 &1348848712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348848707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1796829223}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1351218280
 GameObject:
   m_ObjectHideFlags: 0
@@ -43425,9 +44209,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -44287,9 +45071,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -46877,9 +47661,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -51434,6 +52218,7 @@ MonoBehaviour:
   text: {fileID: 231837205}
   proceedButton: {fileID: 325078173}
   currentStageNumber: 14
+  startUIManager: {fileID: 1400972191}
   messageText: "once the ball is in your hands, you have two options: drop kick the
     ball or roll the ball. in order to perform a drop kick, you will use your left
     mouse button to charge up your drop kick\u2014the same as charging up a regular
@@ -52786,6 +53571,7 @@ MonoBehaviour:
   text: {fileID: 175448370}
   proceedButton: {fileID: 98700213}
   currentStageNumber: 9
+  startUIManager: {fileID: 1400972191}
   messageText: your next ability as a midfielder allows you to perform a roulette
     move, or a spin move that drags the ball with your player. performing this move
     gives you a slight speed boost as well. to use it, you must be the last kicker
@@ -53433,9 +54219,9 @@ MonoBehaviour:
   m_fontSize: 38
   m_fontSizeBase: 38
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 22
+  m_fontSizeMax: 38
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -54080,6 +54866,7 @@ GameObject:
   - component: {fileID: 1701238856}
   - component: {fileID: 1701238855}
   - component: {fileID: 1701238854}
+  - component: {fileID: 1701238857}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -54201,6 +54988,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701238852}
   m_CullTransparentMesh: 1
+--- !u!114 &1701238857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701238852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 899952542}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1703137248
 GameObject:
   m_ObjectHideFlags: 0
@@ -54522,6 +55349,7 @@ GameObject:
   - component: {fileID: 1708901463}
   - component: {fileID: 1708901462}
   - component: {fileID: 1708901461}
+  - component: {fileID: 1708901465}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -54643,6 +55471,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -164.85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1708901465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708901460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 776246313}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1716053165
 GameObject:
   m_ObjectHideFlags: 0
@@ -55624,6 +56492,7 @@ MonoBehaviour:
   text: {fileID: 396201259}
   proceedButton: {fileID: 1252509808}
   currentStageNumber: 2
+  startUIManager: {fileID: 1400972191}
   messageText: you can add force to the ball by sliding into it by pressing left
     control. this is useful for tackling the ball out of opponents or to deflect
     a low-driven shot. now, slide the ball into the barrier.
@@ -57373,9 +58242,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -59478,9 +60347,9 @@ MonoBehaviour:
   m_fontSize: 38
   m_fontSizeBase: 38
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 22
+  m_fontSizeMax: 38
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -60955,9 +61824,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 16
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -61605,6 +62474,7 @@ GameObject:
   - component: {fileID: 1967791573}
   - component: {fileID: 1967791572}
   - component: {fileID: 1967791571}
+  - component: {fileID: 1967791574}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -61726,6 +62596,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967791569}
   m_CullTransparentMesh: 1
+--- !u!114 &1967791574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967791569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1415687043}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1970282041
 GameObject:
   m_ObjectHideFlags: 0
@@ -61944,6 +62854,7 @@ GameObject:
   - component: {fileID: 1983644753}
   - component: {fileID: 1983644752}
   - component: {fileID: 1983644751}
+  - component: {fileID: 1983644754}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -62065,6 +62976,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983644749}
   m_CullTransparentMesh: 1
+--- !u!114 &1983644754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983644749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 772988046200833
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1683629341}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1995273013
 GameObject:
   m_ObjectHideFlags: 0
@@ -62621,6 +63572,7 @@ MonoBehaviour:
   text: {fileID: 2018000032}
   proceedButton: {fileID: 1967791571}
   currentStageNumber: 15
+  startUIManager: {fileID: 1400972191}
   messageText: To perform a roll pass, you must have the ball in your hands. Then,
     hold your right mouse button (the same as dribbling) to charge up a roll pass
     then let go of the button to release the ball. This will execute a short but
@@ -65094,6 +66046,7 @@ GameObject:
   - component: {fileID: 2119016885}
   - component: {fileID: 2119016884}
   - component: {fileID: 2119016883}
+  - component: {fileID: 2119016886}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -65215,6 +66168,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119016881}
   m_CullTransparentMesh: 1
+--- !u!114 &2119016886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119016881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:59661c4d3ba204b4aaa1e25747ce201f
+    m_TableEntryReference:
+      m_KeyId: 1163166833233920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1497182406}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2119701600
 GameObject:
   m_ObjectHideFlags: 0
