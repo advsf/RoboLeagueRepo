@@ -41,13 +41,6 @@ public class ServerManager : NetworkBehaviour
     [SerializeField] private LocalizedString goalkickLoc = new("Table1", "GOAL KICK");
     [SerializeField] private LocalizedString throwInLoc = new("Table1", "THROW IN");
     [SerializeField] private LocalizedString cornerKickLoc = new("Table1", "CORNER KICK");
-    [SerializeField] private LocalizedString didWinMessageLoc = new("Table1", "DID_WIN_MESSAGE");
-    [SerializeField] private LocalizedString didLoseMessageLoc = new("Table1", "DID_LOSE_MESSAGE");
-    [SerializeField] private LocalizedString didTieMessageLoc = new("Table1", "DID_TIE_MESSAGE");
-    [SerializeField] private LocalizedString didNotPlayEnoughMessageLoc = new("Table1", "DID_NOT_PLAY_ENOUGH_MESSAGE");
-    [SerializeField] private LocalizedString userConnectedMessageLoc = new("Table1", "USER_CONNECTED_MESSAGE");
-    [SerializeField] private LocalizedString userDisconnectedMessageLoc = new("Table1", "USER_DISCONNECTED_MESSAGE");
-    [SerializeField] private LocalizedString userJoinedTeamLoc = new("Table1", "USER_JOINED_TEAM_MESSAGE");
 
     [Header("References")]
     [SerializeField] private NetworkObject networkPlayerObj;
@@ -620,56 +613,49 @@ public class ServerManager : NetworkBehaviour
         // check if player played enough (7 minutes)
         if (PlayerInfo.instance.gamePlayDuration > 480)
         {
-            string message;
+            string localizationKey = String.Empty;
 
             // if we won
             if (didWin)
             {
-                didWinMessageLoc["xp"] = new IntVariable { Value = xp };
-                didWinMessageLoc["goals"] = new IntVariable { Value = goals };
-                didWinMessageLoc["assists"] = new IntVariable { Value = assists };
-                didWinMessageLoc["saves"] = new IntVariable { Value = saves };
-
-                message = didWinMessageLoc.GetLocalizedString();
+                localizationKey = "DID_WIN_MESSAGE";
             }
 
             // if a tie
             else if (isTie)
             {
-                message = didTieMessageLoc.GetLocalizedString();
+                localizationKey = "DID_TIE_MESSAGE";
             }
 
             // if we lost
             else
             {
-                didLoseMessageLoc["xp"] = new IntVariable { Value = xp };
-
-                message = didLoseMessageLoc.GetLocalizedString();
+                localizationKey = "DID_LOSE_MESSAGE";
             }
 
-
-            // didnt know you can give hints as to what the parameter values are (very useful)
-            HandleChatbox.instance.HandleFormattingTexts(
-                    isChattingAll: true,
-                    rankIndex: -1,
-                    teamColor: "",
-                    username: "",
-                    position: "",
-                    text: message,
-                    isServer: true);
+            HandleChatbox.instance.SendLocalizedTextClientRpc(
+                username: PlayerInfo.instance.username.Value.ToString(),
+                team: PlayerInfo.instance.currentTeam.Value.ToString(),
+                position: PlayerInfo.instance.currentPosition.Value.ToString(),
+                goals: PlayerInfo.instance.goals.Value,
+                assists: PlayerInfo.instance.assists.Value,
+                saves: PlayerInfo.instance.saves.Value,
+                xp: xp,
+                localizationKey: localizationKey);
         }
 
         // player didn't play enough
         else
         {
-            HandleChatbox.instance.HandleFormattingTexts(
-                    isChattingAll: true,
-                    rankIndex: -1,
-                    teamColor: "",
-                    username: "",
-                    position: "",
-                    text: didNotPlayEnoughMessageLoc.GetLocalizedString(),
-                    isServer: true);
+            HandleChatbox.instance.SendLocalizedTextClientRpc(
+                username: PlayerInfo.instance.username.Value.ToString(),
+                team: PlayerInfo.instance.currentTeam.Value.ToString(),
+                position: PlayerInfo.instance.currentPosition.Value.ToString(),
+                goals: PlayerInfo.instance.goals.Value,
+                assists: PlayerInfo.instance.assists.Value,
+                saves: PlayerInfo.instance.saves.Value,
+                xp: xp,
+                localizationKey: "DID_NOT_PLAY_ENOUGH_MESSAGE");
         }
     }
 
@@ -863,11 +849,15 @@ public class ServerManager : NetworkBehaviour
 
         UpdateSpawnButtonUIClientRpc(team, position, username);
 
-        userJoinedTeamLoc["username"] = new StringVariable { Value = username };
-        userJoinedTeamLoc["team"] = new StringVariable { Value = team.ToString() };
-        userJoinedTeamLoc["position"] = new StringVariable { Value = position.ToString() };
-
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userJoinedTeamLoc.GetLocalizedString(), true);
+        HandleChatbox.instance.SendLocalizedTextClientRpc(
+                username: username,
+                team: team.ToString(),
+                position: position.ToString(),
+                goals: 0, // just a placeholder value
+                assists: 0,
+                saves: 0,
+                xp: 0,
+                localizationKey: "USER_JOINED_TEAM_MESSAGE");
     }
 
     [ClientRpc]
@@ -916,16 +906,29 @@ public class ServerManager : NetworkBehaviour
         connectedPlayers[clientId] = playerInfo;
 
         // send message to all the clients
-        userConnectedMessageLoc["username"] = new StringVariable { Value = clientUsernames[clientId].ToString() };
-
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userConnectedMessageLoc.GetLocalizedString(), true);
+        HandleChatbox.instance.SendLocalizedTextClientRpc(
+                username: clientUsernames[clientId],
+                team: "",
+                position: "",
+                goals: 0, // just a placeholder value
+                assists: 0,
+                saves: 0,
+                xp: 0,
+                localizationKey: "USER_CONNECTED_MESSAGE");
     }
 
     private void HandleClientDisconnectedServer(ulong clientId)
     {
         // send message that the client disconnected
-        userDisconnectedMessageLoc["username"] = new StringVariable { Value = clientUsernames[clientId].ToString() };
-        HandleChatbox.instance.SendTextClientRpc(true, -1, "", "", "", userDisconnectedMessageLoc.GetLocalizedString(), true);
+        HandleChatbox.instance.SendLocalizedTextClientRpc(
+                username: clientUsernames[clientId],
+                team: "",
+                position: "",
+                goals: 0, // just a placeholder value
+                assists: 0,
+                saves: 0,
+                xp: 0,
+                localizationKey: "USER_DISCONNECTED_MESSAGE");
 
         if (connectedPlayers.TryGetValue(clientId, out PlayerInfo playerInfo))
         {

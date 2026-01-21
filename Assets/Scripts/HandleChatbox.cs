@@ -2,6 +2,8 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class HandleChatbox : NetworkBehaviour
 {
@@ -19,6 +21,16 @@ public class HandleChatbox : NetworkBehaviour
     [SerializeField] private Transform openChatParent;
     [SerializeField] private Transform closedChatParent;
     [SerializeField] private ProfanityFilter profanityFilter;
+
+    [Header("Localization References")]
+    [SerializeField] private LocalizedString didWinMessageLoc = new("Table1", "DID_WIN_MESSAGE");
+    [SerializeField] private LocalizedString didLoseMessageLoc = new("Table1", "DID_LOSE_MESSAGE");
+    [SerializeField] private LocalizedString didTieMessageLoc = new("Table1", "DID_TIE_MESSAGE");
+    [SerializeField] private LocalizedString didNotPlayEnoughMessageLoc = new("Table1", "DID_NOT_PLAY_ENOUGH_MESSAGE");
+    [SerializeField] private LocalizedString userConnectedMessageLoc = new("Table1", "USER_CONNECTED_MESSAGE");
+    [SerializeField] private LocalizedString userDisconnectedMessageLoc = new("Table1", "USER_DISCONNECTED_MESSAGE");
+    [SerializeField] private LocalizedString userJoinedTeamLoc = new("Table1", "USER_JOINED_TEAM_MESSAGE");
+    [SerializeField] private LocalizedString userKickedLoc = new("Table1", "USER_KICKED_MESSAGE");
 
     [Header("UI References")]
     [SerializeField] private TMP_InputField inputField;
@@ -235,7 +247,9 @@ public class HandleChatbox : NetworkBehaviour
 
         // if the server sent the message
         if (isServer)
+        {
             formattedText = $"<color=yellow>{text}";
+        }
 
         else
         {
@@ -348,5 +362,69 @@ public class HandleChatbox : NetworkBehaviour
         HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
         chatbox.HandleFormattingTexts(isChattingAll, rankIndex, teamColor, username, position, text, isServer);
+    }
+
+    [ClientRpc]
+    public void SendLocalizedTextClientRpc(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
+    {
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
+
+        string text = string.Empty;
+
+        if (localizationKey.Equals("DID_WIN_MESSAGE"))
+        {
+            didWinMessageLoc["xp"] = new IntVariable { Value = xp };
+            didWinMessageLoc["goals"] = new IntVariable { Value = goals };
+            didWinMessageLoc["assists"] = new IntVariable { Value = assists };
+            didWinMessageLoc["saves"] = new IntVariable { Value = saves };
+
+            text = didWinMessageLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("DID_LOSE_MESSAGE"))
+        {
+            didLoseMessageLoc["xp"] = new IntVariable { Value = xp };
+        }
+
+        else if (localizationKey.Equals("DID_TIE_MESSAGE"))
+        {
+            text = didTieMessageLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("DID_NOT_PLAY_ENOUGH_MESSAGE"))
+        {
+            text = didNotPlayEnoughMessageLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("USER_CONNECTED_MESSAGE"))
+        {
+            userConnectedMessageLoc["username"] = new StringVariable { Value = username };
+            text = userConnectedMessageLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("USER_DISCONNECTED_MESSAGE"))
+        {
+            userDisconnectedMessageLoc["username"] = new StringVariable { Value = username };
+            text = userDisconnectedMessageLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("USER_JOINED_TEAM_MESSAGE"))
+        {
+            userJoinedTeamLoc["username"] = new StringVariable { Value = username };
+            userJoinedTeamLoc["team"] = new StringVariable { Value = team };
+            userJoinedTeamLoc["position"] = new StringVariable { Value = position };
+            text = userJoinedTeamLoc.GetLocalizedString();
+        }
+
+        else if (localizationKey.Equals("USER_KICKED_MESSAGE"))
+        {
+            userKickedLoc["username"] = new StringVariable { Value = username };
+            text = userKickedLoc.GetLocalizedString();
+        }
+
+        HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
+
+        chatbox.HandleFormattingTexts(false, 0, "", "", "", text, true);
     }
 }
