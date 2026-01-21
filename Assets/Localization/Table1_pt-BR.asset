@@ -1023,6 +1023,10 @@ MonoBehaviour:
     m_Localized: PROSSEGUIR
     m_Metadata:
       m_Items: []
+  - m_Id: 1169828692414464
+    m_Localized: LINGUAGEM
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

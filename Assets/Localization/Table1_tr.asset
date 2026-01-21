@@ -1050,6 +1050,10 @@ MonoBehaviour:
     m_Localized: "\u0130LERLEMEK"
     m_Metadata:
       m_Items: []
+  - m_Id: 1169828692414464
+    m_Localized: "D\u0130L"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

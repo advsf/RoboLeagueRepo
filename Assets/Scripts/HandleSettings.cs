@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using System.Collections;
 
 public class HandleSettings : MonoBehaviour
 {
@@ -201,6 +204,8 @@ public class HandleSettings : MonoBehaviour
         // get all the post processing
         GetAllPostProcessing();
 
+        StartCoroutine(PopulateLanguageDropdown());
+
         if (!Application.isMobilePlatform)
             mandatoryMouseDPISettingObj.SetActive(!PlayerPrefs.HasKey("MouseDPI"));
 
@@ -217,6 +222,9 @@ public class HandleSettings : MonoBehaviour
 
     private void CreateDefaultSettings()
     {
+        // create language value to english
+        UpdateLanguage(2); 
+
         // create sensSlider value
         sensSlider.value = 200;
         UpdateSensitivityThroughSlider();
@@ -339,6 +347,9 @@ public class HandleSettings : MonoBehaviour
 
     private void InitializeGameplaySettings()
     {
+        // language
+        UpdateLanguage(PlayerPrefs.GetInt("LanguageIndex", 2));
+
         // mouse DPI UI
         mouseDPISlider.value = PlayerPrefs.GetFloat("MouseDPI", 200);
         mouseDPIInputField.text = PlayerPrefs.GetFloat("MouseDPI", 200).ToString("F2");
@@ -487,6 +498,55 @@ public class HandleSettings : MonoBehaviour
     #endregion
 
     #region Language Localiation Settings
+
+    public void UpdateLanguage(int index)
+    {
+        Debug.Log(index);
+
+        StartCoroutine(SetLocale(index));
+    }
+
+    private IEnumerator SetLocale(int index)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+
+        PlayerPrefs.SetInt("LanguageIndex", index);
+        PlayerPrefs.Save();
+    }
+
+    private IEnumerator PopulateLanguageDropdown()
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        languageDropdown.ClearOptions();
+
+        // write the languages in their own characters
+        List<string> languageNames = new List<string>();
+        foreach (var locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            languageNames.Add(locale.Identifier.CultureInfo.NativeName);
+        }
+
+        languageDropdown.AddOptions(languageNames);
+
+        int savedIndex = PlayerPrefs.GetInt("LanguageIndex", 0);
+
+        if (savedIndex >= 0 && savedIndex < languageNames.Count)
+        {
+            languageDropdown.value = savedIndex;
+        }
+
+        else
+        {
+            languageDropdown.value = 0;
+            savedIndex = 0;
+        }
+
+        languageDropdown.RefreshShownValue();
+        UpdateLanguage(savedIndex);
+    }
 
     #endregion
 

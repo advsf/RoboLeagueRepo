@@ -1005,6 +1005,10 @@ MonoBehaviour:
     m_Localized: PROCEED
     m_Metadata:
       m_Items: []
+  - m_Id: 1169828692414464
+    m_Localized: LANGUAGE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
