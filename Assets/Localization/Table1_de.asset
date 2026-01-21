@@ -1130,6 +1130,14 @@ MonoBehaviour:
     m_Localized: MODIFIZIERT
     m_Metadata:
       m_Items: []
+  - m_Id: 1536523139338240
+    m_Localized: SKALA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1536523198058496
+    m_Localized: "HALTEN UND ZIEHEN \u2013 BENUTZEROBERFL\xC4CHE BEWEGEN"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

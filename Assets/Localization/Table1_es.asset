@@ -1127,6 +1127,14 @@ MonoBehaviour:
     m_Localized: MODIFICADO
     m_Metadata:
       m_Items: []
+  - m_Id: 1536523139338240
+    m_Localized: ESCALA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1536523198058496
+    m_Localized: MANTENER Y ARRASTRAR - MOVER LA IU
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

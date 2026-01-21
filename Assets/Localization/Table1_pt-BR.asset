@@ -1128,6 +1128,14 @@ MonoBehaviour:
     m_Localized: MODIFICADO
     m_Metadata:
       m_Items: []
+  - m_Id: 1536523139338240
+    m_Localized: ESCALA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1536523198058496
+    m_Localized: "SEGURE E ARRASTE - MOVER INTERFACE DO USU\xC1RIO"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

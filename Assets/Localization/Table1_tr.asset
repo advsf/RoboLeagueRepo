@@ -1155,6 +1155,14 @@ MonoBehaviour:
     m_Localized: "DE\u011E\u0130\u015ET\u0130R\u0130LM\u0130\u015E"
     m_Metadata:
       m_Items: []
+  - m_Id: 1536523139338240
+    m_Localized: "\xD6L\xC7EK"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1536523198058496
+    m_Localized: "BASILI TUTUP S\xDCR\xDCKLE - ARAY\xDCZ\xDC TA\u015EI"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

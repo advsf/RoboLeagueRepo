@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.Netcode;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 
 public class HandleKicking : NetworkBehaviour
 {
@@ -677,9 +675,9 @@ public class HandleKicking : NetworkBehaviour
             playerRightDir.y = 0;
             playerRightDir.Normalize();
 
-            // if we just hold, make the ball go up
+            // if we just hold, make the ball flick
             if (joystickVal.x == 0 || joystickVal.y == 0)
-                direction = transform.up;
+                direction = transform.forward + transform.up;
             else
 
                 direction = (playerForwardDir * joystickVal.y + playerRightDir * joystickVal.x).normalized;

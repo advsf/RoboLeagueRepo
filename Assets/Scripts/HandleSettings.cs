@@ -30,10 +30,6 @@ public class HandleSettings : MonoBehaviour
     [Header("Mobile UI Readjust References")]
     [SerializeField] private GameObject mobileReadjustCanvaObj;
 
-    [Header("Mouse DPI Reference")]
-    [SerializeField] private Slider mouseDPISlider;
-    [SerializeField] private TMP_InputField mouseDPIInputField;
-
     [Header("Sens Reference")]
     [SerializeField] private Slider sensSlider;
     [SerializeField] private TMP_InputField sensInputField;
@@ -340,10 +336,6 @@ public class HandleSettings : MonoBehaviour
     {
         // language
         UpdateLanguage(PlayerPrefs.GetInt("LanguageIndex", 2));
-
-        // mouse DPI UI
-        mouseDPISlider.value = PlayerPrefs.GetFloat("MouseDPI", 200);
-        mouseDPIInputField.text = PlayerPrefs.GetFloat("MouseDPI", 200).ToString("F2");
 
         // sens UI
         sensSlider.value = FBPP.GetFloat("Sensitivity", 400);
