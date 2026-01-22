@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4261622058
+  GlobalObjectIdHash: 3656981477
   InScenePlacedSourceGlobalObjectIdHash: 3656981477
   DeferredDespawnTick: 0
   Ownership: 1
@@ -297,19 +297,22 @@ MonoBehaviour:
   magnusForceMultiplier: 0.005
   downForceMultiplier: 14
   magnusEffectDuration: 0.5
-  magnusDecayRate: 0.97
-  maxLegalForce: 150
+  magnusDecayRate: 0.765
   ballCollider: {fileID: 8145694775774283574}
   kickCooldownDuration: 0.075
   isBallPickedUp:
     m_InternalValue: 0
-  isOutOfBounds:
+  isIndirectFreekick:
+    m_InternalValue: 0
+  isOutOfPlay:
     m_InternalValue: 0
   isThrowIn:
     m_InternalValue: 0
   isCornerKick:
     m_InternalValue: 0
   isGoalKick:
+    m_InternalValue: 0
+  isOffside:
     m_InternalValue: 0
   lastKickedClientId:
     m_InternalValue: -1
@@ -488,6 +491,7 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  isKickedFromIndirectKick: 0
 --- !u!114 &942397507264716875
 MonoBehaviour:
   m_ObjectHideFlags: 0

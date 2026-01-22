@@ -4764,9 +4764,10 @@ MonoBehaviour:
   minSprintSpeed: 4
   speedLerpMultiplier: 2
   sliderIncrementValue: 4
+  inputCurveMultiplier: 12.5
   sideSpinMultiplier: 25
   topSpinMultiplier: 12
-  minimumMagnusMouseThreshold: 10
+  minimumMagnusMouseThreshold: 100
   shotMultiplier: 1.37
   nonSpinShotMultiplier: 0.9
   shootingBarSlider: {fileID: 7716772008513675676}
@@ -16885,6 +16886,78 @@ MonoBehaviour:
   openChatParent: {fileID: 1470466913010218953}
   closedChatParent: {fileID: 6474321990355203426}
   profanityFilter: {fileID: 8185283294260368337}
+  didWinMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_WIN_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didLoseMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_LOSE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didTieMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_TIE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didNotPlayEnoughMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userConnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_CONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userDisconnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_DISCONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userJoinedTeamLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_JOINED_TEAM_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userKickedLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_KICKED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   inputField: {fileID: 2922999108495984453}
   mobileInputField: {fileID: 3081807381041828565}
   currentChatOption: {fileID: 7866198697972302934}
@@ -16893,6 +16966,9 @@ MonoBehaviour:
   maxAmountOfText: 4
   spamDuration: 8
   canText: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &8445411007901409009
 MonoBehaviour:
   m_ObjectHideFlags: 0
