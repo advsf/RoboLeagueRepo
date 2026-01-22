@@ -7359,10 +7359,10 @@ MonoBehaviour:
   minimumAlpha: 0
   isBlueNet: 1
   isRedNet: 0
-  netRenderer: {fileID: 0}
+  netRenderer: {fileID: 651562547}
   postRenderer: {fileID: 1100540773}
   netOpaqueMaterial: {fileID: 2100000, guid: c4f1459b36f274b49858179b801f87f4, type: 2}
-  netTransparentMaterial: {fileID: 2100000, guid: 0abb7d802cca2234c90aa3b4fe9de195,
+  netTransparentMaterial: {fileID: 2100000, guid: 1b2378b0f496f154cadf5166e25791ba,
     type: 2}
   postOpaqueMaterial: {fileID: 2100000, guid: aa3459fb71a26174b9629d805195db69, type: 2}
   postTransparentMaterial: {fileID: 2100000, guid: 0abb7d802cca2234c90aa3b4fe9de195,
