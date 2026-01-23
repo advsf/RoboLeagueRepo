@@ -101,7 +101,7 @@ public class HandleMobileUI : NetworkBehaviour
         }
     }
 
-    public void EnableAllMobileUI(bool condition)
+    private void EnableAllMobileUI(bool condition)
     {
         foreach (Transform obj in transform)
             obj.gameObject.SetActive(condition);

@@ -20,6 +20,7 @@ public class CameraLook : NetworkBehaviour
 
     [Header("Mobile Support")]
     [SerializeField] private TouchPanel touchPanel;
+    [SerializeField] private bool testOnEditorForMobile = false;
 
     [Header("References")]
     [SerializeField] private Transform player;
@@ -38,6 +39,10 @@ public class CameraLook : NetworkBehaviour
         if (IsOwner)
         {
             canCamMove = true;
+
+            // in case i forget
+            if (!Application.isEditor)
+                testOnEditorForMobile = false;
         }
 
         else
@@ -89,7 +94,7 @@ public class CameraLook : NetworkBehaviour
             Vector2 mouseDelta = Vector2.zero;
             Vector2 touchDelta = Vector2.zero;
 
-            if (!Application.isMobilePlatform)
+            if (!Application.isMobilePlatform && !testOnEditorForMobile)
                 mouseDelta = Mouse.current.delta.ReadValue();
             
             else

@@ -45,7 +45,7 @@ public class HandleCursorSettings : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             // for mobile
-            if (Application.isMobilePlatform)
+            if (Application.isMobilePlatform || Application.isEditor)
                 HandleMobileUI.instance.EnableTouchPadObj(false);
 
             isUIOn = true;
@@ -58,7 +58,7 @@ public class HandleCursorSettings : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             // for mobile
-            if (Application.isMobilePlatform)   
+            if (Application.isMobilePlatform || Application.isEditor)   
                 HandleMobileUI.instance.EnableTouchPadObj(true);
 
             isUIOn = false;
@@ -69,7 +69,7 @@ public class HandleCursorSettings : MonoBehaviour
 
     public void SetUIOnMode(bool condition)
     {
-        if (Application.isMobilePlatform)
+        if (Application.isMobilePlatform || Application.isEditor)
             HandleMobileUI.instance.EnableTouchPadObj(condition);
 
         isUIOn = condition;

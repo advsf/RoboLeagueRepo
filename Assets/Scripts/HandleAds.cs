@@ -1,6 +1,5 @@
 using UnityEngine;
 using Unity.Services.LevelPlay;
-using System.Collections;
 
 public class HandleAds : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class HandleAds : MonoBehaviour
     [SerializeField] private string interstitialAdUnitId = "pmwfs9npvt27m3fc";
 
     private LevelPlayInterstitialAd interstitialAd;
+
+    string appKey = "24fe938e5";
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class HandleAds : MonoBehaviour
         LevelPlay.OnInitFailed += LevelPlay_OnInitFailed;
 
         // SDK init
-        LevelPlay.Init(AdConfig.AppKey);
+        LevelPlay.Init(appKey);
     }
 
     private void LevelPlay_OnInitFailed(LevelPlayInitError obj)
@@ -61,9 +62,11 @@ public class HandleAds : MonoBehaviour
     public void LoadInterstitialAd()
     {
         interstitialAd.LoadAd();
+
+        Debug.Log("loaded");
     }
 
-    public IEnumerator ShowInterstitialAd()
+    public void ShowInterstitialAd()
     {
         if (interstitialAd.IsAdReady())
             interstitialAd.ShowAd();

@@ -362,39 +362,25 @@ public class HandleKicking : NetworkBehaviour
 
     private void HandleNormalKickCharging()
     {
-        didDribble = false;
-        didShoot = false;
-        didBicycleKick = false;
+        if (isDribbling)
+            didDribble = true;
 
-        if (isMobile)
+        if (isShooting)
+            didShoot = true;
+
+        // pc bicycle kick logic
+        bool pcBicycleKick = isDribbling && isShooting;
+
+        // mobile bicycle kick lgoic
+        bool mobileBicycle = currentMobileKickMode == KickMode.BicycleKick;
+
+        // if the user is performing a bicycle kick
+        if (pcBicycleKick || mobileBicycle)
         {
-            switch (currentMobileKickMode)
-            {
-                case KickMode.Shooting:
-                    didShoot = true;
-                    break;
-                case KickMode.Dribbling:
-                    didDribble = true;
-                    break;
-                case KickMode.BicycleKick:
-                    didBicycleKick = true;
-                    break;
-            }
-        }
+            didBicycleKick = true;
 
-
-        else 
-        {
-            bool pcBicycleKick = isDribbling && isShooting;
-            
-            if (pcBicycleKick) 
-                didBicycleKick = true;
-
-            else if (isDribbling) 
-                didDribble = true;
-
-            else if (isShooting) 
-                didShoot = true;
+            didShoot = false;
+            didDribble = false;
         }
 
         ChangeShootingBarColor();
