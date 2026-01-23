@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 555041059305176411}
   - component: {fileID: 202438099820588063}
   - component: {fileID: 888322653673971339}
+  - component: {fileID: 2657567648075592308}
   m_Layer: 0
   m_Name: Visors
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3213086593399641657}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7045581, y: 0.059981655, z: 0.059981633, w: -0.7045583}
+  m_LocalRotation: {x: -0.7045582, y: -0.0599808, z: -0.0599808, w: 0.7045582}
   m_LocalPosition: {x: 179.1002, y: 4.836, z: -11.028}
-  m_LocalScale: {x: 373.25647, y: 373.25656, z: 373.25656}
+  m_LocalScale: {x: 117.589485, y: 117.58957, z: 117.58951}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2657567648075592308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213086593399641657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: -0.1638773, y: 1.78043, z: 0.006672491}
+  lobbyLocalRotation: {x: -90, y: 0, z: 95.425}
+  lobbyLocalScale: {x: 117.5895, y: 117.5896, z: 117.5895}
+  inGameLocalPosition: {x: -0.2025727, y: 1.809161, z: 0.01811827}
+  inGameLocalRotation: {x: -90, y: 0, z: 96.524}
+  inGameLocalScale: {x: 117.5895, y: 117.5896, z: 117.5895}

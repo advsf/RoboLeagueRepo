@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8104246560220114608}
   - component: {fileID: 2981408909401745961}
   - component: {fileID: 8057488270793178560}
+  - component: {fileID: 4074464906984622353}
   m_Layer: 0
   m_Name: Goggles
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201304280268432867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70524204, y: 0.051319342, z: 0.051319342, w: -0.70524204}
+  m_LocalRotation: {x: -0.70524204, y: -0.051319428, z: -0.051319428, w: 0.70524204}
   m_LocalPosition: {x: 178.77422, y: 4.758, z: -9.618599}
-  m_LocalScale: {x: 325.96436, y: 325.96445, z: 325.96445}
+  m_LocalScale: {x: 102.69074, y: 102.690796, z: 102.69077}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4074464906984622353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201304280268432867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.2739686, y: 1.756806, z: -0.009643739}
+  lobbyLocalRotation: {x: -90, y: 0, z: 96.833}
+  lobbyLocalScale: {x: 102.6907, y: 102.6908, z: 102.6908}
+  inGameLocalPosition: {x: 0.2524376, y: 1.784588, z: -0.007582167}
+  inGameLocalRotation: {x: -90, y: 0, z: 97.932}
+  inGameLocalScale: {x: 102.6907, y: 102.6908, z: 102.6908}

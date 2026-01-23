@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6040399250681506036}
   - component: {fileID: 43299163047314227}
   - component: {fileID: 5613542433544466905}
+  - component: {fileID: 4021230490836122789}
   m_Layer: 0
   m_Name: Crown
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3290853217225115619}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.69969755, y: -0.102094516, z: 0.10209451, w: -0.69969773}
+  m_LocalRotation: {x: -0.69969773, y: 0.102093585, z: -0.102093585, w: 0.69969773}
   m_LocalPosition: {x: 178.985, y: 4.601, z: -9.337}
-  m_LocalScale: {x: 496.0153, y: 496.0154, z: 496.0154}
+  m_LocalScale: {x: 156.26305, y: 156.26312, z: 156.26308}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4021230490836122789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290853217225115619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.3395993, y: 1.709253, z: -0.09356648}
+  lobbyLocalRotation: {x: -73.397, y: 195.157, z: -90}
+  lobbyLocalScale: {x: 156.263, y: 156.2631, z: 156.2631}
+  inGameLocalPosition: {x: 0.319016, y: 1.735128, z: -0.09616618}
+  inGameLocalRotation: {x: -73.397, y: 196.256, z: -90}
+  inGameLocalScale: {x: 156.263, y: 156.2631, z: 156.2631}

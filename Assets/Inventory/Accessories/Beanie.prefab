@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7752578786510552328}
   - component: {fileID: 5360272334146910498}
   - component: {fileID: 7380312796202146394}
+  - component: {fileID: 7404441290584097061}
   m_Layer: 0
   m_Name: Beanie
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6726129125655463099}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 178.996, y: 4.449, z: -11.568}
-  m_LocalScale: {x: 643.18896, y: 597.69324, z: 597.69324}
+  m_LocalScale: {x: 202.62817, y: 188.29538, z: 188.2953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5360272334146910498
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7404441290584097061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726129125655463099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: -0.3134906, y: 1.663216, z: 0.07990044}
+  lobbyLocalRotation: {x: -90, y: 0, z: 105.157}
+  lobbyLocalScale: {x: 202.6282, y: 188.2954, z: 188.2953}
+  inGameLocalPosition: {x: -0.3567017, y: 1.687242, z: 0.09725518}
+  inGameLocalRotation: {x: -90, y: 0, z: 106.256}
+  inGameLocalScale: {x: 202.6282, y: 188.2954, z: 188.2953}

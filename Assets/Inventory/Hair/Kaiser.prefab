@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5525094302225126978}
   - component: {fileID: 6061985080066877635}
   - component: {fileID: 2813757723277762776}
+  - component: {fileID: 3038800781266487076}
   m_Layer: 0
-  m_Name: hair_9
+  m_Name: Kaiser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.042999998, y: 5.998, z: -0.222}
-  m_LocalScale: {x: 135.62292, y: 119.95714, z: 146.74408}
+  m_LocalScale: {x: 135.62291, y: 119.95712, z: 146.74405}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3038800781266487076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966722636826577063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: -0.3605708, y: 1.774577, z: 0.06943648}
+  lobbyLocalRotation: {x: -89.98, y: 0, z: 105.157}
+  lobbyLocalScale: {x: 135.6229, y: 119.9571, z: 146.744}
+  inGameLocalPosition: {x: -0.3605708, y: 1.774577, z: 0.06943649}
+  inGameLocalRotation: {x: -90, y: 0, z: 105.157}
+  inGameLocalScale: {x: 135.6229, y: 119.9571, z: 146.744}

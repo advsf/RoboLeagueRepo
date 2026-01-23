@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 8823028630518170104}
   - component: {fileID: 5104172199841234886}
   - component: {fileID: 7853708866445122108}
+  - component: {fileID: 209579175570606612}
   m_Layer: 0
   m_Name: CrazyEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8823028630518170104
 Transform:
   m_ObjectHideFlags: 0
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 178.817, y: 4.7, z: -9.244}
-  m_LocalScale: {x: 75.872314, y: 75.87233, z: 75.87234}
+  m_LocalScale: {x: 78.91752, y: 78.917564, z: 78.91753}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &209579175570606612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260129628093471677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.3956402, y: 1.739238, z: -0.007420611}
+  lobbyLocalRotation: {x: -90, y: 0, z: 96.536}
+  lobbyLocalScale: {x: 78.91752, y: 78.91756, z: 78.91753}
+  inGameLocalPosition: {x: 0.3790136, y: 1.766316, z: -0.007696909}
+  inGameLocalRotation: {x: -89.972, y: 0, z: 97.634}
+  inGameLocalScale: {x: 78.91752, y: 78.91756, z: 78.91753}

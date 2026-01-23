@@ -187,8 +187,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7791579438894279841}
+  - component: {fileID: 4737668569847857798}
   m_Layer: 0
-  m_Name: ClownHat
+  m_Name: Joker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,12 +205,30 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.45667145, y: 0.5819402, z: 0.5398622, w: 0.4016786}
   m_LocalPosition: {x: 0.07454239, y: 1.8576647, z: -0.054964848}
-  m_LocalScale: {x: 0.040769428, y: 0.040769428, z: 0.04076943}
+  m_LocalScale: {x: 0.042092666, y: 0.042092666, z: 0.042092662}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5766859209988436896}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -84.387, y: 195.157, z: -90}
+--- !u!114 &4737668569847857798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137192571383960400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.07454239, y: 1.857665, z: -0.05496485}
+  lobbyLocalRotation: {x: -84.387, y: 195.157, z: -90}
+  lobbyLocalScale: {x: 0.04209267, y: 0.04209267, z: 0.04209266}
+  inGameLocalPosition: {x: 0.03852347, y: 1.882082, z: -0.05285454}
+  inGameLocalRotation: {x: -92.351, y: 59.622, z: 54.013}
+  inGameLocalScale: {x: 0.04209267, y: 0.04209267, z: 0.04209266}
 --- !u!1 &3238431442996028638
 GameObject:
   m_ObjectHideFlags: 0

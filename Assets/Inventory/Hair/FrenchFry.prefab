@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2979976281716199117
+--- !u!1 &1306517405259284303
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6064804501493798248}
-  - component: {fileID: 5085977007382152669}
-  - component: {fileID: 4388633812604783826}
+  - component: {fileID: 2692476633220874180}
+  - component: {fileID: 1612522481370407779}
+  - component: {fileID: 8590600707691799977}
+  - component: {fileID: 7068368543861661375}
   m_Layer: 0
-  m_Name: Emo 1
+  m_Name: FrenchFry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &6064804501493798248
+--- !u!4 &2692476633220874180
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979976281716199117}
+  m_GameObject: {fileID: 1306517405259284303}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.42968845, y: 0.5615762, z: 0.5615763, w: 0.4296884}
-  m_LocalPosition: {x: -0.78216136, y: 1.1571023, z: 0.18583646}
-  m_LocalScale: {x: 141.55327, y: 141.55325, z: 141.55328}
+  m_LocalRotation: {x: -0.7009303, y: 0.09325639, z: 0.09325639, w: 0.7009303}
+  m_LocalPosition: {x: 0.070500895, y: -0.24069093, z: -0.061775286}
+  m_LocalScale: {x: 1.072947, y: 1.1713349, z: 1.1341344}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5085977007382152669
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 15.157}
+--- !u!33 &1612522481370407779
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979976281716199117}
-  m_Mesh: {fileID: 7614954740088248599, guid: 5af870c32d9a5294fa3670cf9bde1616, type: 3}
---- !u!23 &4388633812604783826
+  m_GameObject: {fileID: 1306517405259284303}
+  m_Mesh: {fileID: -7227129179611170996, guid: 28d530d942b988c4cb09079a07a3760b, type: 3}
+--- !u!23 &8590600707691799977
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979976281716199117}
+  m_GameObject: {fileID: 1306517405259284303}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cef1e9e412359e409705236809c867c, type: 2}
+  - {fileID: 2100000, guid: 1691c914be7914044a063b19a39778b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7068368543861661375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306517405259284303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.0705009, y: -0.2406909, z: -0.06177529}
+  lobbyLocalRotation: {x: -90, y: 0, z: 15.157}
+  lobbyLocalScale: {x: 1.072947, y: 1.171335, z: 1.134134}
+  inGameLocalPosition: {x: 0.0630843, y: -0.2224175, z: -0.3125886}
+  inGameLocalRotation: {x: -82.471, y: 1.862, z: 9.775}
+  inGameLocalScale: {x: 1.072947, y: 1.171335, z: 1.134134}

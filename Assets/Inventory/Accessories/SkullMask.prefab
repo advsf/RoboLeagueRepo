@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8230214280593375172}
+  - component: {fileID: 3836872984043193458}
   m_Layer: 0
   m_Name: SkullMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8230214280593375172
 Transform:
   m_ObjectHideFlags: 0
@@ -26,12 +27,30 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 178.02, y: 4.407, z: -10.453}
-  m_LocalScale: {x: 0.005392368, y: 0.005392368, z: 0.005392368}
+  m_LocalScale: {x: 0.005567386, y: 0.0055673853, z: 0.005567385}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7640433737361848282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
+--- !u!114 &3836872984043193458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307140295243922394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.0916877, y: 1.460488, z: 0.05272567}
+  lobbyLocalRotation: {x: -85.949, y: 15.157, z: 0}
+  lobbyLocalScale: {x: 0.005567386, y: 0.005567385, z: 0.005567385}
+  inGameLocalPosition: {x: 0.069, y: 1.4762, z: 0.02}
+  inGameLocalRotation: {x: -75.956, y: 8.305, z: 15.355}
+  inGameLocalScale: {x: 0.005567386, y: 0.005567386, z: 0.005567386}
 --- !u!1 &824438424776354265
 GameObject:
   m_ObjectHideFlags: 0

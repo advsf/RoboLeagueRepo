@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1778468391434857728}
   - component: {fileID: 7355736989362426390}
   - component: {fileID: 2557897552439641863}
+  - component: {fileID: 8328469277354197010}
   m_Layer: 0
   m_Name: Von
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699917908191404484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5240199, y: 0.47476637, z: 0.47476643, w: 0.5240199}
+  m_LocalRotation: {x: -0.52401865, y: 0.47476786, z: 0.47476786, w: 0.52401865}
   m_LocalPosition: {x: 0.21687175, y: 1.5123811, z: -0.031136258}
-  m_LocalScale: {x: 134.37831, y: 134.37831, z: 134.37831}
+  m_LocalScale: {x: 134.20146, y: 134.20142, z: 134.20143}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -20.804}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 84.354}
 --- !u!33 &7355736989362426390
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8328469277354197010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699917908191404484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.2168718, y: 1.512381, z: -0.03113626}
+  lobbyLocalRotation: {x: -90, y: 0, z: 84.354}
+  lobbyLocalScale: {x: 134.2015, y: 134.2014, z: 134.2014}
+  inGameLocalPosition: {x: 0.2143, y: 1.509, z: -0.0721}
+  inGameLocalRotation: {x: -81.889, y: 21.022, z: 69.826}
+  inGameLocalScale: {x: 134.2015, y: 134.2014, z: 134.2014}

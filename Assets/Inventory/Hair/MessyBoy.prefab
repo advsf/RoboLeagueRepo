@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3235706511448556352}
   - component: {fileID: 2978160814512169813}
   - component: {fileID: 5243352450938121821}
+  - component: {fileID: 7971603703530116899}
   m_Layer: 0
   m_Name: MessyBoy
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2193675115932713526}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.42968845, y: 0.5615762, z: 0.5615763, w: 0.4296884}
+  m_LocalRotation: {x: -0.4296904, y: 0.56157476, z: 0.56157476, w: 0.4296904}
   m_LocalPosition: {x: -0.35255617, y: 1.5272222, z: 0.07353782}
-  m_LocalScale: {x: 140.78459, y: 118.09259, z: 118.67892}
+  m_LocalScale: {x: 140.59929, y: 117.9371, z: 118.52267}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 105.157}
 --- !u!33 &2978160814512169813
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7971603703530116899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193675115932713526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: -0.3525562, y: 1.527222, z: 0.07353782}
+  lobbyLocalRotation: {x: -90, y: 0, z: 105.157}
+  lobbyLocalScale: {x: 140.5993, y: 117.9371, z: 118.5227}
+  inGameLocalPosition: {x: -0.3648, y: 1.5472, z: 0.0244}
+  inGameLocalRotation: {x: -81.889, y: 12.343, z: 90.63}
+  inGameLocalScale: {x: 140.5993, y: 117.9371, z: 118.5227}

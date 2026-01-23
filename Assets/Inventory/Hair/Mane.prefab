@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5722967120202814288}
   - component: {fileID: 1755896627971895511}
   - component: {fileID: 4311066499369324378}
+  - component: {fileID: 391320782091955413}
   m_Layer: 0
   m_Name: Mane
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5881595677905869235}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.42968845, y: 0.5615762, z: 0.5615763, w: 0.4296884}
+  m_LocalRotation: {x: -0.4296904, y: 0.56157476, z: 0.56157476, w: 0.4296904}
   m_LocalPosition: {x: 0.22720523, y: 1.8267709, z: -0.062492184}
-  m_LocalScale: {x: 145.37785, y: 145.37784, z: 145.37787}
+  m_LocalScale: {x: 145.18648, y: 145.18643, z: 145.18646}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 105.157}
 --- !u!33 &1755896627971895511
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &391320782091955413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881595677905869235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.2272052, y: 1.826771, z: -0.06249218}
+  lobbyLocalRotation: {x: -90, y: 0, z: 105.157}
+  lobbyLocalScale: {x: 145.1865, y: 145.1864, z: 145.1865}
+  inGameLocalPosition: {x: 0.2349, y: 1.8413, z: -0.0064}
+  inGameLocalRotation: {x: -81.889, y: 4.427, z: 90.63}
+  inGameLocalScale: {x: 145.1865, y: 145.1864, z: 145.1865}

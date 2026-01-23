@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7658840927558111096}
   - component: {fileID: 678921852225266331}
   - component: {fileID: 9193099158140656319}
+  - component: {fileID: 8090529856983439160}
   m_Layer: 0
   m_Name: Sunglass2
   m_TagString: Untagged
@@ -26,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5120607122361185867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70606697, y: 0.038332783, z: 0.038332775, w: -0.7060671}
+  m_LocalRotation: {x: -0.706067, y: -0.03833192, z: -0.03833192, w: 0.706067}
   m_LocalPosition: {x: 178.888, y: 4.7966, z: -10.316}
-  m_LocalScale: {x: 346.9741, y: 346.97418, z: 346.97418}
+  m_LocalScale: {x: 109.309586, y: 109.30966, z: 109.309616}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,3 +90,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8090529856983439160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120607122361185867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebf8383aa0fd54897b331366609b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryTranformProperty
+  lobbyLocalPosition: {x: 0.06107676, y: 1.7509, z: 0.01232241}
+  lobbyLocalRotation: {x: -90, y: 0, z: 98.942}
+  lobbyLocalScale: {x: 109.3096, y: 109.3097, z: 109.3096}
+  inGameLocalPosition: {x: 0.0315, y: 1.7794, z: 0.0195}
+  inGameLocalRotation: {x: -90, y: 0, z: 100.041}
+  inGameLocalScale: {x: 96, y: 109.3097, z: 109.3096}

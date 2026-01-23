@@ -544,7 +544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652265888750992219}
   m_Layer: 0
-  m_Name: BasketballBall
+  m_Name: Basketball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
