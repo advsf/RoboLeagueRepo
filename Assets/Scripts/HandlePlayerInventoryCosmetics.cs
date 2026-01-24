@@ -8,9 +8,9 @@ public class HandlePlayerInventoryCosmetics : NetworkBehaviour
 
     [Header("Sockets")]
     [SerializeField] private Transform hairParent;
-    [SerializeField] private Transform accessoryParent;
+    [SerializeField] private Transform hairAccessoryParent;
+    [SerializeField] private Transform backAccessoryParent;
 
-    // Keep track of the currently spawned objects so we can destroy them later
     private GameObject currentHairObject;
     private GameObject currentAccessoryObject;
 
@@ -24,7 +24,6 @@ public class HandlePlayerInventoryCosmetics : NetworkBehaviour
         equippedHairName.OnValueChanged += OnHairNameValueChanged;
         equippedAccessoryName.OnValueChanged += OnAccessoryValueChanged;
 
-        // Initial load for players already in the session
         RefreshHair(equippedHairName.Value.ToString());
         RefreshAccessory(equippedAccessoryName.Value.ToString());
 
@@ -53,12 +52,10 @@ public class HandlePlayerInventoryCosmetics : NetworkBehaviour
         if (hairName == "None") 
             return;
 
-        // 2. Get the prefab from our Blue Cube (ScriptableObject)
         GameObject prefab = cosmeticInventory.GetSelectedHair(hairName);
 
         if (prefab != null)
         {
-            // 3. Spawn and Parent it
             currentHairObject = Instantiate(prefab, hairParent);
             ApplyTransformSettings(currentHairObject);
         }
@@ -76,13 +73,17 @@ public class HandlePlayerInventoryCosmetics : NetworkBehaviour
 
         if (prefab != null)
         {
-            currentAccessoryObject = Instantiate(prefab, accessoryParent);
+            bool isBackAccessory = prefab.GetComponent<AccessoryTranformProperty>().isBackAccessory;
+
+            currentAccessoryObject = Instantiate(prefab, isBackAccessory ? backAccessoryParent : hairAccessoryParent);
             ApplyTransformSettings(currentAccessoryObject);
         }
     }
 
     private void ApplyTransformSettings(GameObject obj)
     {
+        obj.SetActive(true);
+
         if (obj.TryGetComponent(out AccessoryTranformProperty settings))
         {
             obj.transform.localPosition = settings.GetLocalPosition();
@@ -93,7 +94,6 @@ public class HandlePlayerInventoryCosmetics : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
-        // Clean up events to prevent memory leaks
         equippedHairName.OnValueChanged -= OnHairNameValueChanged;
         equippedAccessoryName.OnValueChanged -= OnAccessoryValueChanged;
     }

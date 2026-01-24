@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Services.LevelPlay;
+using Unity.Services.Core;
 
 public class HandleAds : MonoBehaviour
 {
@@ -25,8 +26,10 @@ public class HandleAds : MonoBehaviour
         }
     }
 
-    public void Start()
+    public async void Start()
     {
+        await UnityServices.InitializeAsync();
+
         LevelPlay.OnInitSuccess += LevelPlay_OnInitSuccess;
         LevelPlay.OnInitFailed += LevelPlay_OnInitFailed;
 
@@ -55,6 +58,8 @@ public class HandleAds : MonoBehaviour
 
     private void LevelPlay_OnInitSuccess(LevelPlayConfiguration obj)
     {
+        Debug.Log("AHHH");
+
         EnableAds();
         LoadInterstitialAd();
     }
@@ -70,40 +75,45 @@ public class HandleAds : MonoBehaviour
     {
         if (interstitialAd.IsAdReady())
             interstitialAd.ShowAd();
+        else 
+            interstitialAd.LoadAd();
     }
 
     private void InterstitialAd_OnAdInfoChanged(LevelPlayAdInfo adInfo)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void InterstitialAd_OnAdClosed(LevelPlayAdInfo adInfo)
     {
-        throw new System.NotImplementedException();
+        interstitialAd.LoadAd();
     }
 
     private void InterstitialAd_OnAdClicked(LevelPlayAdInfo adInfo)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void InterstitialAd_OnAdDisplayFailed(LevelPlayAdInfo adInfo, LevelPlayAdError error)
     {
-        throw new System.NotImplementedException();
+        Debug.LogError("interstital ad failed: " + error.ErrorMessage);
+
+        if (HandleConnections.instance != null)
+            HandleConnections.instance.ReturnToLobby();
     }
 
     private void InterstitialAd_OnAdDisplayed(LevelPlayAdInfo adInfo)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void InterstitialAd_OnAdLoadFailed(LevelPlayAdError adInfo)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void InterstitialAd_OnAdLoaded(LevelPlayAdInfo adInfo)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

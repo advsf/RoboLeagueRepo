@@ -39,12 +39,17 @@ public class HandlePlayerInventoryCosmeticsInLobby : MonoBehaviour
         currentAccessory = Instantiate(cosmeticInventory.GetSelectedAccessory(PlayerPrefs.GetString("AccessoryName", "None")), accessoryParent);
         ChangeTransform(currentAccessory);
 
-        currentBall = Instantiate(cosmeticInventory.GetSelectedBalls(PlayerPrefs.GetString("BallName", "None")), ballParent);
+        currentBall = Instantiate(cosmeticInventory.GetSelectedBalls(PlayerPrefs.GetString("BallName", "DefaultBall")), ballParent);
+        currentBall.SetActive(true);
+
         currentTrail = Instantiate(cosmeticInventory.GetSelectedTrails(PlayerPrefs.GetString("TrailName", "None")), trailParent);
+        currentTrail.SetActive(true);
     }
 
     private void ChangeTransform(GameObject obj)
     {
+        obj.SetActive(true);
+
         if (obj.GetComponent<AccessoryTranformProperty>()  == null)
             return;
 

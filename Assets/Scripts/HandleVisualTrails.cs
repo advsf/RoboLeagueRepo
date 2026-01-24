@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class HandleVisualTrails : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject[] trails;
+    public CosmeticInventory cosmeticInventory;
+    private GameObject trailObj;
 
     private void OnEnable()
     {
-        foreach (GameObject trail in trails)
-        {
-            trail.SetActive(trail.name.Equals(PlayerPrefs.GetString("TrailName")));
-        }
+        trailObj = Instantiate(cosmeticInventory.GetSelectedTrails(PlayerPrefs.GetString("TrailName", "None")), transform);
+        trailObj.SetActive(true);
     }
 }

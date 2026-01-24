@@ -270,7 +270,7 @@ public class ServerManager : NetworkBehaviour
                 HandleScoreboardUI.instance.EnableStartGameHelperTextUI(true);
 
                 if (Application.isMobilePlatform)
-                    HandleScoreboardUI.instance.EnableMobileStartGameBututon(spawnedPlayerCount.Value > 1);
+                    HandleScoreboardUI.instance.EnableMobileStartGameBututon(spawnedPlayerCount.Value > 1 && !didStartGame.Value);
             }
         }
 

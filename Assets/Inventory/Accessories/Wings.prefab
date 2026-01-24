@@ -108,3 +108,4 @@ MonoBehaviour:
   inGameLocalPosition: {x: 0.016, y: 0.017, z: -0.167}
   inGameLocalRotation: {x: -5.834, y: 181.38, z: -7.509}
   inGameLocalScale: {x: 0.3573664, y: 0.3573667, z: 0.3573666}
+  isBackAccessory: 1

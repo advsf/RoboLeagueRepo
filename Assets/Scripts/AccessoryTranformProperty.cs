@@ -3,14 +3,17 @@ using UnityEngine;
 public class AccessoryTranformProperty : MonoBehaviour
 {
     [Header("Lobby Positions")]
-    public Vector3 lobbyLocalPosition;
-    public Vector3 lobbyLocalRotation;
-    public Vector3 lobbyLocalScale;
+    [SerializeField] private Vector3 lobbyLocalPosition;
+    [SerializeField] private Vector3 lobbyLocalRotation;
+    [SerializeField] private Vector3 lobbyLocalScale;
 
     [Header("In-Game Positions")]
-    public Vector3 inGameLocalPosition;
-    public Vector3 inGameLocalRotation;
-    public Vector3 inGameLocalScale;
+    [SerializeField] private Vector3 inGameLocalPosition;
+    [SerializeField] private Vector3 inGameLocalRotation;
+    [SerializeField] private Vector3 inGameLocalScale;
+
+    [Header("Other Information")]
+    public bool isBackAccessory = false;
 
     public Vector3 GetLocalPosition()
     {

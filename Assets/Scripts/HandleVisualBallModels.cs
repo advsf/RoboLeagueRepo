@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class HandleVisualBallModels : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject[] balls;
+    public CosmeticInventory cosmeticInventory;
+    private GameObject ballObj;
 
     private void OnEnable()
     {
-        foreach (GameObject ball in balls)
-            ball.SetActive(ball.name.Equals(PlayerPrefs.GetString("BallName", "DefaultBall")));
+        ballObj = Instantiate(cosmeticInventory.GetSelectedBalls(PlayerPrefs.GetString("BallName", "DefaultBall")), transform);
+        ballObj.SetActive(true);
     }
 }

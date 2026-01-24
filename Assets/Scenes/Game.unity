@@ -38479,35 +38479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainFootball
       objectReference: {fileID: 0}
-    - target: {fileID: 1987738708722082213, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4006589538644245994, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 777054202
-      objectReference: {fileID: 0}
-    - target: {fileID: 4006589538644245994, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
-        type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 3656981477
-      objectReference: {fileID: 0}
-    - target: {fileID: 4327611225799007311, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4327611225799007311, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4327611225799007311, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5793382822564881712, guid: 68d0dbfdbc5ca454a9d294a48f233fac,
         type: 3}
