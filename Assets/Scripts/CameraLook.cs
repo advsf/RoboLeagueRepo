@@ -20,7 +20,6 @@ public class CameraLook : NetworkBehaviour
 
     [Header("Mobile Support")]
     [SerializeField] private TouchPanel touchPanel;
-    [SerializeField] private bool testOnEditorForMobile = false;
 
     [Header("References")]
     [SerializeField] private Transform player;
@@ -39,10 +38,6 @@ public class CameraLook : NetworkBehaviour
         if (IsOwner)
         {
             canCamMove = true;
-
-            // in case i forget
-            if (!Application.isEditor)
-                testOnEditorForMobile = false;
         }
 
         else
@@ -90,15 +85,15 @@ public class CameraLook : NetworkBehaviour
         // get user input if camera can be moved
         if (canCamMove)
         {
-            // pc input
             Vector2 mouseDelta = Vector2.zero;
             Vector2 touchDelta = Vector2.zero;
 
-            if (!Application.isMobilePlatform && !testOnEditorForMobile)
+            // pc input
+            if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
                 mouseDelta = Mouse.current.delta.ReadValue();
             
+            // mobile input
             else
-                // mobile input
                 touchDelta = touchPanel.GetTouchDelta;
 
             mouseX = mouseDelta.x * FBPP.GetInt("InvertHorizontalMouse") + touchDelta.x;
@@ -124,8 +119,8 @@ public class CameraLook : NetworkBehaviour
         // update camera position always
         if (isPlayingCamera)
         {
-            cameraDistance = FBPP.GetFloat("CameraDistance");
-            cameraYOffset = FBPP.GetFloat("CameraYOffset");
+            cameraDistance = FBPP.GetFloat("CameraDistance", 12);
+            cameraYOffset = FBPP.GetFloat("CameraYOffset", 3);
 
             Vector3 orbitCenter = player.position + new Vector3(0f, cameraYOffset, 0f);
             Quaternion rotation = Quaternion.Euler(yRot, player.eulerAngles.y, 0f);

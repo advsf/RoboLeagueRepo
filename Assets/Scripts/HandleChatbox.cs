@@ -159,9 +159,7 @@ public class HandleChatbox : NetworkBehaviour
                 HandleCursorSettings.instance.EnableCursor(true, false);
                 PlayerMovement.instance.DisableMovement(true);
 
-                // autofocuses the inputfield
-                inputField.Select();
-                inputField.ActivateInputField();
+                StartCoroutine(ForceFocusInputField());
             }
 
             // or close it
@@ -176,6 +174,16 @@ public class HandleChatbox : NetworkBehaviour
                 openedChat.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator ForceFocusInputField()
+    {
+        yield return new WaitForEndOfFrame();
+
+        inputField.Select();
+        inputField.ActivateInputField();
+
+        inputField.OnPointerClick(new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current));
     }
 
     private void HandleChatChannelSwitch()
@@ -302,7 +310,7 @@ public class HandleChatbox : NetworkBehaviour
         SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
 
         // reset the inputfield text
-        if (!Application.isMobilePlatform)
+        if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
         {
             inputField.text = "";
             inputField.ActivateInputField();

@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class HandlePracticeHelperTexts : MonoBehaviour
 {
-    private IEnumerator Start()
+    private void OnEnable()
+    {
+        StartCoroutine(AdjustUI());
+    }
+
+    private IEnumerator AdjustUI()
     {
         yield return new WaitUntil(() => ServerManager.instance != null);
 

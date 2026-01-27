@@ -11,7 +11,7 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
-        if (!IsOwner || !Application.isMobilePlatform)
+        if (!IsOwner)
         {
             gameObject.SetActive(false);
             return;

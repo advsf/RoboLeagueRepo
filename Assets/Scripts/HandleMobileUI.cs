@@ -27,8 +27,11 @@ public class HandleMobileUI : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
-        if (!IsOwner || !Application.isMobilePlatform)
+        if (!IsOwner)
+        {
             gameObject.SetActive(false);
+            return;
+        }
 
         instance = this;
 

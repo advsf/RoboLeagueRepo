@@ -89,6 +89,7 @@ public class HandleAbilities : NetworkBehaviour
         PlayerInputReference.instance.controls.Gameplay.RightAbility.Enable();
 
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+        HandleKBMSupport.OnInputChanged += HandleUI;
     }
 
     private void OnDisable()
@@ -100,6 +101,7 @@ public class HandleAbilities : NetworkBehaviour
         PlayerInputReference.instance.controls.Gameplay.RightAbility.Disable();
 
         LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+        HandleKBMSupport.OnInputChanged -= HandleUI;
     }
 
     private void OnLocaleChanged(Locale locale)
@@ -164,7 +166,7 @@ public class HandleAbilities : NetworkBehaviour
     {
         HandleAbilityNameText();
 
-        if (!Application.isMobilePlatform)
+        if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
         {
             leftAbilityKeyForeground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();
             leftAbilityKeyBackground.text = PlayerInputReference.instance.controls.Gameplay.LeftAbility.GetBindingDisplayString();

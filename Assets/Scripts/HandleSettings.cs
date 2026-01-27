@@ -1,14 +1,15 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Audio;
-using System.Linq;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using System;
-using UnityEngine.Localization.Settings;
-using System.Collections;
+using UnityEngine.UI;
 
 public class HandleSettings : MonoBehaviour
 {
@@ -139,8 +140,14 @@ public class HandleSettings : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            // fix right mouse button triggering back button
+            if (Application.isMobilePlatform && Mouse.current != null)
+                return;
+
             CloseSettingsUI();
+        }
     }
 
     private void Awake()
@@ -358,12 +365,12 @@ public class HandleSettings : MonoBehaviour
         EnableHud(enableHudToggle.isOn);
 
         // camera distance
-        cameraDistanceSlider.value = FBPP.GetFloat("CameraDistance");
-        cameraDistanceInputField.text = FBPP.GetFloat("CameraDistance").ToString("F2");
+        cameraDistanceSlider.value = FBPP.GetFloat("CameraDistance", 12);
+        cameraDistanceInputField.text = FBPP.GetFloat("CameraDistance", 12).ToString("F2");
 
         // camera y offset
-        cameraYOffsetSlider.value = FBPP.GetFloat("CameraYOffset");
-        cameraYOffsetInputField.text = FBPP.GetFloat("CameraYOffset").ToString("F2");
+        cameraYOffsetSlider.value = FBPP.GetFloat("CameraYOffset", 3);
+        cameraYOffsetInputField.text = FBPP.GetFloat("CameraYOffset", 3).ToString("F2");
 
         enableBallDotToggle.isOn = FBPP.GetInt("EnableBallDot", 1) == 1;
 
@@ -484,8 +491,6 @@ public class HandleSettings : MonoBehaviour
 
     public void UpdateLanguage(int index)
     {
-        Debug.Log(index);
-
         StartCoroutine(SetLocale(index));
     }
 
@@ -1375,6 +1380,9 @@ public class HandleSettings : MonoBehaviour
         FBPP.DeleteKey("AntiAliasing");
         FBPP.DeleteKey("MotionBlur");
         FBPP.DeleteKey("Tonemapping");
+
+        FBPP.DeleteKey("EnableChat");
+        FBPP.DeleteKey("ModerateChat");
 
         PlayerPrefs.Save();
         FBPP.Save();

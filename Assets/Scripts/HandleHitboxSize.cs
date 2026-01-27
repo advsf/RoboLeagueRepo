@@ -5,12 +5,26 @@ public class HandleHitboxSize : NetworkBehaviour
 {
     [SerializeField] private float mobileHitboxMultiplier = 1.5f;
 
-    private void OnEnable()
+    private Vector3 originalScale;
+
+    private void Start()
     {
+        if (!IsOwner || !Application.isMobilePlatform)
+            return;
+
+        originalScale = transform.localScale;
+
         // mobile assist
-        if (Application.isMobilePlatform)
-        {
-            transform.localScale = new(transform.localScale.x * mobileHitboxMultiplier, transform.localScale.y, transform.localScale.z * mobileHitboxMultiplier);
-        }    
+        HandleKBMSupport.OnInputChanged += SetScale;
+        SetScale();
+    }
+
+    private void SetScale()
+    {
+        if (!HandleKBMSupport.instance.IsUsingKBM)
+            transform.localScale = new(originalScale.x * mobileHitboxMultiplier, originalScale.y, originalScale.z * mobileHitboxMultiplier);
+
+        else
+            transform.localScale = originalScale;
     }
 }

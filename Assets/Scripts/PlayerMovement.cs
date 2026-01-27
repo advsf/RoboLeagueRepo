@@ -90,7 +90,7 @@ public class PlayerMovement : NetworkBehaviour
             if (!canSprint || isSprintingDisabled || !IsWalking)
                 return false;
 
-            if (!Application.isMobilePlatform)
+            if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
                 return isSprintingOnPC;
             else
                 return isSprintingOnMobile;
@@ -159,7 +159,10 @@ public class PlayerMovement : NetworkBehaviour
         GatherInput();
         HandleStamina();
 
-        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn() || Application.isMobilePlatform) 
+        if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn()) 
+            return;
+
+        if (Application.isMobilePlatform && !HandleKBMSupport.instance.IsUsingKBM)
             return;
 
         if (!isStaminaRecharging)

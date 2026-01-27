@@ -3,12 +3,16 @@ using System.Collections;
 
 public class HandleGameHelperTexts : MonoBehaviour
 {
-    private IEnumerator Start()
+    private void OnEnable()
+    {
+        StartCoroutine(AdjustUI());
+    }
+
+    private IEnumerator AdjustUI()
     {
         yield return new WaitUntil(() => ServerManager.instance != null);
 
-        if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
-            Destroy(gameObject);
+        gameObject.SetActive(ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer);
     }
 
     private void Update()

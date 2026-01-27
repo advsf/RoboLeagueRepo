@@ -63,7 +63,14 @@ public class StartUIManager : NetworkBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.Escape) && kickPlayersUIObj.activeInHierarchy)
+        {
+            // for mobile users using KMB, when they release the RMB, it triggers the back button
+            // this prevents it
+            if (Application.isMobilePlatform && Input.GetMouseButton(1))
+                return;
+
             kickPlayersUIObj.SetActive(false);
+        }
     }
 
     public void OpenSettingsMenu()

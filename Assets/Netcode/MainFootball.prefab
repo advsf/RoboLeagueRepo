@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2003498607
+  GlobalObjectIdHash: 3656981477
   InScenePlacedSourceGlobalObjectIdHash: 3656981477
   DeferredDespawnTick: 0
   Ownership: 1
@@ -281,7 +281,7 @@ MonoBehaviour:
   magnusForceMultiplier: 0.005
   downForceMultiplier: 14
   magnusEffectDuration: 0.5
-  magnusDecayRate: 0.765
+  magnusDecayRate: 0.97
   ballCollider: {fileID: 8145694775774283574}
   kickCooldownDuration: 0.075
   isBallPickedUp:

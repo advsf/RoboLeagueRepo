@@ -174,6 +174,8 @@ public class HandleKicking : NetworkBehaviour
 
         instance = null;
 
+        HandleKBMSupport.OnInputChanged -= HandleKBMInput;
+
         base.OnNetworkDespawn();
     }
 
@@ -185,7 +187,8 @@ public class HandleKicking : NetworkBehaviour
         ball = SceneReferenceManager.instance.ball;
         ballRb = SceneReferenceManager.instance.ballRb;
 
-        isMobile = Application.isMobilePlatform;
+        HandleKBMInput();
+        HandleKBMSupport.OnInputChanged += HandleKBMInput;
 
         lastCameraYaw = cam.transform.eulerAngles.y;
         accumulatedCameraYaw = 0f;
@@ -228,6 +231,10 @@ public class HandleKicking : NetworkBehaviour
         PlayerInputReference.instance.controls.Gameplay.MobileShooting.Disable();
     }
 
+    private void HandleKBMInput()
+    {
+        isMobile = Application.isMobilePlatform && !HandleKBMSupport.instance.IsUsingKBM;
+    }
     private void InitializeUI()
     {
         shootingBarSlider.value = 0;
@@ -538,7 +545,7 @@ public class HandleKicking : NetworkBehaviour
 
     private void FinalizeKick()
     {
-        if ((Application.isMobilePlatform || Application.isEditor) && ServerManager.instance.isTutorialServer)
+        if ((isMobile || Application.isEditor) && ServerManager.instance.isTutorialServer)
             HandleTutorialPlayerDetectors.instance.GetCurrentTutorialDetector().CheckifShootOrDribbleIsPressedForMobile(didShoot, didDribble);
 
         // if we can still powerkick (meaning that the ball is still in our player hitbox

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.InputSystem;
 
 public class EscapeMenuHandler : NetworkBehaviour
 {
@@ -13,8 +14,12 @@ public class EscapeMenuHandler : NetworkBehaviour
                 return;
 
         // just activiate the ui
-        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            // fix right mouse button triggering back button
+            if (Application.isMobilePlatform && Mouse.current != null)
+                return;
+
             // if we need to disable the canva obj
             if (ServerManager.instance.IsSpawnSelectionCanvaObjActive())
             {
