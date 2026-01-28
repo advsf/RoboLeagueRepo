@@ -57,7 +57,6 @@ public class HandleKBMSupport : MonoBehaviour
 
             else if (device is Mouse)
             {
-                //
                 bool isButtonInput = control is ButtonControl;
                 bool isButtonHeld = Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed;
 
