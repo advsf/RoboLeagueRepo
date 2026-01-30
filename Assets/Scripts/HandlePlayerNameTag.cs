@@ -9,7 +9,7 @@ public class HandlePlayerNameTag : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI playerTag;
     [SerializeField] private PlayerInfo playerInfo;
 
-    public Transform localPlayerCam;
+    private Transform localPlayerCam;
 
     public override void OnNetworkSpawn()
     {

@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098894
-    m_Localized: "FPS'yi s\u0131n\u0131rla"
+    m_Localized: "FPS'Y\u0130 SINIRLA"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098895
@@ -140,7 +140,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098905
-    m_Localized: "DUYGUSAL SES SEV\u0130YES\u0130"
+    m_Localized: "DUYGU SES SEV\u0130YES\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098906
@@ -715,7 +715,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575426
-    m_Localized: "AL\xC7AK TOPLARI FERAGAT EDEMEZS\u0130N\u0130Z!"
+    m_Localized: "AL\xC7AK TOPLARI KAR\u015EILAYAMAM!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575427
@@ -1161,6 +1161,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1536523198058496
     m_Localized: "BASILI TUTUP S\xDCR\xDCKLE - ARAY\xDCZ\xDC TA\u015EI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4329169494790144
+    m_Localized: "TOP S\xDCRME JOYSTICK \xD6L\xDC B\xD6LGES\u0130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385486813057024
+    m_Localized: "RAK\u0130B\u0130N TOPUNU YAKALAYAMIYORUM!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4420686444023808
+    m_Localized: "\u0130STAT\u0130ST\u0130KLER\u0130 G\xD6STER ARAY\xDCZ\xDC"
     m_Metadata:
       m_Items: []
   references:

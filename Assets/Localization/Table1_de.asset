@@ -1138,6 +1138,18 @@ MonoBehaviour:
     m_Localized: "HALTEN UND ZIEHEN \u2013 BENUTZEROBERFL\xC4CHE BEWEGEN"
     m_Metadata:
       m_Items: []
+  - m_Id: 4329169494790144
+    m_Localized: Dribbling Joystick Deadzone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385486813057024
+    m_Localized: Den Ball des Gegners kann ich nicht abfangen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4420686444023808
+    m_Localized: "Benutzeroberfl\xE4che zur Anzeige von Statistiken"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

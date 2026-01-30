@@ -138,7 +138,10 @@ public class HandleChatbox : NetworkBehaviour
 
     public void EnableChat(bool condition)
     {
-        openedChat.SetActive(condition);
+        // we should only enable the open chat if we are using KBM (meaning we are on pc or on mobile with keyboard)
+        if (HandleKBMSupport.instance.IsUsingKBM)
+            openedChat.SetActive(condition);
+
         closedChat.SetActive(condition);
     }
 

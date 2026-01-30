@@ -1,29 +1,14 @@
 using UnityEngine;
-using Unity.Netcode;
 
-public class HandleMobileUIWithKBM : NetworkBehaviour
+public class HandleMobileUIWithKBM : MonoBehaviour
 {
     [SerializeField] private GameObject[] UIToEnableWithKBM;
     [SerializeField] private GameObject[] UIToEnableWithoutKBM;
 
     private void Start()
     {
-        if (!IsOwner)
-            return;
-
         HandleKBMSupport.OnInputChanged += ChangeUI;
-
         ChangeUI();
-    }
-
-    public override void OnNetworkDespawn()
-    {
-        base.OnNetworkDespawn();
-
-        if (!IsOwner)
-            return;
-
-        HandleKBMSupport.OnInputChanged -= ChangeUI;
     }
 
     private void ChangeUI()

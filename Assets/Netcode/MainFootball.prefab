@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3656981477
+  GlobalObjectIdHash: 4261622058
   InScenePlacedSourceGlobalObjectIdHash: 3656981477
   DeferredDespawnTick: 0
   Ownership: 1
@@ -503,17 +503,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedf5d7629013ee45a130d472697284b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballRigidbody: {fileID: 7299015505137150657}
+  ballRb: {fileID: 7299015505137150657}
   landingIndicatorPrefab: {fileID: 7207711176809021789, guid: c55f664fbebc3ce4b939c70454cbadbf,
     type: 3}
-  timeStep: 0.001
-  maxSimulationTime: 10
-  groundDetectionHeight: 5
-  scaleDivider: 15
+  groundDetectionHeight: 2.5
+  yPos: 1.5
+  scaleDivider: 0.3
   timeBeforeDisable: 0.5
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!82 &2386538071341824939
 AudioSource:
   m_ObjectHideFlags: 0

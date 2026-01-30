@@ -109,19 +109,22 @@ public class BallSync : NetworkBehaviour
 
     public bool isKickedFromIndirectKick = false;
 
+    private float ballCurveMultiplier;
+
     public override void OnNetworkSpawn()
     {
         ballRb = GetComponent<Rigidbody>();
         _networkObject = GetComponent<NetworkObject>();
 
         BallManager.instance.RegisterBall(this);
-        DeterministicPhysicsSetup.ConfigureRigidbodyForDeterminism(ballRb);
 
         if (!IsServer)
             _serverState.OnValueChanged += OnServerStateChanged;
 
         else
+        {
             _contestedKicks = new List<ContestedKickRequest>();
+        }
 
         base.OnNetworkSpawn();
     }
@@ -143,6 +146,11 @@ public class BallSync : NetworkBehaviour
             // client does not simulate gravity
             ballRb.useGravity = false;
         }
+
+        else
+        {
+            ballCurveMultiplier = ServerManager.instance.ballCurveMultiplier.Value;
+        }
     }
 
     private void LateUpdate()
@@ -150,23 +158,15 @@ public class BallSync : NetworkBehaviour
         // no interpolation when the ball is kinematic or out of bounds (mainly for the throw in and goalkeeper animation)
         if (isOutOfPlay.Value || ballRb.isKinematic)
         {
-            visualBallTransform.position = transform.position;
-            visualBallTransform.rotation = transform.rotation;
+            visualBallTransform.SetPositionAndRotation(transform.position, transform.rotation);
             _visualVelocity = Vector3.zero;
+            return;
         }
 
-        // smooth interpolation for both the host and the client
-        else
-        {
-            visualBallTransform.position = Vector3.SmoothDamp(
-                    visualBallTransform.position,
-                    transform.position,
-                    ref _visualVelocity,
-                    interpolationTime);
+        float t = Time.deltaTime / interpolationTime;
+        visualBallTransform.position = Vector3.Lerp(visualBallTransform.position, transform.position, t);
 
-            // just set the rotation directly - do NOT interpolate rotations
-            visualBallTransform.rotation = transform.rotation;
-        }
+        visualBallTransform.rotation = transform.rotation;
     }
 
     private void FixedUpdate()
@@ -269,8 +269,6 @@ public class BallSync : NetworkBehaviour
         ballRb.linearVelocity = serverState.Velocity;
         ballRb.angularVelocity = serverState.AngularVelocity;
         _kickTime = serverState.KickNetworkTime;
-
-        Physics.SyncTransforms();
     }
 
     #endregion
@@ -318,9 +316,9 @@ public class BallSync : NetworkBehaviour
 
     private void ApplySharedPhysics()
     {
-        if (ballRb.angularVelocity.magnitude > 0.1f && ballRb.linearVelocity.magnitude > 0.1f)
+        if (ballRb.linearVelocity.sqrMagnitude > 1f && ballRb.angularVelocity.sqrMagnitude > 1f)
         {
-            Vector3 magnusForce = magnusForceMultiplier * ServerManager.instance.ballCurveMultiplier.Value * Vector3.Cross(ballRb.angularVelocity, ballRb.linearVelocity);
+            Vector3 magnusForce = magnusForceMultiplier * ballCurveMultiplier * Vector3.Cross(ballRb.angularVelocity, ballRb.linearVelocity);
             ballRb.AddForce(magnusForce, ForceMode.Force);
         }
 
@@ -338,18 +336,15 @@ public class BallSync : NetworkBehaviour
         if (_contestedKicks.Count == 0)
             return;
 
-        // sort by lowest to highest
-        var sortedRequests = _contestedKicks.OrderBy(req => req.Payload.Tick).ToList();
+        _contestedKicks.Sort((a, b) => a.Payload.Tick.CompareTo(b.Payload.Tick));
 
         ContestedKickRequest? winner = null;
 
-        foreach (var req in sortedRequests)
+        foreach (var req in _contestedKicks)
         {
             int tickDelta = req.Payload.Tick - _lastValidKickTick;
-
             int cooldownTicks = Mathf.CeilToInt(kickCooldownDuration * NetworkManager.ServerTime.TickRate);
 
-            // find the earliest kicker
             if (_lastValidKickTick == -1 || tickDelta >= cooldownTicks)
             {
                 winner = req;
@@ -396,8 +391,6 @@ public class BallSync : NetworkBehaviour
         transform.SetPositionAndRotation(newPosition, newRotation);
         ballRb.position = newPosition;
         ballRb.rotation = newRotation;
-
-        Physics.SyncTransforms();
     }
 
     private StateSnapshot GetCurrentState()

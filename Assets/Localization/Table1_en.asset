@@ -1118,6 +1118,18 @@ MonoBehaviour:
     m_Localized: HOLD AND DRAG - MOVE UI
     m_Metadata:
       m_Items: []
+  - m_Id: 4329169494790144
+    m_Localized: DRIBBLING JOYSTICK DEADZONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385486813057024
+    m_Localized: CANNOT TRAP OPPONENT'S BALL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4420686444023808
+    m_Localized: SHOW STATS UI
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -1136,6 +1136,18 @@ MonoBehaviour:
     m_Localized: "SEGURE E ARRASTE - MOVER INTERFACE DO USU\xC1RIO"
     m_Metadata:
       m_Items: []
+  - m_Id: 4329169494790144
+    m_Localized: ZONA MORTA DO JOYSTICK DE DRIBLO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385486813057024
+    m_Localized: "N\xC3O \xC9 POSS\xCDVEL ACERTAR A BOLA DO ADVERS\xC1RIO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4420686444023808
+    m_Localized: "EXIBIR INTERFACE DE ESTAT\xCDSTICAS"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

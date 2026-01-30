@@ -12,7 +12,7 @@ public class HandleGameHelperTexts : MonoBehaviour
     {
         yield return new WaitUntil(() => ServerManager.instance != null);
 
-        gameObject.SetActive(ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer);
+        gameObject.SetActive(!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer);
     }
 
     private void Update()

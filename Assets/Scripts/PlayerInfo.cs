@@ -292,6 +292,10 @@ public class PlayerInfo : NetworkBehaviour
         if (!IsOwner)
             return;
 
+        // don't do anything since we're already spectating
+        if (spectatingObj.activeInHierarchy)
+            return;
+
         // remove their spot, if any
         ServerManager.instance.RequestSpectateServerRpc();
 

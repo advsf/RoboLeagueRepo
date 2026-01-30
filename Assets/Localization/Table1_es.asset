@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098881
-    m_Localized: "DESPLAZAMIENTO DE LA C\xC1MARA Y"
+    m_Localized: "DESPLAZAMIENTO DE C\xC1MARA Y"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098882
@@ -1133,6 +1133,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1536523198058496
     m_Localized: MANTENER Y ARRASTRAR - MOVER LA IU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4329169494790144
+    m_Localized: ZONA MUERTA DEL JOYSTICK DE DRIBLING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4385486813057024
+    m_Localized: "\xA1NO SE PUEDE ATRAPAR LA PELOTA DEL OPONENTE!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4420686444023808
+    m_Localized: "MOSTRAR ESTAD\xCDSTICAS UI"
     m_Metadata:
       m_Items: []
   references:

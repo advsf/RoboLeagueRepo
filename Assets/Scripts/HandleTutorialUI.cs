@@ -24,7 +24,7 @@ public class HandleTutorialUI : MonoBehaviour
 
     private void OnEnable()
     {
-        tutorialTextLoc = new("Table1", (!Application.isMobilePlatform ? "PC_TUTORIAL_" : "MOBILE_TUTORIAL") + currentStageNumber);
+        tutorialTextLoc = new("Table1", (!Application.isMobilePlatform ? "PC_TUTORIAL_" : "MOBILE_TUTORIAL_") + currentStageNumber);
 
         StartUI();
     }

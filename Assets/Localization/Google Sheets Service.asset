@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.Plugins.Google.SheetsServiceProvider
   m_ApiKey: 
   m_ClientId: 191548760671-vhv632k3ie95m7nmhq1c21e3s20r7bq4.apps.googleusercontent.com
-  m_ClientSecret: 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
+  m_ClientSecret: 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
   m_AuthenticationType: 1
   m_ApplicationName: RoboLeague
   m_NewSheetProperties:

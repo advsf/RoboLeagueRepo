@@ -330,6 +330,16 @@ public class ManageAbilityMoves : NetworkBehaviour
         {
             if (hit.rigidbody == ballRb)
             {
+                // if we are trapping the opponent's ball, don't do anything
+                if (ballSynchronizer.lastKickedTeam.Value != string.Empty && !ballSynchronizer.lastKickedTeam.Value.Equals(PlayerInfo.instance.currentTeam.Value))
+                {
+                    HandleAbilityMessageUI("CANNOT TRAP OPPONENT'S BALL!");
+                    StartCoroutine(StartCustomCooldown(0, 2f, trap));
+
+                    EnablePlayerMovement();
+                    return;
+                }
+
                 SoundManager.instance.PlayTrapSoundEffect();
                
                 // host syncs with the other clients

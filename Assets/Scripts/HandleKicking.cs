@@ -44,6 +44,7 @@ public class HandleKicking : NetworkBehaviour
     [SerializeField] private float bicycleKickDuration;
     [SerializeField] private float bicycleKickSphereRadius;
     [SerializeField] private float timeBeforeEnablingMovementAfterBicycleKick;
+    private Collider[] bicycleHitBuffer = new Collider[5];
 
     [Header("Bicycle Physics Settings")]
     [SerializeField] private float bicycleKickMinLift = 6f;
@@ -83,6 +84,8 @@ public class HandleKicking : NetworkBehaviour
     [Header("Shooting Boosts Settings")]
     [SerializeField] private float shotMultiplier;
     [SerializeField] private float nonSpinShotMultiplier;
+    [SerializeField] private float volleyShotMultiplier = 1.05f;
+    [SerializeField] private float volleyShotMinimumY = 2;
 
     [Header("Shooting Bar References")]
     [SerializeField] private Slider shootingBarSlider;
@@ -257,6 +260,7 @@ public class HandleKicking : NetworkBehaviour
         if (nearestBallSync == null)
             nearestBallSync = BallManager.instance.mainBallSync;
 
+        // curve the ball
         if (PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>().magnitude > FBPP.GetFloat("ShootingJoystickDeadzone"))
             joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
 
@@ -668,11 +672,10 @@ public class HandleKicking : NetworkBehaviour
             playerRightDir.y = 0;
             playerRightDir.Normalize();
 
-            // if we just hold, make the ball flick
-            if (joystickVal.x == 0 || joystickVal.y == 0)
+            // if the joystick is less than the deadzone, make it flick up
+            if (joystickVal.magnitude < FBPP.GetFloat("DribblingJoystickDeadzone"))
                 direction = transform.forward + transform.up;
             else
-
                 direction = (playerForwardDir * joystickVal.y + playerRightDir * joystickVal.x).normalized;
         }
 
@@ -688,7 +691,7 @@ public class HandleKicking : NetworkBehaviour
         // mobile upward influnce logic
         upwardInfluence = cameraLookY * dribblingHeightMultiplier;
 
-        float powerBoost = PlayerMovement.instance.IsSprinting ? shotMultiplier : 1f;
+        float powerBoost = (PlayerMovement.instance.IsSprinting ? shotMultiplier : 1f);
 
         CreateAndSendKick(
             dribblingMultipler,
@@ -791,15 +794,17 @@ public class HandleKicking : NetworkBehaviour
 
         while (Time.time - startTime < bicycleKickDuration)
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, bicycleKickSphereRadius);
+            int hitCount = Physics.OverlapSphereNonAlloc(transform.position, bicycleKickSphereRadius, bicycleHitBuffer);
 
-            foreach (var hit in hits)
+            for (int i = 0; i < hitCount; i++)
             {
-                BallSync ball = hit.GetComponent<BallSync>();
-                if (ball != null && ball.transform.position.y > 3)
+                if (bicycleHitBuffer[i].TryGetComponent(out BallSync ball))
                 {
-                    HandleBicycleKicking(ball);
-                    yield break;
+                    if (ball.transform.position.y > 3)
+                    {
+                        HandleBicycleKicking(ball);
+                        yield break;
+                    }
                 }
             }
 
@@ -848,33 +853,42 @@ public class HandleKicking : NetworkBehaviour
 
     private float CalculateShootingPowerBoost(float mouseX)
     {
-        bool hasMinimalSpin = mouseX > -5 && mouseX < 5;
-        float spinMultiplier = hasMinimalSpin ? nonSpinShotMultiplier : 1f;
+        Rigidbody rb = nearestBallSync.GetRigidbody();
 
-        return shotMultiplier * spinMultiplier;
+        bool hasMinimalSpin = mouseX > -5 && mouseX < 5;
+        bool isBallAboveGround = rb.position.y > volleyShotMinimumY;
+        float spinMultiplier = hasMinimalSpin ? nonSpinShotMultiplier : 1f;
+        float volleyMultiplier = isBallAboveGround ? volleyShotMultiplier : 1f;
+
+        return shotMultiplier * spinMultiplier * volleyMultiplier;
     }
 
     private float CalculatePowerShotBoost(ref float upwardInfluence)
     {
+        Rigidbody rb = nearestBallSync.GetRigidbody();
+
         float sliderVal = powerShotSlider.value;
         float perfectLowerBound = perfectTimingSliderValue - perfectTimingSliderValueWindow;
         float perfectUpperBound = perfectTimingSliderValue + perfectTimingSliderValueWindow;
         float goodLowerBound = perfectTimingSliderValue - goodTimingSliderValueWindow;
         float goodUpperBound = perfectTimingSliderValue + goodTimingSliderValueWindow;
 
+        bool isBallAboveGround = rb.position.y > volleyShotMinimumY;
+        float volleyMultiplier = isBallAboveGround ? volleyShotMultiplier : 1f;
+
         if (sliderVal >= perfectLowerBound && sliderVal <= perfectUpperBound)
         {
-            return powerShotMultiplier;
+            return powerShotMultiplier * volleyMultiplier;
         }
         else if (sliderVal >= goodLowerBound && sliderVal <= goodUpperBound)
         {
             upwardInfluence *= Random.Range(1.15f, 1.25f);
-            return powerShotMultiplier * Random.Range(0.6f, 0.8f);
+            return powerShotMultiplier * Random.Range(0.7f, 0.85f) * volleyMultiplier;
         }
         else
         {
             upwardInfluence *= 1 + powerShotSlider.value;
-            return powerShotMultiplier * Random.Range(0.15f, 0.4f);
+            return powerShotMultiplier * Random.Range(0.15f, 0.4f) * volleyMultiplier;
         }
     }
 
@@ -1038,8 +1052,10 @@ public class HandleKicking : NetworkBehaviour
         powerShotMultiplier = powerShotIncreaseMultiplier;
         this.powerShotAbility = powerShotAbility;
 
-        if (!ServerManager.instance.isTutorialServer && !ServerManager.instance.isPracticeServer && !ServerManager.instance.didStartGame.Value)
-            Invoke(nameof(DisablePowerShotAutomatically), durationBeforeAutomaticDisable);
+        if (ServerManager.instance.isTutorialServer || ServerManager.instance.isPracticeServer || !ServerManager.instance.didStartGame.Value)
+            return;
+
+        Invoke(nameof(DisablePowerShotAutomatically), durationBeforeAutomaticDisable);
     }
 
     public void DisablePowerShotAutomatically()

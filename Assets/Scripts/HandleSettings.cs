@@ -46,6 +46,10 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private Slider shootJoystickDeadzoneSlider;
     [SerializeField] private TMP_InputField shootJoystickDeadzoneInputField;
 
+    [Header("Dribbling Joystick Deadzone Reference")]
+    [SerializeField] private Slider dribbleJoystickDeadzoneSlider;
+    [SerializeField] private TMP_InputField dribbleJoystickDeadzoneInputField;
+
     [Header("Mouse Control Reference")]
     [SerializeField] private Toggle invertVerticalToggle;
     [SerializeField] private Toggle invertHorizontalToggle;
@@ -77,6 +81,9 @@ public class HandleSettings : MonoBehaviour
 
     [Header("Moderate Chat Reference")]
     [SerializeField] private Toggle moderateChatToggle;
+
+    [Header("Show Stats Reference")]
+    [SerializeField] private Toggle showStatsToggle;
 
     [Header("Volume Settings")]
     [SerializeField] private Slider masterVolumeSlider;
@@ -166,17 +173,7 @@ public class HandleSettings : MonoBehaviour
         FBPP.Start(config);
 
         if (Application.isMobilePlatform)
-        {
             QualitySettings.vSyncCount = 0;
-            
-            // dynamically set fps depending on the fresh rate of the device
-            float nativeRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
-
-            if (nativeRefreshRate > 0)
-                Application.targetFrameRate = (int)nativeRefreshRate;
-            else
-                Application.targetFrameRate = 60;
-        }
     }
 
     private void Start()
@@ -216,9 +213,6 @@ public class HandleSettings : MonoBehaviour
 
     private void CreateDefaultSettings()
     {
-        // create language value to english
-        UpdateLanguage(2); 
-
         // create sensSlider value
         sensSlider.value = 200;
         UpdateSensitivityThroughSlider();
@@ -230,6 +224,10 @@ public class HandleSettings : MonoBehaviour
         // create shooting joystick deadzone
         shootJoystickDeadzoneSlider.value = 0.05f;
         UpdateShootingJoystickDeadzoneThroughSlider();
+
+        // create dribbling joystick deadzone
+        dribbleJoystickDeadzoneSlider.value = 0.05f;
+        UpdateDribblingJoystickDeadzoneThroughSlider();
 
         // create mouse invert control values
         invertVerticalToggle.isOn = false;
@@ -252,6 +250,15 @@ public class HandleSettings : MonoBehaviour
         // create ball dot setting
         enableBallDotToggle.isOn = true;
         EnableBallDot();
+
+        enableChatToggle.isOn = true;
+        moderateChatToggle.isOn = true;
+
+        EnableChat(true);
+        ModerateChat(true);
+
+        showStatsToggle.isOn = false;
+        ShowStatsUI(false);
 
         // create ball dot size setting
         ballDotMinSizeSlider.value = 0.05f;
@@ -356,6 +363,10 @@ public class HandleSettings : MonoBehaviour
         shootJoystickDeadzoneSlider.value = FBPP.GetFloat("ShootingJoystickDeadzone", 0.05f);
         shootJoystickDeadzoneInputField.text = FBPP.GetFloat("ShootingJoystickDeadzone", 0.05f).ToString("F2");
 
+        // dribbling joystick deadzone
+        dribbleJoystickDeadzoneSlider.value = FBPP.GetFloat("DribblingJoystickDeadzone", 0.05f);
+        dribbleJoystickDeadzoneInputField.text = FBPP.GetFloat("DribblingJoystickDeadzone", 0.05f).ToString("F2");
+
         // mouse invert UI
         invertVerticalToggle.isOn = FBPP.GetInt("InvertVerticalMouse", 1) == -1;
         invertHorizontalToggle.isOn = FBPP.GetInt("InvertHorizontalMouse", 1) == -1;
@@ -387,6 +398,10 @@ public class HandleSettings : MonoBehaviour
 
         EnableChat(enableChatToggle.isOn);
         ModerateChat(moderateChatToggle.isOn);
+
+        showStatsToggle.isOn = FBPP.GetInt("ShowStatsUI", 0) == 1;
+
+        ShowStatsUI(showStatsToggle.isOn);
 
         // volume
         masterVolumeSlider.value = FBPP.GetFloat("MasterVolume");
@@ -519,7 +534,7 @@ public class HandleSettings : MonoBehaviour
 
         languageDropdown.AddOptions(languageNames);
 
-        int savedIndex = PlayerPrefs.GetInt("LanguageIndex", 0);
+        int savedIndex = PlayerPrefs.GetInt("LanguageIndex", 2);
 
         if (savedIndex >= 0 && savedIndex < languageNames.Count)
         {
@@ -621,6 +636,32 @@ public class HandleSettings : MonoBehaviour
             FBPP.Save();
 
             shootJoystickDeadzoneSlider.value = deadzone;
+        }
+    }
+
+    #endregion
+
+    #region Dribbling Joystick Deadzone Settings
+
+    public void UpdateDribblingJoystickDeadzoneThroughSlider()
+    {
+        FBPP.SetFloat("DribblingJoystickDeadzone", dribbleJoystickDeadzoneSlider.value);
+        FBPP.Save();
+
+        dribbleJoystickDeadzoneInputField.text = dribbleJoystickDeadzoneSlider.value.ToString("F2");
+    }
+
+    public void UpdateDribblingJoystickDeadzoneThroughInputField()
+    {
+        if (float.TryParse(dribbleJoystickDeadzoneInputField.text.ToString(), out float deadzone))
+        {
+            if (deadzone < dribbleJoystickDeadzoneSlider.minValue || deadzone > dribbleJoystickDeadzoneSlider.maxValue)
+                return;
+
+            FBPP.SetFloat("DribblingJoystickDeadzone", deadzone);
+            FBPP.Save();
+
+            dribbleJoystickDeadzoneSlider.value = deadzone;
         }
     }
 
@@ -781,10 +822,20 @@ public class HandleSettings : MonoBehaviour
     {
         FBPP.SetInt("ModerateChat", isEnabled ? 1 : 0);
         FBPP.Save();
+    }
+
+    #endregion
+
+    #region Show Stats Setting
+
+    public void ShowStatsUI(bool isEnabled)
+    {
+        FBPP.SetInt("ShowStatsUI", isEnabled ? 1 : 0);
+        FBPP.Save();
 
         // if in-game, immedaitely update
-        if (HandleChatbox.instance != null)
-            HandleChatbox.instance.EnableChat(isEnabled);
+        if (HandleStatsUI.instance != null)
+            HandleStatsUI.instance.EnableStatsUI(isEnabled);
     }
 
     #endregion
