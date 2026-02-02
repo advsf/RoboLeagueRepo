@@ -169,7 +169,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6046402349160768898}
-    m_Position: {x: 590, y: -30, z: 0}
+    m_Position: {x: 600, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1343706742477498005}
     m_Position: {x: 350, y: 220, z: 0}
@@ -3092,7 +3092,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Samba(Emote2)
-  m_Speed: 1.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1357886874212570742}

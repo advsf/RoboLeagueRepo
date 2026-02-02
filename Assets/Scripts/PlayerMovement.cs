@@ -175,7 +175,7 @@ public class PlayerMovement : NetworkBehaviour
                 if (PlayerInputReference.instance.controls.Gameplay.Slide.ReadValue<float>() > 0 && canSlide && isGrounded)
                     StartCoroutine(Slide());
 
-                if (PlayerInputReference.instance.controls.Gameplay.Dash.IsPressed() && canDash && isGrounded)
+                if (PlayerInputReference.instance.controls.Gameplay.Dash.IsPressed() && canDash && !isSliding && isGrounded)
                     Dash();
             }
         }
@@ -470,8 +470,6 @@ public class PlayerMovement : NetworkBehaviour
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
 
-        Debug.Log("jumping!");
-
         if (canJump && isGrounded && !isStaminaRecharging)
             Jump();
     }
@@ -481,9 +479,7 @@ public class PlayerMovement : NetworkBehaviour
         if (isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
 
-        Debug.Log("dashing!");
-
-        if (canDash && isGrounded && !isStaminaRecharging)
+        if (canDash && !isSliding && isGrounded && !isStaminaRecharging)
             Dash();
     }
 
@@ -491,8 +487,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (isSliding || isMovementDisabled || HandleCursorSettings.instance.IsUIOn())
             return;
-
-        Debug.Log("sliding!");
 
         if (canSlide && isGrounded && !isStaminaRecharging)
             StartCoroutine(Slide());
