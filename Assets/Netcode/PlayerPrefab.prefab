@@ -1818,7 +1818,6 @@ RectTransform:
   - {fileID: 8042579933967704386}
   - {fileID: 8185159809014324239}
   - {fileID: 6653792516424753256}
-  - {fileID: 5604431810811461561}
   - {fileID: 1591917151547586691}
   - {fileID: 3451164978298865826}
   - {fileID: 6066145853684167057}
@@ -1845,7 +1844,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 1
+  m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2829,7 +2828,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3946041651836777485}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HandleChatbox, Assembly-CSharp
         m_MethodName: SendMobileChatMessage
         m_Mode: 1
@@ -7716,7 +7715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -0}
+  m_AnchoredPosition: {x: 100, y: -13.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9168415445235173749
@@ -8168,15 +8167,15 @@ RectTransform:
   m_GameObject: {fileID: 1701680189098249610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.173434, y: 1.173434, z: 1.173434}
+  m_LocalScale: {x: 1.1735774, y: 1.1735774, z: 1.1735774}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4670721939829440079}
-  m_Father: {fileID: 7803849072704433250}
+  m_Father: {fileID: 8823172544789541914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 40.200073, y: 30.400024}
+  m_AnchoredPosition: {x: 40.204967, y: 30.403715}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1718600118460828891
@@ -17136,7 +17135,6 @@ GameObject:
   - component: {fileID: 1178660946924960893}
   - component: {fileID: 3056670263849832236}
   - component: {fileID: 6300772821972414672}
-  - component: {fileID: 3946041651836777485}
   - component: {fileID: 8445411007901409009}
   - component: {fileID: 6489048753838894165}
   - component: {fileID: 8185283294260368337}
@@ -17183,6 +17181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01027eed487ed6e489a049d21d98d441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnableUIHUD
+  ShowTopMostFoldoutHeaderGroup: 1
   uiHolder: {fileID: 4473387265499200958}
 --- !u!114 &3056670263849832236
 MonoBehaviour:
@@ -17202,7 +17201,7 @@ MonoBehaviour:
   chatBoxUI: {fileID: 4597352082453520609}
   playerAnimationController: {fileID: 1562493029366646164}
   emote1Duration: 7
-  emote2Duration: 101
+  emote2Duration: 60
   emote3Duration: 1.9
   emote4Duration: 3
 --- !u!114 &6300772821972414672
@@ -17223,112 +17222,6 @@ MonoBehaviour:
   clickToRevealObj: {fileID: 1110762868373902587}
   playerLeaderboardStatPrefab: {fileID: 1004192733553841265, guid: 47e8844d6a94a914ea1aa6b4cc017272,
     type: 3}
---- !u!114 &3946041651836777485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240862275704711472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31de71c1228833458e22433c62ee0b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  chatTextPrefab: {fileID: 5788476664126397984, guid: 95c80456cd91f5845816324e8c0f2700,
-    type: 3}
-  quickChatObj: {fileID: 8384472609539158276}
-  emoteChatObj: {fileID: 1472262917486717848}
-  chatBoxObj: {fileID: 1701680189098249610}
-  closedChat: {fileID: 8804522108478166942}
-  openedChat: {fileID: 5262150830417642431}
-  openChatParent: {fileID: 1470466913010218953}
-  closedChatParent: {fileID: 6474321990355203426}
-  profanityFilter: {fileID: 8185283294260368337}
-  didWinMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_WIN_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didLoseMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_LOSE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didTieMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_TIE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didNotPlayEnoughMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userConnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_CONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userDisconnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_DISCONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userJoinedTeamLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_JOINED_TEAM_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userKickedLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_KICKED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  inputField: {fileID: 2922999108495984453}
-  mobileInputField: {fileID: 2892726858728574116}
-  currentChatOption: {fileID: 7866198697972302934}
-  maxTimeBeforeClosedChatClosesAfterNoMessages: 15
-  maxCharacterLimit: 250
-  maxAmountOfText: 4
-  spamDuration: 8
-  canText: 1
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &8445411007901409009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17345,7 +17238,7 @@ MonoBehaviour:
   quickChatObj: {fileID: 8384472609539158276}
   chatBoxObj: {fileID: 4597352082453520609}
   emoteChatObj: {fileID: 1472262917486717848}
-  chatMessageScript: {fileID: 3946041651836777485}
+  chatMessageScript: {fileID: 273557837241019632}
 --- !u!114 &6489048753838894165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24077,7 +23970,7 @@ MonoBehaviour:
   mutedCrowdVolume: 0
   fadeDuration: 2
   playDuration: 16
-  emote2Sound: {fileID: 8300000, guid: 52ddd08300438d24a82c3f776ed38711, type: 3}
+  emote2Sound: {fileID: 8300000, guid: 5b01238f4b2119b46861b2d1d9b97b3e, type: 3}
   flashTextUISound: {fileID: 8300000, guid: 39d0e4ba0e854b9459c89899db3927e4, type: 3}
   playerDetectorHitSound: {fileID: 8300000, guid: 7e0b0642ac984734fa1c5dcaa8223711,
     type: 3}
@@ -29202,6 +29095,7 @@ Transform:
   - {fileID: 1362783588985790797}
   - {fileID: 8491048312848741013}
   - {fileID: 2108957652795493701}
+  - {fileID: 8576202056653127744}
   - {fileID: 9179620100504490092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29595,6 +29489,53 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7859668971146498211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8576202056653127744}
+  - component: {fileID: 6933561855562817181}
+  m_Layer: 0
+  m_Name: ChatboxHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8576202056653127744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859668971146498211}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 532.534, y: 0, z: 1239.1892}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8823172544789541914}
+  m_Father: {fileID: 8852758695385807030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6933561855562817181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859668971146498211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01027eed487ed6e489a049d21d98d441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnableUIHUD
+  ShowTopMostFoldoutHeaderGroup: 1
+  uiHolder: {fileID: 8315468749477422296}
 --- !u!1 &7881729163931566064
 GameObject:
   m_ObjectHideFlags: 0
@@ -30702,6 +30643,215 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.22
+--- !u!1 &8315468749477422296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8823172544789541914}
+  - component: {fileID: 7843022085571226159}
+  - component: {fileID: 844624791617607820}
+  - component: {fileID: 5492007651932084519}
+  - component: {fileID: 273557837241019632}
+  m_Layer: 6
+  m_Name: ChatboxCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8823172544789541914
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315468749477422296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5604431810811461561}
+  m_Father: {fileID: 8576202056653127744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &7843022085571226159
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315468749477422296}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &844624791617607820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315468749477422296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &5492007651932084519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315468749477422296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &273557837241019632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315468749477422296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31de71c1228833458e22433c62ee0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  chatTextPrefab: {fileID: 5788476664126397984, guid: 95c80456cd91f5845816324e8c0f2700,
+    type: 3}
+  quickChatObj: {fileID: 8384472609539158276}
+  emoteChatObj: {fileID: 1472262917486717848}
+  chatBoxObj: {fileID: 1701680189098249610}
+  closedChat: {fileID: 8804522108478166942}
+  openedChat: {fileID: 5262150830417642431}
+  openChatParent: {fileID: 1470466913010218953}
+  closedChatParent: {fileID: 6474321990355203426}
+  profanityFilter: {fileID: 8185283294260368337}
+  didWinMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_WIN_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didLoseMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_LOSE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didTieMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_TIE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didNotPlayEnoughMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userConnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_CONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userDisconnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_DISCONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userJoinedTeamLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_JOINED_TEAM_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userKickedLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_KICKED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  inputField: {fileID: 2922999108495984453}
+  mobileInputField: {fileID: 2892726858728574116}
+  currentChatOption: {fileID: 7866198697972302934}
+  maxTimeBeforeClosedChatClosesAfterNoMessages: 15
+  maxCharacterLimit: 250
+  maxAmountOfText: 4
+  spamDuration: 8
+  canText: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8338439157358042207
 GameObject:
   m_ObjectHideFlags: 0
@@ -31816,7 +31966,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6773135183201896177}
   m_HandleRect: {fileID: 30087150333692994}
   m_Direction: 3
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

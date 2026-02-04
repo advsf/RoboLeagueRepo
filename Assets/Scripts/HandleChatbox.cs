@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.Localization;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using Unity.VisualScripting;
 
 public class HandleChatbox : NetworkBehaviour
 {
@@ -79,7 +80,7 @@ public class HandleChatbox : NetworkBehaviour
         }
 
         chatBoxObj.SetActive(true);
-        closedChat.SetActive(true);
+        closedChat.SetActive(false);
         openedChat.SetActive(false);
 
         isChattingGlobally = true;
@@ -90,11 +91,14 @@ public class HandleChatbox : NetworkBehaviour
         // limit
         inputField.characterLimit = maxCharacterLimit;
         mobileInputField.characterLimit = maxCharacterLimit;
+
+        PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
+        PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
     }
 
     private void OnEnable()
     {
-        if (!IsOwner)
+        if (!IsOwner || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         EnableChat(FBPP.GetInt("EnableChat") == 1);
@@ -147,7 +151,7 @@ public class HandleChatbox : NetworkBehaviour
 
     private void HandleChatToggleInput()
     {
-        if (FBPP.GetInt("EnableChat") == 0)
+        if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         if (PlayerInputReference.instance.controls.Gameplay.Chat.WasPressedThisFrame() && !quickChatObj.activeInHierarchy && !emoteChatObj.activeInHierarchy)
@@ -242,7 +246,7 @@ public class HandleChatbox : NetworkBehaviour
             amountOfTextSent--;
     }
 
-    public void HandleFormattingTexts(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false)
+    public void HandleFormattingTexts(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false)
     {
         // if there isnt a message
         if (string.IsNullOrEmpty(text))
@@ -262,6 +266,26 @@ public class HandleChatbox : NetworkBehaviour
             formattedText = $"<color=yellow>{text}";
         }
 
+        // if a spectator sent the message
+        else if (isSpectator)
+        {
+            string chatOption = "(ALL)";
+
+            string nameColor;
+
+            // if we sent out the message
+            if (username == HandlePlayerData.instance.GetUsername())
+                nameColor = "yellow";
+
+            // if not make the text white
+            else
+                nameColor = "white";
+
+            // add the spaces to give room for the rank image
+            formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username}</color> <color=white>(SPECTATOR):<color=white> {text}";
+        }
+
+        // if a normal player sent the message
         else
         {
             string chatOption = isChattingAll ? "(ALL)" : "(TEAM)";
@@ -310,7 +334,8 @@ public class HandleChatbox : NetworkBehaviour
 
         HandleTrackingAmountOfTextSent();
 
-        SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
+        SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy,
+            PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
 
         // reset the inputfield text
         if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
@@ -328,7 +353,7 @@ public class HandleChatbox : NetworkBehaviour
 
     private void OnInputSubmit(string text)
     {
-        if (FBPP.GetInt("EnableChat") == 0)
+        if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         SendChatMessage(text);
@@ -341,11 +366,11 @@ public class HandleChatbox : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void SendTextServerRpc(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, ServerRpcParams serverRpcParams = default)
+    public void SendTextServerRpc(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, ServerRpcParams serverRpcParams = default)
     {
         // send to everyone
         if (isChattingAll)
-            SendTextClientRpc(isChattingAll, rankIndex, teamColor, username, position, text);
+            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text);
 
         // send to team only
         else
@@ -360,25 +385,25 @@ public class HandleChatbox : NetworkBehaviour
                 }
             };
 
-            SendTextClientRpc(isChattingAll, rankIndex, teamColor, username, position, text, false, rpcParams);
+            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, false, rpcParams);
         }
     }
 
     [ClientRpc]
-    public void SendTextClientRpc(bool isChattingAll, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false, ClientRpcParams clientRpcParams = default)
+    public void SendTextClientRpc(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false, ClientRpcParams clientRpcParams = default)
     {
-        if (FBPP.GetInt("EnableChat") == 0)
+        if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
-        chatbox.HandleFormattingTexts(isChattingAll, rankIndex, teamColor, username, position, text, isServer);
+        chatbox.HandleFormattingTexts(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, isServer);
     }
 
     [ClientRpc]
     public void SendLocalizedTextClientRpc(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
     {
-        if (FBPP.GetInt("EnableChat") == 0)
+        if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         string text = string.Empty;
@@ -436,6 +461,6 @@ public class HandleChatbox : NetworkBehaviour
 
         HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
-        chatbox.HandleFormattingTexts(false, -1, "", "", "", text, true);
+        chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, true);
     }
 }

@@ -1,20 +1,28 @@
 using UnityEngine;
+using Unity.Netcode;
 
-// we can do mono because we destory this behaviour for non owners
-public class EnableUIHUD : MonoBehaviour
+public class EnableUIHUD : NetworkBehaviour
 {
     [SerializeField] private GameObject uiHolder;
 
     private void Start()
     {
+        if (!IsOwner)
+            return;
+
         ToggleHUD(FBPP.GetInt("EnableHud") == 1);
 
         // subscribe to the event where we change the value of toggle HUD
         HandleSettings.OnHUDToggled += ToggleHUD;
     }
 
-    private void OnDestroy()
+    public override void OnNetworkDespawn()
     {
+        if (!IsOwner)
+            return;
+
+        base.OnNetworkDespawn();
+
         HandleSettings.OnHUDToggled -= ToggleHUD;
     }
 

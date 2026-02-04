@@ -59,7 +59,7 @@ public class HandleConnections : NetworkBehaviour
     // called via a button
     public void LeaveGame()
     {
-        if (Application.isMobilePlatform || Application.isEditor)
+        if (Application.isMobilePlatform)
         {
             HandleAds.instance.ShowInterstitialAd();
         }

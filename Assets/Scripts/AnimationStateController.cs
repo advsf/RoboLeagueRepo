@@ -268,6 +268,9 @@ public class AnimationStateController : NetworkBehaviour
     private IEnumerator StopEmoteAfterDuration(int emoteHash, float duration)
     {
         yield return new WaitForSeconds(duration);
+
+        SoundManager.instance.PlayEmote2Song(false);
+
         animator.SetBool(emoteHash, false);
     }
 

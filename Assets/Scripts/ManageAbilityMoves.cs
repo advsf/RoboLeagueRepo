@@ -211,7 +211,7 @@ public class ManageAbilityMoves : NetworkBehaviour
             return;
         }
 
-        if (ServerManager.instance.isStartingGame.Value)
+        if (BallManager.instance.mainBallSync.isOutOfPlay.Value || ServerManager.instance.isStartingGame.Value)
         {
             HandleAbilityMessageUI("CANNOT ROULETTE RIGHT NOW!");
             StartCoroutine(StartCustomCooldown(0, 2f, roulette));

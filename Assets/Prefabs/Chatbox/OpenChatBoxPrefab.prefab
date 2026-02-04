@@ -141,7 +141,7 @@ MonoBehaviour:
   text: {fileID: 5934422068537244440}
   allChatPos: -37.13
   teamChatPos: -24.1
-  yPosIncreaseAmount: 10.81
+  yPosIncreaseAmount: 10.3
 --- !u!114 &5934422068537244440
 MonoBehaviour:
   m_ObjectHideFlags: 0

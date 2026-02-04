@@ -81,6 +81,7 @@ public class SoundManager : NetworkBehaviour
         if (!IsOwner)
         {
             DisableLocalAudioSourcesForNonOwners();
+            globalEmoteAudioSource.enabled = true;
             return;
         }
 
@@ -469,47 +470,40 @@ public class SoundManager : NetworkBehaviour
         {
             localEmoteAudioSource.clip = emote2Sound;
             localEmoteAudioSource.Play();
-
-            // mutes other emote sounds
-            globalEmoteAudioSource.mute = true;
         }
 
         else
         {
             localEmoteAudioSource.Stop();
-            globalEmoteAudioSource.mute = false;
         }
 
         if (IsHost)
-            PlaySambaAudioClientRpc(condition);
+            PlayEmote2AudioClientRpc(condition);
         else
-            PlaySambaAudioServerRpc(condition);
+            PlayEmote2AudioServerRpc(condition);
     }
 
     [ServerRpc]
-    private void PlaySambaAudioServerRpc(bool condition) => PlaySambaAudioClientRpc(condition);
+    private void PlayEmote2AudioServerRpc(bool condition) => PlayEmote2AudioClientRpc(condition);
 
     [ClientRpc]
-    private void PlaySambaAudioClientRpc(bool condition)
+    private void PlayEmote2AudioClientRpc(bool condition)
     {
         if (IsOwner)
             return;
+
+        if (!globalEmoteAudioSource.enabled)
+            globalEmoteAudioSource.enabled = true;
 
         if (condition)
         {
             globalEmoteAudioSource.clip = emote2Sound;
             globalEmoteAudioSource.Play();
-
-            if (localEmoteAudioSource.isPlaying)
-                globalEmoteAudioSource.mute = true;
-            else
-                globalEmoteAudioSource.mute = false;
         }
 
         else
         {
             globalEmoteAudioSource.Stop();
-            globalEmoteAudioSource.mute = true;
         }
     }
 
