@@ -65,7 +65,8 @@ public class HandleLobby : NetworkBehaviour
         try
         {
             await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+            await HandlePlayerAuthentication.instance.EnsureAuthentication();
 
             sessionJoinIdButton.interactable = false;
 

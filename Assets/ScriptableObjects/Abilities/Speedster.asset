@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Speedster
   m_EditorClassIdentifier: 
   abilityName: Speedster
-  cooldownTime: 30
+  cooldownTime: 35
   animator: {fileID: 0}
   speedIncreaseAmount: 4
   speedIncreaseDuration: 4

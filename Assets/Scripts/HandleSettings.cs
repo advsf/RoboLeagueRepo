@@ -140,6 +140,9 @@ public class HandleSettings : MonoBehaviour
     private int currentTonemappingSetting; // 0 = none, 1 = neutral, 2 = ACES
     private Tonemapping tonemapping;
 
+    [Header("Player ID Reference")]
+    [SerializeField] private TextMeshProUGUI playerIdText;
+
     [Header("Other References")]
     [SerializeField] private SessionHolder sessionHolder;
 
@@ -481,6 +484,11 @@ public class HandleSettings : MonoBehaviour
     {
         postVolume.profile.TryGet(out motionBlur);
         postVolume.profile.TryGet(out tonemapping);
+    }
+
+    public void SetPlayerIdText(string id)
+    {
+        playerIdText.text = id;
     }
 
     #region Mobile Readjust UI

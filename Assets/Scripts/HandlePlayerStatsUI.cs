@@ -39,10 +39,9 @@ public class HandlePlayerStatsUI : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
-        StartCoroutine(InitializeUIAndAnimate());
     }
 
     private void OnDisable()
@@ -50,12 +49,17 @@ public class HandlePlayerStatsUI : MonoBehaviour
         LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
     }
 
+    private void OnEnable()
+    {
+        UpdateStatsUI();
+    }
+
     private void OnLocaleChanged(Locale locale)
     {
         UpdateStatsUI();
     }
 
-    private IEnumerator InitializeUIAndAnimate()
+    public IEnumerator InitializeUIAndAnimate()
     {
         yield return null;
 
@@ -71,26 +75,24 @@ public class HandlePlayerStatsUI : MonoBehaviour
 
     #region Username
 
-    public void SetUsername(string newUsername)
+    public async void SetUsername(string newUsername)
     {
         if (!IsUsernameValid())
             return;
-
-        FBPP.SetString("Username", newUsername);
-        FBPP.Save();
 
         UpdateStatsUI();
 
         usernameInputField.text = newUsername;
+
+        await HandlePlayerData.instance.SetUsername(newUsername);
     }
 
-    public void SetUsernameThroughUI()
+    public async void SetUsernameThroughUI()
     {
         if (!IsUsernameValid())
             return;
 
-        FBPP.SetString("Username", usernameInputField.text);
-        FBPP.Save();
+        await HandlePlayerData.instance.SetUsername(usernameInputField.text);
 
         UpdateStatsUI();
 

@@ -4960,7 +4960,7 @@ MonoBehaviour:
   bicycleOnAirKickingMultipler: 72
   bicycleOnGroundKickingMultipler: 60
   bicycleKickStaminaLoss: 15
-  bicycleKickDuration: 0.5
+  bicycleKickDuration: 0
   bicycleKickSphereRadius: 5
   timeBeforeEnablingMovementAfterBicycleKick: 1
   bicycleKickMinLift: 8
@@ -6483,7 +6483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3451164978298865826
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8167,7 +8167,7 @@ RectTransform:
   m_GameObject: {fileID: 1701680189098249610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1735774, y: 1.1735774, z: 1.1735774}
+  m_LocalScale: {x: 1.1735775, y: 1.1735775, z: 1.1735775}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4670721939829440079}
@@ -17137,7 +17137,6 @@ GameObject:
   - component: {fileID: 6300772821972414672}
   - component: {fileID: 8445411007901409009}
   - component: {fileID: 6489048753838894165}
-  - component: {fileID: 8185283294260368337}
   - component: {fileID: 352173854879815010}
   - component: {fileID: 3468914356653558552}
   m_Layer: 6
@@ -17238,7 +17237,7 @@ MonoBehaviour:
   quickChatObj: {fileID: 8384472609539158276}
   chatBoxObj: {fileID: 4597352082453520609}
   emoteChatObj: {fileID: 1472262917486717848}
-  chatMessageScript: {fileID: 273557837241019632}
+  chatMessageScript: {fileID: 4177168399279764935}
 --- !u!114 &6489048753838894165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17262,19 +17261,6 @@ MonoBehaviour:
   - {fileID: 1860618237503452804}
   - {fileID: 2248182515151295884}
   - {fileID: 2605702552234933731}
---- !u!114 &8185283294260368337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240862275704711472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f403e3c95022064ea4923ddfa499add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  textAssetBlockList: {fileID: 4900000, guid: 46094f3eb5e2e5f49a8162c83ffd0550, type: 3}
 --- !u!114 &352173854879815010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17582,7 +17568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000076293945, y: -0.000015258789}
+  m_AnchoredPosition: {x: -0.000076293945, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2653255538454231555
@@ -29071,6 +29057,8 @@ GameObject:
   - component: {fileID: 8081827220724736722}
   - component: {fileID: 1939879845175507125}
   - component: {fileID: 498174912254623061}
+  - component: {fileID: 831257675134969224}
+  - component: {fileID: 4177168399279764935}
   m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -29094,8 +29082,8 @@ Transform:
   - {fileID: 5097548047621751080}
   - {fileID: 1362783588985790797}
   - {fileID: 8491048312848741013}
-  - {fileID: 2108957652795493701}
   - {fileID: 8576202056653127744}
+  - {fileID: 2108957652795493701}
   - {fileID: 9179620100504490092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29352,6 +29340,125 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _comms: {fileID: 0}
   _transform: {fileID: 3150499316527685455}
+--- !u!114 &831257675134969224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839055264695964333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f403e3c95022064ea4923ddfa499add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  textAssetBlockList: {fileID: 4900000, guid: 46094f3eb5e2e5f49a8162c83ffd0550, type: 3}
+--- !u!114 &4177168399279764935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839055264695964333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31de71c1228833458e22433c62ee0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  chatTextPrefab: {fileID: 5788476664126397984, guid: 95c80456cd91f5845816324e8c0f2700,
+    type: 3}
+  quickChatObj: {fileID: 8384472609539158276}
+  emoteChatObj: {fileID: 1472262917486717848}
+  chatBoxObj: {fileID: 1701680189098249610}
+  closedChat: {fileID: 8804522108478166942}
+  openedChat: {fileID: 5262150830417642431}
+  openChatParent: {fileID: 1470466913010218953}
+  closedChatParent: {fileID: 6474321990355203426}
+  profanityFilter: {fileID: 0}
+  didWinMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_WIN_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didLoseMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_LOSE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didTieMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_TIE_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  didNotPlayEnoughMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userConnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_CONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userDisconnectedMessageLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_DISCONNECTED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userJoinedTeamLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_JOINED_TEAM_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  userKickedLoc:
+    m_TableReference:
+      m_TableCollectionName: Table1
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: USER_KICKED_MESSAGE
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  inputField: {fileID: 2922999108495984453}
+  mobileInputField: {fileID: 2892726858728574116}
+  currentChatOption: {fileID: 7866198697972302934}
+  maxTimeBeforeClosedChatClosesAfterNoMessages: 15
+  maxCharacterLimit: 250
+  maxAmountOfText: 4
+  spamDuration: 8
+  canText: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7846279853755423828
 GameObject:
   m_ObjectHideFlags: 0
@@ -30655,7 +30762,6 @@ GameObject:
   - component: {fileID: 7843022085571226159}
   - component: {fileID: 844624791617607820}
   - component: {fileID: 5492007651932084519}
-  - component: {fileID: 273557837241019632}
   m_Layer: 6
   m_Name: ChatboxCanvas
   m_TagString: Untagged
@@ -30746,112 +30852,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &273557837241019632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315468749477422296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31de71c1228833458e22433c62ee0b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  chatTextPrefab: {fileID: 5788476664126397984, guid: 95c80456cd91f5845816324e8c0f2700,
-    type: 3}
-  quickChatObj: {fileID: 8384472609539158276}
-  emoteChatObj: {fileID: 1472262917486717848}
-  chatBoxObj: {fileID: 1701680189098249610}
-  closedChat: {fileID: 8804522108478166942}
-  openedChat: {fileID: 5262150830417642431}
-  openChatParent: {fileID: 1470466913010218953}
-  closedChatParent: {fileID: 6474321990355203426}
-  profanityFilter: {fileID: 8185283294260368337}
-  didWinMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_WIN_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didLoseMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_LOSE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didTieMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_TIE_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  didNotPlayEnoughMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: DID_NOT_PLAY_ENOUGH_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userConnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_CONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userDisconnectedMessageLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_DISCONNECTED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userJoinedTeamLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_JOINED_TEAM_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  userKickedLoc:
-    m_TableReference:
-      m_TableCollectionName: Table1
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: USER_KICKED_MESSAGE
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  inputField: {fileID: 2922999108495984453}
-  mobileInputField: {fileID: 2892726858728574116}
-  currentChatOption: {fileID: 7866198697972302934}
-  maxTimeBeforeClosedChatClosesAfterNoMessages: 15
-  maxCharacterLimit: 250
-  maxAmountOfText: 4
-  spamDuration: 8
-  canText: 1
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &8338439157358042207
 GameObject:
   m_ObjectHideFlags: 0
@@ -31966,7 +31966,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6773135183201896177}
   m_HandleRect: {fileID: 30087150333692994}
   m_Direction: 3
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

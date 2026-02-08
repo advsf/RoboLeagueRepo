@@ -1258,6 +1258,22 @@ MonoBehaviour:
     m_Localized: "\uD1B5\uACC4 \uD45C\uC2DC UI"
     m_Metadata:
       m_Items: []
+  - m_Id: 7922263410659328
+    m_Localized: "\uCD5C\uACE0 \uC5B4\uC2DC\uC2A4\uD134\uD2B8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659329
+    m_Localized: "\uCD5C\uACE0 \uC808\uC57D\uAC00"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7928378231934976
+    m_Localized: "\uCD5C\uACE0 \uB4DD\uC810\uC790"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7929844736774144
+    m_Localized: "\uC2A4\uD504\uB9B0\uD2B8"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

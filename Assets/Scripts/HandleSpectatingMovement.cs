@@ -31,7 +31,9 @@ public class HandleSpectatingMovement : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        GatherInput();
+        if (!HandleCursorSettings.instance.IsUIOn())
+            GatherInput();
+
         ControlSpeed();
     }
 

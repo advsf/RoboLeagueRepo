@@ -533,6 +533,8 @@ public class ServerManager : NetworkBehaviour
 
         mainBallSync.EndBallOutOfPlayServerRpc();
 
+        HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
+
         // wait 8 seconds before resetting
         yield return new WaitForSeconds(8);
 
@@ -633,7 +635,7 @@ public class ServerManager : NetworkBehaviour
                 localizationKey = "DID_LOSE_MESSAGE";
             }
 
-            HandleChatbox.instance.SendLocalizedTextClientRpc(
+            HandleChatbox.instance.SendLocalizedText(
                 username: PlayerInfo.instance.username.Value.ToString(),
                 team: PlayerInfo.instance.currentTeam.Value.ToString(),
                 position: PlayerInfo.instance.currentPosition.Value.ToString(),
@@ -647,7 +649,7 @@ public class ServerManager : NetworkBehaviour
         // player didn't play enough
         else
         {
-            HandleChatbox.instance.SendLocalizedTextClientRpc(
+            HandleChatbox.instance.SendLocalizedText(
                 username: PlayerInfo.instance.username.Value.ToString(),
                 team: PlayerInfo.instance.currentTeam.Value.ToString(),
                 position: PlayerInfo.instance.currentPosition.Value.ToString(),
@@ -728,6 +730,9 @@ public class ServerManager : NetworkBehaviour
 
         mainBallSync.scorerUsername.Value = string.Empty;
         mainBallSync.assisterUsername.Value = string.Empty;
+
+        // clear offsides
+        HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
 
         // reset the ball's position
         ResetBallToTheCenter();
@@ -990,6 +995,8 @@ public class ServerManager : NetworkBehaviour
         // delete all the non main balls
         BallManager.instance.DeleteNonMainBalls();
 
+        HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
+
         isStartingGame.Value = false;
         didStartGame.Value = true;
 
@@ -1109,6 +1116,12 @@ public class ServerManager : NetworkBehaviour
         {
             var previousTeam = spotToRemove.Value.Item1;
             var previousPosition = spotToRemove.Value.Item2;
+
+            // remove spectator team
+            if (blueTeamPlayerIds.Contains(clientId))
+                blueTeamPlayerIds.Add(clientId);
+            else
+                redTeamPlayerIds.Add(clientId);
 
             if (previousPosition == PlayerDataTypes.Position.GK && didStartGame.Value)
                 EnableAIGoalkeeperClientRpc(previousTeam, true);

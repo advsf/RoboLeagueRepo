@@ -250,6 +250,9 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                 {
                     CatchBall(false);
 
+                    if (ServerManager.instance.didStartGame.Value)
+                        PlayerInfo.instance.saves.Value++;
+
                     if (ServerManager.instance.isTutorialServer)
                     {
                         yield return new WaitForSeconds(1);
@@ -266,12 +269,6 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-    }
-
-    [ClientRpc]
-    private void PlayDeflectSoundClientRpc()
-    {
-        SoundManager.instance.PlayPlayerGKDeflectSoundEffect();
     }
 
     private void ResetDiveCooldown()
@@ -377,6 +374,9 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
                         // handle animation
                         HandleBallAnimationPos(true, transform.position);
+
+                        if (ServerManager.instance.didStartGame.Value)
+                            PlayerInfo.instance.saves.Value++;
 
                         // for tutorial stage progression
                         if (ServerManager.instance.isTutorialServer)

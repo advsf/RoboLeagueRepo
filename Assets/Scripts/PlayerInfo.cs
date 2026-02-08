@@ -426,7 +426,7 @@ public class PlayerInfo : NetworkBehaviour
         if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
             return;
 
-        FBPP.SetInt("Goals", FBPP.GetInt("Goals") + 1);
+        HandlePlayerData.instance.UpdateGoalsCount();
     }
 
     private void UpdateAssistsDataCount(int previousValue, int newValue)
@@ -434,7 +434,7 @@ public class PlayerInfo : NetworkBehaviour
         if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
             return;
 
-        FBPP.SetInt("Assists", FBPP.GetInt("Assists") + 1);
+        HandlePlayerData.instance.UpdateAssistsCount();
     }
 
     private void UpdateSavesDataCount(int previousValue, int newValue)
@@ -442,7 +442,7 @@ public class PlayerInfo : NetworkBehaviour
         if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
             return;
 
-        FBPP.SetInt("Saves", FBPP.GetInt("Saves") + 1);
+        HandlePlayerData.instance.UpdateSavesCount();
     }
 
     #endregion

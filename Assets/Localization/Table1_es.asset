@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098881
-    m_Localized: "DESPLAZAMIENTO DE C\xC1MARA Y"
+    m_Localized: "DESPLAZAMIENTO DE LA C\xC1MARA Y"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098882
@@ -280,7 +280,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305987293194
-    m_Localized: AJUSTES DE CAMISETA
+    m_Localized: AJUSTES DE LA CAMISETA
     m_Metadata:
       m_Items: []
   - m_Id: 20305987293195
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597767
-    m_Localized: HABILITAR CAPACIDAD
+    m_Localized: HABILITAR LA CAPACIDAD
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597768
@@ -1145,6 +1145,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4420686444023808
     m_Localized: "MOSTRAR ESTAD\xCDSTICAS UI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659328
+    m_Localized: MEJORES ASISTENTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659329
+    m_Localized: LOS MEJORES AHORRADORES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7928378231934976
+    m_Localized: "M\xC1XIMOS GOLEADORES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7929844736774144
+    m_Localized: SPRINT
     m_Metadata:
       m_Items: []
   references:

@@ -203,17 +203,20 @@ public class BallSync : NetworkBehaviour
         // handle offsides
         if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && countOffside)
         {
+            // if someone is offside
             if (HandleOffsides.instance.IsPlayerOffside(kickerId))
             {
                 HandleOffsides.instance.StartIndirectionKickServerRpc(ballRb.position, PlayerInfo.instance.currentTeam.Value.ToString().Equals("Blue") ? "Red" : "Blue");
                 return;
             }
 
+            // start a new detection
             else
                 HandleOffsides.instance.CheckForOffsidesServerRpc(kickerId);
         }
 
-        else if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && !countOffside)
+        // reset all potential offsides
+        else if ((!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value) || !countOffside)
             HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
 
         if (IsServer)

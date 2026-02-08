@@ -4,7 +4,6 @@ using TMPro;
 using System.Collections;
 using UnityEngine.Localization;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
-using Unity.VisualScripting;
 
 public class HandleChatbox : NetworkBehaviour
 {
@@ -53,10 +52,10 @@ public class HandleChatbox : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         if (!IsOwner)
             return;
-
-        base.OnNetworkSpawn();
 
         instance = this;
     }
@@ -282,7 +281,7 @@ public class HandleChatbox : NetworkBehaviour
                 nameColor = "white";
 
             // add the spaces to give room for the rank image
-            formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username}</color> <color=white>(SPECTATOR):<color=white> {text}";
+            formattedText = $"<color=white>{chatOption}</color>       <color={nameColor}>{username}</color> <color=white>(SPECTATOR):<color=white> {text}";
         }
 
         // if a normal player sent the message
@@ -305,7 +304,7 @@ public class HandleChatbox : NetworkBehaviour
                 nameColor = "red";
 
             // add the spaces to give room for the rank image
-            formattedText = $"<color=white>{chatOption}       <color={nameColor}>{username}</color> <color=white>({position}):<color=white> {text}";
+            formattedText = $"<color=white>{chatOption}</color>       <color={nameColor}>{username}</color> <color=white>({position}):<color=white> {text}";
         }
 
         // open the closed chat agian if it was inactive
@@ -333,6 +332,8 @@ public class HandleChatbox : NetworkBehaviour
             return;
 
         HandleTrackingAmountOfTextSent();
+
+        Debug.Log("sent!");
 
         SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy,
             PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
@@ -392,10 +393,12 @@ public class HandleChatbox : NetworkBehaviour
     [ClientRpc]
     public void SendTextClientRpc(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false, ClientRpcParams clientRpcParams = default)
     {
+        Debug.Log("received!");
+
         if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
-        HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
+        HandleChatbox chatbox = instance ??NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
         chatbox.HandleFormattingTexts(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, isServer);
     }
@@ -403,8 +406,15 @@ public class HandleChatbox : NetworkBehaviour
     [ClientRpc]
     public void SendLocalizedTextClientRpc(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
     {
+        SendLocalizedText(username, team, position, goals, assists, saves, xp, localizationKey);
+    }
+
+    public void SendLocalizedText(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
+    {
         if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
+
+        HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
         string text = string.Empty;
 
@@ -458,8 +468,6 @@ public class HandleChatbox : NetworkBehaviour
             userKickedLoc["username"] = new StringVariable { Value = username };
             text = userKickedLoc.GetLocalizedString();
         }
-
-        HandleChatbox chatbox = instance ?? NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
         chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, true);
     }

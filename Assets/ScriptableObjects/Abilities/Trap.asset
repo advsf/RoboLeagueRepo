@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Trap
   m_EditorClassIdentifier: 
   abilityName: Trap
-  cooldownTime: 3
+  cooldownTime: 5
   animator: {fileID: 0}
   trapBallSphereRadius: 6
   trapBallSphereMaxDistance: 2

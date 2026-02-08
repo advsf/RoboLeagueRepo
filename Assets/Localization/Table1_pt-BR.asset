@@ -1148,6 +1148,22 @@ MonoBehaviour:
     m_Localized: "EXIBIR INTERFACE DE ESTAT\xCDSTICAS"
     m_Metadata:
       m_Items: []
+  - m_Id: 7922263410659328
+    m_Localized: PRINCIPAIS ASSISTENTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659329
+    m_Localized: MELHORES ECONOMIAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7928378231934976
+    m_Localized: MAIORES ARTILHEIROS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7929844736774144
+    m_Localized: CORRIDA
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

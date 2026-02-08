@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098894
-    m_Localized: "FPS'Y\u0130 SINIRLA"
+    m_Localized: "FPS'yi s\u0131n\u0131rla"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098895
@@ -703,7 +703,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512789381124
-    m_Localized: "TAKIM ARKADA\u015EIMIN TOPUNU YAKALAYAMIYORUM!"
+    m_Localized: "TAKIM ARKADA\u015EININ TOPUNU YAKALAYAMIYORUM!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575424
@@ -771,7 +771,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300736
-    m_Localized: "OLU\u015ETURMA AYARLARI"
+    m_Localized: YARATMA AYARLARI
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300737
@@ -779,7 +779,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300738
-    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VERME"
+    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VEREREK BA\u015ELATMA"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300739
@@ -1173,6 +1173,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4420686444023808
     m_Localized: "\u0130STAT\u0130ST\u0130KLER\u0130 G\xD6STER ARAY\xDCZ\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659328
+    m_Localized: "EN \u0130Y\u0130 YARDIMCILAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659329
+    m_Localized: "EN \u0130Y\u0130 TASARRUF\xC7ULAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7928378231934976
+    m_Localized: "EN \xC7OK SKOR YAPANLAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7929844736774144
+    m_Localized: SPRINT
     m_Metadata:
       m_Items: []
   references:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: 
   abilityName: Kill
-  cooldownTime: 45
+  cooldownTime: 60
   animator: {fileID: 0}
   kickSphereRadius: 2
   kickSphereMaxDistance: 2

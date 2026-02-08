@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098887
-    m_Localized: "MAXIMALE GR\xD6SSE DER BALLPUNKTE"
+    m_Localized: "MAXIMALE GR\xD6SSE DER KUGELPUNKTE"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098888
@@ -1148,6 +1148,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4420686444023808
     m_Localized: "Benutzeroberfl\xE4che zur Anzeige von Statistiken"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659328
+    m_Localized: TOP-ASSISTENTEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7922263410659329
+    m_Localized: "TOP-SPARVERK\xC4UFER"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7928378231934976
+    m_Localized: "TOP-TORSCH\xDCTZEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7929844736774144
+    m_Localized: SPRINT
     m_Metadata:
       m_Items: []
   references:
