@@ -273,7 +273,7 @@ public class HandleChatbox : NetworkBehaviour
             string nameColor;
 
             // if we sent out the message
-            if (username == HandlePlayerData.instance.GetUsername())
+            if (username == HandlePlayerData.instance.GetUsername() && !Application.isEditor)
                 nameColor = "yellow";
 
             // if not make the text white
@@ -291,7 +291,7 @@ public class HandleChatbox : NetworkBehaviour
             string nameColor;
 
             // if we sent out the message
-            if (username == HandlePlayerData.instance.GetUsername())
+            if (username == HandlePlayerData.instance.GetUsername() && !Application.isEditor)
                 nameColor = "yellow";
 
             // if on the same team, make the username text blue
