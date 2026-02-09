@@ -36,8 +36,8 @@ public class HandlePlayerData : MonoBehaviour
         {
             await HandlePlayerAuthentication.instance.EnsureAuthentication();
             await InitializeAndDownloadData();
-
             await AuthenticationService.Instance.UpdatePlayerNameAsync(GetUsername().Replace(" ", ""));
+
         }
         catch (Exception e)
         {

@@ -245,7 +245,7 @@ public class HandleChatbox : NetworkBehaviour
             amountOfTextSent--;
     }
 
-    public void HandleFormattingTexts(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false)
+    public void HandleFormattingTexts(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, ulong clientId, bool isServer = false)
     {
         // if there isnt a message
         if (string.IsNullOrEmpty(text))
@@ -273,7 +273,7 @@ public class HandleChatbox : NetworkBehaviour
             string nameColor;
 
             // if we sent out the message
-            if (username == HandlePlayerData.instance.GetUsername() && !Application.isEditor)
+            if (NetworkManager.Singleton.LocalClientId == clientId)
                 nameColor = "yellow";
 
             // if not make the text white
@@ -291,7 +291,7 @@ public class HandleChatbox : NetworkBehaviour
             string nameColor;
 
             // if we sent out the message
-            if (username == HandlePlayerData.instance.GetUsername() && !Application.isEditor)
+            if (NetworkManager.Singleton.LocalClientId == clientId)
                 nameColor = "yellow";
 
             // if on the same team, make the username text blue
@@ -371,7 +371,7 @@ public class HandleChatbox : NetworkBehaviour
     {
         // send to everyone
         if (isChattingAll)
-            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text);
+            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, serverRpcParams.Receive.SenderClientId);
 
         // send to team only
         else
@@ -386,30 +386,28 @@ public class HandleChatbox : NetworkBehaviour
                 }
             };
 
-            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, false, rpcParams);
+            SendTextClientRpc(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, serverRpcParams.Receive.SenderClientId, false, rpcParams);
         }
     }
 
     [ClientRpc]
-    public void SendTextClientRpc(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, bool isServer = false, ClientRpcParams clientRpcParams = default)
+    public void SendTextClientRpc(bool isChattingAll, bool isSpectator, int rankIndex, string teamColor, string username, string position, string text, ulong clientId, bool isServer = false, ClientRpcParams clientRpcParams = default)
     {
-        Debug.Log("received!");
-
         if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
 
         HandleChatbox chatbox = instance ??NetworkManager.LocalClient.PlayerObject.GetComponentInChildren<HandleChatbox>();
 
-        chatbox.HandleFormattingTexts(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, isServer);
+        chatbox.HandleFormattingTexts(isChattingAll, isSpectator, rankIndex, teamColor, username, position, text, clientId, isServer);
     }
 
     [ClientRpc]
     public void SendLocalizedTextClientRpc(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
     {
-        SendLocalizedText(username, team, position, goals, assists, saves, xp, localizationKey);
+        SendLocalizedText(username, team, position, goals, assists, saves, xp, localizationKey, 0);
     }
 
-    public void SendLocalizedText(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey)
+    public void SendLocalizedText(string username, string team, string position, int goals, int assists, int saves, int xp, string localizationKey, ulong clientId)
     {
         if (FBPP.GetInt("EnableChat") == 0 || PlayerInfo.instance.defaultPlayerObj.activeInHierarchy)
             return;
@@ -469,6 +467,6 @@ public class HandleChatbox : NetworkBehaviour
             text = userKickedLoc.GetLocalizedString();
         }
 
-        chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, true);
+        chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, clientId, true); // note that here client id can be whatever since the text will be in yellow no matter what
     }
 }

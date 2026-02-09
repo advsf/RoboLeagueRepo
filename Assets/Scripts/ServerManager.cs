@@ -643,7 +643,8 @@ public class ServerManager : NetworkBehaviour
                 assists: PlayerInfo.instance.assists.Value,
                 saves: PlayerInfo.instance.saves.Value,
                 xp: xp,
-                localizationKey: localizationKey);
+                localizationKey: localizationKey,
+                clientId: 0); // can be whatever since the text will be in yellow anyways
         }
 
         // player didn't play enough
@@ -657,7 +658,8 @@ public class ServerManager : NetworkBehaviour
                 assists: PlayerInfo.instance.assists.Value,
                 saves: PlayerInfo.instance.saves.Value,
                 xp: xp,
-                localizationKey: "DID_NOT_PLAY_ENOUGH_MESSAGE");
+                localizationKey: "DID_NOT_PLAY_ENOUGH_MESSAGE",
+                clientId: 0);
         }
     }
 

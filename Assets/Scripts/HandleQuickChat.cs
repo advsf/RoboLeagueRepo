@@ -118,7 +118,7 @@ public class HandleQuickChat : NetworkBehaviour
             // if sending to everyone
             if (isChattingGlobally)
             {
-                chatMessageScript.SendTextClientRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), PlayerInfo.instance.username.Value.ToString(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
+                chatMessageScript.SendTextClientRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), PlayerInfo.instance.username.Value.ToString(), PlayerInfo.instance.currentPosition.Value.ToString(), text, NetworkManager.Singleton.LocalClientId);
             }
 
             // if sending only to team
@@ -135,7 +135,7 @@ public class HandleQuickChat : NetworkBehaviour
                 };
 
 
-                chatMessageScript.SendTextClientRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), PlayerInfo.instance.username.Value.ToString(), PlayerInfo.instance.currentPosition.Value.ToString(), text, false, rpcParams);
+                chatMessageScript.SendTextClientRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy, PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), PlayerInfo.instance.username.Value.ToString(), PlayerInfo.instance.currentPosition.Value.ToString(), text, NetworkManager.Singleton.LocalClientId, false, rpcParams);
             }
         }
 
