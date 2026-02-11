@@ -61,15 +61,9 @@ public class HandleConnections : NetworkBehaviour
     {
         // for mobile
         if (Application.isMobilePlatform)
-        {
-            HandleAds.instance.ShowInterstitialAd(() => {
-                ReturnToLobby();
-            });
-        }
-        
-        // for pc
-        else
-            ReturnToLobby();
+            HandleAds.instance.ShowInterstitialAd();
+
+        ReturnToLobby();
     }
 
     public async void ReturnToLobby()

@@ -261,8 +261,7 @@ public class HandleKicking : NetworkBehaviour
             nearestBallSync = BallManager.instance.mainBallSync;
 
         // curve the ball
-        if (PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>().magnitude > FBPP.GetFloat("ShootingJoystickDeadzone"))
-            joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
+        joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
 
         // spawn the local ball
         if (PlayerInputReference.instance.controls.Gameplay.SpawnBall.WasPressedThisFrame() && !ServerManager.instance.didStartGame.Value)

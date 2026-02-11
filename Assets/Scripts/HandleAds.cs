@@ -1,7 +1,6 @@
 using UnityEngine;
 using Unity.Services.LevelPlay;
 using Unity.Services.Core;
-using System;
 
 public class HandleAds : MonoBehaviour
 {
@@ -30,6 +29,10 @@ public class HandleAds : MonoBehaviour
     public async void Start()
     {
         await UnityServices.InitializeAsync();
+
+        // regulations
+        LevelPlay.SetMetaData("is_child_directed", "true");
+        LevelPlay.SetMetaData("is_deviceid_optout", "true");
 
         LevelPlay.OnInitSuccess += LevelPlay_OnInitSuccess;
         LevelPlay.OnInitFailed += LevelPlay_OnInitFailed;
@@ -72,14 +75,12 @@ public class HandleAds : MonoBehaviour
         Debug.Log("loaded");
     }
 
-    public void ShowInterstitialAd(Action onAdClosed)
+    public void ShowInterstitialAd()
     {
         if (interstitialAd.IsAdReady())
             interstitialAd.ShowAd();
         else 
             interstitialAd.LoadAd();
-
-        onAdClosed?.Invoke();
     }
 
     private void InterstitialAd_OnAdInfoChanged(LevelPlayAdInfo adInfo)

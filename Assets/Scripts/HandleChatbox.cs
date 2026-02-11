@@ -105,13 +105,6 @@ public class HandleChatbox : NetworkBehaviour
 
         PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
         PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
-
-        // handle chat optoin toggle to make spectators default back to ALL chat if need be
-        if (Application.isMobilePlatform && PlayerInfo.instance.spectatingObj.activeInHierarchy)
-        {
-            isChattingGlobally = true;
-            currentMobileChatOptionText.text = "(ALL)";
-        }
     }
 
     private void OnDisable()
@@ -168,6 +161,12 @@ public class HandleChatbox : NetworkBehaviour
             {
                 openedChat.SetActive(true);
                 closedChat.SetActive(false);
+
+                if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
+                {
+                    isChattingGlobally = true;
+                    currentChatOptionText.text = "(ALL)";
+                }
 
                 // allow cursor movement
                 HandleCursorSettings.instance.EnableCursor(true, false);
@@ -493,5 +492,11 @@ public class HandleChatbox : NetworkBehaviour
 
         isChattingGlobally = !isChattingGlobally;
         currentMobileChatOptionText.text = isChattingGlobally ? "(ALL)" : "(TEAM)";
+    }
+
+    public void SetMobileChatToggleInputToAll()
+    {
+        isChattingGlobally = true;
+        currentMobileChatOptionText.text = "(ALL)";
     }
 }

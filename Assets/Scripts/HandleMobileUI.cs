@@ -90,14 +90,6 @@ public class HandleMobileUI : NetworkBehaviour
 
     #region UI Button Functions
 
-    public void CloseAllHelperButtonsUI()
-    {
-        leaderboardUI.DisableLeaderboard();
-        HandleEnablingChatInputFieldUI(); // if chat input field is open then this will close it
-        emoteUI.SetActive(false);
-        spawnBallSettingsObj.SetActive(false);
-    }
-
     public void HandleUpdatingAllUICustomization()
     {
         foreach (Transform obj in transform)
@@ -249,6 +241,88 @@ public class HandleMobileUI : NetworkBehaviour
 
         // disable the buttons
         HandleEnablingSpawnBallSettingsUI();
+    }
+
+    #endregion
+
+    #region Closing Other UI Functions
+
+    public void CloseAllHelperButtonsUI()
+    {
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+
+        if (emoteUI.activeInHierarchy)
+            emoteUI.SetActive(false);
+
+        if (spawnBallSettingsObj.activeInHierarchy)
+            spawnBallSettingsObj.SetActive(false);
+
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
+                HandleChatbox.instance.SetMobileChatToggleInputToAll();
+
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
+    }
+
+    public void CloseAllHelperButtonsUIExceptLeaderboard()
+    {
+        if (emoteUI.activeInHierarchy)
+            emoteUI.SetActive(false);
+
+        if (spawnBallSettingsObj.activeInHierarchy)
+            spawnBallSettingsObj.SetActive(false);
+
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
+    }
+
+    public void CloseAllHelperButtonsUIExceptEmote()
+    {
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+
+        if (spawnBallSettingsObj.activeInHierarchy)
+            spawnBallSettingsObj.SetActive(false);
+
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
+    }
+
+    public void CloseAllHelperButtonsUIExceptChat()
+    {
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+
+        if (emoteUI.activeInHierarchy)
+            emoteUI.SetActive(false);
+
+        if (spawnBallSettingsObj.activeInHierarchy)
+            spawnBallSettingsObj.SetActive(false);
+    }
+
+    public void CloseAllHelperButtonsUIExceptSpawnSettings()
+    {
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+
+        if (emoteUI.activeInHierarchy)
+            emoteUI.SetActive(false);
+
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
     }
 
     #endregion

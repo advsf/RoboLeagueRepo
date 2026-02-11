@@ -39,10 +39,30 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
 
     public void CloseAllHelperButtonsUI()
     {
-        leaderboardUI.DisableLeaderboard();
-        HandleEnablingChatInputFieldUI(); // if chat input field is open then this will close it
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
     }
 
+    public void CloseAllHelperButtonsUIExceptLeaderboard()
+    {
+        if (chatInputField.gameObject.activeInHierarchy)
+        {
+            chatInputField.ActivateInputField();
+            chatInputField.gameObject.SetActive(false);
+        }
+    }
+
+    public void CloseAllHelperButtonsUIExceptChat()
+    {
+        if (leaderboardUI.IsLeaderboardActive())
+            leaderboardUI.DisableLeaderboard();
+    }
     public void EnableTouchPadObj(bool condition)
     {
         touchPad.SetActive(condition);

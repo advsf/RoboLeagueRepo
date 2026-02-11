@@ -159,5 +159,10 @@ public class HandleLeaderboardUI : NetworkBehaviour
         }
     }
 
+    public bool IsLeaderboardAct()
+    {
+        return leaderboardParent.gameObject.activeInHierarchy;
+    }
+
     #endregion
 }
