@@ -7,6 +7,7 @@ using Unity.Services.Leaderboards;
 using Unity.Services.Leaderboards.Models;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class HandleLeaderboards : MonoBehaviour
 {
@@ -37,6 +38,21 @@ public class HandleLeaderboards : MonoBehaviour
     public class RankMetadata
     {
         public int playerRankIndex;
+    }
+
+    private void Start()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
+        DisplayCurrentLeaderboard();
     }
 
     private async void OnEnable()

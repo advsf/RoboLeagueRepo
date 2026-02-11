@@ -8,6 +8,7 @@ public class HandleMobileUI : NetworkBehaviour
 
     [Header("References")]
     [SerializeField] private GameObject touchPadObj;
+    [SerializeField] private HandleLeaderboardUI leaderboardUI;
 
     [Header("Ability Buttons References")]
     [SerializeField] private GameObject[] abilityButtons;
@@ -89,6 +90,14 @@ public class HandleMobileUI : NetworkBehaviour
 
     #region UI Button Functions
 
+    public void CloseAllHelperButtonsUI()
+    {
+        leaderboardUI.DisableLeaderboard();
+        HandleEnablingChatInputFieldUI(); // if chat input field is open then this will close it
+        emoteUI.SetActive(false);
+        spawnBallSettingsObj.SetActive(false);
+    }
+
     public void HandleUpdatingAllUICustomization()
     {
         foreach (Transform obj in transform)
@@ -130,6 +139,8 @@ public class HandleMobileUI : NetworkBehaviour
         {
             chatInputField.ActivateInputField();
             chatInputField.gameObject.SetActive(false);
+
+            EnableTouchPadObj(true);
         }
 
         else
@@ -137,6 +148,8 @@ public class HandleMobileUI : NetworkBehaviour
             chatInputField.text = "";
             chatInputField.gameObject.SetActive(true);
             chatInputField.ActivateInputField();
+
+            EnableTouchPadObj(false);
         }
     }
 

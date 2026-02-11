@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Services.LevelPlay;
 using Unity.Services.Core;
+using System;
 
 public class HandleAds : MonoBehaviour
 {
@@ -71,12 +72,14 @@ public class HandleAds : MonoBehaviour
         Debug.Log("loaded");
     }
 
-    public void ShowInterstitialAd()
+    public void ShowInterstitialAd(Action onAdClosed)
     {
         if (interstitialAd.IsAdReady())
             interstitialAd.ShowAd();
         else 
             interstitialAd.LoadAd();
+
+        onAdClosed?.Invoke();
     }
 
     private void InterstitialAd_OnAdInfoChanged(LevelPlayAdInfo adInfo)

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.8
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 33ab377b49aa14f6fae6e5bac230a5d4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d48a7646f5d0547e889733d84b50cb9f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -504,7 +504,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 250
   Pan2D: 0
@@ -4927,7 +4927,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 250
   Pan2D: 0
@@ -10928,7 +10928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleAudioBasedOnCollision
   audioSource: {fileID: 35384797}
-  minBallVelToTriggerNetSound: 35
+  minBallVelToTriggerNetSound: 1
 --- !u!65 &416124119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12173,7 +12173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleAudioBasedOnCollision
   audioSource: {fileID: 1984008745}
-  minBallVelToTriggerNetSound: 35
+  minBallVelToTriggerNetSound: 1
 --- !u!114 &474129559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13530,7 +13530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleAudioBasedOnCollision
   audioSource: {fileID: 165630204}
-  minBallVelToTriggerNetSound: 35
+  minBallVelToTriggerNetSound: 1
 --- !u!65 &545643901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57359,7 +57359,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 250
   Pan2D: 0

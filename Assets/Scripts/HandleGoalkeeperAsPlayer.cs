@@ -229,7 +229,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
     private IEnumerator HandleDiveBallCatch()
     {
         float timer = 0f;
-        bool hasDeflected = false;
+        bool hasCaughtBall = false;
 
         Vector3 diveDir = PlayerMovement.instance.GetPlayerMoveDirection().normalized;
 
@@ -238,7 +238,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
         // now instead of deflecting
         // we just catch now
-        while (timer < diveBallDetectionDuration && !hasDeflected)
+        while (timer < diveBallDetectionDuration && !hasCaughtBall)
         {
             Vector3 detectionOrigin = transform.position + (Vector3.up * 0.5f) + (diveDir * 0.5f);
 
@@ -250,9 +250,6 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                 {
                     CatchBall(false);
 
-                    if (ServerManager.instance.didStartGame.Value)
-                        PlayerInfo.instance.saves.Value++;
-
                     if (ServerManager.instance.isTutorialServer)
                     {
                         yield return new WaitForSeconds(1);
@@ -261,7 +258,7 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                         TutorialManager.instance.PassToNextDetectorInSameStage();
                     }
 
-                    hasDeflected = true;
+                    hasCaughtBall = true;
                     break;
                 }
             }
@@ -300,6 +297,8 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
         bool didFindBall = false;
 
+        // i honestly have no idea why i have the specificBall if conditional
+        // but if it aint broke dont fix it
         if (specificBall != null)
         {
             touchedBallSync = specificBall.GetComponent<BallSync>();
@@ -323,6 +322,9 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
                 didFindBall = true;
 
                 caughtBallRb = specificBall.GetComponent<Rigidbody>();
+
+                if (ServerManager.instance.didStartGame.Value)
+                    PlayerInfo.instance.saves.Value++;
 
                 // handle timer
                 initialTimeWhenCaughtBall = Time.time;

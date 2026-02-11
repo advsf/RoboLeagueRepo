@@ -11,6 +11,8 @@ public class HandleLeaderboardUI : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         if (!IsOwner)
             return;
 
@@ -19,7 +21,7 @@ public class HandleLeaderboardUI : NetworkBehaviour
         if (IsHost)
             sessionCodeObj.SetActive(false);
 
-        base.OnNetworkSpawn();
+        PlayerInputReference.instance.controls.Gameplay.Leaderboard.Enable();
     }
 
     private void OnEnable()
@@ -45,7 +47,10 @@ public class HandleLeaderboardUI : NetworkBehaviour
 
         // sybau twin 
         if (PlayerInputReference.instance.controls.Gameplay.Leaderboard.IsPressed() && !leaderboardParent.gameObject.activeInHierarchy && !HandleCursorSettings.instance.IsUIOn())
+        {
+            Debug.Log("should be called");
             SetUpLeaderboard();
+        }
 
         if (PlayerInputReference.instance.controls.Gameplay.Leaderboard.WasReleasedThisFrame() && leaderboardParent.gameObject.activeInHierarchy)
             DisableLeaderboard();
@@ -55,6 +60,8 @@ public class HandleLeaderboardUI : NetworkBehaviour
     {
         // enable the cursor and disable cam movement
         HandleCursorSettings.instance.EnableCursor(true, false);
+
+        Debug.Log("calling");
 
         // handle setting up the arrangment of the leaderboard dynamically
         // meaning that the owner's team will appear above the other team
@@ -102,7 +109,7 @@ public class HandleLeaderboardUI : NetworkBehaviour
         playerStatLeaderboard.GetComponent<HandlePlayerLeaderboardStats>().InitializePlayerStats(player);
     }
 
-    private void DisableLeaderboard()
+    public void DisableLeaderboard()
     {
         // destroy all playerStats
         // maybe in the future when a client disconnects

@@ -35,7 +35,8 @@ public class HandleChatbox : NetworkBehaviour
     [Header("UI References")]
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TMP_InputField mobileInputField;
-    [SerializeField] private TextMeshProUGUI currentChatOption;
+    [SerializeField] private TextMeshProUGUI currentChatOptionText;
+    [SerializeField] private TextMeshProUGUI currentMobileChatOptionText;
 
     [Header("Chat Settings")]
     [SerializeField] private float maxTimeBeforeClosedChatClosesAfterNoMessages = 15;
@@ -58,6 +59,9 @@ public class HandleChatbox : NetworkBehaviour
             return;
 
         instance = this;
+
+        PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
+        PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
     }
 
     public override void OnNetworkDespawn()
@@ -83,16 +87,13 @@ public class HandleChatbox : NetworkBehaviour
         openedChat.SetActive(false);
 
         isChattingGlobally = true;
-        currentChatOption.text = "(ALL)";
+        currentChatOptionText.text = "(ALL)";
 
         inputField.onSubmit.AddListener(OnInputSubmit);
 
         // limit
         inputField.characterLimit = maxCharacterLimit;
         mobileInputField.characterLimit = maxCharacterLimit;
-
-        PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
-        PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
     }
 
     private void OnEnable()
@@ -104,6 +105,13 @@ public class HandleChatbox : NetworkBehaviour
 
         PlayerInputReference.instance.controls.Gameplay.Chat.Enable();
         PlayerInputReference.instance.controls.Gameplay.ChatOption.Enable();
+
+        // handle chat optoin toggle to make spectators default back to ALL chat if need be
+        if (Application.isMobilePlatform && PlayerInfo.instance.spectatingObj.activeInHierarchy)
+        {
+            isChattingGlobally = true;
+            currentMobileChatOptionText.text = "(ALL)";
+        }
     }
 
     private void OnDisable()
@@ -198,7 +206,7 @@ public class HandleChatbox : NetworkBehaviour
         if (PlayerInputReference.instance.controls.Gameplay.ChatOption.WasPressedThisFrame())
         {
             isChattingGlobally = !isChattingGlobally;
-            currentChatOption.text = isChattingGlobally ? "(ALL)" : "(TEAM)";
+            currentChatOptionText.text = isChattingGlobally ? "(ALL)" : "(TEAM)";
         }
     }
 
@@ -364,6 +372,14 @@ public class HandleChatbox : NetworkBehaviour
     {
         SendChatMessage(mobileInputField.text);
         mobileInputField.gameObject.SetActive(false);
+
+        // this is so that the player can actually press the send button
+        // without the touchpad raycast target blocking it
+        if (PlayerInfo.instance.playingObj.activeInHierarchy)
+            HandleMobileUI.instance.EnableTouchPadObj(true);
+
+        else if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
+            HandleSpectatingMobileUI.instance.EnableTouchPadObj(true);
     }
 
     [ServerRpc]
@@ -468,5 +484,14 @@ public class HandleChatbox : NetworkBehaviour
         }
 
         chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, clientId, true); // note that here client id can be whatever since the text will be in yellow no matter what
+    }
+
+    public void HandleMobileChatToggleInput()
+    {
+        if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
+            return;
+
+        isChattingGlobally = !isChattingGlobally;
+        currentMobileChatOptionText.text = isChattingGlobally ? "(ALL)" : "(TEAM)";
     }
 }

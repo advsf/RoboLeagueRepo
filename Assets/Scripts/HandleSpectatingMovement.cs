@@ -31,9 +31,7 @@ public class HandleSpectatingMovement : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        if (!HandleCursorSettings.instance.IsUIOn())
-            GatherInput();
-
+        GatherInput();
         ControlSpeed();
     }
 
@@ -41,6 +39,12 @@ public class HandleSpectatingMovement : NetworkBehaviour
     {
         if (!IsOwner)
             return;
+
+        if (HandleCursorSettings.instance.IsUIOn())
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
 
         MoveSpectator();
         HandleCountermovement();

@@ -59,12 +59,17 @@ public class HandleConnections : NetworkBehaviour
     // called via a button
     public void LeaveGame()
     {
+        // for mobile
         if (Application.isMobilePlatform)
         {
-            HandleAds.instance.ShowInterstitialAd();
+            HandleAds.instance.ShowInterstitialAd(() => {
+                ReturnToLobby();
+            });
         }
-
-        ReturnToLobby();
+        
+        // for pc
+        else
+            ReturnToLobby();
     }
 
     public async void ReturnToLobby()

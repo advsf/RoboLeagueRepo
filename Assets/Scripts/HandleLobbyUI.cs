@@ -30,8 +30,11 @@ public class HandleLobbyUI : MonoBehaviour
     [Header("Practice Session References")]
     [SerializeField] private GameObject practiceSessionCreationUI;
 
-    [Header("Player Stats UI")]
+    [Header("Player Stats UI References")]
     [SerializeField] private GameObject playerStatsUI;
+
+    [Header("Global Leaderboard UI References")]
+    [SerializeField] private GameObject globalLeaderboardUI;
 
     [Header("Change Username References")]
     [SerializeField] private GameObject changeUsernameUI;
@@ -90,6 +93,7 @@ public class HandleLobbyUI : MonoBehaviour
         controlsUI.SetActive(false);
 
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
 
         inventoryUI.SetActive(false);
 
@@ -231,6 +235,8 @@ public class HandleLobbyUI : MonoBehaviour
         // play the camera animation
         lobbyCamAnimation.PlayCamAnimationToInventoryUI();
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
+
         mainLobbyUI.SetActive(false);
 
         inventoryUI.SetActive(true);
@@ -240,6 +246,8 @@ public class HandleLobbyUI : MonoBehaviour
     {
         lobbyCamAnimation.PlayCamAnimationFromInventoryToMainLobbyUI();
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
+
         mainLobbyUI.SetActive(true);
 
         inventoryUI.SetActive(false);
@@ -267,6 +275,7 @@ public class HandleLobbyUI : MonoBehaviour
     {
         changeUsernameUI.SetActive(true);
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
 
         HandlePlayerStatsUI.instance.SetUsernameInputFieldToCurrentUsername();
     }
@@ -275,6 +284,7 @@ public class HandleLobbyUI : MonoBehaviour
     {
         changeUsernameUI.SetActive(false);
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
 
         usernameErrorText.text = "";
     }
@@ -295,12 +305,14 @@ public class HandleLobbyUI : MonoBehaviour
     {
         rankListUI.SetActive(true);
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
     }
 
     public void CloseRankListUI()
     {
         rankListUI.SetActive(false);
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
     }
 
     #endregion
@@ -311,12 +323,14 @@ public class HandleLobbyUI : MonoBehaviour
     {
         updateLogObj.SetActive(true);
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
     }
 
     public void CloseUpdateLogUI()
     {
         updateLogObj.SetActive(false);
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
     }
 
     #endregion
@@ -326,12 +340,14 @@ public class HandleLobbyUI : MonoBehaviour
     {
         creditsObj.SetActive(true);
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
     }
 
     public void CloseCreditsUI()
     {
         creditsObj.SetActive(false);
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
     }
 
     #endregion
@@ -342,12 +358,14 @@ public class HandleLobbyUI : MonoBehaviour
     {
         controlsUI.SetActive(true);
         playerStatsUI.SetActive(false);
+        globalLeaderboardUI.SetActive(false);
     }
 
     public void CloseControlsUI()
     {
         controlsUI.SetActive(false);
         playerStatsUI.SetActive(true);
+        globalLeaderboardUI.SetActive(true);
     }
 
     #endregion

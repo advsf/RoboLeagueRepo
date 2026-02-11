@@ -9,7 +9,7 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 #endif
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
 using Steamworks;
 #endif
 
@@ -22,7 +22,7 @@ public class HandlePlayerAuthentication : MonoBehaviour
 
     public string _playerId;
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
 
     private Callback<GetTicketForWebApiResponse_t> m_AuthTicketForWebApiResponseCallback;
     private string m_SessionTicket;
@@ -50,9 +50,9 @@ public class HandlePlayerAuthentication : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID
         SignInWithGooglePlayGames();
-#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
         if (SteamManager.Initialized)
             SignInWithSteam();
 #endif
@@ -61,7 +61,9 @@ public class HandlePlayerAuthentication : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError(e);
-            Application.Quit();
+
+            _authCompletionSource.TrySetResult(true);
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
 
         if (AuthenticationService.Instance.IsSignedIn)
@@ -74,9 +76,10 @@ public class HandlePlayerAuthentication : MonoBehaviour
 
     #region Google Play Games (Android)
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID
     private void SignInWithGooglePlayGames()
     {
+        PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 
         PlayGamesPlatform.Instance.Authenticate((success) =>
@@ -85,7 +88,7 @@ public class HandlePlayerAuthentication : MonoBehaviour
             {
                 Debug.Log("Google Play Games Login Successful. Requesting Server Auth Code...");
                 
-                PlayGamesPlatform.Instance.GetServerAuthCode((code) =>
+                PlayGamesPlatform.Instance.RequestServerSideAccess(true, (code) =>
                 {
                     _ = ExchangeGoogleCodeForUnityAuth(code);
                 });
@@ -120,7 +123,7 @@ public class HandlePlayerAuthentication : MonoBehaviour
 
     #region Steam Login (Desktop)
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX 
     private void SignInWithSteam()
     {
         m_AuthTicketForWebApiResponseCallback = Callback<GetTicketForWebApiResponse_t>.Create(OnAuthCallback);
