@@ -42,6 +42,7 @@ public class SpawnButtonInfo : NetworkBehaviour
             ServerManager.instance.RequestSpawnServerRpc(buttonTeam, buttonPosition);
 
         canvaObj.SetActive(false);
+        StartUIManager.instance.EnableDefaultCamera(false);
     } 
 
     public void SetAsTaken(string username)

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using UnityEngine.Rendering.Universal;
 
 public class CameraLook : NetworkBehaviour
 {
@@ -24,6 +25,7 @@ public class CameraLook : NetworkBehaviour
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
+    [SerializeField] private UniversalAdditionalCameraData camData;
 
     private float mouseX;
     private float mouseY;
@@ -70,6 +72,8 @@ public class CameraLook : NetworkBehaviour
         HandleCursorSettings.instance.EnableCursor(false, true);
 
         UpdateCamFOV();
+
+        UpdatePostProcessing();
     }
 
     private void LateUpdate()
@@ -148,5 +152,12 @@ public class CameraLook : NetworkBehaviour
     public void UpdateCamFOV()
     {
         cam.fieldOfView = FBPP.GetFloat("CameraFOV");
+    }
+
+    private void UpdatePostProcessing()
+    {
+        bool isEnabled = FBPP.GetInt("PostProcessing", 1) == 1;
+
+        camData.renderPostProcessing = isEnabled;
     }
 }

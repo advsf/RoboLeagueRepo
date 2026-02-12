@@ -159,7 +159,7 @@ public class HandleLeaderboardUI : NetworkBehaviour
         }
     }
 
-    public bool IsLeaderboardAct()
+    public bool IsLeaderboardActive()
     {
         return leaderboardParent.gameObject.activeInHierarchy;
     }

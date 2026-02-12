@@ -280,7 +280,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305987293194
-    m_Localized: AJUSTES DE LA CAMISETA
+    m_Localized: AJUSTES DE CAMISETA
     m_Metadata:
       m_Items: []
   - m_Id: 20305987293195
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597767
-    m_Localized: HABILITAR LA CAPACIDAD
+    m_Localized: HABILITAR CAPACIDAD
     m_Metadata:
       m_Items: []
   - m_Id: 769949092597768
@@ -1161,6 +1161,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7929844736774144
     m_Localized: SPRINT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628074586112
+    m_Localized: "HABILITAR MOVIMIENTO ANAL\xD3GICO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628133306368
+    m_Localized: HABILITAR EL POSTPROCESAMIENTO
     m_Metadata:
       m_Items: []
   references:

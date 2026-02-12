@@ -1,10 +1,14 @@
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections;
 
 public class StartUIManager : NetworkBehaviour
 {
+    public static StartUIManager instance;
+
     [Header("References")]
     [SerializeField] private GameObject startUIObj;
+    [SerializeField] private Camera defaultCamera;
 
     [Header("Kick Players UI References")]
     [SerializeField] private GameObject kickPlayersButtonUIObj;
@@ -12,16 +16,21 @@ public class StartUIManager : NetworkBehaviour
     [SerializeField] private GameObject kickPlayersButtonPrefab;
     [SerializeField] private Transform kickPlayersParent;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
 
+        if (!IsHost || ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
+            return;
+
         kickPlayersUIObj.SetActive(false);
 
         kickPlayersButtonUIObj.SetActive(IsHost);
-
-        if (!IsHost)
-            return;
 
         NetworkManager.Singleton.OnClientConnectedCallback += Singleton_OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += Singleton_OnClientDisconnectCallback;
@@ -31,7 +40,9 @@ public class StartUIManager : NetworkBehaviour
     {
         base.OnNetworkDespawn();
 
-        if (!IsHost)
+        instance = null;
+
+        if (!IsHost || ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
             return;
 
         NetworkManager.Singleton.OnClientConnectedCallback -= Singleton_OnClientConnectedCallback;
@@ -52,6 +63,16 @@ public class StartUIManager : NetworkBehaviour
 
     private void OnEnable()
     {
+        StartCoroutine(DelayedOnEnable());
+    }
+
+    private IEnumerator DelayedOnEnable()
+    {
+        yield return new WaitUntil(() => ServerManager.instance != null);
+
+        if (ServerManager.instance.isPracticeServer || ServerManager.instance.isTutorialServer)
+            yield break;
+
         // only the host should be able to kick
         if (!IsHost)
             kickPlayersButtonUIObj.SetActive(false);
@@ -71,6 +92,11 @@ public class StartUIManager : NetworkBehaviour
 
             kickPlayersUIObj.SetActive(false);
         }
+    }
+
+    public void EnableDefaultCamera(bool condition)
+    {
+        defaultCamera.enabled = condition;
     }
 
     public void OpenSettingsMenu()

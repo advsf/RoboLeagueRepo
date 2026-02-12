@@ -270,7 +270,7 @@ public class ServerManager : NetworkBehaviour
                 HandleScoreboardUI.instance.EnableStartGameHelperTextUI(true);
 
                 if (Application.isMobilePlatform)
-                    HandleScoreboardUI.instance.EnableMobileStartGameBututon(spawnedPlayerCount.Value > 1 && !didStartGame.Value);
+                    HandleScoreboardUI.instance.EnableMobileStartGameButton(spawnedPlayerCount.Value > 1);
             }
         }
 
@@ -976,6 +976,9 @@ public class ServerManager : NetworkBehaviour
     {
         if (isStartingGame.Value)
             return;
+
+        if (Application.isMobilePlatform)
+            HandleScoreboardUI.instance.EnableMobileStartGameButton(false);
 
         StartCoroutine(HandleStartingGame());
     }

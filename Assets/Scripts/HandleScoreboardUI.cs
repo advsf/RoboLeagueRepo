@@ -50,7 +50,7 @@ public class HandleScoreboardUI : NetworkBehaviour
         if (!IsServer)
             EnableStartGameHelperTextUI(false);
 
-        EnableMobileStartGameBututon(false);
+        EnableMobileStartGameButton(false);
 
         HandleMobileStartingGameText();
     }
@@ -85,7 +85,11 @@ public class HandleScoreboardUI : NetworkBehaviour
 
     public void EnableStartGameHelperTextUI(bool condition) => startGameHelpText.enabled = condition;
 
-    public void EnableMobileStartGameBututon(bool condition) => mobileStartButton.SetActive(condition);
+    public void EnableMobileStartGameButton(bool condition)
+    {
+        Debug.Log("calling!");
+        mobileStartButton.SetActive(condition);
+    }
 
     public void ChangeStartGameHelperTextUI(string text) => startGameHelpText.text = text;
 

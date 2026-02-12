@@ -1164,6 +1164,14 @@ MonoBehaviour:
     m_Localized: CORRIDA
     m_Metadata:
       m_Items: []
+  - m_Id: 9475628074586112
+    m_Localized: "ATIVAR MOVIMENTO ANAL\xD3GICO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628133306368
+    m_Localized: "ATIVAR P\xD3S-PROCESSAMENTO"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

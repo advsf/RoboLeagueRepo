@@ -73,6 +73,9 @@ public class HandleConnections : NetworkBehaviour
 
         hasHandledQuit = true;
 
+        if (StartUIManager.instance != null)
+            StartUIManager.instance.EnableDefaultCamera(true);
+
         if (sessionHolder.ActiveSession != null)
         {
             try

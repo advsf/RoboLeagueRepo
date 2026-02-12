@@ -238,6 +238,7 @@ public class HandleKicking : NetworkBehaviour
     {
         isMobile = Application.isMobilePlatform && !HandleKBMSupport.instance.IsUsingKBM;
     }
+
     private void InitializeUI()
     {
         shootingBarSlider.value = 0;
@@ -261,7 +262,22 @@ public class HandleKicking : NetworkBehaviour
             nearestBallSync = BallManager.instance.mainBallSync;
 
         // curve the ball
-        joystickVal = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
+        if (isMobile)
+        {
+            if (PlayerInputReference.instance.controls.Gameplay.MobileShooting.WasPressedThisFrame())
+            {
+                joystickVal = Vector2.zero;
+            }
+
+            if (IsChargingKick)
+            {
+                Vector2 currentInput = PlayerInputReference.instance.controls.Gameplay.MobileCurve.ReadValue<Vector2>();
+                if (currentInput.magnitude > FBPP.GetFloat("ShootingJoystickDeadzone"))
+                {
+                    joystickVal = currentInput;
+                }
+            }
+        }
 
         // spawn the local ball
         if (PlayerInputReference.instance.controls.Gameplay.SpawnBall.WasPressedThisFrame() && !ServerManager.instance.didStartGame.Value)

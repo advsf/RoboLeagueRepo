@@ -50,6 +50,9 @@ public class HandleSettings : MonoBehaviour
     [SerializeField] private Slider dribbleJoystickDeadzoneSlider;
     [SerializeField] private TMP_InputField dribbleJoystickDeadzoneInputField;
 
+    [Header("Analog Movement Reference")]
+    [SerializeField] private Toggle analogMovementToggle;
+
     [Header("Mouse Control Reference")]
     [SerializeField] private Toggle invertVerticalToggle;
     [SerializeField] private Toggle invertHorizontalToggle;
@@ -121,6 +124,9 @@ public class HandleSettings : MonoBehaviour
     [Header("Quality Settings")]
     [SerializeField] private TextMeshProUGUI qualitySettingText;
     private int currentQualitySettings = 0; // 0 - fancy, 1 - balanced, 2 - performance
+
+    [Header("Post Processing Settigns")]
+    [SerializeField] private Toggle postProcToggle;
 
     [Header("Sens Reference")]
     [SerializeField] private Slider renderScaleSlider;
@@ -232,6 +238,9 @@ public class HandleSettings : MonoBehaviour
         dribbleJoystickDeadzoneSlider.value = 0.05f;
         UpdateDribblingJoystickDeadzoneThroughSlider();
 
+        analogMovementToggle.isOn = true;
+        SetAnalogMovement();
+
         // create mouse invert control values
         invertVerticalToggle.isOn = false;
         invertHorizontalToggle.isOn = false;
@@ -335,6 +344,10 @@ public class HandleSettings : MonoBehaviour
         currentAntiAliasingSettings = 0;
         UpdateAntiAliasing();
 
+        // post proc
+        postProcToggle.isOn = true;
+        UpdatePostProc();
+
         // motion blur
         motionBlurToggle.isOn = false;
         UpdateMotionBlur();
@@ -369,6 +382,9 @@ public class HandleSettings : MonoBehaviour
         // dribbling joystick deadzone
         dribbleJoystickDeadzoneSlider.value = FBPP.GetFloat("DribblingJoystickDeadzone", 0.05f);
         dribbleJoystickDeadzoneInputField.text = FBPP.GetFloat("DribblingJoystickDeadzone", 0.05f).ToString("F2");
+
+        // analog movement
+        analogMovementToggle.isOn = FBPP.GetInt("AnalogMovement", 1) == 1;
 
         // mouse invert UI
         invertVerticalToggle.isOn = FBPP.GetInt("InvertVerticalMouse", 1) == -1;
@@ -470,6 +486,10 @@ public class HandleSettings : MonoBehaviour
         // anti aliasing setting
         currentAntiAliasingSettings = FBPP.GetInt("AntiAliasing", !Application.isMobilePlatform ? 0 : 1);
         UpdateAntiAliasing();
+
+        // post processing
+        postProcToggle.isOn = FBPP.GetInt("PostProcessing", 1) == 1;
+        UpdatePostProc();
 
         // motion blur
         motionBlurToggle.isOn = FBPP.GetInt("MotionBlur", 1) == 1;
@@ -672,6 +692,18 @@ public class HandleSettings : MonoBehaviour
             dribbleJoystickDeadzoneSlider.value = deadzone;
         }
     }
+
+    #endregion
+
+    #region Analog Movement Settings
+
+    public void SetAnalogMovement()
+    {
+        // analog movement makes the characters speed match how far the joystick is
+        FBPP.SetInt("AnalogMovement", invertVerticalToggle.isOn ? 1 : -1); // 1 = on, -1 = off
+        FBPP.Save();
+    }
+
 
     #endregion
 
@@ -1220,6 +1252,38 @@ public class HandleSettings : MonoBehaviour
         var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
 
         urp.renderScale = FBPP.GetFloat("RenderScale");
+    }
+
+    #endregion
+
+    #region Enable Post Proc Settings
+
+    public void UpdatePostProc()
+    {
+        // 0 = off, 1 = on
+        if (postProcToggle.isOn)
+        {
+            UniversalAdditionalCameraData[] allCameras = FindObjectsByType<UniversalAdditionalCameraData>(FindObjectsSortMode.None);
+            foreach (var camData in allCameras)
+            {
+                camData.renderPostProcessing = true;
+            }
+
+            FBPP.SetInt("PostProcessing", 1);
+            FBPP.Save();
+        }
+
+        else
+        {
+            UniversalAdditionalCameraData[] allCameras = FindObjectsByType<UniversalAdditionalCameraData>(FindObjectsSortMode.None);
+            foreach (var camData in allCameras)
+            {
+                camData.renderPostProcessing = false;
+            }
+
+            FBPP.SetInt("PostProcessing", 0);
+            FBPP.Save();
+        }
     }
 
     #endregion

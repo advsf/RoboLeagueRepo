@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 42983524}
   - component: {fileID: 42983526}
   - component: {fileID: 42983525}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Resident Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1303,7 +1303,7 @@ Transform:
   m_GameObject: {fileID: 57805491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 238.28, y: 57.2, z: -19.8}
+  m_LocalPosition: {x: 242.3, y: 57.2, z: -19.8}
   m_LocalScale: {x: 491.15, y: 125.81842, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1316,7 +1316,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57805491}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 184ddf7deeed77d498ea6ed1d438b006, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2040,6 +2040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   startUIObj: {fileID: 1594199770}
+  defaultCamera: {fileID: 1717008704}
   kickPlayersButtonUIObj: {fileID: 1796812043}
   kickPlayersUIObj: {fileID: 922273511}
   kickPlayersButtonPrefab: {fileID: 2909355239284597475, guid: a595afe63f22e9b4499be441810c8ba8,
@@ -2162,7 +2163,7 @@ GameObject:
   - component: {fileID: 91705370}
   - component: {fileID: 91705372}
   - component: {fileID: 91705371}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Highway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3336,7 +3337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3473,7 +3474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.87058824}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3572,7 +3573,7 @@ GameObject:
   - component: {fileID: 217925785}
   - component: {fileID: 217925787}
   - component: {fileID: 217925786}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Garden Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4590,7 +4591,7 @@ GameObject:
   - component: {fileID: 305198062}
   - component: {fileID: 305198064}
   - component: {fileID: 305198063}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.003 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4951,7 +4952,7 @@ GameObject:
   - component: {fileID: 351202638}
   - component: {fileID: 351202640}
   - component: {fileID: 351202639}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Mega Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5111,7 +5112,7 @@ GameObject:
   - component: {fileID: 355814545}
   - component: {fileID: 355814547}
   - component: {fileID: 355814546}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6815,7 +6816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6952,7 +6953,7 @@ GameObject:
   - component: {fileID: 511413875}
   - component: {fileID: 511413877}
   - component: {fileID: 511413876}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Pipe Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7206,7 +7207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7635,7 +7636,7 @@ GameObject:
   - component: {fileID: 559735775}
   - component: {fileID: 559735777}
   - component: {fileID: 559735776}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Suburban Housing.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7773,7 +7774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10973,7 +10974,7 @@ GameObject:
   - component: {fileID: 856937383}
   - component: {fileID: 856937385}
   - component: {fileID: 856937384}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11653,7 +11654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11805,7 +11806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 0.9647059}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12009,7 +12010,7 @@ GameObject:
   - component: {fileID: 964253169}
   - component: {fileID: 964253171}
   - component: {fileID: 964253170}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Mega Pipe.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12206,7 +12207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12677,8 +12678,8 @@ Transform:
   m_GameObject: {fileID: 1020236239}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5547, y: 1.0475, z: -14.6537}
-  m_LocalScale: {x: 724.5892, y: 0.7153449, z: -584.1326}
+  m_LocalPosition: {x: -120.1363, y: 1, z: 82.4789}
+  m_LocalScale: {x: 971.9639, y: 0.7153449, z: -872.0775}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -13273,7 +13274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -14195,7 +14196,7 @@ GameObject:
   - component: {fileID: 1141618992}
   - component: {fileID: 1141618994}
   - component: {fileID: 1141618993}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Seat Arrays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15188,7 +15189,7 @@ Transform:
   m_GameObject: {fileID: 1210289560}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -223.036, y: 57.2, z: 27.6}
+  m_LocalPosition: {x: -239.7, y: 57.2, z: 27.6}
   m_LocalScale: {x: 491.15, y: 125.81842, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15201,7 +15202,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210289560}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 184ddf7deeed77d498ea6ed1d438b006, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -15494,7 +15495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15546,7 +15547,7 @@ Transform:
   m_GameObject: {fileID: 1248805306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 57.2, z: 149.6}
+  m_LocalPosition: {x: 0, y: 57.2, z: 161}
   m_LocalScale: {x: 491.15, y: 125.81842, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15559,7 +15560,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248805306}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 184ddf7deeed77d498ea6ed1d438b006, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -16181,7 +16182,7 @@ GameObject:
   - component: {fileID: 1284725893}
   - component: {fileID: 1284725895}
   - component: {fileID: 1284725894}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Outter Sidewall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17057,7 +17058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19108,7 +19109,7 @@ GameObject:
   - component: {fileID: 1471796225}
   - component: {fileID: 1471796227}
   - component: {fileID: 1471796226}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20163,7 +20164,7 @@ GameObject:
   - component: {fileID: 1576956269}
   - component: {fileID: 1576956267}
   - component: {fileID: 1576956271}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Field Netted Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20493,7 +20494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -20998,7 +20999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -21344,7 +21345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.41960785}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -22432,7 +22433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -22789,7 +22790,7 @@ GameObject:
   - component: {fileID: 1760667296}
   - component: {fileID: 1760667298}
   - component: {fileID: 1760667297}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22989,7 +22990,7 @@ GameObject:
   - component: {fileID: 1767752391}
   - component: {fileID: 1767752393}
   - component: {fileID: 1767752392}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Field Raw Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23615,7 +23616,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797472157}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 184ddf7deeed77d498ea6ed1d438b006, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -24165,7 +24166,7 @@ GameObject:
   - component: {fileID: 1840386431}
   - component: {fileID: 1840386430}
   - component: {fileID: 1840386429}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Inner Sidewall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24318,7 +24319,7 @@ GameObject:
   - component: {fileID: 1843275479}
   - component: {fileID: 1843275481}
   - component: {fileID: 1843275480}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Stairs Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25118,7 +25119,7 @@ GameObject:
   - component: {fileID: 1893536315}
   - component: {fileID: 1893536319}
   - component: {fileID: 1893536322}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Field Netted Fence.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25363,7 +25364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1904741076}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25379,7 +25380,7 @@ Transform:
   m_GameObject: {fileID: 1904741075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.806, y: 0.8, z: -10.4}
+  m_LocalPosition: {x: 3, y: 0.8, z: -10.4}
   m_LocalScale: {x: 3.4368396, y: 3.4368396, z: 3.4368396}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25457,7 +25458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.7490196}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -26115,7 +26116,7 @@ GameObject:
   - component: {fileID: 1969548227}
   - component: {fileID: 1969548229}
   - component: {fileID: 1969548228}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Seat Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26445,7 +26446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.504717, g: 0.9080543, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -26594,7 +26595,7 @@ GameObject:
   - component: {fileID: 1985106835}
   - component: {fileID: 1985106837}
   - component: {fileID: 1985106836}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Summer / Hedge Wall Cutted.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28043,7 +28044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.85882354}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -28078,7 +28079,7 @@ GameObject:
   - component: {fileID: 2061599424}
   - component: {fileID: 2061599426}
   - component: {fileID: 2061599425}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: OtherFenceCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28218,7 +28219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

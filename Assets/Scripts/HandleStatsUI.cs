@@ -56,10 +56,6 @@ public class HandleStatsUI : NetworkBehaviour
         FrameTimingManager.CaptureFrameTimings();
         FrameTimingManager.GetLatestTimings(1, timings);
 
-        float cpuMs = (float)timings[0].cpuFrameTime;
-        float gpuMs = (float)timings[0].gpuFrameTime;
-
-        // Using the averaged _deltaTime for a more stable FPS reading
         float fps = 1.0f / _deltaTime;
 
         long heapMem = Profiler.GetMonoUsedSizeLong() / 1048576;
@@ -71,8 +67,6 @@ public class HandleStatsUI : NetworkBehaviour
         statsText.text =
         $"<b>PERFORMANCE</b>\n" +
         $"FPS: {fps:0.}\n" +
-        $"CPU: {cpuMs:0.0} ms\n" +
-        $"GPU: {gpuMs:0.0} ms\n" +
         $"MEM (Heap/Total): {heapMem}MB / {totalMem}MB\n" +
         $"-------------------\n" +
         $"<b>NETWORK</b>\n" +

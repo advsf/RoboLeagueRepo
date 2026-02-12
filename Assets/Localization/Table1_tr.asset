@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098888
-    m_Localized: "HUD'\u0131 ETK\u0130NLE\u015ET\u0130R"
+    m_Localized: "HUD'u ETK\u0130NLE\u015ET\u0130R"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098889
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098894
-    m_Localized: "FPS'yi s\u0131n\u0131rla"
+    m_Localized: "FPS'Y\u0130 SINIRLA"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098895
@@ -112,11 +112,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098898
-    m_Localized: "RENDER \xD6L\xC7E\u011E\u0130"
+    m_Localized: "\u0130\u015ELEME \xD6L\xC7E\u011E\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098899
-    m_Localized: "KISIM YUMU\u015EATMA"
+    m_Localized: KISIM AZALTMA
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098900
@@ -140,7 +140,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098905
-    m_Localized: "DUYGU SES SEV\u0130YES\u0130"
+    m_Localized: "DUYGUSAL SES SEV\u0130YES\u0130"
     m_Metadata:
       m_Items: []
   - m_Id: 20305983098906
@@ -703,7 +703,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512789381124
-    m_Localized: "TAKIM ARKADA\u015EININ TOPUNU YAKALAYAMIYORUM!"
+    m_Localized: "TAKIM ARKADA\u015EIMIN TOPUNU YAKALAYAMIYORUM!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575424
@@ -715,7 +715,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575426
-    m_Localized: "AL\xC7AK TOPLARI KAR\u015EILAYAMAM!"
+    m_Localized: "AL\xC7AK TOPLARI FERAGAT EDEMEZS\u0130N\u0130Z!"
     m_Metadata:
       m_Items: []
   - m_Id: 1133512793575427
@@ -771,7 +771,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300736
-    m_Localized: YARATMA AYARLARI
+    m_Localized: "OLU\u015ETURMA AYARLARI"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300737
@@ -779,11 +779,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300738
-    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VEREREK BA\u015ELATMA"
+    m_Localized: "D\xDC\u015E\xDCK TEKL\u0130F VERME"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300739
-    m_Localized: SPAWN HIGH BALL
+    m_Localized: "Y\xDCKSEK TOP YARATMAK"
     m_Metadata:
       m_Items: []
   - m_Id: 1155336189300740
@@ -1189,6 +1189,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7929844736774144
     m_Localized: SPRINT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628074586112
+    m_Localized: "ANALOG HAREKET\u0130 ETK\u0130NLE\u015ET\u0130R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628133306368
+    m_Localized: "\u0130\u015ELEME SONRASI \u0130\u015ELEMLER\u0130 ETK\u0130NLE\u015ET\u0130R"
     m_Metadata:
       m_Items: []
   references:

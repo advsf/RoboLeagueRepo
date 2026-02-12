@@ -229,13 +229,13 @@ public class PlayerMovement : NetworkBehaviour
     {
         inputDirection2D = PlayerInputReference.instance.controls.Gameplay.Move.ReadValue<Vector2>();
 
-        if (inputDirection2D.magnitude > 0.05f) 
+        if (FBPP.GetInt("AnalogMovement", 1) == 0)
         {
-            inputDirection2D = inputDirection2D.normalized;
-        }
-        else
-        {
-            inputDirection2D = Vector2.zero;
+            if (inputDirection2D.magnitude > 0.05f)
+                inputDirection2D = inputDirection2D.normalized;
+
+            else
+                inputDirection2D = Vector2.zero;
         }
     }
 

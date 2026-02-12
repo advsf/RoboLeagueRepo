@@ -1027,6 +1027,14 @@ MonoBehaviour:
     m_Key: SPRINT
     m_Metadata:
       m_Items: []
+  - m_Id: 9475628074586112
+    m_Key: ENABLE ANALOG MOVEMENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9475628133306368
+    m_Key: ENABLE POST PROCESSING
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
