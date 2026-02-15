@@ -34,9 +34,7 @@ public class HandleChatbox : NetworkBehaviour
 
     [Header("UI References")]
     [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TMP_InputField mobileInputField;
     [SerializeField] private TextMeshProUGUI currentChatOptionText;
-    [SerializeField] private TextMeshProUGUI currentMobileChatOptionText;
 
     [Header("Chat Settings")]
     [SerializeField] private float maxTimeBeforeClosedChatClosesAfterNoMessages = 15;
@@ -93,7 +91,6 @@ public class HandleChatbox : NetworkBehaviour
 
         // limit
         inputField.characterLimit = maxCharacterLimit;
-        mobileInputField.characterLimit = maxCharacterLimit;
     }
 
     private void OnEnable()
@@ -340,23 +337,12 @@ public class HandleChatbox : NetworkBehaviour
 
         HandleTrackingAmountOfTextSent();
 
-        Debug.Log("sent!");
-
         SendTextServerRpc(isChattingGlobally, PlayerInfo.instance.spectatingObj.activeInHierarchy,
             PlayerInfo.instance.rankIndex.Value, PlayerInfo.instance.currentTeam.Value.ToString(), HandlePlayerData.instance.GetUsername(), PlayerInfo.instance.currentPosition.Value.ToString(), text);
 
         // reset the inputfield text
-        if (!Application.isMobilePlatform || HandleKBMSupport.instance.IsUsingKBM)
-        {
-            inputField.text = "";
-            inputField.ActivateInputField();
-        }
-
-        else
-        {
-            mobileInputField.text = "";
-            mobileInputField.DeactivateInputField();
-        }
+        inputField.text = "";
+        inputField.ActivateInputField();
     }
 
     private void OnInputSubmit(string text)
@@ -365,20 +351,6 @@ public class HandleChatbox : NetworkBehaviour
             return;
 
         SendChatMessage(text);
-    }
-
-    public void SendMobileChatMessage()
-    {
-        SendChatMessage(mobileInputField.text);
-        mobileInputField.gameObject.SetActive(false);
-
-        // this is so that the player can actually press the send button
-        // without the touchpad raycast target blocking it
-        if (PlayerInfo.instance.playingObj.activeInHierarchy)
-            HandleMobileUI.instance.EnableTouchPadObj(true);
-
-        else if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
-            HandleSpectatingMobileUI.instance.EnableTouchPadObj(true);
     }
 
     [ServerRpc]
@@ -483,20 +455,5 @@ public class HandleChatbox : NetworkBehaviour
         }
 
         chatbox.HandleFormattingTexts(false, false, -1, "", "", "", text, clientId, true); // note that here client id can be whatever since the text will be in yellow no matter what
-    }
-
-    public void HandleMobileChatToggleInput()
-    {
-        if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
-            return;
-
-        isChattingGlobally = !isChattingGlobally;
-        currentMobileChatOptionText.text = isChattingGlobally ? "(ALL)" : "(TEAM)";
-    }
-
-    public void SetMobileChatToggleInputToAll()
-    {
-        isChattingGlobally = true;
-        currentMobileChatOptionText.text = "(ALL)";
     }
 }

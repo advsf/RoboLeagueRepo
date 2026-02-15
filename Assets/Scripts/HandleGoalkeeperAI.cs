@@ -518,43 +518,6 @@ public class HandleGoalkeeperAI : NetworkBehaviour
         }
         return false;
     }
-
-    private bool PredictBallTrajectory(out Vector3 landingPoint)
-    {
-        landingPoint = Vector3.zero;
-
-        if (ballRb.linearVelocity.magnitude < 0.2f)
-            return false;
-
-        Vector3 directionToGoal = (goalLine.position - ball.position).normalized;
-        if (Vector3.Dot(ballRb.linearVelocity.normalized, directionToGoal) < 0.1f)
-            return false;
-
-        Vector3 currentPosition = ball.position;
-        Vector3 currentVelocity = ballRb.linearVelocity;
-        Vector3 spinDirection = ballRb.angularVelocity;
-        float ballMass = ballRb.mass;
-        Vector3 initialRelativePosition = currentPosition - goalLine.position;
-
-        for (int i = 0; i < predictionSteps; i++)
-        {
-            Vector3 magnusForce = Vector3.Cross(spinDirection, currentVelocity) * magnusForceMultiplier;
-            Vector3 downForce = Vector3.down * downForceMultiplier;
-            Vector3 acceleration = (magnusForce + downForce + Physics.gravity) / ballMass;
-            currentVelocity += acceleration * predictionTimeStep;
-            currentVelocity *= (1f - ballDrag * predictionTimeStep);
-            currentPosition += currentVelocity * predictionTimeStep;
-            Vector3 currentRelativePosition = currentPosition - goalLine.position;
-
-            if (Mathf.Sign(Vector3.Dot(currentRelativePosition, goalLine.forward)) != Mathf.Sign(Vector3.Dot(initialRelativePosition, goalLine.forward)))
-            {
-                landingPoint = new Vector3(currentPosition.x, Mathf.Clamp(currentPosition.y, 0f, 2.5f), currentPosition.z);
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void HandleSavingState()
     {
         if (isSaving)

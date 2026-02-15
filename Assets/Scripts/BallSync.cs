@@ -79,16 +79,47 @@ public class BallSync : NetworkBehaviour
     [Header("Server Validation")]
     [SerializeField] private SphereCollider ballCollider;
 
-    [Header("Server-Side Arbitration")]
-    [SerializeField] private float kickCooldownDuration = 0.1f;
-    private double _lastValidKickServerTime = -1.0;
-    private double _lastValidKickRealTime = -1.0;
-    private int _lastValidKickTick = -1;
+    [Header("Server-Side Arbitration - Force Summation")]
+    [SerializeField] private float kickAccumulationWindow = 0.1f;
+    private int _lastProcessedTick = -1;
 
     // prevent lag switching (dirty little cheaters)
     private const double MAX_ACCEPTABLE_LAG = 0.800;
 
-    private bool _isKickOnCooldown = false;
+    [Header("Client Prediction - Ping Adaptive")]
+    private bool _hasLocalPrediction = false;
+    private float _localPredictionStartTime = -1f;
+    [SerializeField] private float basePredictionBlendDuration = 1.5f; // Base blend duration at target ping
+    [SerializeField] private AnimationCurve predictionBlendCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    // Base correction parameters (tuned for target ping)
+    [SerializeField] private float baseSmallErrorThreshold = 0.5f;
+    [SerializeField] private float baseLargeErrorThreshold = 3.0f;
+    [SerializeField] private float baseSmallErrorCorrectionSpeed = 0.12f;
+    [SerializeField] private float baseLargeErrorCorrectionSpeed = 0.5f; // Reduced from 0.8
+
+    // Velocity correction (separate from position - should remain accurate)
+    [SerializeField] private float baseVelocityCorrectionSpeed = 0.35f; // Higher than position correction
+    [SerializeField] private float velocitySnapThreshold = 0.15f; // Below this error, snap velocity immediately
+
+    // Ping adaptation settings
+    [SerializeField] private float targetPing = 90f; // Ping at which base parameters are tuned
+    [SerializeField] private float maxPingForAdaptation = 500f;
+    [SerializeField] private float highPingPositionDamping = 0.4f; // Reduce POSITION correction at high ping
+    [SerializeField] private float highPingVelocityDamping = 0.8f; // Keep velocity corrections much stronger
+    [SerializeField] private float pingErrorThresholdScale = 1.5f; // Scale error thresholds with ping
+    [SerializeField] private float rttSmoothingFactor = 0.1f; // Smooth RTT changes
+
+    private float _currentRTT = 0f;
+    private float _smoothedRTT = 90f;
+
+    // Adaptive thresholds and speeds (calculated each frame)
+    private float _adaptiveSmallErrorThreshold;
+    private float _adaptiveLargeErrorThreshold;
+    private float _adaptiveSmallCorrectionSpeed;
+    private float _adaptiveLargeCorrectionSpeed;
+    private float _adaptiveVelocityCorrectionSpeed;
+    private float _adaptiveBlendDuration;
 
     private NetworkVariable<StateSnapshot> _serverState = new NetworkVariable<StateSnapshot>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
@@ -119,8 +150,9 @@ public class BallSync : NetworkBehaviour
         BallManager.instance.RegisterBall(this);
 
         if (!IsServer)
+        {
             _serverState.OnValueChanged += OnServerStateChanged;
-
+        }
         else
         {
             _contestedKicks = new List<ContestedKickRequest>();
@@ -143,10 +175,11 @@ public class BallSync : NetworkBehaviour
     {
         if (!IsServer)
         {
-            // client does not simulate gravity
-            ballRb.useGravity = false;
+            // client simulates its own physics for prediction
+            ballRb.useGravity = true;
+            // Client needs curve multiplier for local Magnus effect prediction
+            ballCurveMultiplier = ServerManager.instance.ballCurveMultiplier.Value;
         }
-
         else
         {
             ballCurveMultiplier = ServerManager.instance.ballCurveMultiplier.Value;
@@ -174,7 +207,7 @@ public class BallSync : NetworkBehaviour
         if (!IsSpawned)
             return;
 
-        // only the server should simulate physics to prevent desyncs
+        // server simulates physics
         if (IsServer)
         {
             ProcessContestedKicks();
@@ -185,6 +218,18 @@ public class BallSync : NetworkBehaviour
                 ApplySharedPhysics();
                 _serverState.Value = GetCurrentState();
             }
+        }
+        // client simulates its own physics when it has prediction active
+        else if (_hasLocalPrediction && !ballRb.isKinematic)
+        {
+            HandleSpinDecay();
+            ApplySharedPhysics();
+        }
+
+        // Update ping-adaptive parameters on clients
+        if (!IsServer)
+        {
+            UpdatePingAdaptiveParameters();
         }
     }
 
@@ -201,7 +246,7 @@ public class BallSync : NetworkBehaviour
         kickPayload.ClientBallVelocity = ballRb.linearVelocity;
 
         // handle offsides
-        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && countOffside)
+        if (!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && !ServerManager.instance.didStartGame.Value && countOffside)
         {
             // if someone is offside
             if (HandleOffsides.instance.IsPlayerOffside(kickerId))
@@ -216,8 +261,16 @@ public class BallSync : NetworkBehaviour
         }
 
         // reset all potential offsides
-        else if ((!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value) || !countOffside)
+        else if ((!ServerManager.instance.isPracticeServer && !ServerManager.instance.isTutorialServer && !ServerManager.instance.isInHalftime.Value && !ServerManager.instance.didStartGame.Value) || !countOffside)
             HandleOffsides.instance.ClearPotentialOffsidesIdListClientRpc();
+
+        // CLIENT-SIDE PREDICTION: Apply kick locally immediately
+        if (!IsServer)
+        {
+            ApplyKickMechanicsLocally(kickPayload);
+            _hasLocalPrediction = true;
+            _localPredictionStartTime = Time.time;
+        }
 
         if (IsServer)
             HandleKickRequestServerSide(kickPayload, (ulong)kickerId, estimatedServerTime);
@@ -261,22 +314,147 @@ public class BallSync : NetworkBehaviour
 
     #region State Synchronization
 
+    private void UpdatePingAdaptiveParameters()
+    {
+        // Get current RTT in milliseconds
+        // Calculate round-trip time by comparing local time to server time
+        double localTime = NetworkManager.Singleton.LocalTime.Time;
+        double serverTime = NetworkManager.Singleton.ServerTime.Time;
+        _currentRTT = (float)((localTime - serverTime) * 2000f); // *2 for round trip, *1000 for milliseconds
+
+        // Smooth the RTT to avoid jitter
+        _smoothedRTT = Mathf.Lerp(_smoothedRTT, _currentRTT, rttSmoothingFactor);
+
+        // Clamp to reasonable values
+        _smoothedRTT = Mathf.Clamp(_smoothedRTT, 0f, maxPingForAdaptation);
+
+        // Calculate ping factor (1.0 at target ping, higher at higher ping)
+        float pingFactor = Mathf.Clamp01(_smoothedRTT / targetPing);
+
+        // Scale error thresholds with ping - allow larger errors at high ping
+        float errorScale = 1f + (pingFactor * pingErrorThresholdScale);
+        _adaptiveSmallErrorThreshold = baseSmallErrorThreshold * errorScale;
+        _adaptiveLargeErrorThreshold = baseLargeErrorThreshold * errorScale;
+
+        // Reduce POSITION correction aggressiveness at high ping to prevent rubber banding
+        float positionDamping = Mathf.Lerp(1f, highPingPositionDamping, Mathf.Pow(pingFactor, 2f));
+        _adaptiveSmallCorrectionSpeed = baseSmallErrorCorrectionSpeed * positionDamping;
+        _adaptiveLargeCorrectionSpeed = baseLargeErrorCorrectionSpeed * positionDamping;
+
+        // Keep VELOCITY corrections stronger - ball should maintain natural motion
+        float velocityDamping = Mathf.Lerp(1f, highPingVelocityDamping, Mathf.Pow(pingFactor, 1.5f));
+        _adaptiveVelocityCorrectionSpeed = baseVelocityCorrectionSpeed * velocityDamping;
+
+        // Extend blend duration at high ping to give more time for smooth convergence
+        _adaptiveBlendDuration = basePredictionBlendDuration * (1f + pingFactor * 0.5f);
+    }
+
     private void OnServerStateChanged(StateSnapshot previous, StateSnapshot serverState)
     {
         if (ballRb.isKinematic)
             return;
 
-        // update rigidbody with server state
-        ballRb.position = serverState.Position;
-        ballRb.rotation = serverState.Rotation;
-        ballRb.linearVelocity = serverState.Velocity;
-        ballRb.angularVelocity = serverState.AngularVelocity;
+        // Smooth blending system with adaptive correction based on error magnitude AND ping
+        if (_hasLocalPrediction)
+        {
+            float timeSincePrediction = Time.time - _localPredictionStartTime;
+
+            // Calculate blend factor using adaptive duration
+            float blendFactor = Mathf.Clamp01(timeSincePrediction / _adaptiveBlendDuration);
+            blendFactor = predictionBlendCurve.Evaluate(blendFactor);
+
+            // Gently guide the client toward server state
+            if (blendFactor < 1.0f)
+            {
+                // Calculate the difference between client and server
+                Vector3 positionError = serverState.Position - ballRb.position;
+                Vector3 _velocityError = serverState.Velocity - ballRb.linearVelocity;
+
+                float positionErrorMagnitude = positionError.magnitude;
+                float velocityErrorMagnitude = _velocityError.magnitude;
+
+                // Use adaptive correction speeds (ping-aware)
+                float positionCorrectionSpeed = GetAdaptiveCorrectionSpeed(positionErrorMagnitude);
+
+                // Apply corrections with adaptive speed and blend factor
+                // At high ping, POSITION corrections are less aggressive, reducing rubber banding
+                if (positionErrorMagnitude > 0.01f)
+                {
+                    // Use a more gentle correction formula at high ping
+                    float correctionAmount = positionCorrectionSpeed * blendFactor * Time.fixedDeltaTime * 50f;
+                    ballRb.position = Vector3.Lerp(ballRb.position, serverState.Position, correctionAmount);
+                }
+
+                // VELOCITY correction uses separate logic - keep ball moving naturally
+                if (velocityErrorMagnitude > velocitySnapThreshold)
+                {
+                    // Use stronger velocity correction to maintain natural ball motion
+                    float velocityCorrectionAmount = _adaptiveVelocityCorrectionSpeed * blendFactor * Time.fixedDeltaTime * 60f;
+                    ballRb.linearVelocity = Vector3.Lerp(ballRb.linearVelocity, serverState.Velocity, velocityCorrectionAmount);
+                }
+                else if (velocityErrorMagnitude > 0.01f)
+                {
+                    // Small velocity errors - snap immediately to prevent slow-down
+                    ballRb.linearVelocity = serverState.Velocity;
+                }
+
+                // Smoothly blend rotation and angular velocity with ping awareness
+                float rotationBlendSpeed = Mathf.Lerp(0.05f, 0.4f, blendFactor) * (_adaptiveSmallCorrectionSpeed / baseSmallErrorCorrectionSpeed);
+                ballRb.rotation = Quaternion.Slerp(ballRb.rotation, serverState.Rotation, rotationBlendSpeed);
+                ballRb.angularVelocity = Vector3.Lerp(ballRb.angularVelocity, serverState.AngularVelocity, rotationBlendSpeed * 0.5f);
+
+                // Update kick time with blend
+                _kickTime = Mathf.Lerp(_kickTime, serverState.KickNetworkTime, blendFactor * 0.5f);
+
+                return;
+            }
+
+            // Blend complete, disable prediction
+            _hasLocalPrediction = false;
+        }
+
+        // Full server authority (no prediction active)
+        // Still use gentle corrections to avoid snapping
+        float snapCorrectionSpeed = 0.6f * (_adaptiveSmallCorrectionSpeed / baseSmallErrorCorrectionSpeed);
+        ballRb.position = Vector3.Lerp(ballRb.position, serverState.Position, snapCorrectionSpeed);
+        ballRb.rotation = Quaternion.Slerp(ballRb.rotation, serverState.Rotation, snapCorrectionSpeed);
+
+        // Velocity should be more accurate - use stronger correction to prevent slow-down
+        Vector3 velocityError = serverState.Velocity - ballRb.linearVelocity;
+        if (velocityError.magnitude < velocitySnapThreshold)
+        {
+            // Small error - snap immediately
+            ballRb.linearVelocity = serverState.Velocity;
+        }
+        else
+        {
+            // Larger error - use stronger correction than position
+            float velocitySnapSpeed = Mathf.Max(snapCorrectionSpeed * 1.5f, 0.3f);
+            ballRb.linearVelocity = Vector3.Lerp(ballRb.linearVelocity, serverState.Velocity, velocitySnapSpeed);
+        }
+
+        ballRb.angularVelocity = Vector3.Lerp(ballRb.angularVelocity, serverState.AngularVelocity, snapCorrectionSpeed * 0.7f);
         _kickTime = serverState.KickNetworkTime;
+    }
+
+    private float GetAdaptiveCorrectionSpeed(float errorMagnitude)
+    {
+        // Use adaptive thresholds that scale with ping
+        if (errorMagnitude < _adaptiveSmallErrorThreshold)
+            return _adaptiveSmallCorrectionSpeed;
+
+        if (errorMagnitude > _adaptiveLargeErrorThreshold)
+            return _adaptiveLargeCorrectionSpeed;
+
+        // Medium errors: interpolate between gentle and aggressive
+        float t = (errorMagnitude - _adaptiveSmallErrorThreshold) / (_adaptiveLargeErrorThreshold - _adaptiveSmallErrorThreshold);
+        return Mathf.Lerp(_adaptiveSmallCorrectionSpeed, _adaptiveLargeCorrectionSpeed, t);
     }
 
     #endregion
 
     #region Physics Networking
+
     private void HandleSpinDecay()
     {
         if (_kickTime <= 0f)
@@ -294,6 +472,20 @@ public class BallSync : NetworkBehaviour
                 _kickTime = -1f;
             }
         }
+    }
+
+    private void ApplyKickMechanicsLocally(InputPayload input)
+    {
+        if (input.SlideKick && !CanSlideKick())
+            return;
+
+        if (input.StopBallFirst)
+            StopBallVelocity();
+
+        ApplyKickForces(input);
+
+        if (input.AngularImpulse.sqrMagnitude > 0)
+            _kickTime = (float)NetworkManager.ServerTime.Time;
     }
 
     private void ApplyKickMechanics(InputPayload input, ulong clientId)
@@ -321,6 +513,7 @@ public class BallSync : NetworkBehaviour
     {
         if (ballRb.linearVelocity.sqrMagnitude > 1f && ballRb.angularVelocity.sqrMagnitude > 1f)
         {
+            // Both client and server apply Magnus effect with the same multiplier
             Vector3 magnusForce = magnusForceMultiplier * ballCurveMultiplier * Vector3.Cross(ballRb.angularVelocity, ballRb.linearVelocity);
             ballRb.AddForce(magnusForce, ForceMode.Force);
         }
@@ -339,30 +532,67 @@ public class BallSync : NetworkBehaviour
         if (_contestedKicks.Count == 0)
             return;
 
+        // Sort by tick to process in chronological order
         _contestedKicks.Sort((a, b) => a.Payload.Tick.CompareTo(b.Payload.Tick));
 
-        ContestedKickRequest? winner = null;
+        // FORCE SUMMATION SYSTEM:
+        // Find all kicks within the accumulation window and sum their forces
+        int earliestTick = _contestedKicks[0].Payload.Tick;
+        int accumulationWindowTicks = Mathf.CeilToInt(kickAccumulationWindow * NetworkManager.ServerTime.TickRate);
 
+        // Only process kicks if we haven't processed this tick range yet
+        if (_lastProcessedTick >= earliestTick)
+        {
+            _contestedKicks.Clear();
+            return;
+        }
+
+        Vector3 totalForce = Vector3.zero;
+        Vector3 totalTorque = Vector3.zero;
+        bool anyStopBall = false;
+        ulong lastKickerId = 0;
+        int processedCount = 0;
+
+        // Accumulate all forces from kicks in the window
         foreach (var req in _contestedKicks)
         {
-            int tickDelta = req.Payload.Tick - _lastValidKickTick;
-            int cooldownTicks = Mathf.CeilToInt(kickCooldownDuration * NetworkManager.ServerTime.TickRate);
+            int tickDelta = req.Payload.Tick - earliestTick;
 
-            if (_lastValidKickTick == -1 || tickDelta >= cooldownTicks)
+            // Include all kicks within the accumulation window
+            if (tickDelta <= accumulationWindowTicks)
             {
-                winner = req;
-                break;
+                totalForce += req.Payload.Force;
+                totalTorque += req.Payload.AngularImpulse;
+
+                if (req.Payload.StopBallFirst)
+                    anyStopBall = true;
+
+                lastKickerId = req.SenderId;
+                processedCount++;
             }
         }
 
         _contestedKicks.Clear();
 
-        if (winner.HasValue)
+        // Apply the summed forces if any kicks were accumulated
+        if (processedCount > 0)
         {
-            _lastValidKickTick = winner.Value.Payload.Tick;
-            _lastValidKickRealTime = NetworkManager.ServerTime.Time;
+            _lastProcessedTick = earliestTick + accumulationWindowTicks;
 
-            ApplyKickMechanics(winner.Value.Payload, winner.Value.SenderId);
+            // Stop ball if any kick requested it
+            if (anyStopBall)
+                StopBallVelocity();
+
+            // Apply summed forces
+            ballRb.AddForce(totalForce, ForceMode.Impulse);
+            ballRb.AddTorque(totalTorque, ForceMode.Impulse);
+
+            // Track the last kicker for game logic
+            HandleTrackingKickers((int)lastKickerId);
+
+            // Update kick time if there was any torque
+            if (totalTorque.sqrMagnitude > 0)
+                _kickTime = (float)NetworkManager.ServerTime.Time;
         }
     }
 
@@ -394,6 +624,9 @@ public class BallSync : NetworkBehaviour
         transform.SetPositionAndRotation(newPosition, newRotation);
         ballRb.position = newPosition;
         ballRb.rotation = newRotation;
+
+        // Clear prediction on teleport
+        _hasLocalPrediction = false;
     }
 
     private StateSnapshot GetCurrentState()
@@ -423,20 +656,22 @@ public class BallSync : NetworkBehaviour
     {
         StopBallVelocity();
 
+        // Clear prediction when manually stopping
+        _hasLocalPrediction = false;
+
         if (IsServer)
             StopBallClientRpc();
         else
             StopBallServerRpc();
     }
 
-    private void ResetKickCooldown()
-    {
-        _isKickOnCooldown = false;
-    }
-
     public void EnableKinematics(bool condition)
     {
         ballRb.isKinematic = condition;
+
+        // Clear prediction when kinematics change
+        if (condition)
+            _hasLocalPrediction = false;
 
         if (IsServer)
             EnableKinematicsClientRpc(condition);
@@ -480,6 +715,7 @@ public class BallSync : NetworkBehaviour
     private void StopBallClientRpc()
     {
         StopBallVelocity();
+        _hasLocalPrediction = false;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -492,6 +728,8 @@ public class BallSync : NetworkBehaviour
     private void EnableKinematicsClientRpc(bool condition)
     {
         ballRb.isKinematic = condition;
+        if (condition)
+            _hasLocalPrediction = false;
     }
 
     [ServerRpc(RequireOwnership = false)]

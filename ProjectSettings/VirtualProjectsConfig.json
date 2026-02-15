@@ -1,4 +1,6 @@
 {
-  "PlayerTags": [],
+  "PlayerTags": [
+    "AuthChange"
+  ],
   "version": "1.6.1"
 }

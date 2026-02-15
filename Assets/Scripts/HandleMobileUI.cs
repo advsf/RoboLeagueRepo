@@ -17,8 +17,8 @@ public class HandleMobileUI : NetworkBehaviour
     [Header("Emote UI References")]
     [SerializeField] private GameObject emoteUI;
 
-    [Header("Chat UI References")]
-    [SerializeField] private TMP_InputField chatInputField;
+    [Header("Quick Chat UI References")]
+    [SerializeField] private GameObject quickChatObj;
 
     [Header("Spawn Ball References")]
     [SerializeField] private GameObject spawnBallSettingsObj;
@@ -40,7 +40,7 @@ public class HandleMobileUI : NetworkBehaviour
             button.SetActive(false);
 
         emoteUI.SetActive(false);
-        chatInputField.gameObject.SetActive(false);
+        quickChatObj.SetActive(false);
     }
 
     public override void OnNetworkDespawn()
@@ -102,10 +102,12 @@ public class HandleMobileUI : NetworkBehaviour
         }
     }
 
-    private void EnableAllMobileUI(bool condition)
+    public void HandleOpeningQuickChat()
     {
-        foreach (Transform obj in transform)
-            obj.gameObject.SetActive(condition);
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
+
+        quickChatObj.SetActive(!quickChatObj.activeInHierarchy);
     }
 
     public void HandleEnablingMenuUI()
@@ -120,27 +122,6 @@ public class HandleMobileUI : NetworkBehaviour
         else
         {
             ServerManager.instance.EnableSpawnSelectionCanvaObj(true);
-            EnableTouchPadObj(false);
-        }
-    }
-
-    public void HandleEnablingChatInputFieldUI()
-    {
-        // if active, disable
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-
-            EnableTouchPadObj(true);
-        }
-
-        else
-        {
-            chatInputField.text = "";
-            chatInputField.gameObject.SetActive(true);
-            chatInputField.ActivateInputField();
-
             EnableTouchPadObj(false);
         }
     }
@@ -258,14 +239,8 @@ public class HandleMobileUI : NetworkBehaviour
         if (spawnBallSettingsObj.activeInHierarchy)
             spawnBallSettingsObj.SetActive(false);
 
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            if (PlayerInfo.instance.spectatingObj.activeInHierarchy)
-                HandleChatbox.instance.SetMobileChatToggleInputToAll();
-
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
     }
 
     public void CloseAllHelperButtonsUIExceptLeaderboard()
@@ -276,11 +251,8 @@ public class HandleMobileUI : NetworkBehaviour
         if (spawnBallSettingsObj.activeInHierarchy)
             spawnBallSettingsObj.SetActive(false);
 
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
     }
 
     public void CloseAllHelperButtonsUIExceptEmote()
@@ -291,11 +263,8 @@ public class HandleMobileUI : NetworkBehaviour
         if (spawnBallSettingsObj.activeInHierarchy)
             spawnBallSettingsObj.SetActive(false);
 
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
     }
 
     public void CloseAllHelperButtonsUIExceptChat()
@@ -318,11 +287,13 @@ public class HandleMobileUI : NetworkBehaviour
         if (emoteUI.activeInHierarchy)
             emoteUI.SetActive(false);
 
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
+    }
+
+    public void CloseQuickChatUI()
+    {
+        quickChatObj.SetActive(false);
     }
 
     #endregion

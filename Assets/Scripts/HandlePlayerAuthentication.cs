@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
+using Unity.Multiplayer.Playmode;
+using System.Linq;
+
+
 
 #if UNITY_ANDROID
 using GooglePlayGames;
@@ -49,11 +53,20 @@ public class HandlePlayerAuthentication : MonoBehaviour
         try
         {
             await UnityServices.InitializeAsync();
+#if UNITY_EDITOR
+            var mppmTag = CurrentPlayer.ReadOnlyTags();
+            if (mppmTag.Contains("AuthChange"))
+            {
+                var playerProfile = "Player" + UnityEngine.Random.Range(0, 100);
+                AuthenticationService.Instance.SwitchProfile(playerProfile);
+            }
 
-#if UNITY_ANDROID
+            _authCompletionSource.TrySetResult(true);
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+#elif UNITY_ANDROID
         SignInWithGooglePlayGames();
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
-        if (SteamManager.Initialized)
+            if (SteamManager.Initialized)
             SignInWithSteam();
 #endif
         }

@@ -1,7 +1,5 @@
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class HandleSpectatingMobileUI : NetworkBehaviour
 {
@@ -11,8 +9,8 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
     [SerializeField] private GameObject touchPad;
     [SerializeField] private HandleLeaderboardUI leaderboardUI;
 
-    [Header("Chat UI References")]
-    [SerializeField] private TMP_InputField chatInputField;
+    [Header("Quick Chat UI References")]
+    [SerializeField] private GameObject quickChatObj;
 
     public override void OnNetworkSpawn()
     {
@@ -25,6 +23,8 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
         }
 
         instance = this;
+
+        quickChatObj.SetActive(false);
     }
 
     public override void OnNetworkDespawn()
@@ -42,20 +42,14 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
         if (leaderboardUI.IsLeaderboardActive())
             leaderboardUI.DisableLeaderboard();
 
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
     }
 
     public void CloseAllHelperButtonsUIExceptLeaderboard()
     {
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
-        }
+        if (quickChatObj.activeInHierarchy)
+            quickChatObj.SetActive(false);
     }
 
     public void CloseAllHelperButtonsUIExceptChat()
@@ -63,6 +57,12 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
         if (leaderboardUI.IsLeaderboardActive())
             leaderboardUI.DisableLeaderboard();
     }
+
+    public void CloseQuickChatUI()
+    {
+        quickChatObj.SetActive(false);
+    }
+
     public void EnableTouchPadObj(bool condition)
     {
         touchPad.SetActive(condition);
@@ -84,24 +84,12 @@ public class HandleSpectatingMobileUI : NetworkBehaviour
         }
     }
 
-    public void HandleEnablingChatInputFieldUI()
+    public void HandleEnablingQuickChat()
     {
-        // if active, disable
-        if (chatInputField.gameObject.activeInHierarchy)
-        {
-            chatInputField.ActivateInputField();
-            chatInputField.gameObject.SetActive(false);
+        // if chat is disabled
+        if (FBPP.GetInt("EnableChat") == 0)
+            return;
 
-            EnableTouchPadObj(true);
-        }
-
-        else
-        {
-            chatInputField.text = "";
-            chatInputField.gameObject.SetActive(true);
-            chatInputField.ActivateInputField();
-
-            EnableTouchPadObj(false);
-        }
+        quickChatObj.SetActive(!quickChatObj.activeInHierarchy);
     }
 }

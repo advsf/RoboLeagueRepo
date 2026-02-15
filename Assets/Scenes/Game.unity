@@ -1221,7 +1221,7 @@ MonoBehaviour:
   isRedNet: 0
   crowdSoundDelay: 0.5
   goalScoreUIDelay: 0.05
-  goalDelay: 0.35
+  goalDelay: 0.5
   isVerifyingGoal: 0
 --- !u!54 &55855484
 Rigidbody:
@@ -27336,7 +27336,7 @@ MonoBehaviour:
   isRedNet: 1
   crowdSoundDelay: 0.5
   goalScoreUIDelay: 0.05
-  goalDelay: 0.35
+  goalDelay: 0.5
   isVerifyingGoal: 0
 --- !u!54 &2016364637
 Rigidbody:

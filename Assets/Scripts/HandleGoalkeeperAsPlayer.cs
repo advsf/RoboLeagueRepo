@@ -637,6 +637,12 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
     public void DiveViaButton()
     {
+        if (isHoldingBall)
+        {
+            DropBall();
+            return;
+        }
+
         if (isDiveCooldownOver && isCatchCooldownOver && isInGoalkeeperBox && !isHoldingBall && !HandleCursorSettings.instance.IsUIOn())
         {
             PerformDive();
@@ -647,6 +653,12 @@ public class HandleGoalkeeperAsPlayer : NetworkBehaviour
 
     public void CatchViaButton()
     {
+        if (isHoldingBall)
+        {
+            DropBall();
+            return;
+        }
+
         // only allow the player to catch when the game has started
         if (PlayerMovement.instance.IsOnGround && isDiveCooldownOver && isCatchCooldownOver
             && !ServerManager.instance.didATeamScore.Value
