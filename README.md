@@ -1,6 +1,6 @@
+<img width="2308" height="1299" alt="2" src="https://github.com/user-attachments/assets/920c3b89-b3ff-4f6e-baea-ce40de8abf1b" />
 # [RoboLeague]
 A competitive multiplayer 5 on 5 football game with unique position-based abilities that enables players to control the field.
-<img width="2308" height="1299" alt="2" src="https://github.com/user-attachments/assets/920c3b89-b3ff-4f6e-baea-ce40de8abf1b" />
 
 # Key Achievements
 - Gathered a total of 25k downloads on Google Play and 7k on Steam.
@@ -20,20 +20,9 @@ A competitive multiplayer 5 on 5 football game with unique position-based abilit
 - Used Unity's Netcode for Gameobjects to handle the lobby and multiplayer.
 
 # Short Gameplay Snippets (No raw file unfortunately)
-<details>
-  <summary>A 5 second gameplay footage from my devlog</summary>
-  https://github.com/user-attachments/assets/f76c7bd6-fc66-415a-a798-9a7c637dfd9c
-</details>
-
-<details>
-  <summary>Instagram/TikTok Reel</summary>
-  https://github.com/user-attachments/assets/1ec32e2b-6fd1-47a9-a304-26c5aff24ca2
-</details>
-
-<details>
-  <summary>Google Play Mobile Ad</summary>
-  https://github.com/user-attachments/assets/6a72b445-b1d0-4f35-864a-ad2cc4e5d6b2
-</details>
+https://github.com/user-attachments/assets/f76c7bd6-fc66-415a-a798-9a7c637dfd9c
+https://github.com/user-attachments/assets/1ec32e2b-6fd1-47a9-a304-26c5aff24ca2
+https://github.com/user-attachments/assets/6a72b445-b1d0-4f35-864a-ad2cc4e5d6b2
 
 # Misc. Links
 Instagram: https://www.instagram.com/bestmakerdev/
