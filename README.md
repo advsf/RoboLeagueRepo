@@ -20,8 +20,6 @@ A competitive multiplayer 5 on 5 football game with unique position-based abilit
 
 # Gameplay Snippets from Social Media (No raw files unfortunately to save files)
 https://github.com/user-attachments/assets/f76c7bd6-fc66-415a-a798-9a7c637dfd9c
-https://github.com/user-attachments/assets/1ec32e2b-6fd1-47a9-a304-26c5aff24ca2
-https://github.com/user-attachments/assets/6a72b445-b1d0-4f35-864a-ad2cc4e5d6b2
 
 # Misc. Links
 Instagram: https://www.instagram.com/bestmakerdev/
