@@ -27,8 +27,15 @@ https://github.com/user-attachments/assets/1ec32e2b-6fd1-47a9-a304-26c5aff24ca2
 https://github.com/user-attachments/assets/6a72b445-b1d0-4f35-864a-ad2cc4e5d6b2
 
 # Misc. Links
+Steam: https://store.steampowered.com/app/4154410/RoboLeague/
+
+Google Play: https://play.google.com/store/apps/details?id=com.bestmaker.roboleague&hl=en_CA
+
 Instagram: https://www.instagram.com/bestmakerdev/
+
 TikTok: https://www.tiktok.com/@bestmakerdev
+
 YouTube: https://www.youtube.com/@bestmakerdev2
+
 Discord: https://discord.gg/zFWtZvmQZA
 
